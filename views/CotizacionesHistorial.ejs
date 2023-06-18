@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <%- include('layouts/metaData'); -%>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welderstone - About</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <!-- CSS Stylesheet-->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/panelusuarios.css">
+
+    <!-- FontAwesome-->
+    <script src="https://kit.fontawesome.com/c1d78340ca.js" crossorigin="anonymous"></script>  
+</head>
+<body>
+    <!-- NAVBAR -->
+    <%- include('layouts/navbar'); -%>
+    
+    <section id="presentation" class="mt-5">
+      <h1 class="text-center mb-4">Historial de cotizaciones </h1>
+
+
+      <body class="text-center">
+
+      <form method="POST"  action="/FiltrosCotizaciones">
+        <select name="FiltroHistorial" id="FiltroHistorial" class="form-select-center" >
+            <option value="1mes" >Últimos 30 días.</option>
+            <option value="2meses">Últimos 2 meses</option>
+            <option value="3meses">Últimos 3 meses</option>
+            <% for (var i = 0; i < años.length; i++) { %>
+            <option value="<%=años[i].año%>"><%=años[i].año%></option>
+            <% } %> 
+          </select>
+          <button type="submit" class="btn btn-info btn-sm">Filtrar</button>
+          <br>
+        </form>
+<br>
+    <form method="post" action="/FiltrosCotizaciones2" >
+      <select name="Filtro2" id="FiltroHistorial2"class="BusquedaSelect">
+          <option value="NombreProducto" >Nombre del producto</option>
+          <option value="NombreCliente" >Nombre del cliente</option>
+          <option value="IdTrans" >Id</option>
+
+      </select>
+      <input type="text" name="busqueda" class="busquedaInput" placeholder="Inserte los datos que desea filtrar">
+      <button class="btn btn-outline-danger" type="reset">Limpiar</button>
+      <button type="submit" class="btn btn-outline-danger"><i class="fa-solid fa-magnifying-glass"></i></button>
+</form>
+<% if(roles === 'admin' ){ %>
+
+<form method="post" action="/FiltrosCotizaciones2" >
+  <select name="Filtro2" id="FiltroHistorial3"class="BusquedaSelect">
+      <option value="SubTotal" >Subtotal</option>
+      <option value="Precio" >Precio</option>
+
+  </select>
+  <input type="number" name="BusquedaPrecios" class="busquedaInput2" placeholder="Min">
+  <input type="number" name="BusquedaPrecios2" class="busquedaInput2" placeholder="Max">
+
+  <button class="btn2 btn-outline-danger" type="reset">Limpiar</button>
+  <button type="submit" class="btn2 btn-outline-danger"><i class="fa-solid fa-magnifying-glass"></i></button>
+</form>
+</div>             
+<br>
+
+<% } %> 
+
+      <br>
+       <class="container">
+        <div class="row">
+          <div class="col">
+            <table class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Información del cliente</th>
+
+                  <th scope="col">Fecha</th>
+                  <th scope="col">ID</th>
+                  <th scope="col">Producto/s</th>
+                  <th scope="col">Precio</th>
+                  <th scope="col">Cantidad </th>
+                  <th scope="col">Subtotal</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% if(roles === 'admin' ){ %>
+
+                <% for (var a = 0; a < cotizaciones.docs.length; a++) { %>
+
+                  <% const {ProductosComprados} = cotizaciones.docs[a] %>
+                  <% for (var b = 0; b < ProductosComprados.length; b++) { %>
+                    <% var SubTotal = ProductosComprados[b].precio * ProductosComprados[b].cantidad %>
+                    <tr>
+                      <% if (b === 0) { %>
+
+                      <td rowspan="<%=ProductosComprados.length%>"><button class="edit-btn" onclick="openPopup3(`<%= cotizaciones.docs[a].Id_transaccion%>`)">Info</button>
+                        <!--<%=cotizaciones.docs[a].NombreYApellidos%></td>-->
+
+                        <td rowspan="<%=ProductosComprados.length%>"><%=cotizaciones.docs[a].Fecha_compra.toDateString()%></td>
+                        <td rowspan="<%=ProductosComprados.length%>"><%=cotizaciones.docs[a].Id_transaccion%></td>
+                      <% } %>
+                      <td><%=ProductosComprados[b].nombre%></td>
+                      <td>$<%=ProductosComprados[b].precio%></td>
+                      <td><%=ProductosComprados[b].cantidad%></td>
+                      <td>$<%=SubTotal%></td>
+                    </tr>
+                  <% } %> 
+                <% } %> 
+
+                <% } %> 
+
+
+
+
+
+                  
+                <% for (var a = 0; a < cotizaciones.docs.length; a++) { %>
+                  <% if(roles !== 'admin' && cotizaciones.docs[a].Id_usuario === IdUsuario ){ %>
+
+                  <% const {ProductosComprados} = cotizaciones.docs[a] %>
+                  <% for (var b = 0; b < ProductosComprados.length; b++) { %>
+                    <% var SubTotal = ProductosComprados[b].precio * ProductosComprados[b].cantidad %>
+                    <tr>
+
+                      <% if (b === 0) { %>
+
+                      <td rowspan="<%=ProductosComprados.length%>"><button class="edit-btn" onclick="openPopup3(`<%= cotizaciones.docs[a].Id_transaccion%>`)">Info</button>
+                        <br>
+                        <br>
+
+                        <a href="/cotizacionProductos?IdTrans=<%= cotizaciones.docs[a].Id_transaccion%>" class="edit-btn">Despliegue</a>
+
+                      </td>
+
+                        <td rowspan="<%=ProductosComprados.length%>"><%=cotizaciones.docs[a].Fecha_compra.toDateString()%></td>
+                        <td rowspan="<%=ProductosComprados.length%>"><%=cotizaciones.docs[a].Id_transaccion%></td>
+                      <% } %>
+                      <td><%=ProductosComprados[b].nombre%></td>
+                      <td>$<%=ProductosComprados[b].precio%></td>
+                      <td><%=ProductosComprados[b].cantidad%></td>
+                      <td>$<%=SubTotal%></td>
+                    </tr>
+                  <% } %> 
+                <% } %> 
+                <% } %> 
+
+
+                
+
+    
+    
+
+
+              </tbody>
+            </table>
+
+
+
+
+
+
+
+            
+          </div>
+        </div>
+      </div>
+
+
+
+    </section>
+
+    <!-- Bootstrap core JS-->
+
+
+    <% if(FiltroPaginado === false){ %>
+
+      <% for (var a = 1; a < cotizaciones.totalPages+1; a++) { %> <a href="/CotizacionesHistorial?page=<%=[a]%>" type="submit" id="sendMessageButton" class="botonPaginacion btn-dark "><%=[a]%></a><% } %>
+      
+      <% } %> 
+      
+      <% if(FiltroPaginado === true && Filtro !== "IdTrans" && Filtro !== "NombreProducto" && Filtro !== "NombreCliente" && Filtro !== "SubTotal" && Filtro !== "Precio" ){ %>
+          <% for (var a = 1; a < cotizaciones.totalPages+1; a++) { %> <a href="/FiltrosCotizaciones?page=<%=[a]%>&amp;Filtro=<%=Filtro%>" type="submit" id="sendMessageButton" class="botonPaginacion btn-dark"><%=[a]%></a><% } %>
+      
+          <% } %> 
+          <% if(FiltroPaginado === true && Filtro === "IdTrans" || Filtro === "NombreProducto" || Filtro === "NombreCliente" || Filtro === "SubTotal" || Filtro === "Precio"){ %>
+              <% for (var a = 1; a < cotizaciones.totalPages+1; a++) { %> <a href="/FiltrosCotizaciones2?page=<%=[a]%>&amp;Filtro=<%=Filtro%>&amp;consulta=<%=consulta%>&amp;consulta2=<%=consulta2%>" type="submit" id="sendMessageButton" class="botonPaginacion btn-dark"><%=[a]%></a><% } %>
+          
+              <% } %> 
+
+              <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+</body>
+</html>
+<script>
+  const selectElement = document.getElementById('FiltroHistorial');
+  const FiltroHistorial = "<%=Filtro%>";
+
+  if (FiltroHistorial) {
+    for (let i = 0; i < selectElement.options.length; i++) {
+      if (selectElement.options[i].value === FiltroHistorial) {
+        selectElement.options[i].selected = true;
+        break;
+      }
+    }
+  }
+</script> 
+<script>
+  const selectElement2 = document.getElementById('FiltroHistorial2');
+  const FiltroHistorial2 = "<%=Filtro%>";
+
+  if (FiltroHistorial2) {
+    for (let i = 0; i < selectElement2.options.length; i++) {
+      if (selectElement2.options[i].value === FiltroHistorial2) {
+        selectElement2.options[i].selected = true;
+        break;
+      }
+    }
+  }
+</script> 
+<script>
+  const selectElement3 = document.getElementById('FiltroHistorial3');
+  const FiltroHistorial3 = "<%=Filtro%>";
+
+  if (FiltroHistorial3) {
+    for (let i = 0; i < selectElement3.options.length; i++) {
+      if (selectElement3.options[i].value === FiltroHistorial3) {
+        selectElement3.options[i].selected = true;
+        break;
+      }
+    }
+  }
+</script> 
+
+
+<script>
+  function openPopup3(id) {
+  fetch(`/popup3/${id}`)
+    .then(response => response.text())
+    .then(html => {
+      const popup3 = document.createElement('div');
+      popup3.innerHTML = html;
+      document.body.appendChild(popup3);
+      const closeBtn = popup3.querySelector('.close-btn');
+      closeBtn.addEventListener('click', () => {
+        popup3.remove();
+      });
+    });
+}
+</script>
+
+<style>
+  .custom-select {
+    appearance: none;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    color: #555555;
+    font-size: 16px;
+    padding: 10px;
+    width: 25%;
+  }
+  
+  .custom-select:focus {
+    outline: none;
+    border-color: #2196F3;
+    box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2);
+  }
+  
+  .custom-select option {
+    background-color: #ffffff;
+    color: #555555;
+  }
+  .custom-select2 {
+    appearance: none;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    color: #555555;
+    font-size: 16px;
+    padding: 10px;
+    width: 5%;
+  }
+  
+  .custom-select2:focus {
+    outline: none;
+    border-color: #5d6f7e;
+    box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2);
+  }
+  
+  .custom-select2 option {
+    background-color: #ffffff;
+    color: #555555;
+  }
+
+  
+    .popup3 {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+.close-btn {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  width: 100px;
+  height: 100px;
+}
+.edit-btn, .factura-link {
+  display: inline-block; /* display elements inline */
+  vertical-align: middle; /* align elements vertically */
+  padding: 5px 10px; /* add padding */
+  border-radius: 5px; /* round corners */
+  cursor: pointer; /* add cursor on hover */
+  transition: background-color 0.3s ease; /* add transition effect */
+}
+
+.edit-btn {
+  background-color: #4CAF50; /* set background color */
+  color: white; /* set text color */
+  border: none; /* remove border */
+}
+
+.edit-btn:hover {
+  background-color: #3e8e41; /* change background color on hover */
+}
+    .select2-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 63%;
+  max-width: 400px;
+}
+
+.select2-wrapper select {
+  width: 63%;
+  padding: 0.5rem;
+  font-size: 1.1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  cursor: pointer;
+}
+
+.select2-wrapper i {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+.btn2 {
+  font-size: 1.0rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #647587;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn2:hover {
+  background-color: #647587;
+}
+    .center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.select-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 400px;
+}
+
+.select-wrapper select {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1.1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  cursor: pointer;
+}
+
+.select-wrapper i {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #647587;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #647587;
+}
+
+    /* Estilos para el modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: -10px;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 400px;
+      text-align: center;
+    }
+    </style>
+

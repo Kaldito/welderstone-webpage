@@ -1,0 +1,74 @@
+<section id="tienda-filtros">
+    <div class="row mt-4 px-sm-5" style="padding-bottom: .8rem;">
+        <!-- Link de Hogar -->
+        <% if(filtro == "hogar"){ %>
+            <div style="border-top-left-radius: .375rem; border-bottom-left-radius: .375rem; position: relative;" class="col-2 col-xl-1 text-truncate center-all rb-red filter-selected">
+                <a class="filter-format-selected stretched-link" id="hogar-tab" href="#">Hogar</a>
+            </div>
+        <% } else { %>
+            <div style="border-top-left-radius: .375rem; border-bottom-left-radius: .375rem; position: relative;" class="col-2 col-xl-1 text-truncate center-all rb-red" style="position: relative;">
+                <a class="filter-format stretched-link" id="hogar-tab" href="/tienda/busqueda/hogar">Hogar</a>
+            </div>
+        <% } %>
+        <!-- Link de Industria -->
+        <% if(filtro == "industria"){ %>
+            <div style="position: relative;" class="col-2 col-xl-1 text-truncate center-all rb-red filter-selected">
+                <a class="filter-format-selected stretched-link" id="industria-tab" href="#">Industria</a>
+            </div>
+        <% } else { %>
+            <div style="position: relative;" class="col-2 col-xl-1 text-truncate center-all rb-red">
+                <a class="filter-format stretched-link" id="industria-tab" href="/tienda/busqueda/industria">Industria</a>
+            </div>
+        <% } %>
+        <!-- Link de Urbanismo -->
+        <% if(filtro == "urbanismo"){ %>
+            <div style="position: relative;" class="col-2 col-xl-1 text-truncate center-all rb-red filter-selected">
+                <a class="filter-format-selected stretched-link" id="urbanismo-tab" href="#">Urbanismo</a>
+            </div>
+        <% } else { %>
+            <div style="position: relative;" class="col-2 col-xl-1 text-truncate center-all rb-red">
+                <a class="filter-format stretched-link" id="urbanismo-tab" href="/tienda/busqueda/urbanismo">Urbanismo</a>
+            </div>
+        <% } %>
+        <!-- Link de Ganadero -->
+        <% if(filtro == "ganadero"){ %>
+            <div style="position: relative;" class="col-2 col-xl-1 text-truncate center-all rb-red filter-selected">
+                <a class="filter-format-selected stretched-link" id="ganadero-tab" href="/tienda/busqueda/ganadero">Ganadero</a>
+            </div>
+        <% } else { %>
+            <div style="position: relative;" class="col-2 col-xl-1 text-truncate center-all rb-red">
+                <a class="filter-format stretched-link" id="ganadero-tab" href="/tienda/busqueda/ganadero">Ganadero</a>
+            </div>
+        <% } %>
+        <!-- Link de Contruccion y reciclados -->
+        <% if(filtro == "construccion y reciclados"){ %>
+            <div style="position: relative;" class="col-2 col-xl-1 text-truncate center-all rb-red filter-selected">
+                <a class="filter-format-selected stretched-link" id="c-y-r-tab" href="/tienda/busqueda/construccion-y-reciclados" data-bs-toggle="tooltip" data-bs-title="Construccion y reciclados">Construccion y reciclados</a>
+            </div>
+        <% } else { %>
+            <div style="position: relative;" class="col-2 col-xl-1 text-truncate center-all rb-red">
+                <a class="filter-format stretched-link" id="c-y-r-tab" href="/tienda/busqueda/construccion-y-reciclados" data-bs-toggle="tooltip" data-bs-title="Construccion y reciclados">Construccion y reciclados</a>
+            </div>
+        <% } %>
+        <!-- Link de Especiales -->
+        <% if(filtro == "especiales"){ %>
+            <div style="position: relative;" class="col-2 col-xl-1 text-truncate center-all final-filter filter-selected">
+                <a class="filter-format-selected stretched-link" id="especiales-tab" href="/tienda/busqueda/especiales">Especiales</a>
+            </div>
+        <% } else { %>
+            <div style="position: relative;" class="col-2 col-xl-1 text-truncate center-all final-filter    ">
+                <a class="filter-format stretched-link" id="especiales-tab" href="/tienda/busqueda/especiales">Especiales</a>
+            </div>
+        <% } %>
+
+        <div class="col-12 col-xl-6 mt-xl-1rem">
+            <form action="/tienda/busqueda" method="post">
+                <div class="input-group">
+                    <input type="text" name="busqueda" class="form-control busquedaInput" placeholder="Busca aqui lo que necesites">
+                    <button class="btn btn-outline-danger" type="submit">Limpiar</button>
+                    <button type="submit" class="btn btn-outline-danger"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

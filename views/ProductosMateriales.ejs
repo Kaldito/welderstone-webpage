@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <%- include('layouts/metaData'); -%>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Welderstone - About</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+            rel="stylesheet"
+        />
+        <!-- Bootstrap-->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+            crossorigin="anonymous"
+        />
+        <!-- CSS Stylesheet-->
+        <link rel="stylesheet" href="css/styles.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css"
+        />
+        <!-- FontAwesome-->
+
+        <script
+            src="https://kit.fontawesome.com/c1d78340ca.js"
+            crossorigin="anonymous"
+        ></script>
+        <style type="text/css">
+            #popup {
+                left: 0;
+                position: absolute;
+                top: 0;
+                width: 100%;
+                z-index: 1001;
+            }
+            .content-pop {
+                margin: 0px auto;
+                margin-top: 100px;
+                position: relative;
+                padding: 10px;
+                width: 1200px;
+                height: 500px;
+                min-width: 250px;
+                background-color: white;
+                border: 1px solid black;
+                overflow-y: scroll;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- NAVBAR -->
+        <%- include('layouts/navbar'); -%>
+        <section id="presentation">
+            <% const {MaterialesProductos} = ProductoAEditar[0] %> <% const
+            {PinturaProductos} = ProductoAEditar[0] %> <% const
+            {InstalacionProductos} = ProductoAEditar[0] %>
+
+            <form
+                action="/productos/EditarMateriales"
+                method="POST"
+                enctype="multipart/form-data"
+            >
+                <input
+                    type="hidden"
+                    name="ProductoAEditar"
+                    value="<%=ProductoAEditar[0].nombre%>"
+                />
+
+                <div class="control-group">
+                    <div class="form-group floating-label-form-group controls">
+                        <input
+                            type="button"
+                            name="abrirse"
+                            id="openPM"
+                            value="Editar materiales "
+                        />
+                        <div id="popupPM" style="display: none">
+                            <div class="content-pop">
+                                <div><a href="#" id="closePM">X</a></div>
+                                <% for (var a = 0; a <
+                                MaterialesProductos.length; a++) { %>
+                                <div>
+                                    <%=MaterialesProductos[a].Descripcion%>
+                                    <div class="col-6 mt-1">
+                                        <input
+                                            type="number"
+                                            value="<%=MaterialesProductos[a].cantidad%>"
+                                            step="any"
+                                            name="MaterialesProductos[cantidad]"
+                                            min="0"
+                                        />
+                                        <input
+                                            type="hidden"
+                                            value="<%=MaterialesProductos[a].codigo%>"
+                                            name="MaterialesProductos[codigo]"
+                                        />
+                                        <input
+                                            type="hidden"
+                                            value="<%=MaterialesProductos[a].Descripcion%>"
+                                            name="MaterialesProductos[nombre]"
+                                        />
+                                        <input
+                                            type="hidden"
+                                            value="<%=MaterialesProductos[a].familia%>"
+                                            name="MaterialesProductos[familia]"
+                                        />
+                                        <input
+                                            type="hidden"
+                                            value="<%=MaterialesProductos[a].preciounitario%>"
+                                            name="MaterialesProductos[preciounitario]"
+                                        />
+                                    </div>
+                                </div>
+
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <div class="form-group floating-label-form-group controls">
+                        <input
+                            type="button"
+                            name="abrirse"
+                            id="openPP"
+                            value="Editar materiales pintura"
+                        />
+                        <div id="popupPP" style="display: none">
+                            <div class="content-pop">
+                                <div><a href="#" id="closePP">X</a></div>
+                                <% for (var a = 0; a < PinturaProductos.length;
+                                a++) { %>
+                                <div>
+                                    <%=PinturaProductos[a].Descripcion%>
+                                    <div class="col-6 mt-1">
+                                        <input
+                                            type="number"
+                                            value="<%=PinturaProductos[a].cantidad%>"
+                                            step="any"
+                                            name="PinturaProductos[cantidad]"
+                                            min="0"
+                                        />
+                                        <input
+                                            type="hidden"
+                                            value="<%=PinturaProductos[a].codigo%>"
+                                            name="PinturaProductos[codigo]"
+                                        />
+                                        <input
+                                            type="hidden"
+                                            value="<%=PinturaProductos[a].Descripcion%>"
+                                            name="PinturaProductos[nombre]"
+                                        />
+                                        <input
+                                            type="hidden"
+                                            value="<%=PinturaProductos[a].familia%>"
+                                            name="PinturaProductos[familia]"
+                                        />
+                                        <input
+                                            type="hidden"
+                                            value="<%=PinturaProductos[a].preciounitario%>"
+                                            name="PinturaProductos[preciounitario]"
+                                        />
+                                    </div>
+                                </div>
+
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <div class="form-group floating-label-form-group controls">
+                        <input
+                            type="button"
+                            name="abrirse"
+                            id="openIP"
+                            value="Editar materiales Instalacion"
+                        />
+                        <div id="popupIP" style="display: none">
+                            <div class="content-pop">
+                                <div><a href="#" id="closeIP">X</a></div>
+                                <% for (var a = 0; a <
+                                InstalacionProductos.length; a++) { %>
+                                <div>
+                                    <%=InstalacionProductos[a].Descripcion%>
+                                    <div class="col-6 mt-1">
+                                        <input
+                                            type="number"
+                                            value="<%=InstalacionProductos[a].cantidad%>"
+                                            step="any"
+                                            name="InstalacionProductos[cantidad]"
+                                            min="0"
+                                        />
+                                        <input
+                                            type="hidden"
+                                            value="<%=InstalacionProductos[a].codigo%>"
+                                            name="InstalacionProductos[codigo]"
+                                        />
+                                        <input
+                                            type="hidden"
+                                            value="<%=InstalacionProductos[a].Descripcion%>"
+                                            name="InstalacionProductos[nombre]"
+                                        />
+                                        <input
+                                            type="hidden"
+                                            value="<%=InstalacionProductos[a].familia%>"
+                                            name="InstalacionProductos[familia]"
+                                        />
+                                        <input
+                                            type="hidden"
+                                            value="<%=InstalacionProductos[a].preciounitario%>"
+                                            name="InstalacionProductos[preciounitario]"
+                                        />
+                                    </div>
+                                </div>
+
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                        id="sendMessageButton"
+                    >
+                        Guardar Cambios
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Bootstrap core JS-->
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://kit.fontawesome.com/360b0549be.js"
+            crossorigin="anonymous"
+        ></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#openPM").on("click", function () {
+                    $("#popupPM").fadeIn("slow");
+                });
+                $("#closePM").on("click", function () {
+                    $("#popupPM").fadeOut("slow");
+                });
+            });
+        </script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#openPP").on("click", function () {
+                    $("#popupPP").fadeIn("slow");
+                });
+                $("#closePP").on("click", function () {
+                    $("#popupPP").fadeOut("slow");
+                });
+            });
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#openIP").on("click", function () {
+                    $("#popupIP").fadeIn("slow");
+                });
+                $("#closeIP").on("click", function () {
+                    $("#popupIP").fadeOut("slow");
+                });
+            });
+        </script>
+        <script
+            src="https://kit.fontawesome.com/360b0549be.js"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>

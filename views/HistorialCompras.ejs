@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <%- include('layouts/metaData'); -%>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welderstone - About</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <!-- CSS Stylesheet-->
+    <link rel="stylesheet" href="css/historial.css">
+    <!-- FontAwesome-->
+    <script src="https://kit.fontawesome.com/c1d78340ca.js" crossorigin="anonymous"></script>  
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+	<link rel="stylesheet" href="public/assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" />
+</head>
+
+<%- include('layouts/navbar'); -%>
+
+<body class="text-center">
+    <br>
+    <h1 class="text-center hola">Historial de compras</h1>
+<div class="center">
+    Pedidos realizados:
+    <form method="POST"  action="/FiltrosCompras">
+    <select name="FiltroHistorial" id="FiltroHistorial" class="form-select-center" >
+        <option value="1mes" >Últimos 30 días.</option>
+        <option value="2meses">Últimos 2 meses</option>
+        <option value="3meses">Últimos 3 meses</option>
+        <% for (var i = 0; i < años.length; i++) { %>
+        <option value="<%=años[i].año%>"><%=años[i].año%></option>
+        <% } %> 
+      </select>
+      <button type="submit" class="btn btn-info btn-sm">Filtrar</button>
+      <br>
+    </form>
+</div>             
+<br>
+<% if( roles === 'admin'){ %>
+
+    <form method="post" action="/FiltrosCompras2" >
+            <select name="Filtro2" id="FiltroHistorial2"class="BusquedaSelect">
+                <option value="NombreProducto" >Nombre del producto</option>
+                <option value="NombreCliente" >Nombre del cliente</option>
+                <option value="IdTrans" >Id de la transacción </option>
+
+            </select>
+            <input type="text" name="busqueda" class="busquedaInput" placeholder="Inserte los datos que desea filtrar">
+            <button class="btn btn-outline-danger" type="reset">Limpiar</button>
+            <button type="submit" class="btn btn-outline-danger"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </form>
+
+    <form method="post" action="/FiltrosCompras2" >
+        <select name="Filtro2" id="FiltroHistorial3"class="BusquedaSelect">
+            <option value="SubTotal" >Subtotal</option>
+            <option value="Precio" >Precio</option>
+
+        </select>
+        <input type="number" name="BusquedaPrecios" class="busquedaInput2" placeholder="Min">
+        <input type="number" name="BusquedaPrecios2" class="busquedaInput2" placeholder="Max">
+
+        <button class="btn2 btn-outline-danger" type="reset">Limpiar</button>
+        <button type="submit" class="btn2 btn-outline-danger"><i class="fa-solid fa-magnifying-glass"></i></button>
+</form>
+    <% } %> 
+
+    <section>                
+
+
+<div class="row mt-5">
+    <div class="col-md-10 offset-md-1">
+
+        <table class="table table-hover table-condensed width">
+            <thead>
+                <tr>
+                    <th style="width:20%">Nombre del comprador </th>
+                    <th style="width:17%">Fecha de la compra </th>
+                    <th style="width:23%" >Id transacción</th>
+                    <th style="width:10%"> Producto/s </th>
+                    <th style="width:10%"> Precio </th>
+                    <th style="width:10%"> Cantidad  </th>
+                    <th style="width:20%">SubTotal</th>
+                    <th style="width:20%">Envio</th>
+                    <th style="width:20%">Factura</th>
+
+                    
+                </tr>
+            </thead>        
+<!--&& compra.docs[a].status === 'approved'-->
+            <tbody>
+                <!--Vista de administrador-->
+                <% for (var a = 0; a < compra.docs.length; a++) { %>
+                    <% if( roles === 'admin' && compra.docs[a].status === 'approved' ){ %>
+
+                        <% const {ProductosComprados} = compra.docs[a] %> 
+
+                    <tr>
+                    <td><%= compra.docs[a].Nombre_comprador%></td>
+
+                    
+                    <td> <span class="meta"><%= compra.docs[a].Fecha_compra.toDateString() %></span></td>
+
+
+
+                    <td><%= compra.docs[a].Id_transaccion%> </td>
+
+                  
+
+                        <td>   <% for (var b = 0; b < ProductosComprados.length; b++) { %><%=[b+1] +":"%> <%=ProductosComprados[b].nombre%> <br><% } %> </td>
+                        <td> <% for (var b = 0; b < ProductosComprados.length; b++) { %> $<%=ProductosComprados[b].precio%> <br><% } %>  </td>
+                        <td> <% for (var b = 0; b < ProductosComprados.length; b++) { %><%=ProductosComprados[b].cantidad%><br><% } %></td>
+                        
+                        <!--<%=SubTotal[b]%>-->
+                    <td> <% for (var b = 0; b < ProductosComprados.length; b++) { %> <% var SubTotal = ProductosComprados[b].precio * ProductosComprados[b].cantidad %> $<%=SubTotal%><% } %>  </td>
+                      <td> 
+                       
+
+                        <button class="edit-btn" onclick="openPopup(`<%= compra.docs[a].Id_transaccion%>`)">Editar</button>
+
+                        <br><br>
+
+<span class="estatus-envio"><%= compra.docs[a].EstatusEnvio %></span>
+                      </td>
+
+                      <td>
+
+                        <a class="factura-link" href="/factura?IdTrans=<%=compra.docs[a].Id_transaccion%>">Factura</a>
+                            
+                        </td>
+                </tr>
+
+
+                <% } %> 
+
+
+                <% } %> 
+<!--Vista de Usuario-->
+
+<% for (var a = 0; a < compra.docs.length; a++) { %>
+    <% if( roles !== 'admin' && compra.docs[a].status === 'approved' && compra.docs.Id_usuario === IdUsuario){ %>
+
+        <% const {ProductosComprados} = compra.docs[a] %> 
+
+    <tr>
+    <td><%= compra.docs[a].Nombre_comprador%></td>
+
+    
+    <td> <span class="meta"><%= compra.docs[a].Fecha_compra.toDateString() %></span></td>
+
+
+
+    <td><%= compra.docs[a].Id_transaccion%> </td>
+
+  <!--Detalles-->
+
+        <td>   <% for (var b = 0; b < ProductosComprados.length; b++) { %> <%=ProductosComprados[b].nombre%> <br><% } %> </td>
+        <td> <% for (var b = 0; b < ProductosComprados.length; b++) { %> $<%=ProductosComprados[b].precio%> <br><% } %>  </td>
+        <td> <% for (var b = 0; b < ProductosComprados.length; b++) { %><%=ProductosComprados[b].cantidad%><br><% } %></td>
+        
+
+    <td> <% for (var b = 0; b < ProductosComprados.length; b++) { %> $<%=SubTotal[b]%> <% } %> </td>
+
+    <td>
+
+        <a href="/factura?IdTrans=<%=compra.docs[a].Id_transaccion%>">Factura</a>
+        
+    </td>
+</tr>
+
+<% } %> 
+
+
+<% } %> 
+
+            </tbody>
+       
+        
+        </table>
+ 
+    </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<% if(FiltroPaginado === false){ %>
+
+<% for (var a = 1; a < compra.totalPages+1; a++) { %> <a href="/HistorialCompras?page=<%=[a]%>" type="submit" id="sendMessageButton" class="botonPaginacion btn-dark "><%=[a]%></a><% } %>
+
+<% } %> 
+
+<% if(FiltroPaginado === true && Filtro !== "IdTrans" && Filtro !== "NombreProducto" && Filtro !== "NombreCliente" && Filtro !== "SubTotal" && Filtro !== "Precio" ){ %>
+    <% for (var a = 1; a < compra.totalPages+1; a++) { %> <a href="/FiltrosCompras?page=<%=[a]%>&amp;Filtro=<%=Filtro%>" type="submit" id="sendMessageButton" class="botonPaginacion btn-dark"><%=[a]%></a><% } %>
+
+    <% } %> 
+    <% if(FiltroPaginado === true && Filtro === "IdTrans" || Filtro === "NombreProducto" || Filtro === "NombreCliente" || Filtro === "SubTotal" || Filtro === "Precio"){ %>
+        <% for (var a = 1; a < compra.totalPages+1; a++) { %> <a href="/FiltrosCompras2?page=<%=[a]%>&amp;Filtro=<%=Filtro%>&amp;consulta=<%=consulta%>&amp;consulta2=<%=consulta2%>" type="submit" id="sendMessageButton" class="botonPaginacion btn-dark"><%=[a]%></a><% } %>
+    
+        <% } %> 
+</section>
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="js/historial.js"></script>
+<script>
+    const selectElement = document.getElementById('FiltroHistorial');
+    const FiltroHistorial = "<%=Filtro%>";
+  
+    if (FiltroHistorial) {
+      for (let i = 0; i < selectElement.options.length; i++) {
+        if (selectElement.options[i].value === FiltroHistorial) {
+          selectElement.options[i].selected = true;
+          break;
+        }
+      }
+    }
+  </script> 
+<script>
+    const selectElement2 = document.getElementById('FiltroHistorial2');
+    const FiltroHistorial2 = "<%=Filtro%>";
+  
+    if (FiltroHistorial2) {
+      for (let i = 0; i < selectElement2.options.length; i++) {
+        if (selectElement2.options[i].value === FiltroHistorial2) {
+          selectElement2.options[i].selected = true;
+          break;
+        }
+      }
+    }
+  </script> 
+<script>
+    const selectElement3 = document.getElementById('FiltroHistorial3');
+    const FiltroHistorial3 = "<%=Filtro%>";
+  
+    if (FiltroHistorial3) {
+      for (let i = 0; i < selectElement3.options.length; i++) {
+        if (selectElement3.options[i].value === FiltroHistorial3) {
+          selectElement3.options[i].selected = true;
+          break;
+        }
+      }
+    }
+  </script> 
+ 
+<script>
+  function openPopup(id) {
+  fetch(`/popup/${id}`)
+    .then(response => response.text())
+    .then(html => {
+      const popup = document.createElement('div');
+      popup.innerHTML = html;
+      document.body.appendChild(popup);
+      const closeBtn = popup.querySelector('.close-btn');
+      closeBtn.addEventListener('click', () => {
+        popup.remove();
+      });
+    });
+}
+</script>
+
+<style>
+  
+.estatus-envio {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.0rem;
+  font-weight: bold;
+  color: #333;
+  background-color: #f7f7f7;
+  padding: 0.5em;
+  border-radius: 0.3em;
+  box-shadow: 0 0 0.3em rgba(0, 0, 0, 0.1);
+  border: 2px solid #f00; /* agregamos un borde sólido rojo de 2 píxeles */
+}
+
+
+  .popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+.close-btn {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  width: 100px;
+  height: 100px;
+}
+.edit-btn, .factura-link {
+  display: inline-block; /* display elements inline */
+  vertical-align: middle; /* align elements vertically */
+  padding: 5px 10px; /* add padding */
+  border-radius: 5px; /* round corners */
+  cursor: pointer; /* add cursor on hover */
+  transition: background-color 0.3s ease; /* add transition effect */
+}
+
+.edit-btn {
+  background-color: #4CAF50; /* set background color */
+  color: white; /* set text color */
+  border: none; /* remove border */
+}
+
+.edit-btn:hover {
+  background-color: #3e8e41; /* change background color on hover */
+}
+
+.factura-link {
+  background-color: #2196F3; /* set background color */
+  color: white; /* set text color */
+  text-decoration: none; /* remove underline */
+}
+
+.factura-link:hover {
+  background-color: #0c7cd5; /* change background color on hover */
+}
+
+</style>
+
+</body>
+</html>
+

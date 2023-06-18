@@ -1,0 +1,137 @@
+<form action="/infoCotizaciones" method="POST" >
+
+    <div class="popup3">
+        <div class="popup3-content">
+            <span class="close-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                  <path fill="#000" fill-rule="evenodd" d="M15.15 1.525a.5.5 0 01.708.708L9.707 8l6.15 6.15a.5.5 0 01-.708.708L8 8.707l-6.15 6.15a.5.5 0 01-.708-.708L7.293 8 .143 1.85a.5.5 0 01.708-.708L8 7.293l6.15-6.15z"/>
+                </svg>
+              </span>
+              <input type="hidden" name="Busqueda" value="<%=cotizaciones[0].Id_transaccion%>">
+            <div class="container">
+                  <div class="mb-3">
+                    <label for="recipient-name" class="form-label">Nombre completo:</label>
+                    <input type="text" id="recipient-name" name="NombreYApellidos" class="form-control" value="<%=cotizaciones[0].NombreYApellidos%>" required>
+                  </div>
+              
+                  <div class="mb-3">
+                    <label for="address-line1" class="form-label">Direccion:</label>
+                    <input type="text" id="address-line1" name="Direccion" class="form-control" placeholder="Calle/Colonia/Numero Exterior"  value="<%=cotizaciones[0].Direccion%>">
+                  </div>
+              
+                  <div class="mb-3">
+                    <label for="address-line2" class="form-label">Departamento:</label>
+                    <input type="text" id="address-line2" name="Departamento" class="form-control" placeholder="Apartemento o edifico"  value="<%=cotizaciones[0].Departamento%>">
+                  </div>
+              
+                  <div class="row mb-3">
+                    <div class="col-md-6">
+                      <label for="city" class="form-label">Ciudad:</label>
+                      <input type="text" id="city" name="Ciudad" class="form-control"  value="<%=cotizaciones[0].Ciudad%>" required>
+                    </div>
+              
+                    <div class="col-md-6">
+                      <label for="state" class="form-label">Estado:</label>
+                      <select  name="Estado" id="EstadoSelect" class="custom-select">
+      <option value="">Selecciona el estado</option>
+      <option value="AG">Aguascalientes</option>
+      <option value="BC">Baja California</option>
+      <option value="BS">Baja California Sur</option>
+      <option value="CM">Campeche</option>
+      <option value="CS">Chiapas</option>
+      <option value="CH">Chihuahua</option>
+      <option value="CO">Coahuila</option>
+      <option value="CL">Colima</option>
+      <option value="DF">Ciudad de México</option>
+      <option value="DG">Durango</option>
+      <option value="GT">Guanajuato</option>
+      <option value="GR">Guerrero</option>
+      <option value="HG">Hidalgo</option>
+      <option value="JA">Jalisco</option>
+      <option value="MX">Estado de México</option>
+      <option value="MI">Michoacán</option>
+      <option value="MO">Morelos</option>
+      <option value="NA">Nayarit</option>
+      <option value="NL">Nuevo León</option>
+      <option value="OA">Oaxaca</option>
+      <option value="PU">Puebla</option>
+      <option value="QT">Querétaro</option>
+      <option value="QR">Quintana Roo</option>
+      <option value="SL">San Luis Potosí</option>
+      <option value="SI">Sinaloa</option>
+      <option value="SO">Sonora</option>
+      <option value="TB">Tabasco</option>
+      <option value="TM">Tamaulipas</option>
+      <option value="TL">Tlaxcala</option>
+      <option value="VE">Veracruz</option>
+      <option value="YU">Yucatán</option>
+      <option value="ZA">Zacatecas</option>
+    </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="state" class="form-label">Numero de telefono:</label>
+                    <input type="text" id="state" name="Telefono" value="<%=cotizaciones[0].Telefono%>" class="form-control"required>
+                  </div>
+                </div>
+          
+            
+                  <div class="row mb-3">
+                    <div class="col-md-6">
+                      <label for="zip-code" class="form-label">Codigo postal:</label>
+                      <input type="number" id="zip-code" name="CodigoPostal" class="form-control" value="<%=cotizaciones[0].CodigoPostal%>" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="state" class="form-label">Información extra:</label>
+                        <input type="text" id="state" name="Extra" value="<%=cotizaciones[0].Extra%>" class="form-control">
+                      </div>
+                    </div>
+    
+    
+    
+    
+        
+      
+                       <button type="submit" class="btn btn-primary">Confirmar datos</button>
+    
+    
+    
+    
+              </div>
+    
+        </div>
+      </div>
+    </form>
+    
+      <!--
+           <h2><%= title %></h2>
+          <p><%= content %></p>
+      -->
+      <style>
+        .form-label{
+          width:300px;
+        }
+    .custom-select {
+      appearance: none;
+      background-color: #ffffff;
+      border: 1px solid #cccccc;
+      border-radius: 5px;
+      color: #555555;
+      font-size: 16px;
+      padding: 10px;
+      width: 100%;
+    }
+    
+    .custom-select:focus {
+      outline: none;
+      border-color: #2196F3;
+      box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2);
+    }
+    
+    .custom-select option {
+      background-color: #ffffff;
+      color: #555555;
+    }
+    
+      </style>
+    

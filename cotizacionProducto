@@ -1,0 +1,321 @@
+<!-- 
+
+  
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <h5>Materiales:</h5>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Descripcion</th>
+              <th>Codigo</th>
+              <th>Familia</th>
+              <th>Cantidad</th>
+              <th>Precio Unitario</th>
+              <th>Importe</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for (var b = 0; b < ProductoParaCotizar.MaterialesProductos.length; b++) { %>
+            <tr>
+              <td><%=ProductoParaCotizar.MaterialesProductos[b].Descripcion%></td>
+              <td><%=ProductoParaCotizar.MaterialesProductos[b].Codigo%></td>
+              <td><%=ProductoParaCotizar.MaterialesProductos[b].Familia%></td>
+              <td><%=ProductoParaCotizar.MaterialesProductos[b].cantidad%></td>
+              <td><%=MaterialesMostrar[b]%> </td>
+              <td>
+                <% let num1 = ProductoParaCotizar.MaterialesProductos[b].cantidad; %>
+                <% let num2 = MaterialesMostrar[b]; %> <%= (num1 * num2).toFixed(2) %>
+              </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+          <table class="table table-striped">
+          <thead>
+            <tr>
+
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+
+              <td>
+                Material:
+                <br>
+                Mano de obra material:
+                <br>
+                Porcentaje:
+              
+              </td>
+              <td>Suma:
+                <br>
+                <%=ProductoParaCotizar.ManoObMaterial%>
+                <br>
+                <%=ProductoParaCotizar.PorcentajeMaterial%>
+                <br>
+                Total:
+              </td>
+
+              <td>
+                <%=MaterialSuma%>
+                <br>
+                <%=ManoObMaterial1R%>
+                <br>
+                <%=ManoObMaterial2R%>
+                <br>
+                <%=Total1R%>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+
+     
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <h5>Pintura:</h5>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Descripción</th>
+            <th>Código</th>
+            <th>Familia</th>
+            <th>Cantidad</th>
+            <th>Precio Unitario</th>
+            <th>Importe</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for (var b = 0; b < ProductoParaCotizar.PinturaProductos.length; b++) { %>
+            <tr>
+              <td><%=ProductoParaCotizar.PinturaProductos[b].Descripcion%></td>
+              <td><%=ProductoParaCotizar.PinturaProductos[b].Codigo%></td>
+              <td><%=ProductoParaCotizar.PinturaProductos[b].Familia%></td>
+              <td><%=ProductoParaCotizar.PinturaProductos[b].cantidad%></td>
+              <td><%=PinturaMostrar[b]%></td>
+              <td> <% let num1 = ProductoParaCotizar.PinturaProductos[b].cantidad; %>
+                <% let num2 = PinturaMostrar[b]; %> <%= (num1 * num2).toFixed(2) %></td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+
+            <td>
+              Pintura:
+              <br>
+              Mano de obra material:
+              <br>
+              Porcentaje:
+            
+            </td>
+            <td>Suma:
+              <br>
+              <%=ProductoParaCotizar.ManoObPintura%>
+              <br>
+              <%=ProductoParaCotizar.PorcentajePintura%>
+              <br>
+              Total:
+            </td>
+
+            <td>
+              <%=PinturaSumaRedondeada%>
+              <br>
+              <%=ManoObPintura1R%>
+              <br>
+              <%=ManoObPintura2R%>
+              <br>
+              <%=Total2R%>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <h5>Instalación:</h5>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Descripción</th>
+            <th>Código</th>
+            <th>Familia</th>
+            <th>Cantidad</th>
+            <th>Precio Unitario</th>
+            <th>Importe</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for (var b = 0; b < ProductoParaCotizar.InstalacionProductos.length; b++) { %>
+            <tr>
+              <td><%=ProductoParaCotizar.InstalacionProductos[b].Descripcion%></td>
+              <td><%=ProductoParaCotizar.InstalacionProductos[b].Codigo%></td>
+              <td><%=ProductoParaCotizar.InstalacionProductos[b].Familia%></td>
+              <td><%=ProductoParaCotizar.InstalacionProductos[b].cantidad%></td>
+              <td><%=InstalacionesMostrar[b]%></td>
+              <td> <% let num1 = ProductoParaCotizar.InstalacionProductos[b].cantidad; %>
+                <% let num2 = InstalacionesMostrar[b]; %> <%= (num1 * num2).toFixed(2) %></td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+
+            <td>
+              Pintura:
+              <br>
+              Mano de obra material:
+              <br>
+              Porcentaje:
+            
+            </td>
+            <td>Suma:
+              <br>
+              <%=ProductoParaCotizar.ManoObInstalacion%>
+              <br>
+              <%=ProductoParaCotizar.PorcentajeInstalacion%>
+              <br>
+              Total:
+              <br>
+  
+            </td>
+
+            <td>
+              <%=InstalacionSuma%>
+              <br>
+              <%=ManoObInstalacion1R%>
+              <br>
+              <%=ManoObInstalacion2R%>
+              <br>
+              <%=Total3R%>
+
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+-->
+
+      <!--
+
+      <div class="container">
+        <div class="row mt-5">
+          <div class="col-md-8 offset-md-2">
+            <div class="card">
+              <img width="200px" height="200px" src="<%=productodatos[0].image%>" alt="Product 1">
+
+
+
+
+              <div class="card-body">
+
+  <div class="text-center">
+
+    <h4 class="card-title"><%=productodatos[0].nombre%></h4>
+    <p class="card-text">Precio: <%=productodatos[0].precio%></p>
+    <p class="card-text">Cantidad: <%=productodatos[0].cantidad%></p>
+    <p class="card-text">Unidad: <%=productodatos[0].unidad%></p>
+    <p class="card-text">Codigo: <%=productodatos[0].codigo%></p>
+
+
+    <p class="card-text">SubTotal: <%=SubTotalR%></p>
+
+      <p class="card-text">Iva: <%=productodatos[0].iva%></p>
+      <p class="card-text">Total: <%=TotalFinal%></p> 
+
+    </div>
+  </div>
+  
+
+  <div class="mt-4 text-center">
+    <a href="/pdfDescargar?IdTrans=<%=IdTransaccion%>&amp;Codigo=<%=productodatos[0].codigo%>" class="btn btn-primary mr-3">Descargar pdf</a>
+
+
+<a href="/whatsapp?IdTrans=<%=IdTransaccion%>&amp;Codigo=<%=productodatos[0].codigo%>&amp;Numero=<%=NumeroCliente%>" class="btn btn-success">Recibir por whatsapp</a>
+  </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    -->
+
+
+          <!--
+
+      <div class="container">
+        <div class="row mt-5">
+          <div class="col-md-8 offset-md-2">
+            <div class="card">
+              <img width="200px" height="200px" src="<%=productodatos[0].image%>" alt="Product 1">
+
+
+
+
+              <div class="card-body">
+
+  <div class="text-center">
+
+    <h4 class="card-title"><%=productodatos[0].nombre%></h4>
+    <p class="card-text">Precio: <%=productodatos[0].precio%></p>
+    <p class="card-text">Cantidad: <%=productodatos[0].cantidad%></p>
+    <p class="card-text">Unidad: <%=productodatos[0].unidad%></p>
+    <p class="card-text">Codigo: <%=productodatos[0].codigo%></p>
+
+
+    <p class="card-text">SubTotal: <%=SubTotalR%></p>
+
+      <p class="card-text">Iva: <%=productodatos[0].iva%></p>
+      <p class="card-text">Total: <%=TotalFinal%></p> 
+
+    </div>
+  </div>
+  
+
+  <div class="mt-4 text-center">
+    <a href="/pdfDescargar?IdTrans=<%=IdTransaccion%>&amp;Codigo=<%=productodatos[0].codigo%>" class="btn btn-primary mr-3">Descargar pdf</a>
+
+
+<a href="/whatsapp?IdTrans=<%=IdTransaccion%>&amp;Codigo=<%=productodatos[0].codigo%>&amp;Numero=<%=NumeroCliente%>" class="btn btn-success">Recibir por whatsapp</a>
+  </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    -->

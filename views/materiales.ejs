@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <%- include('layouts/metaData'); -%>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Welderstone</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Bootstrap-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <!-- CSS Stylesheet-->
+        <link rel="stylesheet" href="/css/styles.css">
+        <!-- FontAwesome-->     
+        <script src="https://kit.fontawesome.com/360b0549be.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <%- include('layouts/navbar'); -%>
+
+        <section id="materialsPage">
+            <% if(status == "false"){ %>
+                <div class="alert alert-danger" role="alert">
+                    El codigo del material que ha agregado ya existe y no se ha podido agregar.
+                </div>
+            <% } %>
+             <!-- Agregar material -->
+             <% if(roles === "admin" || roles === "Cotizacion"){ %>
+
+            <div class="card border-danger mb-4">
+                
+                <div class="card-header">Agregar materiales</div>
+                <div class="card-body">
+                    <h5 class="card-title">Agregue aqui las especificaciones del material que desea agregar.</h5>
+
+                    <form action="/materiales/agregar" method="POST" enctype="multipart/form-data">
+                        <div class="row">
+                            <!-- Descripcion -->
+                            <div class="form-floating mt-3 mb-3 col-12">
+                                <input type="text" class="form-control" id="Descripcion" name="Descripcion" placeholder="Descripcion" autocomplete="off" required>
+                                <label for="Descripcion">Descripción</label>
+                            </div>
+
+                            <!-- Codigo -->
+                            <div class="form-floating mb-3 col-2 pe-1">
+                                <input type="text" class="form-control" placeholder="Codigo" id="Codigo" name="Codigo" autocomplete="off" required>
+                                <label for="Codigo">Codigo</label>
+                            </div>
+
+                            <!-- Unidad -->
+                            <div class="form-floating mb-3 col-2 pe-1">
+                                <input type="text" class="form-control" placeholder="Unidad" id="Unidad" name="Unidad">
+                                <label for="Unidad">Unidad</label>
+                            </div>
+
+                            <!-- Precio Unitario -->
+                            <div class="form-floating mb-3 col-2 pe-1">
+                                <input type="number" step="any" class="form-control" placeholder="Precio Unitario" id="PrecioUnitario" name="PrecioUnitario" autocomplete="off">
+                                <label for="PrecioUnitario">Precio Unitario</label>
+                            </div>
+                            
+                            <!-- Familia -->
+                            <div class="form-floating mb-3 col-3 pe-1">
+                                <input type="text" class="form-control" placeholder="Familia" id="Familia" name="Familia">
+                                <label for="Familia">Familia</label>
+                            </div>
+
+                            <!-- Sub Familia -->
+                            <div class="form-floating mb-3 col-3 pe-1">
+                                <input type="text" class="form-control" placeholder="Sub Familia" id="SubFam" name="SubFam">
+                                <label for="SubFam">Sub Familia</label>
+                            </div>
+
+                            <button class="btn btn-dark" type="submit" id="sendMessageButton"><strong>Agregar</strong></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <% } %>
+
+            
+            <% if(roles === "admin" || roles === "Cotizacion"){ %>
+            <div class="card border-danger">
+                <div class="card-header">Editar precio unitario por Familias.</div>
+                <div class="card-body">
+                    <h5 class="card-title mb-3"></h5>
+
+
+                    <form method="post" action="/FamiliaPrecio" >
+
+                        <div class="mt-4 text-center">
+                                <select  name="FamiliaPrecioEleccion" class="BusquedaSelect form-select">
+
+                                        <option value="PorcentajeEleccion" selected>Porcentaje</option>
+
+                                        <option value="FijoEleccion">Fijo</option>
+
+            
+                                </select>
+
+                          </div>
+                          <br>
+
+
+
+
+                        <div class="row" style="margin-bottom: 1rem;">
+                            <div class="col-2" style="padding-right: .2rem;">
+                                <select name="FamiliaPrecio" class="BusquedaSelect form-select" id="select2">
+                                    <option value="" selected>Seleccionar opción</option>
+                                    <% for (var a = 0; a < unicos.length; a++) { %>
+                                      <% if (unicos[a] !== undefined) { %>
+                                        <option value="<%= unicos[a] %>"><%= unicos[a] %></option>
+                                      <% } %>
+                                    <% } %>
+                                  </select>
+                            </div>
+                            <div class="col-10" style="padding-left: .2rem;">
+                                <input class="form-control" type="number" name="porcentaje" class="busquedaInput" placeholder="%"  min="0">
+                            </div>
+                        </div>
+                        <div class="mt-4 text-center">
+
+                        <button class="btn btn-outline-danger" type="reset">Limpiar</button>
+                        <button type="submit" class="btn btn-outline-danger">Actualizar</button>
+
+
+
+
+                <div style="padding-top: 1rem;">
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" class="radio form-check-input" value="incrementar" name="accion" />
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Incrementar
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" class="radio form-check-input" value="reducir" name="accion" />
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Reducir
+                        </label>
+                    </div>
+                  </div>
+                </div>
+
+                </form>
+                <% } %>
+
+                </div>
+            </div>
+        </div>
+            <br>    
+
+            <% if(roles === "admin" || roles === "Cotizacion"){ %>
+                <div class="card border-danger">
+                    <div class="card-header">Editar precio unitario por Sub Familias.</div>
+                    <div class="card-body">
+                        <h5 class="card-title mb-3"></h5>
+
+                        <form method="post" action="/SubFamiliaPrecio" >
+
+                            <div class="mt-4 text-center">
+
+                                        <select  name="SubFamiliaPrecioEleccion" class="BusquedaSelect form-select">
+        
+                                                <option value="PorcentajeEleccion" selected>Porcentaje</option>
+        
+                                                <option value="FijoEleccion">Fijo</option>
+        
+                    
+                                        </select>
+        
+</div>
+
+
+
+<br>
+                            <div class="row" style="margin-bottom: 1rem;">
+
+                                
+                                <div class="col-2" style="padding-right: .2rem;">
+                                    <select name="SubFamiliaPrecio" class="BusquedaSelect form-select" id="select2-subfamilia">
+                                        <option value="" selected>Seleccionar opción</option>
+                                        <% for (var a = 0; a < unicos2.length; a++) { %>
+                                          <% if (unicos2[a] !== undefined) { %>
+                                            <option value="<%= unicos2[a] %>"><%= unicos2[a] %></option>
+                                          <% } %>
+                                        <% } %>
+                                      </select>
+                                </div>
+                                <div class="col-10" style="padding-left: .2rem;">
+                                    <input class="form-control" type="number" name="porcentaje" class="busquedaInput" placeholder="%"  min="0">
+                                </div>
+                            </div>
+                            <div class="mt-4 text-center">
+
+                            <button class="btn btn-outline-danger" type="reset">Limpiar</button>
+                            <button type="submit" class="btn btn-outline-danger">Actualizar</button>
+                    <div style="padding-top: 1rem;">
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" class="radio form-check-input" value="incrementar" name="accion" />
+                            <label class="form-check-label" for="flexCheckDefault">
+                              Incrementar
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" class="radio form-check-input" value="reducir" name="accion" />
+                            <label class="form-check-label" for="flexCheckDefault">
+                              Reducir
+                            </label>
+                        </div>
+                      </div>
+                    </div>
+
+                    </form>
+                    <% } %>
+    
+                    </div>
+                </div>
+            </div>
+
+<br>
+
+            <!-- Edicion de Materiales -->
+            <div class="card border-danger">
+                <div class="card-header">Inventario de Materiales</div>
+                <div class="card-body">
+                    <h5 class="card-title mb-3">Edite los materiales que sean necesarios y al finalizar presione el botón de Guardar Cambios.</h5>
+                    
+                    <form action="/materiales/busqueda" method="post">
+                        <div class="input-group">
+                            <select name="filtro" class="form-select">
+                                <option value="Descripcion" selected>Descripcion</option>
+                                <option value="Familia">Familia</option>
+                                <option value="SubFam">SubFamilia</option>
+                            </select>
+                            <input type="text" name="busqueda" class="form-control busquedaInput" placeholder="Busca aqui lo que necesites">
+                            <button class="btn btn-outline-danger" type="submit">Limpiar</button>
+                            <button type="submit" class="btn btn-outline-danger"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </div>
+                    </form>
+
+                    <hr>
+
+                    <form action="/materiales/edicion" method="post" id="form">
+                        <% if(roles === "admin" || roles === "Cotizacion"){ %>
+
+                        <button class="btn btn-outline-danger btn-lg w-100 mb-3" type="submit" id="sendMessageButton">Guardar Cambios</button>
+                        <% } %>
+
+                        <table class="table table align-middle">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Descripción</th>
+                                    <th>Codigo</th>
+                                    <th>Unidad</th>
+                                    <th>Precio Unitario</th>
+                                    <th>Familia</th>
+                                    <th>Subfamilia</th>
+                                    <th>Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for (let a = 0; a < materiales.length; a++) { %>
+                                    <tr>
+                                        <td>
+                                            <%=materiales[a].Descripcion%>
+
+                                        </td>
+                                        <td>
+                                            <%=materiales[a].Codigo%>
+
+                                        </td>
+                                        <td>
+                                            <%=materiales[a].Unidad%>
+                                        </td>
+                                        <td style="text-align: right">
+                                            $<%=parseInt(materiales[a].PrecioUnitario).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')%>
+                                        </td>
+                                        <td>
+                                            <%=materiales[a].Familia%>
+                                        </td>
+                                        <td>
+                                            <%=materiales[a].SubFam%>
+                                        </td>
+                                        <td style="text-align: end;">
+                                            <div class="dropdown">
+                                                <button class="btn btn-dark" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fa-solid fa-bars"></i>
+                                                </button>
+                                                <ul class="dropdown-menu dropdown-menu-end">
+                                                    <% if(roles === "admin" || roles === "Cotizacion"){ %>
+                                                  <li style=" cursor: pointer;"><a class="dropdown-item edit" id="<%=materiales[a].Codigo%>"> <i class="fa-solid fa-pen-to-square"></i> Editar</a></li>
+
+                                                  <li style="  cursor: pointer;"><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#backdrop<%=materiales[a].Codigo%>"> <i class="fa-solid fa-trash"></i> Eliminar</a></li>
+                                                  <% } %>
+
+                                                </ul>
+                                              </div>
+                                        </td>
+                                    </tr>
+                                    <tr  hidden class="<%=materiales[a].Codigo%>">
+                                        <td>
+                                            <!-- Columna de Descripcion  -->
+                                        </td>
+                                        <td>
+                                            <div class="form-floating">
+                                                <input type="text" class="form-control" placeholder="Codigo" id="Codigo" name="Codigo" autocomplete="off" disabled>
+                                                <label for="Codigo">Codigo</label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-floating">
+                                                <input type="text" class="form-control" placeholder="Unidad" id="Unidad" name="Unidad" disabled>
+                                                <label for="Unidad">Unidad</label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-floating">
+                                                <input type="number" step="any" class="form-control" placeholder="Precio Unitario" id="PrecioUnitario" name="PrecioUnitario" disabled autocomplete="off">
+                                                <label for="PrecioUnitario">Precio Unitario</label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-floating">
+                                                <input type="text" class="form-control" placeholder="Familia" id="Familia" name="Familia" disabled>
+                                                <label for="Familia">Familia</label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-floating">
+                                                <input type="text" class="form-control" placeholder="Sub Familia" id="SubFam" name="SubFam" disabled>
+                                                <label for="SubFam">Sub Familia</label>
+                                            </div>
+                                        </td>
+                                        <input type="hidden" class="form-control" name="id" value="<%= materiales[a]._id %>" disabled>
+
+                                    </tr>
+                            
+                                    <!-- Modal -->
+                                    <div class="noz modal fade" id="backdrop<%=materiales[a].Codigo%>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="staticBackdropLabel" style="color: #d10101;">Eliminar material</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body" style="color: black;">
+                                                    El material <strong><%=materiales[a].Descripcion%></strong> se eliminara definitivamente. ¿Quiere continuar?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                                    <a href="/material/borrar/<%=materiales[a].Codigo%>" class="btn btn-dark">Sí, eliminar</a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% } %>
+                            </tbody>
+                        </table>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </section>
+
+        <div class="go-top-container">
+            <div class="go-top-button">
+                <i class="fa-solid fa-floppy-disk"></i>
+            </div>
+        </div>
+
+        <script src="/js/saveFormButton.js"></script>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+        <script src="/js/materiales.js"></script>
+    </body>
+</html>
+
+<script>
+
+
+$("input:checkbox").on('click', function() {
+  // in the handler, 'this' refers to the box clicked on
+  var $box = $(this);
+  if ($box.is(":checked")) {
+    // the name of the box is retrieved using the .attr() method
+    // as it is assumed and expected to be immutable
+    var group = "input:checkbox[name='" + $box.attr("name") + "']";
+    // the checked state of the group/box on the other hand will change
+    // and the current value is retrieved using .prop() method
+    $(group).prop("checked", false);
+    $box.prop("checked", true);
+  } else {
+    $box.prop("checked", false);
+  }
+});
+
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/js/select2.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/css/select2.min.css" />
+
+<script>
+  $(document).ready(function() {
+    $('#select2').select2();
+
+    $('#select2').on('select2:open', function() {
+      $('.select2-search__field').attr('placeholder', 'Buscar...');
+    });
+
+    $('#select2').on('select2:close', function() {
+      $('.select2-search__field').attr('placeholder', null);
+    });
+  });
+</script>
+
+<script>
+    $(document).ready(function() {
+      $('#select2-subfamilia').select2();
+  
+      $('#select2-subfamilia').on('select2:open', function() {
+        $('.select2-search__field').attr('placeholder', 'Buscar...');
+      });
+  
+      $('#select2-subfamilia').on('select2:close', function() {
+        $('.select2-search__field').attr('placeholder', null);
+      });
+    });
+  </script>

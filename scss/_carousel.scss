@@ -1,0 +1,56 @@
+@use "mediaMixins";
+
+.c-img {
+    width: 100%; 
+    height: 650px; 
+    object-fit: cover;
+}
+
+#carousel-section{
+    margin-top: 75px;
+    margin-bottom: 50px;
+
+    .square-img {
+        height: 100%;
+    }
+}
+
+#desktopCarousel {
+    display: block;
+
+    .set-three {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 10px;
+    }
+
+    @include mediaMixins.lg(){
+        display: none;
+    }
+}
+
+#tablet-carousel {
+    display: none;
+
+    @include mediaMixins.lg(){
+        display: block;
+
+        .set-two {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 10px;
+        }
+    }
+
+    @include mediaMixins.md(){
+        display: none;
+    }
+}
+
+#mobile-carousel{
+    display: none;
+
+    @include mediaMixins.md(){
+        display: block;
+    }
+}
