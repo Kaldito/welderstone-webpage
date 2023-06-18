@@ -1,20 +1,14 @@
+const download = require('download');
 
-const download = require("download")
+module.exports = async (req, res) => {
+    const IdTransaccion = req.body.IdTrans;
 
-module.exports = async (req, res) =>{
+    console.log(req.body.Multiples);
+    for (i = 0; i < req.body.Multiples.length; i++) {
+        console.log(req.body.Multiples[i]);
 
-    const IdTransaccion = req.body.IdTrans
-
-    console.log(req.body.Multiples)
- for (i=0; i<req.body.Multiples.length; i++){
-
-
-    console.log(req.body.Multiples[i])
-
-
-    res.download('pdfs/'+IdTransaccion+`${req.body.Multiples[0]}`+'.pdf');
-
-}
-
-}
-
+        res.download(
+            'pdfs/' + IdTransaccion + `${req.body.Multiples[0]}` + '.pdf'
+        );
+    }
+};

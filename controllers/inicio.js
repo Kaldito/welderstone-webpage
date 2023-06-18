@@ -1,7 +1,7 @@
-const User = require("../models/User");
+const User = require('../models/User');
 
 module.exports = async (req, res) => {
-    let role = "viewer";
+    let role = 'viewer';
     let logged = false;
     if (req.session?.passport?.user != undefined) {
         const USER_ID = req.session?.passport?.user.id;
@@ -12,11 +12,11 @@ module.exports = async (req, res) => {
         logged = true;
 
         if (user && user.fullName && user.fullName.length > 0) {
-            res.render("inicio", { roles: role, loggedIn: logged });
+            res.render('inicio', { roles: role, loggedIn: logged });
         } else {
-            res.redirect("/data-form");
+            res.redirect('/data-form');
         }
     } else {
-        res.render("inicio", { roles: role, loggedIn: logged });
+        res.render('inicio', { roles: role, loggedIn: logged });
     }
 };

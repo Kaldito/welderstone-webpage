@@ -1,15 +1,8 @@
+// const {content} = require("../pdf/pdfContent")
+const download = require('download');
 
-//const {content} = require("../pdf/pdfContent")
-const download = require("download")
+module.exports = async (req, res) => {
+    const IdTransaccion = req.query.IdTrans;
 
-module.exports = async (req, res) =>{
- 
-
-    const IdTransaccion = req.query.IdTrans
-
-
-    res.download('pdfs/'+IdTransaccion+`${req.query.Codigo}`+'.pdf');
-
-
-}
-
+    res.download('pdfs/' + IdTransaccion + `${req.query.Codigo}` + '.pdf');
+};

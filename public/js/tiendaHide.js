@@ -1,26 +1,26 @@
-const buttons = document.getElementsByClassName("edit");
+const buttons = document.getElementsByClassName('edit');
 
 for (let i = 0; i < buttons.length; i++) {
     const btn = buttons[i];
     const btn_id = btn.id;
-    btn.addEventListener("click", function () {
-        let h_div = document.querySelector("." + btn_id);
-        let hidden = h_div.hidden;
-        let inputs = h_div.getElementsByTagName("input");
-        console.log(btn_id)
+    btn.addEventListener('click', function () {
+        const h_div = document.querySelector('.' + btn_id);
+        const hidden = h_div.hidden;
+        const inputs = h_div.getElementsByTagName('input');
+        console.log(btn_id);
         if (hidden) {
             for (var i = 0; i < inputs.length; i++) {
                 const inp = inputs[i];
-                inp.removeAttribute("disabled");
+                inp.removeAttribute('disabled');
             }
 
-            h_div.removeAttribute("hidden");
+            h_div.removeAttribute('hidden');
         } else {
             let status = true;
 
             for (var i = 0; i < inputs.length - 1; i++) {
                 const inp = inputs[i];
-                if (inp.value != "") {
+                if (inp.value != '') {
                     status = false;
                     break;
                 }
@@ -30,10 +30,10 @@ for (let i = 0; i < buttons.length; i++) {
                 for (var i = 0; i < inputs.length; i++) {
                     const inp = inputs[i];
 
-                    inp.setAttribute("disabled", "disabled");
+                    inp.setAttribute('disabled', 'disabled');
                 }
 
-                h_div.setAttribute("hidden", "hidden");
+                h_div.setAttribute('hidden', 'hidden');
             }
         }
     });

@@ -1,22 +1,22 @@
-const Cart = require("../models/Cart");
-const Product = require("../models/Productos");
+const Cart = require('../models/Cart');
+const Product = require('../models/Productos');
 
 const addProductCart = async (req, res) => {
     const IdUsuario = req.session.passport.user.id;
-    const NoAgregar = await Cart.find({nombre:req.body.nombre, UsuarioId:IdUsuario}).count();
-    if (NoAgregar === 0){
-    await Cart.create({...req.body, amount:1});
-    res.redirect('/tienda')
-
-    }else if (NoAgregar === 1){
-      res.redirect('/tienda')
-      console.log("ya Agregado")
+    const NoAgregar = await Cart.find({
+        nombre: req.body.nombre,
+        UsuarioId: IdUsuario,
+    }).count();
+    if (NoAgregar === 0) {
+        await Cart.create({ ...req.body, amount: 1 });
+        res.redirect('/tienda');
+    } else if (NoAgregar === 1) {
+        res.redirect('/tienda');
+        console.log('ya Agregado');
     }
-
 };
 
 module.exports = addProductCart;
-
 
 /*
 
@@ -34,7 +34,6 @@ const addProductCart = async (req, res) => {
 
   if (!estaEnProducts) {
     res.redirect('/tienda')
-
 
   } else if (noEstaVacio && !estaEnElCarrito) {
     const newProductInCart = new Cart({ nombre, image, precio, amount: 1 ,_id,UsuarioId});

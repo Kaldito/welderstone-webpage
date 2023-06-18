@@ -1,12 +1,12 @@
-@use "mediaMixins";
+@use 'mediaMixins';
 
 .c-img {
-    width: 100%; 
-    height: 650px; 
+    width: 100%;
+    height: 650px;
     object-fit: cover;
 }
 
-#carousel-section{
+#carousel-section {
     margin-top: 75px;
     margin-bottom: 50px;
 
@@ -24,7 +24,7 @@
         column-gap: 10px;
     }
 
-    @include mediaMixins.lg(){
+    @include mediaMixins.lg() {
         display: none;
     }
 }
@@ -32,7 +32,7 @@
 #tablet-carousel {
     display: none;
 
-    @include mediaMixins.lg(){
+    @include mediaMixins.lg() {
         display: block;
 
         .set-two {
@@ -42,15 +42,15 @@
         }
     }
 
-    @include mediaMixins.md(){
+    @include mediaMixins.md() {
         display: none;
     }
 }
 
-#mobile-carousel{
+#mobile-carousel {
     display: none;
 
-    @include mediaMixins.md(){
+    @include mediaMixins.md() {
         display: block;
     }
 }

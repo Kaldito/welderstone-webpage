@@ -1,4 +1,4 @@
-@use "mediaMixins";
+@use 'mediaMixins';
 
 .navbar-div {
     border-bottom: red solid 2px;
@@ -9,8 +9,8 @@
 }
 
 .navbar-padding-lg {
-    @include mediaMixins.lg(){
-        padding-top: .5rem;
+    @include mediaMixins.lg() {
+        padding-top: 0.5rem;
     }
 }
 
@@ -22,10 +22,10 @@ nav {
     }
 
     .nav-link {
-        color: #7B7977;
+        color: #7b7977;
     }
 
-    .exit:hover{
+    .exit:hover {
         color: #d10101;
     }
 
@@ -34,19 +34,19 @@ nav {
     }
 
     .hide-lg {
-        @include mediaMixins.lg(){
+        @include mediaMixins.lg() {
             display: none;
         }
     }
 
     .hide-min-lg {
-        @include mediaMixins.min-lg(){
+        @include mediaMixins.min-lg() {
             display: none;
         }
     }
-    
+
     .hide-sm {
-        @include mediaMixins.min-sm(){
+        @include mediaMixins.min-sm() {
             display: none;
         }
     }
@@ -83,4 +83,3 @@ nav {
 .f-icon:hover {
     color: #d10101;
 }
-

@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8" />
-        <%- include('layouts/metaData'); -%>
+        <meta charset="utf-8" /><%- include('layouts/metaData'); -%>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
@@ -20,129 +19,94 @@
         <!-- Fontawesome CDN Link -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
-
-
     </head>
+
     <body>
         <header>
             <%- include('layouts/navbar'); -%> 
         </header>
+
         <main id="productos-page">
-
-
             <br>
             <br>
             <br>
-
-
-
-
-                <section id="editar-producto">
-                    <div class="card border-danger">
-                        <div class="card-header">Inventario de productos Pendientes de autorización</div>
-    
-                        <div class="card-body px-5 py-4">
-                            <% for (var a = 0; a < productos.docs.length; a++) { %> 
-                                <% if( productos.docs[a].Activo === false || productos.docs[a].Activo !== true ) { %>
-
+            <section id="editar-producto">
+                <div class="card border-danger">
+                    <div class="card-header">Inventario de productos Pendientes de autorización</div>
+                    <div class="card-body px-5 py-4">
+                        <% for (var a = 0; a < productos.docs.length; a++) { %>
+                            <% if( productos.docs[a].Activo === false || productos.docs[a].Activo !== true ) { %> 
                                 <div class="card mb-3">
                                     <div class="row g-0">
                                         <div class="col-md-2 center-text-xy">
-    
-    
-    
-                                           <img src="<%= productos.docs[a].image %>" class="img-fluid rounded-start" alt="...">
-                                
-    
-                                <!--
-                                    <img class="mySlides" src="<%= productos.docs.image %>" style="width:350px">
-                                <div class="w3-content w3-display-container">
-                                <img class="mySlides" src="<%= productos.docs.image2 %>" style="width:350px">
-                                <img class="mySlides" src="<%= productos.docs.image3 %>" style="width:350px">
-                                <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
-                                <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
-                              </div>
-    
-                              -->
-    
+                                            <img src="<%= productos.docs[a].image %>" class="img-fluid rounded-start" alt="...">                                        
                                         </div>
+
                                         <div class="col-md-9">
                                             <div class="card-body">
-                                                <h5 class="card-title"><%=productos.docs[a].nombre%> <span class="ms-1" style="font-size: 0.8rem; color:gray"><%=productos.docs[a].IdProducto%></span></h5>
-                                                
-                                                <p class="card-text mb-2"><%=productos.docs[a].descripcion%></p>
-    
-                                                <p class="card-text mb-2"><strong>Familia:</strong> <%=productos.docs[a].familia%></p>
-    
-                                                <p class="card-text resaltar-rojo"><strong>Precio: $<%=productos.docs[a].precio.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')%> mxn</strong></p>
+                                                <h5 class="card-title"><%=productos.docs[a].nombre%> <span class="ms-1" style="font-size: 0.8rem; color:gray"><%=productos.docs[a].IdProducto%> </span>
+                                                </h5>
+                                                <p class="card-text mb-2"><%=productos.docs[a].descripcion%> </p>
+                                                <p class="card-text mb-2">
+                                                    <strong>Familia:</strong><%=productos.docs[a].familia%>
+                                                </p>
+                                                <p class="card-text resaltar-rojo">
+                                                    <strong>Precio: $<%=productos.docs[a].precio.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')%> mxn </strong>
+                                                </p>
                                             </div>
                                         </div>
-                                        <div class="col-md-1">
 
+                                        <div class="col-md-1">
                                             <form action="/AuthArticulosPost" method="post">
                                                 <input type="hidden" name="Activo" value="true">
                                                 <input type="hidden" name="NombreBusqueda" value="<%=productos.docs[a].nombre%>">
-
                                                 <button class="custom-button" type="submit">Autorizar</button>
                                             </form>
-    
-
-                                            <a href="/DesplieguePdf?codigo=<%=productos.docs[a].Codigo%>&amp;IdTrans=<%=productos.docs[a]._id%>"><img src="./images/productos/PdfLogo.png" alt="Logo PDF" width="60px" height="80px" class="pdf"></a>
+                                            <a href="/DesplieguePdf?codigo=<%=productos.docs[a].Codigo%>&amp;IdTrans=<%=productos.docs[a]._id%>">
+                                                <img src="./images/productos/PdfLogo.png" alt="Logo PDF" width="60px" height="80px" class="pdf">
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
                             <% } %>
-                            <% } %>
-
-                        </div>
+                        <% } %> 
                     </div>
-                </section>
-</main>
-
-
-
-
-
+                </div>
             </section>
-
-
-
-
+        </main>
+        
+        </section>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
         <!--Multi Select-->
         <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
-
         <script src="https://kit.fontawesome.com/360b0549be.js" crossorigin="anonymous"></script>
-
         <script src="js/productos.js"></script>
-
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <!-- FontAwesome-->
         <script src="https://kit.fontawesome.com/360b0549be.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="css/mobiscroll.javascript.min.css">
-
         <script src="js/multiple.js"></script>
-        </body>
-        </html>
-        <style>
-            .custom-button {
-                background-color: blue;
-                color: white;
-                padding: 10px 20px;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-                font-size: 16px;
-                top:-100px;
-                position: relative;
-                top: 10px; /* Puedes ajustar este valor según sea necesario */
-                left:-80px;
-            }
-            .pdf{
-                position: relative;
-                top: 30px; /* Puedes ajustar este valor según sea necesario */
-                left:-55px;
-            }
-        </style>
+    </body>
+</html>
+
+<style>
+    .custom-button {
+        background-color: blue;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        top:-100px;
+        position: relative;
+        top: 10px; /* Puedes ajustar este valor según sea necesario */
+        left:-80px;
+    }
+    .pdf{
+        position: relative;
+        top: 30px; /* Puedes ajustar este valor según sea necesario */
+        left:-55px;
+    }
+</style>

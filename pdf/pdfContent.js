@@ -1,8 +1,3 @@
-
-
-module.exports={
-    content:[
-        {text:"Primer parrafo", style:"header"},
-    "segundo parrafo",
-    ]
-}
+module.exports = {
+    content: [{ text: 'Primer parrafo', style: 'header' }, 'segundo parrafo'],
+};

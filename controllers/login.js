@@ -1,12 +1,12 @@
 module.exports = (req, res) => {
-    let hidden = "hidden";
-    if (req.params.status == "false") {
-        hidden = "";
+    let hidden = 'hidden';
+    if (req.params.status == 'false') {
+        hidden = '';
     }
 
     if (req.isAuthenticated()) {
-        res.redirect("/");
+        res.redirect('/');
     } else {
-        res.render("login", { hide: hidden });
+        res.render('login', { hide: hidden });
     }
 };
