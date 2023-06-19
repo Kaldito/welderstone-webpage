@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <%- include('layouts/metaData'); -%>
+
+<head>
+    <meta charset="utf-8" />
+    <%- include('layouts/metaData'); -%>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
@@ -12,10 +13,12 @@
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Bootstrap-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
         <!-- CSS Stylesheet-->
         <link rel="stylesheet" href="css/styles.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
+        <link rel="stylesheet"
+            href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
         <link rel="stylesheet" href="css/style.css">
         <!-- Fontawesome CDN Link -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -25,26 +28,29 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
-    </head>
-    <body>
-        <header>
-            <%- include('layouts/navbar'); -%> 
-        </header>
+</head>
 
-        <main id="productos-page">
-            <section id="agregar-producto">
-                <% if(roles === "admin" || roles === "Proyectos"){ %>
+<body>
+    <header>
+        <%- include('layouts/navbar'); -%>
+    </header>
+
+    <main id="productos-page">
+        <section id="agregar-producto">
+            <% if(roles==="admin" || roles==="Proyectos" ){ %>
 
                 <div class="accordion" id="accordion-ap">
                     <div class="accordion-item">
 
                         <h2 class="accordion-header" id="headingOne">
 
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                 Agregar Artículos
                             </button>
                         </h2>
-                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                            data-bs-parent="#accordionExample">
                             <div class="accordion-body">
                                 <form action="/productos/agregar" method="POST" enctype="multipart/form-data">
 
@@ -55,64 +61,80 @@
                                         <div class="col-6">
                                             <!-- Codigo -->
                                             <div class="form-floating mb-3">
-                                                <input type="text" class="form-control" id="IdProducto" name="Codigo" placeholder="Codigo" autocomplete="off" required>
+                                                <input type="text" class="form-control" id="IdProducto" name="Codigo"
+                                                    placeholder="Codigo" autocomplete="off" required>
                                                 <label for="IdProducto">Codigo</label>
                                             </div>
                                             <!-- Nombre -->
                                             <div class="form-floating mb-3">
-                                                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" autocomplete="off" autocapitalize="on" required>
+                                                <input type="text" class="form-control" id="nombre" name="nombre"
+                                                    placeholder="Nombre" autocomplete="off" autocapitalize="on"
+                                                    required>
                                                 <label for="nombre">Nombre</label>
                                             </div>
                                             <!-- Descripcion -->
                                             <div class="form-floating mb-3">
-                                                <input type="text" class="form-control" id="descripcion" name="descripcion" autocomplete="off" autocapitalize="on" placeholder="Descripcion">
+                                                <input type="text" class="form-control" id="descripcion"
+                                                    name="descripcion" autocomplete="off" autocapitalize="on"
+                                                    placeholder="Descripcion">
                                                 <label for="descripcion">Descripcion</label>
                                             </div>
                                             <!-- Unidad -->
                                             <div class="form-floating mb-3">
-                                                <input type="text" class="form-control" id="unidad" name="unidad" placeholder="Unidad">
+                                                <input type="text" class="form-control" id="unidad" name="unidad"
+                                                    placeholder="Unidad">
                                                 <label for="unidad">Unidad</label>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input type="number" class="form-control" id="iva" name="iva" placeholder="iva" min="0">
+                                                <input type="number" class="form-control" id="iva" name="iva"
+                                                    placeholder="iva" min="0">
                                                 <label for="iva">Iva (%)</label>
                                             </div>
                                         </div>
                                         <div class="col-6">
-                                         <div style="position: relative; top: -20px; left: -20px;">
-                                                        <label>
-                                                <input mbsc-input id="demo-multiple-select-input" placeholder="Familias" data-dropdown="true" data-input-style="outline" data-label-style="stacked" data-tags="true" />
-                                            </label>
-                                            <select id="demo-multiple-select" name="familia" multiple size ="2">
-                                                <option value="hogar">Hogar</option>
-                                                <option value="industria">Industria</option>
-                                                <option value="urbanismo">Urbanismo</option>
-                                                <option value="ganadero">Gandero</option>
-                                                <option value="construccion y reciclados">Construccion y Reciclados</option>
-                                                <option value="especiales">Especiales</option>
-                                            </select>
-       
-                                        </div>
+                                            <div style="position: relative; top: -20px; left: -20px;">
+                                                <label>
+                                                    <input mbsc-input id="demo-multiple-select-input"
+                                                        placeholder="Familias" data-dropdown="true"
+                                                        data-input-style="outline" data-label-style="stacked"
+                                                        data-tags="true" />
+                                                </label>
+                                                <select id="demo-multiple-select" name="familia" multiple size="2">
+                                                    <option value="hogar">Hogar</option>
+                                                    <option value="industria">Industria</option>
+                                                    <option value="urbanismo">Urbanismo</option>
+                                                    <option value="ganadero">Gandero</option>
+                                                    <option value="construccion y reciclados">Construccion y Reciclados
+                                                    </option>
+                                                    <option value="especiales">Especiales</option>
+                                                </select>
 
- 
+                                            </div>
 
-                             
+
+
+
                                             <!-- Imagen -->
                                             <div class="mb-3">
-                                                <label for="formFile" class="form-label">Selecciona una o más imagenes para el producto</label>
+                                                <label for="formFile" class="form-label">Selecciona una o más imagenes
+                                                    para el producto</label>
                                                 <div id="fileInputsContainer">
                                                     <div class="file-input-group">
 
-                                                    <input class="form-control" type="file" id="image" name="image">
+                                                        <input class="form-control" type="file" id="image" name="image">
 
+                                                    </div>
                                                 </div>
-                                            </div>
-                                                <button type="button" onclick="addFileInput()" class="btn btn-danger" ><i class="fa-solid fa-plus"></i></button> <button type="button" class="remove-file-input btn btn-secondary" onclick="removeFileInput(this)" ><i class="fa-solid fa-minus"></i></button>
+                                                <button type="button" onclick="addFileInput()" class="btn btn-danger"><i
+                                                        class="fa-solid fa-plus"></i></button> <button type="button"
+                                                    class="remove-file-input btn btn-secondary"
+                                                    onclick="removeFileInput(this)"><i
+                                                        class="fa-solid fa-minus"></i></button>
 
                                             </div>
-                                            
+
                                             <div>
-<!--
+                                                <!--
                                                 <div class="checkbox-wrapper">
                                                     <input type="checkbox" id="mi-checkbox" name="Activo" value=true>
                                                     <label for="mi-checkbox">Activo</label>
@@ -130,42 +152,59 @@
 
                                     <h5 style="font-weight: bold;">Materiales</h5>
                                     <div>
-                                        <% for (var a = 0; a < materiales.length; a++) { %> 
+                                        <% for (var a=0; a < materiales.length; a++) { %>
                                             <div hidden class="Material<%=materiales[a].Codigo%>">
                                                 <div class="mb-3">
                                                     <div class="input-group mb-3">
-                                                        <span class="input-group-text"><%=materiales[a].Descripcion%> $<%= materiales[a].PrecioUnitario %>/u Unidad: <%= materiales[a].Unidad %></span>
-                                                        <input type="number" step="any" value="0" id="Material<%=materiales[a].Codigo%>" class="form-control material-input" name='MaterialesProductos[cantidad]' min="0">
-                                                        <button type="button" class="btn btn-primary edit agregar-Material<%=materiales[a].Codigo%>" id="Material<%=materiales[a].Codigo%>">Quitar</button>
+                                                        <span class="input-group-text">
+                                                            <%=materiales[a].Descripcion%> $<%=
+                                                                    materiales[a].PrecioUnitario %>/u Unidad: <%=
+                                                                        materiales[a].Unidad %>
+                                                        </span>
+                                                        <input type="number" step="any" value="0"
+                                                            id="Material<%=materiales[a].Codigo%>"
+                                                            class="form-control material-input"
+                                                            name='MaterialesProductos[cantidad]' min="0">
+                                                        <button type="button"
+                                                            class="btn btn-primary edit agregar-Material<%=materiales[a].Codigo%>"
+                                                            id="Material<%=materiales[a].Codigo%>">Quitar</button>
                                                     </div>
-                                                    <input type="hidden" value="<%=materiales[a].Descripcion%>" name="MaterialesProductos[nombre]">
-                                                    <input type="hidden" value="<%=materiales[a].Codigo%>" name="MaterialesProductos[Codigo]">
-                                                    <input type="hidden" value="<%=materiales[a].PrecioUnitario%>" name="MaterialesProductos[PrecioUnitario]">
-                                                    <input type="hidden" value="<%=materiales[a].Familia%>" name="MaterialesProductos[Familia]">
+                                                    <input type="hidden" value="<%=materiales[a].Descripcion%>"
+                                                        name="MaterialesProductos[nombre]">
+                                                    <input type="hidden" value="<%=materiales[a].Codigo%>"
+                                                        name="MaterialesProductos[Codigo]">
+                                                    <input type="hidden" value="<%=materiales[a].PrecioUnitario%>"
+                                                        name="MaterialesProductos[PrecioUnitario]">
+                                                    <input type="hidden" value="<%=materiales[a].Familia%>"
+                                                        name="MaterialesProductos[Familia]">
                                                 </div>
 
                                                 <hr class="border border-danger border-1 opacity-25 w-75 mx-auto">
                                             </div>
-                                        <% } %>
+                                            <% } %>
                                     </div>
 
                                     <!-- Boton Agregar Materiales -->
-                                    <button style="border-radius: 50px;" type="button" class="btn btn-danger mb-3" data-bs-toggle="modal" data-bs-target="#agregar-materiales">
+                                    <button style="border-radius: 50px;" type="button" class="btn btn-danger mb-3"
+                                        data-bs-toggle="modal" data-bs-target="#agregar-materiales">
                                         Agregar Materiales
                                     </button>
 
                                     <!-- Modal Materiales -->
-                                    <div class="modal fade" id="agregar-materiales" tabindex="-1" aria-labelledby="agregar-materiales" aria-hidden="true">
+                                    <div class="modal fade" id="agregar-materiales" tabindex="-1"
+                                        aria-labelledby="agregar-materiales" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content modal-dialog-scrollable">
                                                 <div class="modal-header">
                                                     <h1 class="modal-title fs-5" style="color: black">Materiales</h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="row">
                                                         <div class="col-3" style="padding-right: .2rem;">
-                                                            <select name="filter" id="materiales-filtro" class="form-select">
+                                                            <select name="filter" id="materiales-filtro"
+                                                                class="form-select">
                                                                 <option value="Descripcion">Descripción</option>
                                                                 <option value="Familia">Familia</option>
                                                                 <option value="SubFam">Subfamilia</option>
@@ -173,34 +212,46 @@
                                                         </div>
                                                         <div class="col-9" style="padding-left: .2rem;">
                                                             <div class="input-group mb-2">
-                                                                <input type="text" id="mm-busqueda" name="busqueda" class="form-control busquedaInput" placeholder="Busca aqui lo que necesites" autocomplete="off">
+                                                                <input type="text" id="mm-busqueda" name="busqueda"
+                                                                    class="form-control busquedaInput"
+                                                                    placeholder="Busca aqui lo que necesites"
+                                                                    autocomplete="off">
                                                             </div>
                                                         </div>
                                                     </div>
 
-                                                    <% for (var a = 0; a < materiales.length; a++) { %> 
-                                                        <div class="row mb-2 modal-materiales" style="padding-right: 5%;" id="<%= materiales[a].Descripcion %>">
-                                                            <input type="hidden" class="modal-materiales-familias" value="<%=materiales[a].Familia%>">
-                                                            <input type="hidden" class="modal-materiales-subfamilias" value="<%=materiales[a].SubFam%>">
+                                                    <% for (var a=0; a < materiales.length; a++) { %>
+                                                        <div class="row mb-2 modal-materiales"
+                                                            style="padding-right: 5%;"
+                                                            id="<%= materiales[a].Descripcion %>">
+                                                            <input type="hidden" class="modal-materiales-familias"
+                                                                value="<%=materiales[a].Familia%>">
+                                                            <input type="hidden" class="modal-materiales-subfamilias"
+                                                                value="<%=materiales[a].SubFam%>">
                                                             <div class="col-10 cv-flex">
-                                                                <%=materiales[a].Descripcion%> 
+                                                                <%=materiales[a].Descripcion%>
                                                             </div>
                                                             <div class="col-2">
-                                                                <button type="button" class="btn btn-danger edit agregar-Material<%=materiales[a].Codigo%>" id="Material<%=materiales[a].Codigo%>" value="<%=materiales[a].PrecioUnitario%>">Agregar</button>
+                                                                <button type="button"
+                                                                    class="btn btn-danger edit agregar-Material<%=materiales[a].Codigo%>"
+                                                                    id="Material<%=materiales[a].Codigo%>"
+                                                                    value="<%=materiales[a].PrecioUnitario%>">Agregar</button>
                                                             </div>
                                                         </div>
-                                                    <% } %>
+                                                        <% } %>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Close</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <!-- Precio Materiales -->
                                     <div>
-                                        <p class="resaltar-rojo">Precio de Materiales: $<span id="precio-materiales">0.00</span> mxn</p>
+                                        <p class="resaltar-rojo">Precio de Materiales: $<span
+                                                id="precio-materiales">0.00</span> mxn</p>
                                     </div>
 
                                     <!-- Porcentajes -->
@@ -208,14 +259,18 @@
                                         <div class="col-6">
                                             <div class="input-group">
                                                 <span class="input-group-text">Mano de Obra</span>
-                                                <input type="number" value="0" min="0" step="any" class="form-control material-porcentaje" id="ManoObMaterial" name="ManoObMaterial">
+                                                <input type="number" value="0" min="0" step="any"
+                                                    class="form-control material-porcentaje" id="ManoObMaterial"
+                                                    name="ManoObMaterial">
                                                 <span class="input-group-text">%</span>
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="input-group">
                                                 <span class="input-group-text">Indirectos y Honorarios</span>
-                                                <input type="number" value="0" min="0" step="any" class="form-control material-porcentaje" id="PorcentajeMaterial" name="PorcentajeMaterial">
+                                                <input type="number" value="0" min="0" step="any"
+                                                    class="form-control material-porcentaje" id="PorcentajeMaterial"
+                                                    name="PorcentajeMaterial">
                                                 <span class="input-group-text">%</span>
                                             </div>
                                         </div>
@@ -225,42 +280,59 @@
 
                                     <h5 style="font-weight: bold;">Pintura</h5>
                                     <div>
-                                        <% for (var a = 0; a < materiales.length; a++) { %> 
+                                        <% for (var a=0; a < materiales.length; a++) { %>
                                             <div hidden class="Pintura<%=materiales[a].Codigo%>">
                                                 <div class="mb-3">
                                                     <div class="input-group mb-3">
-                                                        <span class="input-group-text"><%=materiales[a].Descripcion%> $<%= materiales[a].PrecioUnitario %>/u Unidad: <%= materiales[a].Unidad %></span>
-                                                        <input type="number" step="any" value="0" id="Pintura<%=materiales[a].Codigo%>" class="form-control pintura-input" name='PinturaProductos[cantidad]' min="0">
-                                                        <button type="button" class="btn btn-primary edit agregar-Pintura<%=materiales[a].Codigo%>" id="Pintura<%=materiales[a].Codigo%>">Quitar</button>
+                                                        <span class="input-group-text">
+                                                            <%=materiales[a].Descripcion%> $<%=
+                                                                    materiales[a].PrecioUnitario %>/u Unidad: <%=
+                                                                        materiales[a].Unidad %>
+                                                        </span>
+                                                        <input type="number" step="any" value="0"
+                                                            id="Pintura<%=materiales[a].Codigo%>"
+                                                            class="form-control pintura-input"
+                                                            name='PinturaProductos[cantidad]' min="0">
+                                                        <button type="button"
+                                                            class="btn btn-primary edit agregar-Pintura<%=materiales[a].Codigo%>"
+                                                            id="Pintura<%=materiales[a].Codigo%>">Quitar</button>
                                                     </div>
-                                                    <input type="hidden" value="<%=materiales[a].Descripcion%>" name="PinturaProductos[nombre]">
-                                                    <input type="hidden" value="<%=materiales[a].Codigo%>" name="PinturaProductos[Codigo]">
-                                                    <input type="hidden" value="<%=materiales[a].PrecioUnitario%>" name="PinturaProductos[PrecioUnitario]">
-                                                    <input type="hidden" value="<%=materiales[a].Familia%>" name="PinturaProductos[Familia]">
+                                                    <input type="hidden" value="<%=materiales[a].Descripcion%>"
+                                                        name="PinturaProductos[nombre]">
+                                                    <input type="hidden" value="<%=materiales[a].Codigo%>"
+                                                        name="PinturaProductos[Codigo]">
+                                                    <input type="hidden" value="<%=materiales[a].PrecioUnitario%>"
+                                                        name="PinturaProductos[PrecioUnitario]">
+                                                    <input type="hidden" value="<%=materiales[a].Familia%>"
+                                                        name="PinturaProductos[Familia]">
                                                 </div>
 
                                                 <hr class="border border-danger border-1 opacity-25 w-75 mx-auto">
                                             </div>
-                                        <% } %>
+                                            <% } %>
                                     </div>
 
                                     <!-- Boton Agregar Pintura -->
-                                    <button style="border-radius: 50px;" type="button" class="btn btn-danger mb-3" data-bs-toggle="modal" data-bs-target="#agregar-pintura">
+                                    <button style="border-radius: 50px;" type="button" class="btn btn-danger mb-3"
+                                        data-bs-toggle="modal" data-bs-target="#agregar-pintura">
                                         Agregar Pintura
                                     </button>
 
                                     <!-- Modal Pintura -->
-                                    <div class="modal fade" id="agregar-pintura" tabindex="-1" aria-labelledby="agregar-pintura" aria-hidden="true">
+                                    <div class="modal fade" id="agregar-pintura" tabindex="-1"
+                                        aria-labelledby="agregar-pintura" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content modal-dialog-scrollable">
                                                 <div class="modal-header">
                                                     <h1 class="modal-title fs-5" style="color: black">Pintura</h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="row">
                                                         <div class="col-3" style="padding-right: .2rem;">
-                                                            <select name="filter" id="pintura-filtro" class="form-select">
+                                                            <select name="filter" id="pintura-filtro"
+                                                                class="form-select">
                                                                 <option value="Descripcion">Descripción</option>
                                                                 <option value="Familia">Familia</option>
                                                                 <option value="SubFam">Subfamilia</option>
@@ -268,26 +340,37 @@
                                                         </div>
                                                         <div class="col-9" style="padding-left: .2rem;">
                                                             <div class="input-group mb-2">
-                                                                <input type="text" id="mp-busqueda" name="busqueda" class="form-control busquedaInput" placeholder="Busca aqui lo que necesites" autocomplete="off">
+                                                                <input type="text" id="mp-busqueda" name="busqueda"
+                                                                    class="form-control busquedaInput"
+                                                                    placeholder="Busca aqui lo que necesites"
+                                                                    autocomplete="off">
                                                             </div>
                                                         </div>
                                                     </div>
 
-                                                    <% for (var a = 0; a < materiales.length; a++) { %> 
-                                                        <div class="row mb-2 modal-pintura" id="<%=materiales[a].Descripcion%>" style="padding-right: 5%;">
-                                                            <input type="hidden" class="modal-pintura-familias" value="<%=materiales[a].Familia%>">
-                                                            <input type="hidden" class="modal-pintura-subfamilias" value="<%=materiales[a].SubFam%>">
+                                                    <% for (var a=0; a < materiales.length; a++) { %>
+                                                        <div class="row mb-2 modal-pintura"
+                                                            id="<%=materiales[a].Descripcion%>"
+                                                            style="padding-right: 5%;">
+                                                            <input type="hidden" class="modal-pintura-familias"
+                                                                value="<%=materiales[a].Familia%>">
+                                                            <input type="hidden" class="modal-pintura-subfamilias"
+                                                                value="<%=materiales[a].SubFam%>">
                                                             <div class="col-10 cv-flex">
-                                                                <%=materiales[a].Descripcion%> 
+                                                                <%=materiales[a].Descripcion%>
                                                             </div>
                                                             <div class="col-2">
-                                                                <button type="button" class="btn btn-danger edit agregar-Pintura<%=materiales[a].Codigo%>" id="Pintura<%=materiales[a].Codigo%>" value="<%=materiales[a].PrecioUnitario%>">Agregar</button>
+                                                                <button type="button"
+                                                                    class="btn btn-danger edit agregar-Pintura<%=materiales[a].Codigo%>"
+                                                                    id="Pintura<%=materiales[a].Codigo%>"
+                                                                    value="<%=materiales[a].PrecioUnitario%>">Agregar</button>
                                                             </div>
                                                         </div>
-                                                    <% } %>
+                                                        <% } %>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Close</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -295,7 +378,8 @@
 
                                     <!-- Precio Pintura -->
                                     <div>
-                                        <p class="resaltar-rojo">Precio de Pintura: $<span id="precio-pintura">0.00</span> mxn</p>
+                                        <p class="resaltar-rojo">Precio de Pintura: $<span
+                                                id="precio-pintura">0.00</span> mxn</p>
                                     </div>
 
                                     <!-- Porcentajes -->
@@ -303,14 +387,18 @@
                                         <div class="col-6">
                                             <div class="input-group">
                                                 <span class="input-group-text">Mano de Obra</span>
-                                                <input type="number" value="0" min="0" step="any" class="form-control pintura-porcentaje" id="ManoObPintura" name="ManoObPintura">
+                                                <input type="number" value="0" min="0" step="any"
+                                                    class="form-control pintura-porcentaje" id="ManoObPintura"
+                                                    name="ManoObPintura">
                                                 <span class="input-group-text">%</span>
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="input-group">
                                                 <span class="input-group-text">Indirectos y Honorarios</span>
-                                                <input type="number" value="0" min="0" step="any" class="form-control pintura-porcentaje" id="PorcentajePintura" name="PorcentajePintura">
+                                                <input type="number" value="0" min="0" step="any"
+                                                    class="form-control pintura-porcentaje" id="PorcentajePintura"
+                                                    name="PorcentajePintura">
                                                 <span class="input-group-text">%</span>
                                             </div>
                                         </div>
@@ -320,42 +408,60 @@
 
                                     <h5 style="font-weight: bold;">Instalación</h5>
                                     <div>
-                                        <% for (var a = 0; a < materiales.length; a++) { %> 
+                                        <% for (var a=0; a < materiales.length; a++) { %>
                                             <div hidden class="Instalacion<%=materiales[a].Codigo%>">
                                                 <div class="mb-3">
                                                     <div class="input-group mb-3">
-                                                        <span class="input-group-text"><%=materiales[a].Descripcion%> $<%= materiales[a].PrecioUnitario %>/u Unidad: <%= materiales[a].Unidad %></span>
-                                                        <input type="number" step="any" value="0" id="Instalacion<%=materiales[a].Codigo%>" class="form-control instalacion-input" name='InstalacionProductos[cantidad]' min="0">
-                                                        <button type="button" class="btn btn-primary edit agregar-Instalacion<%=materiales[a].Codigo%>" id="Instalacion<%=materiales[a].Codigo%>">Quitar</button>
+                                                        <span class="input-group-text">
+                                                            <%=materiales[a].Descripcion%> $<%=
+                                                                    materiales[a].PrecioUnitario %>/u Unidad: <%=
+                                                                        materiales[a].Unidad %>
+                                                        </span>
+                                                        <input type="number" step="any" value="0"
+                                                            id="Instalacion<%=materiales[a].Codigo%>"
+                                                            class="form-control instalacion-input"
+                                                            name='InstalacionProductos[cantidad]' min="0">
+                                                        <button type="button"
+                                                            class="btn btn-primary edit agregar-Instalacion<%=materiales[a].Codigo%>"
+                                                            id="Instalacion<%=materiales[a].Codigo%>">Quitar</button>
                                                     </div>
-                                                    <input type="hidden" value="<%=materiales[a].Descripcion%>" name="InstalacionProductos[nombre]">
-                                                    <input type="hidden" value="<%=materiales[a].Codigo%>" name="InstalacionProductos[Codigo]">
-                                                    <input type="hidden" value="<%=materiales[a].PrecioUnitario%>" name="InstalacionProductos[PrecioUnitario]">
-                                                    <input type="hidden" value="<%=materiales[a].Familia%>" name="InstalacionProductos[Familia]">
+                                                    <input type="hidden" value="<%=materiales[a].Descripcion%>"
+                                                        name="InstalacionProductos[nombre]">
+                                                    <input type="hidden" value="<%=materiales[a].Codigo%>"
+                                                        name="InstalacionProductos[Codigo]">
+                                                    <input type="hidden" value="<%=materiales[a].PrecioUnitario%>"
+                                                        name="InstalacionProductos[PrecioUnitario]">
+                                                    <input type="hidden" value="<%=materiales[a].Familia%>"
+                                                        name="InstalacionProductos[Familia]">
                                                 </div>
 
                                                 <hr class="border border-danger border-1 opacity-25 w-75 mx-auto">
                                             </div>
-                                        <% } %>
+                                            <% } %>
                                     </div>
 
                                     <!-- Boton Agregar Instalacion -->
-                                    <button style="border-radius: 50px;" type="button" class="btn btn-danger mb-3" data-bs-toggle="modal" data-bs-target="#agregar-instalacion">
+                                    <button style="border-radius: 50px;" type="button" class="btn btn-danger mb-3"
+                                        data-bs-toggle="modal" data-bs-target="#agregar-instalacion">
                                         Agregar Material Instalación
                                     </button>
 
                                     <!-- Modal Instalacion -->
-                                    <div class="modal fade" id="agregar-instalacion" tabindex="-1" aria-labelledby="agregar-instalacion" aria-hidden="true">
+                                    <div class="modal fade" id="agregar-instalacion" tabindex="-1"
+                                        aria-labelledby="agregar-instalacion" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content modal-dialog-scrollable">
                                                 <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" style="color: black">Materiales Instalación</h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    <h1 class="modal-title fs-5" style="color: black">Materiales
+                                                        Instalación</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="row">
                                                         <div class="col-3" style="padding-right: .2rem;">
-                                                            <select name="filter" id="instalacion-filtro" class="form-select">
+                                                            <select name="filter" id="instalacion-filtro"
+                                                                class="form-select">
                                                                 <option value="Descripcion">Descripción</option>
                                                                 <option value="Familia">Familia</option>
                                                                 <option value="SubFam">Subfamilia</option>
@@ -363,26 +469,37 @@
                                                         </div>
                                                         <div class="col-9" style="padding-left: .2rem;">
                                                             <div class="input-group mb-2">
-                                                                <input type="text" id="mi-busqueda" name="busqueda" class="form-control busquedaInput" placeholder="Busca aqui lo que necesites" autocomplete="off">
+                                                                <input type="text" id="mi-busqueda" name="busqueda"
+                                                                    class="form-control busquedaInput"
+                                                                    placeholder="Busca aqui lo que necesites"
+                                                                    autocomplete="off">
                                                             </div>
                                                         </div>
                                                     </div>
 
-                                                    <% for (var a = 0; a < materiales.length; a++) { %> 
-                                                        <div class="row mb-2 modal-instalacion" id="<%=materiales[a].Descripcion%>" style="padding-right: 5%;">
-                                                            <input type="hidden" class="modal-instalacion-familias" value="<%=materiales[a].Familia%>">
-                                                            <input type="hidden" class="modal-instalacion-subfamilias" value="<%=materiales[a].SubFam%>">
+                                                    <% for (var a=0; a < materiales.length; a++) { %>
+                                                        <div class="row mb-2 modal-instalacion"
+                                                            id="<%=materiales[a].Descripcion%>"
+                                                            style="padding-right: 5%;">
+                                                            <input type="hidden" class="modal-instalacion-familias"
+                                                                value="<%=materiales[a].Familia%>">
+                                                            <input type="hidden" class="modal-instalacion-subfamilias"
+                                                                value="<%=materiales[a].SubFam%>">
                                                             <div class="col-10 cv-flex">
-                                                                <%=materiales[a].Descripcion%> 
+                                                                <%=materiales[a].Descripcion%>
                                                             </div>
                                                             <div class="col-2">
-                                                                <button type="button" class="btn btn-danger edit agregar-Instalacion<%=materiales[a].Codigo%>" id="Instalacion<%=materiales[a].Codigo%>" value="<%=materiales[a].PrecioUnitario%>">Agregar</button>
+                                                                <button type="button"
+                                                                    class="btn btn-danger edit agregar-Instalacion<%=materiales[a].Codigo%>"
+                                                                    id="Instalacion<%=materiales[a].Codigo%>"
+                                                                    value="<%=materiales[a].PrecioUnitario%>">Agregar</button>
                                                             </div>
                                                         </div>
-                                                    <% } %>
+                                                        <% } %>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Close</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -390,7 +507,8 @@
 
                                     <!-- Precio Instalacion -->
                                     <div>
-                                        <p class="resaltar-rojo">Precio de Materiales Instalación: $<span id="precio-instalacion">0.00</span> mxn</p>
+                                        <p class="resaltar-rojo">Precio de Materiales Instalación: $<span
+                                                id="precio-instalacion">0.00</span> mxn</p>
                                     </div>
 
                                     <!-- Porcentajes -->
@@ -398,14 +516,18 @@
                                         <div class="col-6">
                                             <div class="input-group">
                                                 <span class="input-group-text">Mano de Obra</span>
-                                                <input type="number" value="0" min="0" step="any" class="form-control instalacion-porcentaje" id="ManoObInstalacion" name="ManoObInstalacion">
+                                                <input type="number" value="0" min="0" step="any"
+                                                    class="form-control instalacion-porcentaje" id="ManoObInstalacion"
+                                                    name="ManoObInstalacion">
                                                 <span class="input-group-text">%</span>
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="input-group">
                                                 <span class="input-group-text">Indirectos y Honorarios</span>
-                                                <input type="number" value="0" min="0" step="any" class="form-control instalacion-porcentaje" id="PorcentajeInstalacion" name="PorcentajeInstalacion">
+                                                <input type="number" value="0" min="0" step="any"
+                                                    class="form-control instalacion-porcentaje"
+                                                    id="PorcentajeInstalacion" name="PorcentajeInstalacion">
                                                 <span class="input-group-text">%</span>
                                             </div>
                                         </div>
@@ -417,17 +539,24 @@
                                         <div class="col-6 cv-flex">
                                             <h5>Especificaciones</h5>
                                         </div>
-                                        
+
                                         <div class="col-6" style="text-align: end;">
-                                            <button type="button" class="btn btn-secondary" id="minus-one"><i class="fa-solid fa-minus"></i></button>
-                                            <button type="button" class="btn btn-danger" id="plus-one"><i class="fa-solid fa-plus"></i></button>
+                                            <button type="button" class="btn btn-secondary" id="minus-one"><i
+                                                    class="fa-solid fa-minus"></i></button>
+                                            <button type="button" class="btn btn-danger" id="plus-one"><i
+                                                    class="fa-solid fa-plus"></i></button>
                                         </div>
                                     </div>
                                     <div id="especificaciones">
                                         <div class="input-group mb-2" id="especificaciones-1">
                                             <span class="input-group-text">1</span>
-                                            <input type="text" aria-label="nombre-espec" class="form-control espec1" name="especificacionesNombre" autocomplete="off" autocapitalize="on" placeholder="Capacidad de carga" required>
-                                            <input type="text" aria-label="descripcion-espec" class="form-control espec1" name="especificacionesDesc" autocomplete="off" autocapitalize="on" placeholder="1200.0 libras" required>
+                                            <input type="text" aria-label="nombre-espec" class="form-control espec1"
+                                                name="especificacionesNombre" autocomplete="off" autocapitalize="on"
+                                                placeholder="Capacidad de carga" required>
+                                            <input type="text" aria-label="descripcion-espec"
+                                                class="form-control espec1" name="especificacionesDesc"
+                                                autocomplete="off" autocapitalize="on" placeholder="1200.0 libras"
+                                                required>
                                         </div>
                                     </div>
 
@@ -436,10 +565,12 @@
                                     <div id="subtotal"><!-- Aqui ira el subtotal --></div>
                                     <div class="row">
                                         <div class="col-6">
-                                            <button type="button" class="btn btn-dark" id="calculate-subtotal">Calcular Subtotal</button>
+                                            <button type="button" class="btn btn-dark" id="calculate-subtotal">Calcular
+                                                Subtotal</button>
                                         </div>
                                         <div class="col-6" style="text-align: end;">
-                                            <button type="submit" class="btn btn-danger" id="sendMessageButton">Agregar Artículo</button>
+                                            <button type="submit" class="btn btn-danger" id="sendMessageButton">Agregar
+                                                Artículo</button>
                                         </div>
                                     </div>
                                 </form>
@@ -450,207 +581,232 @@
 
                 <% } %>
 
-            </section>
+        </section>
 
-            <section id="editar-producto">
-                <div class="card border-danger">
-                    <div class="card-header">Inventario de Artículos</div>
+        <section id="editar-producto">
+            <div class="card border-danger">
+                <div class="card-header">Inventario de Artículos</div>
 
-                    <div class="card-body px-5 py-4">
-                        <div class="row">
-                            <% for (var a = 0; a < productos.length; a++) { %> 
-                                <div class="col-6" style="height: auto;">
-                                    <form action="/productos/edicion" method="POST" enctype="multipart/form-data">                                    
-                                        <div class="card mb-3">
-                                            <div class="row g-0">
-                                                <div class="col-md-3 center-text-xy">
-            
-                                                    <img src="<%= productos[a].image %>" class="img-fluid rounded-start" alt="...">
-            
-                                                </div>
-                                                <div class="col-md-8">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title"><%=productos[a].nombre%> <span class="ms-1" style="font-size: 0.8rem; color:gray"><%=productos[a].IdProducto%></span></h5>
-                                                        
-                                                        <div style="height: 75px; overflow-y: scroll;">
-                                                            <p class="card-text mb-2"><strong>Descripción:</strong> <%=productos[a].descripcion%></p>
-                                                        </div>
+                <div class="card-body px-5 py-4">
+                    <div class="row">
+                        <% for (var a=0; a < productos.length; a++) { %>
+                            <div class="col-6" style="height: auto;">
+                                <form action="/productos/edicion" method="POST" enctype="multipart/form-data">
+                                    <div class="card mb-3">
+                                        <div class="row g-0">
+                                            <div class="col-md-3 center-text-xy">
 
-                                                        <p class="card-text mb-2"><strong>Familia:</strong> <%=productos[a].familia%></p>
-            
-                                                        <p class="card-text resaltar-rojo"><strong>Precio: $<%=productos[a].precio.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')%> mxn</strong></p>
+                                                <img src="<%= productos[a].image %>" class="img-fluid rounded-start"
+                                                    alt="...">
+
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">
+                                                        <%=productos[a].nombre%> <span class="ms-1"
+                                                                style="font-size: 0.8rem; color:gray">
+                                                                <%=productos[a].IdProducto%>
+                                                            </span>
+                                                    </h5>
+
+                                                    <div style="height: 75px; overflow-y: scroll;">
+                                                        <p class="card-text mb-2"><strong>Descripción:</strong>
+                                                            <%=productos[a].descripcion%>
+                                                        </p>
                                                     </div>
+
+                                                    <p class="card-text mb-2"><strong>Familia:</strong>
+                                                        <%=productos[a].familia%>
+                                                    </p>
+
+                                                    <p class="card-text resaltar-rojo"><strong>Precio: $
+                                                            <%=productos[a].precio.toFixed(2).toString().replace(
+                                                                /\B(?=(\d{3})+(?!\d))/g, ',' )%> mxn</strong></p>
                                                 </div>
-                                                <div class="col-md-1">
-                                                    <% if(roles === "admin" || roles === "Cotizacion"){ %>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <% if(roles==="admin" || roles==="Proyectos" ){ %>
                                                     <!-- Editar producto -->
-                                                    <a href="/productos/editar/<%=productos[a]._id%>"> 
-                                                        <button type="button" class="btn btn-primary w-100 edit-button"><i class="fa-solid fa-pen-to-square"></i></button>
+                                                    <a href="/productos/editar/<%=productos[a]._id%>">
+                                                        <button type="button"
+                                                            class="btn btn-primary w-100 edit-button"><i
+                                                                class="fa-solid fa-pen-to-square"></i></button>
                                                     </a>
                                                     <!-- Borrar Producto -->
-                                                    <a href="/productos/borrar/<%=productos[a].nombre%>" id="sendMessageButton">
+                                                    <a href="/productos/borrar/<%=productos[a].nombre%>"
+                                                        id="sendMessageButton">
                                                         <button type="button" class="btn btn-dark w-100 trash-button">
                                                             <i class="fa-solid fa-trash"></i>
                                                         </button>
                                                     </a>
+
+                                                    <a
+                                                        href="/DesplieguePdf?codigo=<%=productos[a].Codigo%>&amp;IdTrans=<%=productos[a]._id%>"><img
+                                                            src="./images/productos/PdfLogo.png" alt="Logo PDF"
+                                                            width="60px" height="80px" class="pdf"></a>
+
                                                     <% } %>
-            
-                                                </div>
+
                                             </div>
                                         </div>
-                                    </form>     
-                                </div>                                                   
+                                    </div>
+                                </form>
+                            </div>
                             <% } %>
-                        </div>                        
                     </div>
                 </div>
-            </section>
-        </main>
-
-                        
+            </div>
         </section>
-
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-        <!--Multi Select-->
-        <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
-
-        <script src="https://kit.fontawesome.com/360b0549be.js" crossorigin="anonymous"></script>
-
-        <script src="js/productos.js"></script>
-
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <!-- FontAwesome-->
-        <script src="https://kit.fontawesome.com/360b0549be.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="css/mobiscroll.javascript.min.css">
-
-        <script src="js/multiple.js"></script>
-        <script>
-
-mobiscroll.setOptions({
-        locale: mobiscroll.localeEs,                                         // Specify language like: locale: mobiscroll.localePl or omit setting to use default
-        theme: 'ios',                                                        // Specify theme like: theme: 'ios' or omit setting to use default
-        themeVariant: 'light'                                                // More info about themeVariant: https://docs.mobiscroll.com/5-20-1/javascript/select#opt-themeVariant
-    });
-    
-    mobiscroll.select('#demo-multiple-select', {
-        inputElement: document.getElementById('demo-multiple-select-input')  // More info about inputElement: https://docs.mobiscroll.com/5-20-1/javascript/select#opt-inputElement
-    });
-
-                    </script>
+    </main>
 
 
-<script>
-      var fileInputIndex = 2;
-    var removeButton = document.createElement("button");
-    removeButton.type = "button";
-    removeButton.textContent = "Eliminar";
-    removeButton.onclick = function() {
-      removeFileInput();
-    };
+    </section>
 
-    function addFileInput() {
-      var container = document.getElementById("fileInputsContainer");
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <!--Multi Select-->
+    <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
 
-      var fileInputGroup = document.createElement("div");
-      fileInputGroup.className = "file-input-group";
+    <script src="https://kit.fontawesome.com/360b0549be.js" crossorigin="anonymous"></script>
 
-      var newInput = document.createElement("input");
-      newInput.type = "file";
-      newInput.setAttribute("id", "image" + fileInputIndex);
-      newInput.setAttribute("class", "form-control");
-      newInput.name = "image" + fileInputIndex;
+    <script src="js/productos.js"></script>
 
-      fileInputGroup.appendChild(newInput);
-      container.appendChild(fileInputGroup);
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- FontAwesome-->
+    <script src="https://kit.fontawesome.com/360b0549be.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/mobiscroll.javascript.min.css">
 
-      fileInputIndex++;
-    }
+    <script src="js/multiple.js"></script>
+    <script>
 
-    function removeFileInput() {
-      var container = document.getElementById("fileInputsContainer");
-      var fileInputGroups = container.getElementsByClassName("file-input-group");
+        mobiscroll.setOptions({
+            locale: mobiscroll.localeEs,                                         // Specify language like: locale: mobiscroll.localePl or omit setting to use default
+            theme: 'ios',                                                        // Specify theme like: theme: 'ios' or omit setting to use default
+            themeVariant: 'light'                                                // More info about themeVariant: https://docs.mobiscroll.com/5-20-1/javascript/select#opt-themeVariant
+        });
 
-      if (fileInputGroups.length > 1) {
-        container.removeChild(fileInputGroups[fileInputGroups.length - 1]);
-      }
-    }
-  </script>
+        mobiscroll.select('#demo-multiple-select', {
+            inputElement: document.getElementById('demo-multiple-select-input')  // More info about inputElement: https://docs.mobiscroll.com/5-20-1/javascript/select#opt-inputElement
+        });
 
-        <style>
+    </script>
 
-.mySlides {display:none;}
 
-            /* estilo para el checkbox */
-            .checkbox-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-family: sans-serif;
-}
+    <script>
+        var fileInputIndex = 2;
+        var removeButton = document.createElement("button");
+        removeButton.type = "button";
+        removeButton.textContent = "Eliminar";
+        removeButton.onclick = function () {
+            removeFileInput();
+        };
 
-input[type="checkbox"] {
-  position: relative;
-  width: 24px;
-  height: 24px;
-  appearance: none;
-  outline: none;
-  border: 2px solid #ccc;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: border-color 0.3s;
-}
+        function addFileInput() {
+            var container = document.getElementById("fileInputsContainer");
 
-input[type="checkbox"]:checked {
-  border-color: #007bff;
-}
+            var fileInputGroup = document.createElement("div");
+            fileInputGroup.className = "file-input-group";
 
-input[type="checkbox"]::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: #007bff;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
+            var newInput = document.createElement("input");
+            newInput.type = "file";
+            newInput.setAttribute("id", "image" + fileInputIndex);
+            newInput.setAttribute("class", "form-control");
+            newInput.name = "image" + fileInputIndex;
 
-input[type="checkbox"]:checked::before {
-  opacity: 1;
-}
+            fileInputGroup.appendChild(newInput);
+            container.appendChild(fileInputGroup);
 
-label {
-  cursor: pointer;
-}
+            fileInputIndex++;
+        }
 
-.file-input-group {
-      margin-bottom: 10px;
-    }
-        </style>
+        function removeFileInput() {
+            var container = document.getElementById("fileInputsContainer");
+            var fileInputGroups = container.getElementsByClassName("file-input-group");
 
-<script>
-    var slideIndex = 1;
-showDivs(slideIndex);
+            if (fileInputGroups.length > 1) {
+                container.removeChild(fileInputGroups[fileInputGroups.length - 1]);
+            }
+        }
+    </script>
 
-function plusDivs(n) {
-  showDivs(slideIndex += n);
-}
+    <style>
+        .mySlides {
+            display: none;
+        }
 
-function showDivs(n) {
-  var i;
-  var x = document.getElementsByClassName("mySlides");
-  if (n > x.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = x.length}
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";  
-  }
-  x[slideIndex-1].style.display = "block";  
-}
+        /* estilo para el checkbox */
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: sans-serif;
+        }
 
-</script>
-    </body>
+        input[type="checkbox"] {
+            position: relative;
+            width: 24px;
+            height: 24px;
+            appearance: none;
+            outline: none;
+            border: 2px solid #ccc;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+
+        input[type="checkbox"]:checked {
+            border-color: #007bff;
+        }
+
+        input[type="checkbox"]::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #007bff;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        input[type="checkbox"]:checked::before {
+            opacity: 1;
+        }
+
+        label {
+            cursor: pointer;
+        }
+
+        .file-input-group {
+            margin-bottom: 10px;
+        }
+    </style>
+
+    <script>
+        var slideIndex = 1;
+        showDivs(slideIndex);
+
+        function plusDivs(n) {
+            showDivs(slideIndex += n);
+        }
+
+        function showDivs(n) {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            if (n > x.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = x.length }
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            x[slideIndex - 1].style.display = "block";
+        }
+
+    </script>
+</body>
+
 </html>
