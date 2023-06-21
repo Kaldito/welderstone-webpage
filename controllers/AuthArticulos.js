@@ -15,9 +15,8 @@ module.exports = async (req, res) => {
             const materiales = await Material.find({
                 PrecioUnitario: { $gt: 0 },
             });
-            const productos = await Producto.paginate(
-                {},
-                { page: 1, limit: 10 }
+            const productos = await Producto.find(
+                {}
             );
             // console.log(productos)
             res.render('AuthArticulos', {
@@ -30,7 +29,7 @@ module.exports = async (req, res) => {
             const materiales = await Material.find({
                 PrecioUnitario: { $gt: 0 },
             });
-            const productos = await Producto.paginate({}, { page, limit: 10 });
+            const productos = await Producto.find({});
             // console.log(productos)
             res.render('AuthArticulos', {
                 productos,
