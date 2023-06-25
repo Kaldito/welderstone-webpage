@@ -24,6 +24,7 @@
   <%- include('layouts/navbar'); -%>
 
     <section id="presentation">
+    
       <div class="container">
         <div class="row mt-5">
           <div class="col-md-8 offset-md-2">
@@ -40,7 +41,7 @@
                   <h4 class="card-title">
                     <%=productodatos[0].nombre%>
                   </h4>
-                  <p class="card-text">Precio: <%=productodatos[0].precio.toFixed(2)%>
+                  <p class="card-text">Precio: $<%=productodatos[0].precio.toLocaleString()%>
                   </p>
                   <p class="card-text">Cantidad: <%=productodatos[0].cantidad%>
                   </p>
@@ -50,16 +51,16 @@
                   </p>
 
 
-                  <p class="card-text">SubTotal: <%=SubTotalR%>
+                  <p class="card-text">SubTotal: $<%=SubTotalR.toLocaleString()%>
                   </p>
 
                   <p class="card-text">Iva: <%=productodatos[0].iva%>%</p>
-                  <p class="card-text">Total: <%=TotalFinal.toFixed(2)%>
+                  <p class="card-text">Total: $<%=TotalFinal.toLocaleString()%>
                   </p>
 
                 </div>
               </div>
-
+            
               <div class="mt-4 text-center">
                 <a href="/pdfDescargar?IdTrans=<%=IdTransaccion%>&amp;Codigo=<%=productodatos[0].Codigo%>"
                   class="btn btn-primary mr-3">Descargar pdf</a>
@@ -100,12 +101,13 @@
                               <%=ProductoParaCotizar.MaterialesProductos[b].cantidad%>
                             </td>
                             <td>
-                              <%=MaterialesMostrar[b]%>
+                              $<%= MaterialesMostrar[b].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>
+
                             </td>
                             <td>
                               <% let num1=ProductoParaCotizar.MaterialesProductos[b].cantidad; %>
                                 <% let num2=MaterialesMostrar[b]; %>
-                                  <%= (num1 * num2).toFixed(2) %>
+                                $<%= (num1 * num2).toLocaleString() %>
                             </td>
                           </tr>
                           <% } %>
@@ -141,13 +143,13 @@
                           </td>
 
                           <td>
-                            <%=MaterialSuma.toFixed(2)%>
+                            $<%=MaterialSuma.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
                               <br>
-                              <%=ManoObMaterial1R%>
+                              $<%=ManoObMaterial1R.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
                                 <br>
-                                <%=ManoObMaterial2R%>
+                                $<%=ManoObMaterial2R.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
                                   <br>
-                                  <%=Total1R%>
+                                  $<%=Total1R.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
                           </td>
                         </tr>
                       </tbody>
@@ -189,12 +191,12 @@
                             <%=ProductoParaCotizar.PinturaProductos[b].cantidad%>
                           </td>
                           <td>
-                            <%=PinturaMostrar[b]%>
+                            $<%=PinturaMostrar[b].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
                           </td>
                           <td>
                             <% let num1=ProductoParaCotizar.PinturaProductos[b].cantidad; %>
                               <% let num2=PinturaMostrar[b]; %>
-                                <%= (num1 * num2).toFixed(2) %>
+                              $<%= (num1 * num2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>
                           </td>
                         </tr>
                         <% } %>
@@ -230,13 +232,13 @@
                         </td>
 
                         <td>
-                          <%=PinturaSumaRedondeada%>
+                          $<%=PinturaSumaRedondeada.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
                             <br>
-                            <%=ManoObPintura1R%>
+                            $<%=ManoObPintura1R.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
                               <br>
-                              <%=ManoObPintura2R%>
+                              $<%=ManoObPintura2R.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
                                 <br>
-                                <%=Total2R%>
+                                $<%=Total2R.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
 
                         </td>
                       </tr>
@@ -275,12 +277,12 @@
                             <%=ProductoParaCotizar.InstalacionProductos[b].cantidad%>
                           </td>
                           <td>
-                            <%=InstalacionesMostrar[b]%>
+                            $<%=InstalacionesMostrar[b].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
                           </td>
                           <td>
                             <% let num1=ProductoParaCotizar.InstalacionProductos[b].cantidad; %>
                               <% let num2=InstalacionesMostrar[b]; %>
-                                <%= (num1 * num2).toFixed(2) %>
+                              $<%= (num1 * num2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
                           </td>
                         </tr>
                         <% } %>
@@ -299,7 +301,7 @@
                       <tr>
 
                         <td>
-                          Pintura:
+                          Instalación:
                           <br>
                           Mano de obra material:
                           <br>
@@ -326,20 +328,21 @@
                         </td>
 
                         <td>
-                          <%=InstalacionSuma.toFixed(2)%>
-                            <br>
-                            <%=ManoObInstalacion1R%>
+                          $<%= InstalacionSuma ? InstalacionSuma.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : '' %>
+                          <br>
+                          $<%=ManoObInstalacion1R.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
                               <br>
-                              <%=ManoObInstalacion2R%>
+                              $<%=ManoObInstalacion2R.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
                                 <br>
-                                <%=Total3R%>
+                                $<%=Total3R.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
                                   <br>
-                                  <%= TotalSuma.toFixed(2) %>
+                                  $<%= TotalSuma.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>
                                     <br>
                                     16%
                                     <br>
 
-                                    <%=TotalFinal.toFixed(2) %>
+                                    $<%= parseFloat(TotalFinal).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>
+
                         </td>
                       </tr>
                     </tbody>
@@ -353,7 +356,7 @@
             </div>
           </div>
         </div>
-
+   
     </section>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
@@ -398,3 +401,10 @@
     left: -55px;
   }
 </style>
+<script>
+  function numberWithCommas(number) {
+    var parts = number.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.join(".");
+  }
+  </script>

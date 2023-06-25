@@ -193,13 +193,13 @@ module.exports = async (req, res) => {
             for (let i = 0; i < MaterialesProductos.length; i++) {
                 if (
                     MaterialesProductos[i].Descripcion ===
-                        materiales[j].Descripcion &&
+                    materiales[j].Descripcion &&
                     materiales[j].PrecioUnitario >= 0
                 ) {
                     suma =
                         suma +
                         MaterialesProductos[i].cantidad *
-                            materiales[j].PrecioUnitario;
+                        materiales[j].PrecioUnitario;
                 }
             }
         }
@@ -212,13 +212,13 @@ module.exports = async (req, res) => {
             for (let i = 0; i < PinturaProductos.length; i++) {
                 if (
                     PinturaProductos[i].Descripcion ===
-                        materiales[j].Descripcion &&
+                    materiales[j].Descripcion &&
                     materiales[j].PrecioUnitario >= 0
                 ) {
                     sumaSolventes =
                         sumaSolventes +
                         PinturaProductos[i].cantidad *
-                            materiales[j].PrecioUnitario;
+                        materiales[j].PrecioUnitario;
                 }
             }
         }
@@ -233,13 +233,13 @@ module.exports = async (req, res) => {
             for (let i = 0; i < InstalacionProductos.length; i++) {
                 if (
                     InstalacionProductos[i].Descripcion ===
-                        materiales[j].Descripcion &&
+                    materiales[j].Descripcion &&
                     materiales[j].PrecioUnitario >= 0
                 ) {
                     sumaInsumos =
                         sumaInsumos +
                         InstalacionProductos[i].cantidad *
-                            materiales[j].PrecioUnitario;
+                        materiales[j].PrecioUnitario;
                 }
             }
         }

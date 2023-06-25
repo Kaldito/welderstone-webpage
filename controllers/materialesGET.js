@@ -22,10 +22,10 @@ module.exports = async (req, res) => {
         }
         const unicos = [...new Set(familias)];
 
-        var SubFamilias = [];
-        for (j = 0; j < materiales.length; j++) {
-
-            SubFamilias.push(materiales[j].SubFam);
+        var SubFamilias=[];
+        for (j=0; j<materiales.length; j++){
+       
+                SubFamilias.push(materiales[j].SubFam);
 
 
         }
