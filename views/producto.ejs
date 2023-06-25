@@ -79,7 +79,7 @@
                                     <h6>Cantidad</h6>
                                     <input class="form-control" type="number" value="0" min="1" style="width: 6rem;" name="cantidad">
                                 </div>
-                                <input type="hidden" name="id" value="<%=productoDoc._id%>">
+                                <input type="hidden" name="idProducto" value="<%=productoDoc._id%>">
                                 <input type="hidden" name="nombre" value="<%=productoDoc.nombre%>">
                                 <input type="hidden" name="image" value="<%=productoDoc.image%>">
                                 <input type="hidden" name="precio" value="<%=productoDoc.precio%>">
@@ -181,6 +181,8 @@
                                                     <input type="hidden" name="nombre" value="<%=relacionados[i].nombre%>">
                                                     <input type="hidden" name="image" value="<%=relacionados[i].image%>">
                                                     <input type="hidden" name="precio" value="<%=relacionados[i].precio%>">
+                                                    <input type="hidden" name="precio" value="<%=relacionados[i]._id%>">
+
                                                     <% if(loggedIn) { %>
                                                         <input type="hidden" name="UsuarioId" value="<%=IdUsuario%>"> 
                                                     <% } %>

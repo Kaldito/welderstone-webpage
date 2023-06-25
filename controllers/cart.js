@@ -22,7 +22,7 @@ module.exports = async (req, res) => {
             SubTotal[i] = Sumas[i].precio * Sumas[i].amount;
             Total = Total + Sumas[i].precio * Sumas[i].amount;
         }
-
+       console.log(Sumas)
         const usuarios = await User.find({ _id: req.session.passport.user.id });
 
         res.render('cart', {

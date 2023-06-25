@@ -63,8 +63,11 @@
 
                     <tr>
 
-                        <td class="text-center"><img class="card-img-top mx-auto d-block" width="200px" height="130px" src="<%=Sumas[a].image%>" alt="Product 1"></td>
-
+                      <td class="text-center">
+                        <a href="productos/<%=Sumas[a].idProducto%>">
+                          <img class="card-img-top mx-auto d-block" src="<%=Sumas[a].image%>" alt="Product 1">
+                        </a>
+                      </td>
                     <td> <%=Sumas[a].nombre%></td>
                     <td class="text-center">$<%= Sumas[a].precio.toLocaleString() %></td>
                     <td class="text-center"><%= Sumas[a].amount %></td>
@@ -395,6 +398,10 @@
 
 
 <style>
+  .card-img-top {
+  max-width: 100%; /* La imagen ocupará el 100% del ancho disponible en su contenedor */
+  height: auto; /* La altura se ajustará automáticamente para mantener la proporción */
+}
     .form-label{
       width:300px;
     }
