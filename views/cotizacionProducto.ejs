@@ -42,7 +42,7 @@
               <tr>
                 <td><%= ProductosComprados[a].nombre %></td>
                 <td><img src="<%= ProductosComprados[a].image %>" alt="Product Image" style="max-width: 100px;"></td>
-                <td><%= ProductosComprados[a].precio %></td>
+                <td><%= ProductosComprados[a].precio.toLocaleString() %></td>
                 <td><%= ProductosComprados[a].cantidad %></td>
                 <td><%= ProductosComprados[a].unidad %></td>
                 <td><%= ProductosComprados[a].codigo %></td>

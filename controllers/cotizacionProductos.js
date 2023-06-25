@@ -24,12 +24,12 @@ module.exports = async (req, res) => {
         const { nombre, codigo, unidad, precio, cantidad, iva } = producto;
 
         const fila = [
-            { text: nombre, fontSize: 11 },
             { text: codigo, fontSize: 11 },
+            { text: nombre, fontSize: 11 },
             { text: unidad, fontSize: 11 },
-            { text: precio.toString(), fontSize: 11 },
+            { text: precio.toLocaleString(), fontSize: 11 },
             { text: cantidad.toString(), fontSize: 11 },
-            { text: (precio * cantidad).toString(), fontSize: 11 },
+            { text: (precio * cantidad).toLocaleString(), fontSize: 11 },
         ];
 
         body.push(fila);
@@ -57,36 +57,30 @@ module.exports = async (req, res) => {
             {
                 columns: [
                     {
-                        image: './public/images/productos/welderstone.png',
-                        width: 150,
-                        alignment: 'left',
+                        image: './public/images/productos/welderstone2.png',
+                        width: 450,
+                        heigth:30,
+                        absolutePosition: { x: 45, y: 30 },
                     },
-                    {},
-                    { text: 'Cotización', style: 'header', alignment: 'right' },
                 ],
             },
 
             {
                 style: 'tableExample',
+                layout: 'noBorders',
                 table: {
-                    heights: [20, 20, 20],
+                    widths: [70, 70],
                     body: [
-                        ['Fecha', date],
-                        ['Valido hasta', caduca],
+                        [
+                            { text: 'Fecha: ', style: ['tableHeader', 'redText'], alignment: 'left', fontSize: 14 },
+                            { text: date, alignment: 'left', fontSize: 14 },
+                        ],
                     ],
                 },
+                absolutePosition: { x: 619, y: 90 },
+            },
+            { text: '\n' },
 
-                absolutePosition: { x: 650, y: 80 },
-            },
-            {
-                text: [
-                    'Sitio web: www.Welderstone.com\n',
-                    'Teléfono: 87-12-64-69-82 \n',
-                    'E-mail: Welderstone@outlook.com\n' +
-                        'Asesor de venta: Arq. Angelica Varela',
-                ],
-                margin: [0, 20, 0, 8],
-            },
 
             {
                 alignment: 'center',
@@ -102,6 +96,9 @@ module.exports = async (req, res) => {
             { text: '\n' },
             { text: '\n' },
             { text: '\n' },
+            { text: '\n' },
+            { text: '\n' },
+
 
             {
                 style: 'tableExample',
@@ -113,14 +110,25 @@ module.exports = async (req, res) => {
 
                     body: [
                         [
-                            { text: 'Articulo', style: 'tableHeader' },
-                            { text: 'Codigo', style: 'tableHeader' },
-                            { text: 'Unidad', style: 'tableHeader' },
-                            { text: 'Precio Unitario', style: 'tableHeader' },
-                            { text: 'Cantidad', style: 'tableHeader' },
-                            { text: 'importe', style: 'tableHeader' },
-                        ],
+                            { text: 'Codigo', style: 'tableHeader', fillColor: '#000000', color: '#FFFFFF' },
+                            { text: 'Material', style: 'tableHeader', fillColor: '#000000', color: '#FFFFFF' },
+                            { text: 'Unidad', style: 'tableHeader', fillColor: '#000000', color: '#FFFFFF' },
+                            { text: 'Cantidad', style: 'tableHeader', fillColor: '#000000', color: '#FFFFFF' },
+                            { text: 'Precio Unitario', style: 'tableHeader', fillColor: '#000000', color: '#FFFFFF' },
+                            { text: 'importe', style: 'tableHeader', fillColor: '#000000', color: '#FFFFFF' }
+                          ],
                         ...body,
+                        [' ', ' ', ' ', ' ', ' ', ' '],
+                        [' ', ' ', ' ', ' ', ' ', ' '],
+                        [' ', ' ', ' ', ' ', ' ', ' '],
+                        [' ', ' ', ' ', ' ', ' ', ' '],
+                        [' ', ' ', ' ', ' ', ' ', ' '],
+                        [' ', ' ', ' ', ' ', ' ', ' '],
+                        [' ', ' ', ' ', ' ', ' ', ' '],
+                        [' ', ' ', ' ', ' ', ' ', ' '],
+                        [' ', ' ', ' ', ' ', ' ', ' '],
+                        [' ', ' ', ' ', ' ', ' ', ' '],
+                        [' ', ' ', ' ', ' ', ' ', ' '],
                         [' ', ' ', ' ', ' ', ' ', ' '],
                         [' ', ' ', ' ', ' ', ' ', ' '],
                         [' ', ' ', ' ', ' ', ' ', ' '],
@@ -175,9 +183,8 @@ module.exports = async (req, res) => {
             {
                 fontSize: 11,
                 text: [
-                    '1. Precio no incluye entrega a domicilio \n',
-                    '2. Precio sujeto a cambio sin previo aviso \n',
-                    '3. Precio no incluye instalación\n ',
+                    'Arq. José Ángel Aguiler \n',
+                    'Cel: 871-131-01-92 \n',
                 ],
                 margin: [0, 20, 0, 8],
             },
@@ -195,6 +202,9 @@ module.exports = async (req, res) => {
             height: 1230, // 'auto' para mantener la altura proporcional al contenido
         },
         styles: {
+            redText: {
+                color: 'red'
+              },
             header: {
                 fontSize: 18,
                 bold: true,

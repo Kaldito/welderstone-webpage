@@ -9,6 +9,8 @@ const CartSchema = new Schema({
     precio: { type: Number },
     UsuarioId: { type: String },
     inCart: { type: Boolean, default: true },
+    idProducto: { type: String, default: true },
+
 });
 
 const Cart = mongoose.model('Cart', CartSchema);

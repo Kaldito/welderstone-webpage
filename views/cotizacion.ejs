@@ -67,7 +67,7 @@
                   <% for (var b = 0; b < ProductosComprados.length; b++) { %>
                   <tr>
                     <td><%=ProductosComprados[b].nombre%></td>
-                    <td>$<%=ProductosComprados[b].precio%></td>
+                    <td>$<%=ProductosComprados[b].precio.toLocaleString()%></td>
                     <td><%=ProductosComprados[b].cantidad%></td>
                   </tr>
                   <% } %>

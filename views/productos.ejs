@@ -482,7 +482,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-1">
-                                                    <% if(roles === "admin" || roles === "Cotizacion"){ %>
+                                                    <% if(roles === "admin" || roles === "Proyectos"){ %>
                                                     <!-- Editar producto -->
                                                     <a href="/productos/editar/<%=productos[a]._id%>"> 
                                                         <button type="button" class="btn btn-primary w-100 edit-button"><i class="fa-solid fa-pen-to-square"></i></button>
@@ -493,6 +493,9 @@
                                                             <i class="fa-solid fa-trash"></i>
                                                         </button>
                                                     </a>
+
+                                                    <a href="/DesplieguePdf?codigo=<%=productos[a].Codigo%>&amp;IdTrans=<%=productos[a]._id%>"><img src="./images/productos/PdfLogo.png" alt="Logo PDF" width="40px" height="50px" class="pdf"></a>
+
                                                     <% } %>
             
                                                 </div>

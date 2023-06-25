@@ -36,7 +36,7 @@
                             <img class="mySlides" src="<%= productoEditar.image %>" style="width:350px; height:350px">
                             <% for (var a = 0; a < productoEditar.image2.length; a++) { %> 
 
-                                <img class="mySlides" src="<%= productoEditar.image2[a] %>" style="width:350px; height:350px">
+                                <img class="mySlides" src="<%= productoEditar.image2[a] %>" style="width:350px; height:380px">
                                 <% } %>
                                 <% if(productoEditar.image2.length > 0){ %>
 
@@ -522,9 +522,14 @@
                                         <div class="col-6">
                                             <button type="button" class="btn btn-dark" id="calculate-subtotal">Calcular Subtotal</button>
                                         </div>
+                                        <% if(roles === "admin" || roles === "Proyectos"){ %>
+
                                         <div class="col-6" style="text-align: end;">
                                             <button type="submit" class="btn btn-danger" id="sendMessageButton">Actualizar</button>
                                         </div>
+
+                                        <% } %>
+
                                     </div>
                             </div>
                         </div>
