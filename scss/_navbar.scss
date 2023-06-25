@@ -17,10 +17,6 @@
 nav {
     height: 100%;
 
-    img {
-        height: 50%;
-    }
-
     .nav-link {
         color: #7b7977;
     }
@@ -51,24 +47,8 @@ nav {
         }
     }
 
-    .brand-container {
-        display: flex;
-        align-items: center;
-        justify-items: center;
-        height: 10vh;
-    }
 
-    .offcanvas-header {
-        border-bottom: 1px solid black;
-    }
 
-    #offcanvasDarkNavbarLabel {
-        color: #d10101;
-    }
-
-    #dropdown-custom {
-        top: unset;
-    }
 }
 
 .nav-items {
