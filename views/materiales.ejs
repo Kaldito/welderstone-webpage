@@ -250,8 +250,8 @@
                         <table class="table table align-middle">
                             <thead class="table-dark">
                                 <tr>
-                                    <th>Descripción</th>
                                     <th>Codigo</th>
+                                    <th>Descripción</th>
                                     <th>Unidad</th>
                                     <th>Precio Unitario</th>
                                     <th>Familia</th>
@@ -263,13 +263,14 @@
                                 <% for (let a = 0; a < materiales.length; a++) { %>
                                     <tr>
                                         <td>
-                                            <%=materiales[a].Descripcion%>
-
-                                        </td>
-                                        <td>
                                             <%=materiales[a].Codigo%>
 
                                         </td>
+                                        <td>
+                                            <%=materiales[a].Descripcion%>
+
+                                        </td>
+
                                         <td>
                                             <%=materiales[a].Unidad%>
                                         </td>
