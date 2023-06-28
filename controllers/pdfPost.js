@@ -568,7 +568,8 @@ var ManoObInstalacion2RFormateado = formatNumberWithDecimals(ManoObInstalacion2R
 var Total3RFormateado = formatNumberWithDecimals(Total3R)
 var SubTotalRFormateado = formatNumberWithDecimals(SubTotalR)
 var TotalFinalRFormateado = formatNumberWithDecimals(TotalFinalR)
-
+var ivaDesgloce = ((iva/100)*Number(SubTotalR))
+var ivaDesgloceFormateado = formatNumberWithDecimals(ivaDesgloce)
        let docDefinition ={
 
     content :[
@@ -641,12 +642,27 @@ var TotalFinalRFormateado = formatNumberWithDecimals(TotalFinalR)
                   { fillColor: i % 2 === 0 ? '#FFFFFF' : '#F2F2F2', fontSize: 10, text: '$'+preciosFormateados[i]},
                   { fillColor: i % 2 === 0 ? '#FFFFFF' : '#F2F2F2', fontSize: 10, text: '$'+importesFormateados[i] }
                 ])),  
-
-                [{ fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: 'Material', bold:true, border: [true, true, true,true ],borderColor: ['#000000', '#000000', '#000000', '#000000'],lineWidth: 6 }, { fillColor: '#F2F2F2', text: 'Suma' ,  bold:true,border: [true, true, true,true ],borderColor: ['#000000', '#000000', '#000000', '#000000'],lineWidth: 6}, { fillColor: '#F2F2F2', text: '$'+MaterialSumaRFormateado , bold:true, border: [true, true, true,true ],borderColor: ['#000000', '#000000', '#000000', '#000000'],lineWidth: 6}],
-                [{ fillColor: '#FFFFFF', text: ' ' }, ' ', ' ', { fillColor: '#FFFFFF', text: 'Mano de obra' ,  bold:true, border: [true, true, true,true ],borderColor: ['#000000', '#000000', '#000000', '#000000'],lineWidth: 6}, { fillColor: '#FFFFFF', text: ManoObMaterial + '%',  bold:true, border: [true, true, true,true ],borderColor: ['#000000', '#000000', '#000000', '#000000'],lineWidth: 6}, { fillColor: '#FFFFFF', text: '$'+ManoObMaterial1RFormateado,  bold:true, border: [true, true, true,true ],borderColor: ['#000000', '#000000', '#000000', '#000000'],lineWidth: 6}],
-                [{ fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: 'Indirectos' , bold:true, border: [true, true, true,true ],borderColor: ['#000000', '#000000', '#000000', '#000000'],lineWidth: 6}, { fillColor: '#F2F2F2', text: PorcentajeMaterial + '%', bold:true, border: [true, true, true,true ],borderColor: ['#000000', '#000000', '#000000', '#000000'],lineWidth: 6}, { fillColor: '#F2F2F2', text: '$'+ManoObMaterial2RFormateado, border: [true, true, true,true ],borderColor: ['#000000', '#000000', '#000000', '#000000'],lineWidth: 6}],
-                [{ fillColor: '#FFFFFF', text: ' ' }, ' ', ' ', ' ', { fillColor: '#FFFFFF', text: 'Total', bold:true, border: [true, true, true,true ],borderColor: ['#000000', '#000000', '#000000', '#000000'],lineWidth: 6 }, { fillColor: '#FFFFFF', text: '$'+Total1RFormateado,  bold:true, border: [true, true, true,true ],borderColor: ['#000000', '#000000', '#000000', '#000000'],lineWidth: 6}],
-                [{ fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }],
+                [{ fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, 
+                { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, 
+                { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }],
+                
+                [{ fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, 
+                { fillColor: '#F2F2F2', text: ' ' }, 
+                { fillColor: '#F2F2F2', text: 'Material', bold:true }, 
+                { fillColor: '#F2F2F2', text: 'Suma' ,  bold:true}, { fillColor: '#F2F2F2', text: '$'+MaterialSumaRFormateado , bold:true}],
+                [{ fillColor: '#FFFFFF', text: ' ' }, ' ', ' ', { fillColor: '#FFFFFF', text: 'Mano de obra' ,  bold:true}, 
+                { fillColor: '#FFFFFF', text: ManoObMaterial + '%',  bold:true}, 
+                { fillColor: '#FFFFFF', text: '$'+ManoObMaterial1RFormateado,  bold:true}],
+                [{ fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, 
+                { fillColor: '#F2F2F2', text: 'Indirectos' , bold:true}, 
+                { fillColor: '#F2F2F2', text: PorcentajeMaterial + '%', bold:true}, 
+                { fillColor: '#F2F2F2', text: '$'+ManoObMaterial2RFormateado}],
+                [{ fillColor: '#FFFFFF', text: ' ' }, ' ', ' ', ' ', 
+                { fillColor: '#FFFFFF', text: 'Total', bold:true }, 
+                { fillColor: '#FFFFFF', text: '$'+Total1RFormateado,  bold:true}],
+                [{ fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, 
+                { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, 
+                { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }],
 
 
                 ...(productosPinturaDescripcion.map((desc, i) => [
@@ -658,6 +674,9 @@ var TotalFinalRFormateado = formatNumberWithDecimals(TotalFinalR)
                   { fillColor: i % 2 === 0 ? '#FFFFFF' : '#F2F2F2', fontSize: 10, text: '$'+importesFormateados2[i] }
                 ])),
                                 //Inicio cuadro negritas
+                                [{ fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, 
+                                { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, 
+                                { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }],
 
                 [{ fillColor: '#F2F2F2', text: ' ' },{ fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: 'Pintura' , bold:true}, { fillColor: '#F2F2F2', text: 'Suma' , bold:true}, { fillColor: '#F2F2F2', text: '$'+PinturaSumaRedondeadaFormateado , bold:true}],
                 [{ fillColor: '#FFFFFF', text: ' ' }, ' ', ' ', { fillColor: '#FFFFFF', text: 'Mano de obra' , bold:true}, { fillColor: '#FFFFFF', text: ManoObPintura + '%' , bold:true}, { fillColor: '#FFFFFF', text: '$'+ManoObPintura1RFormateado , bold:true}],
@@ -676,13 +695,16 @@ var TotalFinalRFormateado = formatNumberWithDecimals(TotalFinalR)
                   { fillColor: i % 2 === 0 ? '#FFFFFF' : '#F2F2F2', fontSize: 10, text: '$'+importesFormateados3[i] }
                 ])),
                                                 //Inicio cuadro negritas
+                                                [{ fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, 
+                                                { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, 
+                                                { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }],
 
                 [{ fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: 'Instalación', bold:true }, { fillColor: '#F2F2F2', text: 'Suma' , bold:true}, { fillColor: '#F2F2F2', text: '$'+InstalacionSumaFormateado , bold:true}],
                 [{ fillColor: '#FFFFFF', text: ' ' }, ' ', ' ', { fillColor: '#FFFFFF', text: 'Mano de obra' , bold:true}, { fillColor: '#FFFFFF', text: ManoObInstalacion + '%' , bold:true}, { fillColor: '#FFFFFF', text: '$'+ManoObInstalacion1RFormateado, bold:true }],
                 [{ fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' },{ fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: 'Indirectos', bold:true }, { fillColor: '#F2F2F2', text: PorcentajeInstalacion + '%' , bold:true}, { fillColor: '#F2F2F2', text: '$'+ManoObInstalacion2RFormateado , bold:true}],
                 [{ fillColor: '#FFFFFF', text: ' ' }, ' ', ' ', ' ', { fillColor: '#FFFFFF', text: 'Total', bold:true }, { fillColor: '#FFFFFF', text: '$'+Total3RFormateado , bold:true}],
                 [{ fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' },{ fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: 'Subtotal' , bold:true}, { fillColor: '#F2F2F2', text: '$'+SubTotalRFormateado , bold:true}],
-                [{ fillColor: '#FFFFFF', text: ' ' }, ' ', ' ', ' ', { fillColor: '#FFFFFF', text: 'Iva' , bold:true}, { fillColor: '#FFFFFF', text: '%'+iva , bold:true}],
+                [{ fillColor: '#FFFFFF', text: ' ' }, ' ', ' ', ' ', { fillColor: '#FFFFFF', text: 'Iva' , bold:true}, { fillColor: '#FFFFFF', text: '$'+ivaDesgloceFormateado  , bold:true}],
                 [{ fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: 'Total', bold:true }, { fillColor: '#F2F2F2', text: '$'+TotalFinalRFormateado , bold:true}],
               ]
                                                               //Fin cuadro negritas
@@ -805,10 +827,10 @@ for (b=0; b<PreciosInstalaciones.length; b++){
 }
 
 /*
-                [{ fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: 'Material', border: [true, true, false,false ],borderColor: ['#000000', '#000000', '#000000', '#000000']}, { fillColor: '#F2F2F2', text: 'Suma' , border: [false, true, false,false ],borderColor: ['#000000', '#000000', '#000000', '#000000']}, { fillColor: '#F2F2F2', text: '$'+MaterialSumaRFormateado , border: [false, true, true,false ],borderColor: ['#000000', '#000000', '#000000', '#000000']}],
-                [{ fillColor: '#FFFFFF', text: ' ' }, ' ', ' ', { fillColor: '#FFFFFF', text: 'Mano de obra' , border: [true, false, false,false ],borderColor: ['#000000', '#000000', '#000000', '#000000']}, { fillColor: '#FFFFFF', text: ManoObMaterial + '%', border: [false, false, false,false ],borderColor: ['#000000', '#000000', '#000000', '#000000'] }, { fillColor: '#FFFFFF', text: '$'+ManoObMaterial1RFormateado, border: [false, false, true,false ],borderColor: ['#000000', '#000000', '#000000', '#000000'] }],
-                [{ fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: 'Indirectos' , border: [true, false, false,true ],borderColor: ['#000000', '#000000', '#000000', '#000000'] }, { fillColor: '#F2F2F2', text: PorcentajeMaterial + '%', border: [false, false, false,false ],borderColor: ['#000000', '#000000', '#000000', '#000000']  }, { fillColor: '#F2F2F2', text: '$'+ManoObMaterial2RFormateado, border: [false, false, true,false ],borderColor: ['#000000', '#000000', '#000000', '#000000']  }],
-                [{ fillColor: '#FFFFFF', text: ' ' }, ' ', ' ', ' ', { fillColor: '#FFFFFF', text: 'Total', border: [true, false, false,true ],borderColor: ['#000000', '#000000', '#000000', '#000000']  }, { fillColor: '#FFFFFF', text: '$'+Total1RFormateado, border: [false, false, true,true ],borderColor: ['#000000', '#000000', '#000000', '#000000']  }],
-
+              [{ fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: 'Material', bold:true, border: [true, true, true,true ],borderColor: ['#000000', '#000000', '#000000', '#000000'],lineWidth: 6 }, { fillColor: '#F2F2F2', text: 'Suma' ,  bold:true,border: [true, true, true,true ],borderColor: ['#000000', '#000000', '#000000', '#000000'],lineWidth: 6}, { fillColor: '#F2F2F2', text: '$'+MaterialSumaRFormateado , bold:true, border: [true, true, true,true ],borderColor: ['#000000', '#000000', '#000000', '#000000'],lineWidth: 6}],
+                [{ fillColor: '#FFFFFF', text: ' ' }, ' ', ' ', { fillColor: '#FFFFFF', text: 'Mano de obra' ,  bold:true, border: [true, true, true,true ],borderColor: ['#000000', '#000000', '#000000', '#000000'],lineWidth: 6}, { fillColor: '#FFFFFF', text: ManoObMaterial + '%',  bold:true, border: [true, true, true,true ],borderColor: ['#000000', '#000000', '#000000', '#000000'],lineWidth: 6}, { fillColor: '#FFFFFF', text: '$'+ManoObMaterial1RFormateado,  bold:true, border: [true, true, true,true ],borderColor: ['#000000', '#000000', '#000000', '#000000'],lineWidth: 6}],
+                [{ fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: 'Indirectos' , bold:true, border: [true, true, true,true ],borderColor: ['#000000', '#000000', '#000000', '#000000'],lineWidth: 6}, { fillColor: '#F2F2F2', text: PorcentajeMaterial + '%', bold:true, border: [true, true, true,true ],borderColor: ['#000000', '#000000', '#000000', '#000000'],lineWidth: 6}, { fillColor: '#F2F2F2', text: '$'+ManoObMaterial2RFormateado, border: [true, true, true,true ],borderColor: ['#000000', '#000000', '#000000', '#000000'],lineWidth: 6}],
+                [{ fillColor: '#FFFFFF', text: ' ' }, ' ', ' ', ' ', { fillColor: '#FFFFFF', text: 'Total', bold:true, border: [true, true, true,true ],borderColor: ['#000000', '#000000', '#000000', '#000000'],lineWidth: 6 }, { fillColor: '#FFFFFF', text: '$'+Total1RFormateado,  bold:true, border: [true, true, true,true ],borderColor: ['#000000', '#000000', '#000000', '#000000'],lineWidth: 6}],
+                [{ fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }],
 
 */
