@@ -3,136 +3,173 @@
     <head>
         <meta charset="utf-8" />
         <%- include('layouts/metaData'); -%>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Welderstone - Tienda</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+            rel="stylesheet"
+        />
         <!-- Bootstrap-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+            crossorigin="anonymous"
+        />
         <!-- CSS Stylesheet-->
-        <link rel="stylesheet" href="/css/styles.css">
+        <link rel="stylesheet" href="/css/styles.css" />
         <!-- FontAwesome-->
-        <script src="https://kit.fontawesome.com/360b0549be.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="/css/styles.css">
-
-
+        <script
+            src="https://kit.fontawesome.com/360b0549be.js"
+            crossorigin="anonymous"
+        ></script>
+        <link rel="stylesheet" href="/css/styles.css" />
     </head>
     <body>
-        <%- include('layouts/navbar'); -%> 
+        <%- include('layouts/navbar'); -%> <%- include("layouts/tienda-filtros")
+        %>
 
-        <%- include("layouts/tienda-filtros") %>
-
-        <hr class="border border-danger w-75" style="margin: .8rem auto 1.6rem auto;">
+        <hr
+            class="border border-danger w-75"
+            style="margin: 0.8rem auto 1.6rem auto"
+        />
 
         <section id="tienda-productos">
             <div class="row">
-                <% for (var a = 0; a < productos.length; a++) { %> 
+                <% for (var a = 0; a < productos.length; a++) { %> <%
+                if(productos[a].Activo === true ) { %>
 
-                    <% if(productos[a].Activo === true ) { %>
-
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-                        <a href="/productos/<%=productos[a]._id%>">
-                            <div class="card line">
-                                <!-- Imagen -->
-                                <img class="card-img-top mx-auto d-block" src="<%=productos[a].image%>" alt="Product 1">
-                                <!-- Cuerpo de la card -->
-                                <div class="card-body">
-                                    <!-- Nombre del producto -->
-                                    <h4 class="card-title"><%=productos[a].nombre%> </h4>
-
-                                    <form action="/products-cart" method="POST">
-
-
-                                        
-                                        <!-- Precio -->
-                                        <input type="hidden" name="nombre" value="<%=productos[a].nombre%>">
-                                        <input type="hidden" name="image" value="<%=productos[a].image%>">
-                                        <input type="hidden" name="precio" value="<%=productos[a].precio%>">
-
-                                        <input type="hidden" name="idProducto" value="<%=productos[a]._id%>">
-
-
-                                        <% if(loggedIn) { %>
-                                            <input type="hidden" name="UsuarioId" value="<%=IdUsuario%>"> 
-                                        <% } %>
-                                        
-                                        <p class="card-text">Precio: <span class="price">$<%= productos[a].precio.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') %></span></p>
-                                        <% if(loggedIn) { %>
-
-                                      
-
-
-   
-                                            <button type="submit" class="btn btn-danger w-100 edit" id="<%=productos[a].nombre%>"><i class="fa-solid fa-cart-shopping me-2 edit"></i>
-                                                
-
-                                       
-
-                                      
-                                                    <% for (let b = 0; b < cart.length; b++) { %>
-
-                                                <% if( cart[b].nombre === productos[a].nombre && cart[b].UsuarioId === IdUsuario){ %> 
-                                            
-                                                     Agregado
-                                            
-                                                <% } else { %>
-
-                                                    <% } %>
-                                                    <% } %>
-
-                                            
-
-
-                                        </button>
-
-                                             
-                                     
-                <% } %>
-
-
-                <% } %>
-
-
-
-                                    </form>
-                             
-
-                                </div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                    <a href="/productos/<%=productos[a]._id%>">
+                        <div class="card" style="overflow: hidden">
+                            <!-- Imagen -->
+                            <div style="height: 25vh">
+                                <img
+                                    src="<%=productos[a].image%>"
+                                    style="
+                                        height: 100%;
+                                        width: 100%;
+                                        object-fit: cover;
+                                        border-radius: 0 0 0 0;
+                                    "
+                                    alt="Product 1"
+                                />
                             </div>
-                        </a>
-                    </div>
 
+                            <!-- Cuerpo de la card -->
+                            <div class="card-body">
+                                <!-- Nombre del producto -->
+                                <h4 class="card-title">
+                                    <%=productos[a].nombre%>
+                                </h4>
 
+                                <form action="/products-cart" method="POST">
+                                    <!-- Precio -->
+                                    <input
+                                        type="hidden"
+                                        name="nombre"
+                                        value="<%=productos[a].nombre%>"
+                                    />
+                                    <input
+                                        type="hidden"
+                                        name="image"
+                                        value="<%=productos[a].image%>"
+                                    />
+                                    <input
+                                        type="hidden"
+                                        name="precio"
+                                        value="<%=productos[a].precio%>"
+                                    />
 
+                                    <input
+                                        type="hidden"
+                                        name="idProducto"
+                                        value="<%=productos[a]._id%>"
+                                    />
+
+                                    <% if(loggedIn) { %>
+                                    <input
+                                        type="hidden"
+                                        name="UsuarioId"
+                                        value="<%=IdUsuario%>"
+                                    />
+                                    <% } %>
+
+                                    <p class="card-text">
+                                        Precio:
+                                        <span class="price"
+                                            >$<%=
+                                            productos[a].precio.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g,
+                                            ',') %></span
+                                        >
+                                    </p>
+                                    <% if(loggedIn) { %>
+
+                                    <button
+                                        type="submit"
+                                        class="btn btn-danger w-100 edit"
+                                        id="<%=productos[a].nombre%>"
+                                    >
+                                        <i
+                                            class="fa-solid fa-cart-shopping me-2 edit"
+                                        ></i>
+
+                                        <% for (let b = 0; b < cart.length; b++)
+                                        { %> <% if( cart[b].nombre ===
+                                        productos[a].nombre && cart[b].UsuarioId
+                                        === IdUsuario){ %> Agregado <% } else {
+                                        %> <% } %> <% } %>
+                                    </button>
+
+                                    <% } %> <% } %>
+                                </form>
+                            </div>
+                        </div>
+                    </a>
+                </div>
 
                 <% } %>
-               
             </div>
-
         </section>
 
-		<%- include('layouts/whatsapp-btn') -%>
+        <%- include('layouts/whatsapp-btn') -%>
 
         <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+            crossorigin="anonymous"
+        ></script>
         <script>
-            const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-            const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+            const tooltipTriggerList = document.querySelectorAll(
+                '[data-bs-toggle="tooltip"]'
+            );
+            const tooltipList = [...tooltipTriggerList].map(
+                (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
+            );
         </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"
+        ></script>
         <script src="/js/tiendaHide.js"></script>
         <!-- FontAwesome-->
-        <script src="https://kit.fontawesome.com/360b0549be.js" crossorigin="anonymous"></script>
+        <script
+            src="https://kit.fontawesome.com/360b0549be.js"
+            crossorigin="anonymous"
+        ></script>
         <!-- Custom scripts -->
         <script src="/js/whatsapp-btn.js"></script>
         <script src="/js/tiendaTabs.js"></script>
     </body>
 </html>
-
-
-

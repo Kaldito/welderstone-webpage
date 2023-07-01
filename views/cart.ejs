@@ -61,11 +61,11 @@
                 <% for (var a = 0; a < Sumas.length; a++) { %>
                     <% if( IdUsuario === Sumas[a].UsuarioId){ %>
 
-                    <tr>
+                    <tr style="height: 15vh;">
 
-                      <td class="text-center">
+                      <td class="text-center" style="height: 15vh;">
                         <a href="productos/<%=Sumas[a].idProducto%>">
-                          <img class="card-img-top mx-auto d-block" src="<%=Sumas[a].image%>" alt="Product 1">
+                          <img style="height: 100%; width: 100%; object-fit: cover;" src="<%=Sumas[a].image%>" alt="Product 1">
                         </a>
                       </td>
                     <td> <%=Sumas[a].nombre%></td>
