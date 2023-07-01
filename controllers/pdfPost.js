@@ -642,9 +642,7 @@ var ivaDesgloceFormateado = formatNumberWithDecimals(ivaDesgloce)
                   { fillColor: i % 2 === 0 ? '#FFFFFF' : '#F2F2F2', fontSize: 10, text: '$'+preciosFormateados[i]},
                   { fillColor: i % 2 === 0 ? '#FFFFFF' : '#F2F2F2', fontSize: 10, text: '$'+importesFormateados[i] }
                 ])),  
-                [{ fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, 
-                { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, 
-                { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }],
+  
                 
                 [{ fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, 
                 { fillColor: '#F2F2F2', text: ' ' }, 
@@ -673,10 +671,7 @@ var ivaDesgloceFormateado = formatNumberWithDecimals(ivaDesgloce)
                   { fillColor: i % 2 === 0 ? '#FFFFFF' : '#F2F2F2', fontSize: 10, text:  '$'+preciosFormateados2[i]},
                   { fillColor: i % 2 === 0 ? '#FFFFFF' : '#F2F2F2', fontSize: 10, text: '$'+importesFormateados2[i] }
                 ])),
-                                //Inicio cuadro negritas
-                                [{ fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, 
-                                { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, 
-                                { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }],
+
 
                 [{ fillColor: '#F2F2F2', text: ' ' },{ fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: 'Pintura' , bold:true}, { fillColor: '#F2F2F2', text: 'Suma' , bold:true}, { fillColor: '#F2F2F2', text: '$'+PinturaSumaRedondeadaFormateado , bold:true}],
                 [{ fillColor: '#FFFFFF', text: ' ' }, ' ', ' ', { fillColor: '#FFFFFF', text: 'Mano de obra' , bold:true}, { fillColor: '#FFFFFF', text: ManoObPintura + '%' , bold:true}, { fillColor: '#FFFFFF', text: '$'+ManoObPintura1RFormateado , bold:true}],
@@ -694,14 +689,14 @@ var ivaDesgloceFormateado = formatNumberWithDecimals(ivaDesgloce)
                   { fillColor: i % 2 === 0 ? '#FFFFFF' : '#F2F2F2', fontSize: 10, text: '$'+preciosFormateados3[i] },
                   { fillColor: i % 2 === 0 ? '#FFFFFF' : '#F2F2F2', fontSize: 10, text: '$'+importesFormateados3[i] }
                 ])),
-                                                //Inicio cuadro negritas
-                                                [{ fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, 
-                                                { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, 
-                                                { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }],
 
                 [{ fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: 'Instalación', bold:true }, { fillColor: '#F2F2F2', text: 'Suma' , bold:true}, { fillColor: '#F2F2F2', text: '$'+InstalacionSumaFormateado , bold:true}],
                 [{ fillColor: '#FFFFFF', text: ' ' }, ' ', ' ', { fillColor: '#FFFFFF', text: 'Mano de obra' , bold:true}, { fillColor: '#FFFFFF', text: ManoObInstalacion + '%' , bold:true}, { fillColor: '#FFFFFF', text: '$'+ManoObInstalacion1RFormateado, bold:true }],
                 [{ fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' },{ fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: 'Indirectos', bold:true }, { fillColor: '#F2F2F2', text: PorcentajeInstalacion + '%' , bold:true}, { fillColor: '#F2F2F2', text: '$'+ManoObInstalacion2RFormateado , bold:true}],
+                                                //Inicio cuadro negritas
+                                                [{ fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, 
+                                                { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, 
+                                                { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }],
                 [{ fillColor: '#FFFFFF', text: ' ' }, ' ', ' ', ' ', { fillColor: '#FFFFFF', text: 'Total', bold:true }, { fillColor: '#FFFFFF', text: '$'+Total3RFormateado , bold:true}],
                 [{ fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' },{ fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: ' ' }, { fillColor: '#F2F2F2', text: 'Subtotal' , bold:true}, { fillColor: '#F2F2F2', text: '$'+SubTotalRFormateado , bold:true}],
                 [{ fillColor: '#FFFFFF', text: ' ' }, ' ', ' ', ' ', { fillColor: '#FFFFFF', text: 'Iva' , bold:true}, { fillColor: '#FFFFFF', text: '$'+ivaDesgloceFormateado  , bold:true}],

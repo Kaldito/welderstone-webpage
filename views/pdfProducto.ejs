@@ -77,8 +77,8 @@
                     <table class="table table-striped">
                       <thead>
                         <tr>
-                          <th>Descripcion</th>
                           <th>Codigo</th>
+                          <th>Descripcion</th>
                           <th>Familia</th>
                           <th>Cantidad</th>
                           <th>Precio Unitario</th>
@@ -89,10 +89,12 @@
                         <% for (var b=0; b < ProductoParaCotizar.MaterialesProductos.length; b++) { %>
                           <tr>
                             <td>
-                              <%=ProductoParaCotizar.MaterialesProductos[b].Descripcion%>
+                              <%=ProductoParaCotizar.MaterialesProductos[b].Codigo%>
+
                             </td>
                             <td>
-                              <%=ProductoParaCotizar.MaterialesProductos[b].Codigo%>
+                              <%=ProductoParaCotizar.MaterialesProductos[b].Descripcion%>
+
                             </td>
                             <td>
                               <%=ProductoParaCotizar.MaterialesProductos[b].Familia%>
@@ -167,8 +169,9 @@
                   <table class="table table-striped">
                     <thead>
                       <tr>
-                        <th>Descripción</th>
                         <th>Código</th>
+                        <th>Descripción</th>
+
                         <th>Familia</th>
                         <th>Cantidad</th>
                         <th>Precio Unitario</th>
@@ -179,10 +182,12 @@
                       <% for (var b=0; b < ProductoParaCotizar.PinturaProductos.length; b++) { %>
                         <tr>
                           <td>
-                            <%=ProductoParaCotizar.PinturaProductos[b].Descripcion%>
+                            <%=ProductoParaCotizar.PinturaProductos[b].Codigo%>
+
                           </td>
                           <td>
-                            <%=ProductoParaCotizar.PinturaProductos[b].Codigo%>
+                            <%=ProductoParaCotizar.PinturaProductos[b].Descripcion%>
+
                           </td>
                           <td>
                             <%=ProductoParaCotizar.PinturaProductos[b].Familia%>
@@ -253,8 +258,9 @@
                   <table class="table table-striped">
                     <thead>
                       <tr>
-                        <th>Descripción</th>
                         <th>Código</th>
+
+                        <th>Descripción</th>
                         <th>Familia</th>
                         <th>Cantidad</th>
                         <th>Precio Unitario</th>
@@ -265,10 +271,12 @@
                       <% for (var b=0; b < ProductoParaCotizar.InstalacionProductos.length; b++) { %>
                         <tr>
                           <td>
-                            <%=ProductoParaCotizar.InstalacionProductos[b].Descripcion%>
+                            <%=ProductoParaCotizar.InstalacionProductos[b].Codigo%>
+
                           </td>
                           <td>
-                            <%=ProductoParaCotizar.InstalacionProductos[b].Codigo%>
+                            <%=ProductoParaCotizar.InstalacionProductos[b].Descripcion%>
+
                           </td>
                           <td>
                             <%=ProductoParaCotizar.InstalacionProductos[b].Familia%>
@@ -316,6 +324,7 @@
                               <br>
                               Total:
                               <br>
+                              <br>
 
                               Total suma:
                               <% var TotalSuma=Number(Total3R) + Number(Total2R) + Number(Total1R); %>
@@ -336,6 +345,8 @@
                                 <br>
                                 $<%=Total3R.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
                                   <br>
+                                  <br>
+
                                   $<%= TotalSuma.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>
                                     <br>
                                     16%
