@@ -54,7 +54,13 @@
                   <p class="card-text">SubTotal: $<%=SubTotalR.toLocaleString()%>
                   </p>
 
-                  <p class="card-text">Iva: <%=productodatos[0].iva%>%</p>
+                  <p class="card-text">Iva: $<%
+                    var valorMultiplicado = (SubTotalR * 0.16);
+                    var resultadoFinal = valorMultiplicado.toFixed(2);
+                    resultadoFinal = parseFloat(resultadoFinal).toLocaleString();
+                    %>
+                    
+                    <%= resultadoFinal %></p>
                   <p class="card-text">Total: $<%=TotalFinal.toLocaleString()%>
                   </p>
 
@@ -346,11 +352,17 @@
                                 $<%=Total3R.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
                                   <br>
                                   <br>
+   
+                                  $<%= TotalSuma.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",") %> %>
+                                    <br>
+                                    
+                                    <%
+                                    var valorMultiplicado = (TotalSuma * 0.16).toFixed(2);
+                                    var resultadoFinal = parseFloat(valorMultiplicado).toLocaleString();
+                                    %>
+                                    $<%= valorMultiplicado.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> %>
 
-                                  $<%= TotalSuma.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>
-                                    <br>
-                                    16%
-                                    <br>
+                                   <br>
 
                                     $<%= parseFloat(TotalFinal).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>
 
