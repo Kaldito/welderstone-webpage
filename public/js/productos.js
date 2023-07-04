@@ -49,6 +49,8 @@ const modalInstalacionSubfamilias = document.querySelectorAll(
     '.modal-instalacion-subfamilias'
 );
 
+const tablaMateriales = document.querySelector('#tabla-materiales');
+
 // ---------- GLOBAL CONST AND VARIABLES ---------- //
 const materialesUsados = {};
 const pinturaUsada = {};
