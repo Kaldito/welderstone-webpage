@@ -294,6 +294,10 @@ img {
         @include mediaMixins.xxl() {
             font-size: 4.8rem;
         }
+
+        @include mediaMixins.md(){
+            font-size: 4rem;
+        }
     }
 
     .filter-button {

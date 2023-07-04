@@ -381,6 +381,11 @@ img {
     font-size: 4.8rem;
   }
 }
+@media (max-width: 768px) {
+  #filter-buttons i {
+    font-size: 4rem;
+  }
+}
 #filter-buttons .filter-button {
   background-color: #c1c1c1;
   width: 18vh;
