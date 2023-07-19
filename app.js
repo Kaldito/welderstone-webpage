@@ -325,7 +325,7 @@ app.post('/create_preference', async (req, res) => {
 });
 
 app.use('/whatsapp', async (req, res) => {
-    console.log(req.query.Numero);
+    //console.log(req.query.Numero);
     const accountSid = process.env.accountSid;
     const authToken = process.env.authToken;
     const client = require('twilio')(accountSid, authToken);
@@ -355,7 +355,7 @@ app.use('/whatsapp', async (req, res) => {
                 Expires: 120,
             });
 
-            // console.log(` ${url}`);
+            //console.log(` ${url}`);
 
             client.messages
                 .create({
@@ -363,20 +363,27 @@ app.use('/whatsapp', async (req, res) => {
                     body:
                         'Pdf de la cotización de tu producto solicitado  ' +
                         `${url}`,
-                    to: 'whatsapp:+521' + `${req.query.Numero}`,
+                    to: 'whatsapp:+5218715634557',
                 })
                 .then((message) => console.log(message.sid))
                 .catch((error) => console.log(error));
         }
 
+
+        /*
         res.redirect(
-            '/cotizacionProductos?codigo=' +
+            '/pdfDescargar?codigo=' +
                 `${req.query.Codigo}` +
                 '&IdTrans=' +
                 `${req.query.IdTrans}`
         );
+        */
     });
 });
+
+
+
+
 
 app.post('/cotizacion', cotizacion);
 

@@ -769,13 +769,69 @@ var ivaDesgloceFormateado = formatNumberWithDecimals(ivaDesgloce)
    
 
 
+
+//accessKeyId: process.env.accessKeyId
+//secretAccessKey: process.env.secretAccessKey,
+
+
+/*
        const printer = new PdfPrinter(fonts);
    
        let pdfDoc = printer.createPdfKitDocument(docDefinition);
        pdfDoc.pipe(fs.createWriteStream('pdfs/'+IdTransaccion+`${req.query.codigo}`+'.pdf'));
        pdfDoc.end();
-   
-   
+
+*/
+
+
+const AWS = require('aws-sdk');
+const printer = new PdfPrinter(fonts);
+
+AWS.config.update({
+    accessKeyId: process.env.accessKeyId,
+    secretAccessKey: process.env.secretAccessKey,
+  });
+       const pdfDoc = printer.createPdfKitDocument(docDefinition);
+
+       // Generate a unique file name for the PDF
+       const fileName = `pdfs/${IdTransaccion}${req.query.codigo}.pdf`;
+       console.log(fileName + '1')
+       // Pipe the PDF to a writable stream (in memory)
+       const chunks = [];
+       pdfDoc.on("data", (chunk) => chunks.push(chunk));
+       pdfDoc.on("end", () => {
+         // Convert the chunks to a single Buffer
+         const pdfBuffer = Buffer.concat(chunks);
+     
+         // Upload the PDF to Amazon S3
+         const s3 = new AWS.S3();
+         const bucketName = "welderstonebucket"; // Replace with your S3 bucket name
+         const s3Params = {
+           Bucket: bucketName,
+           Key: fileName,
+           Body: pdfBuffer,
+         };
+     
+         s3.upload(s3Params, (err, data) => {
+           if (err) {
+             console.error("Error uploading PDF to S3:", err);
+            console.log({ error: "Failed to upload PDF to S3" });
+           } else {
+             console.log("PDF uploaded to S3 successfully:", data.Location);
+             console.log({ message: "PDF generated and uploaded successfully!", pdfUrl: data.Location });
+           }
+         });
+       });
+     
+       // Close the PDF stream
+       pdfDoc.end();
+
+      
+  
+
+
+
+      
     let role = "viewer";
 
     if (req.session?.passport?.user != undefined) {
