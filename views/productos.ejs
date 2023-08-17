@@ -371,6 +371,9 @@
                                         </div>
                                     </div>
 
+
+
+
                                     <!-- Precio Instalacion -->
                                     <div>
                                         <p class="resaltar-rojo">Precio de Materiales Instalación: $<span id="precio-instalacion">0.00</span> mxn</p>
@@ -393,7 +396,36 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <hr>
 
+                                    <h5 style="font-weight: bold;">General</h5>
+                                    <hr>
+
+                                    <div class="row mb-3">
+                                        <div class="col-4">
+                                            <div class="input-group">
+                                                <span class="input-group-text">Mano de Obra</span>
+                                                <input type="number" value="0" min="0" step="any" class="form-control general-porcentaje" id="ManoObGeneral" name="ManoObGeneral">
+                                                <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="input-group">
+                                                <span class="input-group-text">Herramienta menor</span>
+                                                <input type="number" value="0" min="0" step="any" class="form-control general-porcentaje" id="HerramientaMenor" name="HerramientaMenor">
+                                                <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="input-group">
+                                                <span class="input-group-text">Indirectos y Honorarios</span>
+                                                <input type="number" value="0" min="0" step="any" class="form-control general-porcentaje" id="PorcentajeGeneral" name="PorcentajeGeneral">
+                                                <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+            <hr>
                                     <hr>
                                     <!-- Especificaciones -->
                                     <div class="row mb-2">
@@ -467,15 +499,48 @@
                                                 <div class="col-md-1">
                                                     <% if(roles === "admin" || roles === "Proyectos"){ %>
                                                     <!-- Editar producto -->
-                                                    <a href="/productos/editar/<%=productos[a]._id%>"> 
+                                                    <a href="/productos/editar/<%=productos[a]._id%>">
                                                         <button type="button" class="btn btn-primary w-100 edit-button"><i class="fa-solid fa-pen-to-square"></i></button>
                                                     </a>
+
                                                     <!-- Borrar Producto -->
+                                                    <!--
                                                     <a href="/productos/borrar/<%=productos[a].nombre%>" id="sendMessageButton">
                                                         <button type="button" class="btn btn-dark w-100 trash-button">
                                                             <i class="fa-solid fa-trash"></i>
                                                         </button>
                                                     </a>
+                                                -->
+
+<!-- Borrar Producto -->
+<a href="#" class="trash-button-link" data-bs-toggle="modal" data-target="#confirmDeleteModal">
+    <button type="button" class="btn btn-dark w-100 trash-button">
+        <i class="fa-solid fa-trash"></i>
+    </button>
+</a>
+
+
+<!-- Modal de Confirmación -->
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmDeleteModalLabel<%= a %>">Confirmar eliminación</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Estás seguro de que quieres eliminar el producto "<%= productos[a].nombre %>"?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <a href="/productos/borrar/<%= productos[a].nombre %>" class="btn btn-danger">Eliminar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 
                                                     <a href="/DesplieguePdf?codigo=<%=productos[a].Codigo%>&amp;IdTrans=<%=productos[a]._id%>"><img src="./images/productos/PdfLogo.png" alt="Logo PDF" width="40px" height="50px" class="pdf"></a>
 
@@ -507,10 +572,21 @@
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <!-- FontAwesome-->
-        <script src="https://kit.fontawesome.com/360b0549be.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="css/mobiscroll.javascript.min.css">
-
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script src="js/multiple.js"></script>
+
+
+        <script>
+$(document).on('click', '.trash-button-link', function (event) {
+    event.preventDefault();
+    const modalId = $(this).data('target');
+    $(modalId).modal('show');
+});
+        </script>
+
+
         <script>
 
 mobiscroll.setOptions({
@@ -562,6 +638,7 @@ mobiscroll.setOptions({
       }
     }
   </script>
+
 
         <style>
 

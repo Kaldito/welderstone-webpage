@@ -3,6 +3,7 @@ const path = require('path');
 const material = require('../models/materiales.js');
 
 module.exports = async (req, res) => {
+    console.log(req.body)
     const BusquedaNombre = await Producto.find({
         nombre: req.body.nombre,
     }).count();
@@ -166,11 +167,19 @@ module.exports = async (req, res) => {
             (sumaInsumos * productos[0].PorcentajeInstalacion) / 100 +
             sumaInsumos2Mano;
 
-        const x = Suma3Por + sumaSolventes3Por + sumaInsumos3Por;
+        var x = Suma3Por + sumaSolventes3Por + sumaInsumos3Por;
+        var HerrMenor = (productos[0].ManoObGeneral * x)/100
+        x = (productos[0].ManoObGeneral * x)/100+ x  
+        y = (HerrMenor*  productos[0].HerramientaMenor)/100
+        x= x+y
+        x = (productos[0].PorcentajeGeneral * x)/100 + x
+
+
         let SubTotal = Number(x.toFixed(2));
 
-        SubTotal = SubTotal + SubTotal * (productos[0].iva / 100);
 
+        SubTotal = SubTotal + SubTotal * (productos[0].iva / 100);
+        console.log(SubTotal)
         SubTotal = SubTotal.toFixed(2);
         await Producto.updateOne(
             { _id: productos[0]._id },
