@@ -263,7 +263,35 @@
                                     <p class="resaltar-rojo">Precio de Materiales: $<span id="precio-materiales">0.00</span> mxn</p>
                                 </div>
 
+                                <h5 style="font-weight: bold;">General</h5>
+                                <hr>
+
+                                <div class="row mb-3">
+                                    <div class="col-4">
+                                        <div class="input-group">
+                                            <span class="input-group-text">Mano de Obra</span>
+                                            <input type="number" value="<%= productoEditar.ManoObGeneral %>" min="0" step="any" class="form-control general-porcentaje" id="ManoObGeneral" name="ManoObGeneral">
+                                            <span class="input-group-text">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="input-group">
+                                            <span class="input-group-text">Herramienta m</span>
+                                            <input type="number" value="<%= productoEditar.HerramientaMenor %>" min="0" step="any" class="form-control general-porcentaje" id="HerramientaMenor" name="HerramientaMenor">
+                                            <span class="input-group-text">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="input-group">
+                                            <span class="input-group-text">Indirectos</span>
+                                            <input type="number" value="<%= productoEditar.PorcentajeGeneral %>" min="0" step="any" class="form-control general-porcentaje" id="PorcentajeGeneral" name="PorcentajeGeneral">
+                                            <span class="input-group-text">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <!-- Porcentajes -->
+                                <!--
                                 <div class="row mb-3">
                                     <div class="col-6">
                                         <div class="input-group">
@@ -319,13 +347,16 @@
                                         <% } %>
                                     </table>
                                 </div>
-
+-->
                                 <!-- Boton Agregar Pintura -->
+                                <!--
                                 <button style="border-radius: 50px;" type="button" class="btn btn-danger mb-3" data-bs-toggle="modal" data-bs-target="#agregar-pintura">
                                     Agregar Pintura
                                 </button>
 
                                 <!-- Modal Pintura -->
+                                                                <!--
+
                                 <div class="modal fade" id="agregar-pintura" tabindex="-1" aria-labelledby="agregar-pintura" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content modal-dialog-scrollable">
@@ -368,13 +399,16 @@
                                         </div>
                                     </div>
                                 </div>
+-->
 
                                 <!-- Precio Pintura -->
+                                <!--
                                 <div>
                                     <p class="resaltar-rojo">Precio de Pintura: $<span id="precio-pintura">0.00</span> mxn</p>
                                 </div>
-
+-->
                                 <!-- Porcentajes -->
+                                 <!-- 
                                 <div class="row mb-3">
                                     <div class="col-6">
                                         <div class="input-group">
@@ -430,13 +464,15 @@
                                         <% } %>
                                     </table>
                                 </div>
-
+-->
                                 <!-- Boton Agregar Instalacion -->
+                                <!-- 
                                 <button style="border-radius: 50px;" type="button" class="btn btn-danger mb-3" data-bs-toggle="modal" data-bs-target="#agregar-instalacion">
                                     Agregar Material Instalación
                                 </button>
-
+-->
                                 <!-- Modal Instalacion -->
+                                 <!--
                                 <div class="modal fade" id="agregar-instalacion" tabindex="-1" aria-labelledby="agregar-instalacion" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content modal-dialog-scrollable">
@@ -479,13 +515,15 @@
                                         </div>
                                     </div>
                                 </div>
-
+-->
                                 <!-- Precio Instalacion -->
+                                 <!--
                                 <div>
                                     <p class="resaltar-rojo">Precio de Materiales Instalación: $<span id="precio-instalacion">0.00</span> mxn</p>
                                 </div>
-
+ -->
                                 <!-- Porcentajes -->
+                                 <!--
                                 <div class="row mb-3">
                                     <div class="col-6">
                                         <div class="input-group">
@@ -502,6 +540,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                -->
                                 <div id="subtotal"><!-- Aqui ira el subtotal --></div>
                                     <div class="row">
                                         <div class="col-6">

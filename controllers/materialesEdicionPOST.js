@@ -105,6 +105,8 @@ module.exports = async (req, res) => {
             }
         }
 
+
+        /*
         const { PinturaProductos } = cantidadrespetada[i];
 
         for (let a = 0; a < mateprod.length; a++) {
@@ -140,7 +142,8 @@ module.exports = async (req, res) => {
                 }
             }
         }
-
+*/
+/*
         const { InstalacionProductos } = cantidadrespetada[i];
 
         for (let a = 0; a < mateprod.length; a++) {
@@ -176,6 +179,7 @@ module.exports = async (req, res) => {
                 }
             }
         }
+        */
     }
 
     // await Producto.updateOne({nombre:req.body.NombreBusqueda}, { $set: {"MaterialesProductos.$[item]":{Descripcion:req.body['MaterialesProductos[nombre]'][a],cantidad:req.body['MaterialesProductos[cantidad]'][a],Codigo:req.body['MaterialesProductos[Codigo]'][a],Familia:req.body['MaterialesProductos[Familia]'][a]}}}, {arrayFilters: [{"item.Codigo":req.body['MaterialesProductos[Codigo]'][a]}]});
@@ -185,8 +189,10 @@ module.exports = async (req, res) => {
 
     for (let a = 0; a < productos.length; a++) {
         const { MaterialesProductos } = productos[a];
+        /*
         const { PinturaProductos } = productos[a];
         const { InstalacionProductos } = productos[a];
+        */
 
         let suma = 0;
         for (let j = 0; j < materiales.length; j++) {
@@ -203,10 +209,13 @@ module.exports = async (req, res) => {
                 }
             }
         }
+        const Suma3Por = suma
+        /*
         const Suma2Mano = (suma * productos[a].ManoObMaterial) / 100 + suma;
         const Suma3Por =
             (Suma2Mano * productos[a].PorcentajeMaterial) / 100 + Suma2Mano;
-
+*/
+/*
         let sumaSolventes = 0;
         for (let j = 0; j < materiales.length; j++) {
             for (let i = 0; i < PinturaProductos.length; i++) {
@@ -248,8 +257,15 @@ module.exports = async (req, res) => {
         const sumaInsumos3Por =
             (sumaInsumos * productos[a].PorcentajeInstalacion) / 100 +
             sumaInsumos2Mano;
+*/
 
-        const x = Suma3Por + sumaSolventes3Por + sumaInsumos3Por;
+        var x = Suma3Por;
+        var HerrMenor = (productos[a].ManoObGeneral * x)/100
+        x = (productos[a].ManoObGeneral * x)/100+ x  
+        y = (HerrMenor*  productos[a].HerramientaMenor)/100
+        x= x+y
+        x = (productos[a].PorcentajeGeneral * x)/100 + x
+
         let SubTotal = Number(x.toFixed(2));
         SubTotal = SubTotal + SubTotal * (productos[a].iva / 100);
 

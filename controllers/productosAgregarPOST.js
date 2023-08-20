@@ -39,7 +39,7 @@ module.exports = async (req, res) => {
                 );
             }
         }
-
+/*
         for (b = 0; b < req.body['PinturaProductos[cantidad]'].length; b++) {
             if (req.body['PinturaProductos[cantidad]'][b] > 0) {
                 // console.log(req.body['PinturaProductos[nombre]'][b])
@@ -95,7 +95,7 @@ module.exports = async (req, res) => {
                 );
             }
         }
-
+*/
         // Obtiene el precio
 
         const productos = await Producto.find({ nombre: req.body.nombre });
@@ -103,8 +103,8 @@ module.exports = async (req, res) => {
         const materiales = await material.find({});
 
         const { MaterialesProductos } = productos[0];
-        const { PinturaProductos } = productos[0];
-        const { InstalacionProductos } = productos[0];
+        //const { PinturaProductos } = productos[0];
+        //const { InstalacionProductos } = productos[0];
 
         let suma = 0;
         for (let j = 0; j < materiales.length; j++) {
@@ -121,10 +121,14 @@ module.exports = async (req, res) => {
                 }
             }
         }
+        /*
         const Suma2Mano = (suma * productos[0].ManoObMaterial) / 100 + suma;
         const Suma3Por =
             (Suma2Mano * productos[0].PorcentajeMaterial) / 100 + Suma2Mano;
+            */
 
+            const Suma3Por = suma
+/*
         let sumaSolventes = 0;
         for (let j = 0; j < materiales.length; j++) {
             for (let i = 0; i < PinturaProductos.length; i++) {
@@ -166,8 +170,8 @@ module.exports = async (req, res) => {
         const sumaInsumos3Por =
             (sumaInsumos * productos[0].PorcentajeInstalacion) / 100 +
             sumaInsumos2Mano;
-
-        var x = Suma3Por + sumaSolventes3Por + sumaInsumos3Por;
+*/
+        var x = Suma3Por;
         var HerrMenor = (productos[0].ManoObGeneral * x)/100
         x = (productos[0].ManoObGeneral * x)/100+ x  
         y = (HerrMenor*  productos[0].HerramientaMenor)/100

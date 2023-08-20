@@ -49,7 +49,6 @@
                                 <input type="text" class="form-control" placeholder="Codigo" id="Codigo" name="Codigo" autocomplete="off" required>
                                 <label for="Codigo">Codigo</label>
                             </div>
-
                             <!-- Unidad -->
                             <div class="form-floating mb-3 col-2 pe-1">
                                 <input type="text" class="form-control" placeholder="Unidad" id="Unidad" name="Unidad">
@@ -401,6 +400,21 @@ $("input:checkbox").on('click', function() {
   }
 });
 
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("form");
+        const codigoInput = document.querySelector("#Codigo");
+
+        form.addEventListener("submit", function (event) {
+            const codigoValue = codigoInput.value;
+            if (codigoValue.includes("/") || codigoValue.includes(" ")) {
+                event.preventDefault();
+                alert("El campo Codigo no debe contener espacios ni barras diagonales.");
+            }
+        });
+    });
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

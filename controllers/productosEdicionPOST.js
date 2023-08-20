@@ -29,6 +29,7 @@ module.exports = async (req, res) => {
             { $set: { unidad: req.body.unidad } }
         );
     }
+    /*
     if (req.body.ManoObMaterial !== '') {
         await Producto.updateOne(
             { nombre: req.body.NombreBusqueda },
@@ -66,6 +67,27 @@ module.exports = async (req, res) => {
             { $set: { PorcentajeInstalacion: req.body.PorcentajeInstalacion } }
         );
     }
+*/
+    if (req.body.ManoObGeneral !== '') {
+        await Producto.updateOne(
+            { nombre: req.body.NombreBusqueda },
+            { $set: { ManoObGeneral: req.body.ManoObGeneral } }
+        );
+    }
+    if (req.body.HerramientaMenor !== '') {
+        await Producto.updateOne(
+            { nombre: req.body.NombreBusqueda },
+            { $set: { HerramientaMenor: req.body.HerramientaMenor } }
+        );
+    }
+
+    if (req.body.PorcentajeGeneral !== '') {
+        await Producto.updateOne(
+            { nombre: req.body.NombreBusqueda },
+            { $set: { PorcentajeGeneral: req.body.PorcentajeGeneral } }
+        );
+    }
+
     // console.log(req.body.Activo)
     if (req.body.Activo === 'true') {
         await Producto.updateOne(
@@ -136,7 +158,7 @@ module.exports = async (req, res) => {
             );
         }
     }
-
+/*
     await Producto.updateOne(
         { nombre: req.body.NombreBusqueda },
         { $unset: { PinturaProductos: 1 } },
@@ -191,7 +213,7 @@ module.exports = async (req, res) => {
             );
         }
     }
-
+*/
     // AReglar desmadre
 
     const productos = await Producto.find({ nombre: req.body.NombreBusqueda });
@@ -201,9 +223,10 @@ module.exports = async (req, res) => {
     const materiales = await material.find({});
 
     const { MaterialesProductos } = productos[0];
+    /*
     const { PinturaProductos } = productos[0];
     const { InstalacionProductos } = productos[0];
-
+*/
     let suma = 0;
     for (let j = 0; j < materiales.length; j++) {
         for (let i = 0; i < MaterialesProductos.length; i++) {
@@ -219,10 +242,14 @@ module.exports = async (req, res) => {
             }
         }
     }
+    /*
     const Suma2Mano = (suma * productos[0].ManoObMaterial) / 100 + suma;
     const Suma3Por =
         (Suma2Mano * productos[0].PorcentajeMaterial) / 100 + Suma2Mano;
+*/
+const Suma3Por = suma;
 
+        /*
     let sumaSolventes = 0;
     for (let j = 0; j < materiales.length; j++) {
         for (let i = 0; i < PinturaProductos.length; i++) {
@@ -262,8 +289,15 @@ module.exports = async (req, res) => {
     const sumaInsumos3Por =
         (sumaInsumos * productos[0].PorcentajeInstalacion) / 100 +
         sumaInsumos2Mano;
+*/
+    var x = Suma3Por 
+    var HerrMenor = (productos[0].ManoObGeneral * x)/100
+    x = (productos[0].ManoObGeneral * x)/100+ x  
+    y = (HerrMenor*  productos[0].HerramientaMenor)/100
+    x= x+y
+    x = (productos[0].PorcentajeGeneral * x)/100 + x
 
-    const x = Suma3Por + sumaSolventes3Por + sumaInsumos3Por;
+    
     let SubTotal = Number(x.toFixed(2));
     SubTotal = SubTotal + SubTotal * (productos[0].iva / 100);
 

@@ -12,8 +12,10 @@ module.exports = async (req, res) => {
         const materiales = await Material.find({PrecioUnitario: { $gt: 0 }});
 
         const materiales1 = await Material.find({PrecioUnitario: { $gt: 0 }});
+        /*
         const materiales2 = await Material.find({PrecioUnitario: { $gt: 0 }});
         const materiales3 = await Material.find({PrecioUnitario: { $gt: 0 }});
+        */
 
         const producto = await Producto.find({ _id: req.params.Id });
 
@@ -31,6 +33,8 @@ module.exports = async (req, res) => {
             }
         }
         producto[0].MaterialesProductos = materiales1;
+
+        /*
 
         for (i = 0; i < producto[0].PinturaProductos.length; i++) {
             for (j = 0; j < materiales.length; j++) {
@@ -61,7 +65,7 @@ module.exports = async (req, res) => {
         }
 
         producto[0].InstalacionProductos = materiales3;
-
+*/
 //console.log(producto[0].MaterialesProductos)
 
         res.render("productoEditar", {
