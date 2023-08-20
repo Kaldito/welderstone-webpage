@@ -198,12 +198,12 @@ module.exports = async (req, res) => {
                     __dirname,
                     '..',
                     'public/images/productos',
-                    image.name
+                    req.body.nombre +image.name
                 ),
                 async (error) => {
                     await Producto.updateOne(
                         { nombre: req.body.nombre },
-                        { $set: { image: '/images/productos/' + image.name } }
+                        { $set: { image: '/images/productos/' +  req.body.nombre + image.name  } }
                     );
                 }
             );
