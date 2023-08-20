@@ -532,19 +532,18 @@
                                                 -->
 
 <!-- Borrar Producto -->
-<a href="#" class="trash-button-link" data-bs-toggle="modal" data-target="#confirmDeleteModal">
+<a href="#" class="trash-button-link" data-bs-toggle="modal" data-target="#confirmDeleteModal<%= a %>" data-product-name="<%= productos[a].nombre %>">
     <button type="button" class="btn btn-dark w-100 trash-button">
-        <i class="fa-solid fa-trash"></i>
+        <i class="fa-solid fa-trash"></i> 
     </button>
 </a>
 
-
 <!-- Modal de Confirmación -->
-<div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+<div class="modal fade" id="confirmDeleteModal<%= a %>" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel<%= a %>" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="confirmDeleteModalLabel<%= a %>">Confirmar eliminación</h5>
+                <h5 class="modal-title" id="confirmDeleteModalLabel<%=a%>">Confirmar eliminación</h5>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -598,11 +597,16 @@
 
 
         <script>
-$(document).on('click', '.trash-button-link', function (event) {
+            
+            $(document).on('click', '.trash-button-link', function (event) {
     event.preventDefault();
     const modalId = $(this).data('target');
+    const productName = $(this).data('product-name');
+    const modalBody = $(modalId).find('.modal-body');
+    modalBody.text(`¿Estás seguro de que quieres eliminar el producto "${productName}"?`);
     $(modalId).modal('show');
 });
+
         </script>
 
 
