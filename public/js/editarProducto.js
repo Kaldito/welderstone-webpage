@@ -2,18 +2,20 @@
 const buttons = document.getElementsByClassName('edit');
 const divs = document.querySelectorAll('.editDiv');
 const materialesInputs = document.querySelectorAll('.material-input');
-const pinturaInputs = document.querySelectorAll('.pintura-input');
-const instalacionInputs = document.querySelectorAll('.instalacion-input');
+//const pinturaInputs = document.querySelectorAll('.pintura-input');
+//const instalacionInputs = document.querySelectorAll('.instalacion-input');
 const precioMaterialesSpan = document.querySelector('#precio-materiales');
-const precioPinturaSpan = document.querySelector('#precio-pintura');
-const precioInstalacionSpan = document.querySelector('#precio-instalacion');
+//const precioPinturaSpan = document.querySelector('#precio-pintura');
+//const precioInstalacionSpan = document.querySelector('#precio-instalacion');
 const subtotalHTML = document.querySelector('#subtotal');
 const calculateSub = document.querySelector('#calculate-subtotal');
 const materialPorcentajes = document.querySelectorAll('.material-porcentaje');
-const pinturaPorcentajes = document.querySelectorAll('.pintura-porcentaje');
+//const pinturaPorcentajes = document.querySelectorAll('.pintura-porcentaje');
+/*
 const instalacionPorcentajes = document.querySelectorAll(
     '.instalacion-porcentaje'
 );
+*/
 const plusOneBtn = document.querySelector('#plus-one');
 const minusOneBtn = document.querySelector('#minus-one');
 const especsDiv = document.querySelector('#especificaciones');
@@ -21,17 +23,17 @@ const cap = parseFloat(document.querySelector('#cap').innerHTML);
 
 // - Modals
 const materialBusqueda = document.querySelector('#mm-busqueda');
-const pinturaBusqueda = document.querySelector('#mp-busqueda');
-const instalacionBusqueda = document.querySelector('#mi-busqueda');
+//const pinturaBusqueda = document.querySelector('#mp-busqueda');
+//const instalacionBusqueda = document.querySelector('#mi-busqueda');
 
 const modalMateriales = document.querySelectorAll('.modal-materiales');
-const modalPinturas = document.querySelectorAll('.modal-pintura');
-const modalInstalacion = document.querySelectorAll('.modal-instalacion');
+//const modalPinturas = document.querySelectorAll('.modal-pintura');
+//const modalInstalacion = document.querySelectorAll('.modal-instalacion');
 
 // ---------- GLOBAL CONST AND VARIABLES ---------- //
 const materialesUsados = {};
-const pinturaUsada = {};
-const instalacionUsada = {};
+//const pinturaUsada = {};
+//const instalacionUsada = {};
 let especs = cap;
 
 // ---------- FUNCTIONS ---------- //
@@ -151,7 +153,7 @@ for (let i = 0; i < divs.length; i++) {
                 calculatePrice(materialesUsados, precioMaterialesSpan, false);
 
                 break;
-
+/*
             case 'P':
                 const pint = ediv.querySelector('.pintura-input');
 
@@ -179,6 +181,7 @@ for (let i = 0; i < divs.length; i++) {
                 calculatePrice(instalacionUsada, precioInstalacionSpan, false);
 
                 break;
+                */
         }
     }
 }
@@ -224,7 +227,7 @@ for (let i = 0; i < buttons.length; i++) {
                     calculatePrice(materialesUsados, precioMaterialesSpan);
 
                     break;
-
+/*
                 case 'P':
                     const pint = h_div.querySelector('.pintura-input');
 
@@ -252,6 +255,7 @@ for (let i = 0; i < buttons.length; i++) {
                     calculatePrice(instalacionUsada, precioInstalacionSpan);
 
                     break;
+                    */
             }
         } else {
             for (let i = 0; i < relatedBtns.length; i++) {
@@ -267,6 +271,7 @@ for (let i = 0; i < buttons.length; i++) {
                         priceArray(materialesUsados, precioMaterialesSpan);
 
                         break;
+                        /*
 
                     case 'P':
                         delete pinturaUsada[btn_id];
@@ -279,6 +284,7 @@ for (let i = 0; i < buttons.length; i++) {
                         priceArray(instalacionUsada, precioInstalacionSpan);
 
                         break;
+                        */
                 }
             }
 
@@ -295,34 +301,38 @@ for (let i = 0; i < buttons.length; i++) {
 }
 
 setUp(materialesInputs, materialesUsados, precioMaterialesSpan);
-setUp(pinturaInputs, pinturaUsada, precioPinturaSpan);
-setUp(instalacionInputs, instalacionUsada, precioInstalacionSpan);
+//setUp(pinturaInputs, pinturaUsada, precioPinturaSpan);
+//setUp(instalacionInputs, instalacionUsada, precioInstalacionSpan);
 
 calculateSub.addEventListener('click', function () {
     const materiales_price = parseFloat(
         precioMaterialesSpan.innerHTML.replaceAll(',', '')
     );
+    /*
     const pintura_price = parseFloat(
         precioPinturaSpan.innerHTML.replaceAll(',', '')
     );
+    */
+   /*
     const instalacion_price = parseFloat(
         precioInstalacionSpan.innerHTML.replaceAll(',', '')
     );
-
-    let subtotal = materiales_price + pintura_price + instalacion_price;
+*/
+    //let subtotal = materiales_price + pintura_price + instalacion_price;
 
     materialPorcentajes.forEach((porcentaje) => {
         subtotal += materiales_price * (parseFloat(porcentaje.value) / 100);
     });
-
+/*
     pinturaPorcentajes.forEach((porcentaje) => {
         subtotal += pintura_price * (parseFloat(porcentaje.value) / 100);
     });
-
+*/
+/*
     instalacionPorcentajes.forEach((porcentaje) => {
         subtotal += instalacion_price * (parseFloat(porcentaje.value) / 100);
     });
-
+¨*/
     subtotalHTML.innerHTML = `<h5 class="mb-3 resaltar-rojo">SubTotal: $${subtotal
         .toFixed(2)
         .toString()
@@ -333,15 +343,16 @@ calculateSub.addEventListener('click', function () {
 materialBusqueda.addEventListener('input', function () {
     filtrar(materialBusqueda, modalMateriales);
 });
-
+/*
 pinturaBusqueda.addEventListener('input', function () {
     filtrar(pinturaBusqueda, modalPinturas);
 });
-
+*/
+/*
 instalacionBusqueda.addEventListener('input', function () {
     filtrar(instalacionBusqueda, modalInstalacion);
 });
-
+*/
 // -------------- Especificaciones -------------- //
 plusOneBtn.addEventListener('click', function () {
     especs++;
