@@ -4,6 +4,7 @@ const material = require('../models/materiales.js');
 const Cart = require('../models/Cart');
 
 module.exports = async (req, res) => {
+    console.log(req.body.Codigo)
     if (req.body.Familia !== '') {
         await Producto.updateOne(
             { nombre: req.body.NombreBusqueda },
@@ -321,16 +322,16 @@ const Suma3Por = suma;
                 __dirname,
                 '..',
                 'public/images/productos',
-                image.name
+                req.body.Codigo + image.name
             ),
             async (error) => {
                 await Producto.updateOne(
-                    { nombre: req.body.NombreBusqueda },
-                    { $set: { image: '/images/productos/' + image.name } }
+                    { Codigo: req.body.Codigo },
+                    { $set: { image: '/images/productos/' + req.body.Codigo + image.name } }
                 );
                 await Cart.update(
-                    { nombre: req.body.NombreBusqueda },
-                    { $set: { image: '/images/productos/' + image.name } }
+                    { Codigo: req.body.Codigo },
+                    { $set: { image: '/images/productos/' +  req.body.Codigo + image.name } }
                 );
             }
         );
@@ -340,14 +341,14 @@ const Suma3Por = suma;
 
         if (req.body.image2 === undefined) {
             await Producto.updateMany(
-                { nombre: req.body.NombreBusqueda },
+                { Codigo: req.body.Codigo },
                 { $set: { image2: [] } }
             );
         }
 
         if (req.body.image2 !== undefined) {
             await Producto.updateMany(
-                { nombre: req.body.NombreBusqueda },
+                { Codigo: req.body.Codigo },
                 { $set: { image2: [] } }
             );
             // console.log(req.body.image2);
@@ -357,7 +358,7 @@ const Suma3Por = suma;
                 : [req.body.image2];
 
             await Producto.updateOne(
-                { nombre: req.body.NombreBusqueda },
+                { Codigo: req.body.Codigo },
                 { $push: { image2: { $each: images } } }
             );
         }
@@ -377,10 +378,10 @@ const Suma3Por = suma;
                                 __dirname,
                                 '..',
                                 'public/images/productos',
-                                image.name
+                                req.body.Codigo + image.name
                             )
                         );
-                        images.push('/images/productos/' + image.name);
+                        images.push('/images/productos/' +  req.body.Codigo + image.name);
                     }
                 }
             } else {
@@ -392,19 +393,19 @@ const Suma3Por = suma;
                             __dirname,
                             '..',
                             'public/images/productos',
-                            image.name
+                            req.body.Codigo +image.name
                         )
                     );
-                    images.push('/images/productos/' + image.name);
+                    images.push('/images/productos/' +  req.body.Codigo + image.name);
                 }
             }
 
             await Producto.updateOne(
-                { nombre: req.body.NombreBusqueda },
+                { Codigo: req.body.Codigo },
                 { $push: { image2: { $each: images } } }
             );
             await Cart.update(
-                { nombre: req.body.NombreBusqueda },
+                { Codigo: req.body.Codigo },
                 { $push: { image2: { $each: images } } }
             );
         }
