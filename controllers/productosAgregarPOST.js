@@ -198,12 +198,12 @@ module.exports = async (req, res) => {
                     __dirname,
                     '..',
                     'public/images/productos',
-                    req.body.nombre +image.name
+                    req.body.Codigo +image.name
                 ),
                 async (error) => {
                     await Producto.updateOne(
-                        { nombre: req.body.nombre },
-                        { $set: { image: '/images/productos/' +  req.body.nombre + image.name  } }
+                        { Codigo: req.body.Codigo },
+                        { $set: { image: '/images/productos/' +  req.body.Codigo + image.name  } }
                     );
                 }
             );
@@ -222,15 +222,15 @@ module.exports = async (req, res) => {
                         __dirname,
                         '..',
                         'public/images/productos',
-                        image.name
+                        req.body.Codigo + image.name
                     )
                 );
 
-                images.push('/images/productos/' + image.name);
+                images.push('/images/productos/' + req.body.Codigo + image.name);
             }
 
             await Producto.updateOne(
-                { nombre: req.body.nombre },
+                { Codigo: req.body.Codigo },
                 { $set: { image2: images } }
             );
         } catch (error) {
