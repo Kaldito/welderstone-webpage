@@ -5,6 +5,9 @@ const fonts = require("../pdf/fonts")
 const styles = require("../pdf/styles")
 const Product = require("../models/Productos");
 const Material = require('../models/materiales.js');
+const AWS = require('aws-sdk');
+const axios = require('axios'); // You'll need to install this library (npm install axios)
+
 //const moment = require('moment');
 
 
@@ -273,12 +276,28 @@ var SubTotalRFormateado = formatNumberWithDecimals(SubTotalR)
 var TotalFinalRFormateado = formatNumberWithDecimals(TotalFinalR)
 var ivaDesgloce = ((iva/100)*Number(SubTotalR))
 var ivaDesgloceFormateado = formatNumberWithDecimals(ivaDesgloce)
+
+
+
+async function getImageDataUrl(imageUrl) {
+    try {
+        const response = await axios.get(imageUrl, { responseType: 'arraybuffer' });
+        const imageData = Buffer.from(response.data, 'binary').toString('base64');
+        return `data:image/jpeg;base64,${imageData}`;
+    } catch (error) {
+        console.error('Error fetching image from S3:', error);
+        return null;
+    }
+}
+
+const imageUrl = imagen;
+const imageDataURL = await getImageDataUrl(imageUrl);
        let docDefinition ={
 
     content :[
       
        
-        {columns:[{image:'./public/images/productos/welderstone.png',width: 160, alignment:'left'},{},{image:'./public'+imagen,width: 80, height:80,alignment:'center',fit: [230,230], absolutePosition: {x: 50, y: 10}},{text: 'Cotización', style: 'header',	alignment: 'right'}]},
+        {columns:[{image:'./public/images/productos/welderstone.png',width: 160, alignment:'left'},{},{image:imageDataURL,width: 80, height:80,alignment:'center',fit: [230,230], absolutePosition: {x: 50, y: 10}},{text: 'Cotización', style: 'header',	alignment: 'right'}]},
         
             {
                 style: 'tableExample',
@@ -475,7 +494,6 @@ var ivaDesgloceFormateado = formatNumberWithDecimals(ivaDesgloce)
 */
 
 
-const AWS = require('aws-sdk');
 const printer = new PdfPrinter(fonts);
 
 AWS.config.update({

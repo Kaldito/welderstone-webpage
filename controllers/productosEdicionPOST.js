@@ -2,6 +2,7 @@ const Producto = require('../models/Productos.js');
 const path = require('path');
 const material = require('../models/materiales.js');
 const Cart = require('../models/Cart');
+const AWS = require('aws-sdk');
 
 module.exports = async (req, res) => {
     console.log(req.body.Codigo)
@@ -30,45 +31,7 @@ module.exports = async (req, res) => {
             { $set: { unidad: req.body.unidad } }
         );
     }
-    /*
-    if (req.body.ManoObMaterial !== '') {
-        await Producto.updateOne(
-            { nombre: req.body.NombreBusqueda },
-            { $set: { ManoObMaterial: req.body.ManoObMaterial } }
-        );
-    }
-    if (req.body.PorcentajeMaterial !== '') {
-        await Producto.updateOne(
-            { nombre: req.body.NombreBusqueda },
-            { $set: { PorcentajeMaterial: req.body.PorcentajeMaterial } }
-        );
-    }
-    if (req.body.ManoObPintura !== '') {
-        await Producto.updateOne(
-            { nombre: req.body.NombreBusqueda },
-            { $set: { ManoObPintura: req.body.ManoObPintura } }
-        );
-    }
-    if (req.body.PorcentajePintura !== '') {
-        await Producto.updateOne(
-            { nombre: req.body.NombreBusqueda },
-            { $set: { PorcentajePintura: req.body.PorcentajePintura } }
-        );
-    }
-    if (req.body.ManoObInstalacion !== '') {
-        await Producto.updateOne(
-            { nombre: req.body.NombreBusqueda },
-            { $set: { ManoObInstalacion: req.body.ManoObInstalacion } }
-        );
-    }
 
-    if (req.body.PorcentajeInstalacion !== '') {
-        await Producto.updateOne(
-            { nombre: req.body.NombreBusqueda },
-            { $set: { PorcentajeInstalacion: req.body.PorcentajeInstalacion } }
-        );
-    }
-*/
     if (req.body.ManoObGeneral !== '') {
         await Producto.updateOne(
             { nombre: req.body.NombreBusqueda },
@@ -159,62 +122,7 @@ module.exports = async (req, res) => {
             );
         }
     }
-/*
-    await Producto.updateOne(
-        { nombre: req.body.NombreBusqueda },
-        { $unset: { PinturaProductos: 1 } },
-        { multi: true }
-    );
 
-    for (b = 1; b < req.body['PinturaProductos[cantidad]'].length; b++) {
-        if (req.body['PinturaProductos[cantidad]'][b] > 0) {
-            // console.log(req.body['PinturaProductos[nombre]'][b])
-
-            await Producto.updateOne(
-                { nombre: req.body.NombreBusqueda },
-                {
-                    $push: {
-                        PinturaProductos: {
-                            Descripcion:
-                                req.body['PinturaProductos[nombre]'][b],
-                            cantidad: req.body['PinturaProductos[cantidad]'][b],
-                            Codigo: req.body['PinturaProductos[Codigo]'][b],
-                            Familia: req.body['PinturaProductos[Familia]'][b],
-                        },
-                    },
-                }
-            );
-        }
-    }
-
-    await Producto.updateOne(
-        { nombre: req.body.NombreBusqueda },
-        { $unset: { InstalacionProductos: 1 } },
-        { multi: true }
-    );
-
-    for (c = 1; c < req.body['InstalacionProductos[cantidad]'].length; c++) {
-        if (req.body['InstalacionProductos[cantidad]'][c] > 0) {
-            // console.log(req.body['InstalacionProductos[nombre]'][c])
-            await Producto.updateOne(
-                { nombre: req.body.NombreBusqueda },
-                {
-                    $push: {
-                        InstalacionProductos: {
-                            Descripcion:
-                                req.body['InstalacionProductos[nombre]'][c],
-                            cantidad:
-                                req.body['InstalacionProductos[cantidad]'][c],
-                            Codigo: req.body['InstalacionProductos[Codigo]'][c],
-                            Familia:
-                                req.body['InstalacionProductos[Familia]'][c],
-                        },
-                    },
-                }
-            );
-        }
-    }
-*/
     // AReglar desmadre
 
     const productos = await Producto.find({ nombre: req.body.NombreBusqueda });
@@ -224,10 +132,7 @@ module.exports = async (req, res) => {
     const materiales = await material.find({});
 
     const { MaterialesProductos } = productos[0];
-    /*
-    const { PinturaProductos } = productos[0];
-    const { InstalacionProductos } = productos[0];
-*/
+
     let suma = 0;
     for (let j = 0; j < materiales.length; j++) {
         for (let i = 0; i < MaterialesProductos.length; i++) {
@@ -243,54 +148,9 @@ module.exports = async (req, res) => {
             }
         }
     }
-    /*
-    const Suma2Mano = (suma * productos[0].ManoObMaterial) / 100 + suma;
-    const Suma3Por =
-        (Suma2Mano * productos[0].PorcentajeMaterial) / 100 + Suma2Mano;
-*/
+
 const Suma3Por = suma;
 
-        /*
-    let sumaSolventes = 0;
-    for (let j = 0; j < materiales.length; j++) {
-        for (let i = 0; i < PinturaProductos.length; i++) {
-            if (
-                PinturaProductos[i].Descripcion === materiales[j].Descripcion &&
-                materiales[j].PrecioUnitario >= 0
-            ) {
-                sumaSolventes =
-                    sumaSolventes +
-                    PinturaProductos[i].cantidad * materiales[j].PrecioUnitario;
-            }
-        }
-    }
-    const sumaSolventes2Mano =
-        (sumaSolventes * productos[0].ManoObPintura) / 100 + sumaSolventes;
-    const sumaSolventes3Por =
-        (sumaSolventes2Mano * productos[0].PorcentajePintura) / 100 +
-        sumaSolventes2Mano;
-
-    let sumaInsumos = 0;
-    for (let j = 0; j < materiales.length; j++) {
-        for (let i = 0; i < InstalacionProductos.length; i++) {
-            if (
-                InstalacionProductos[i].Descripcion ===
-                    materiales[j].Descripcion &&
-                materiales[j].PrecioUnitario >= 0
-            ) {
-                sumaInsumos =
-                    sumaInsumos +
-                    InstalacionProductos[i].cantidad *
-                        materiales[j].PrecioUnitario;
-            }
-        }
-    }
-    const sumaInsumos2Mano =
-        (sumaInsumos * productos[0].ManoObInstalacion) / 100 + sumaInsumos;
-    const sumaInsumos3Por =
-        (sumaInsumos * productos[0].PorcentajeInstalacion) / 100 +
-        sumaInsumos2Mano;
-*/
     var x = Suma3Por 
     var HerrMenor = (productos[0].ManoObGeneral * x)/100
     x = (productos[0].ManoObGeneral * x)/100+ x  
@@ -312,104 +172,112 @@ const Suma3Por = suma;
         { $set: { precio: SubTotal } }
     );
 
-    try {
-        const image = req.files.image;
+   AWS.config.update({
+    accessKeyId: process.env.accessKeyId,
+    secretAccessKey: process.env.secretAccessKey,
+});
 
-        // console.log(image.name)
+const s3 = new AWS.S3();
 
-        image.mv(
-            path.resolve(
-                __dirname,
-                '..',
-                'public/images/productos',
-                req.body.Codigo + image.name
-            ),
-            async (error) => {
-                await Producto.updateOne(
-                    { Codigo: req.body.Codigo },
-                    { $set: { image: '/images/productos/' + req.body.Codigo + image.name } }
-                );
-                await Cart.update(
-                    { Codigo: req.body.Codigo },
-                    { $set: { image: '/images/productos/' +  req.body.Codigo + image.name } }
-                );
-            }
+try {
+    const uploadImage = async (image, key) => {
+        const uploadParams = {
+            Bucket: 'welderstonebucket', // Reemplaza con el nombre de tu bucket en AWS S3
+            Key: 'Imagenes/' + key,
+            Body: image.data,
+        };
+
+        await s3.upload(uploadParams).promise();
+    };
+
+    const image = req.files.image;
+    const imageKey = req.body.Codigo + image.name;
+
+    await uploadImage(image, imageKey);
+
+    await Producto.updateOne(
+        { Codigo: req.body.Codigo },
+        { $set: { image: 'https://welderstonebucket.s3.us-west-1.amazonaws.com/Imagenes/' + imageKey } }
+    );
+    await Cart.update(
+        { Codigo: req.body.Codigo },
+        { $set: { image: 'https://welderstonebucket.s3.us-west-1.amazonaws.com/Imagenes/' + imageKey } }
+    );
+}catch (error) {}
+//Segundo try
+try {
+
+    if (req.body.image2 === undefined) {
+        await Producto.updateMany(
+            { Codigo: req.body.Codigo },
+            { $set: { image2: [] } }
         );
-    } catch (error) {}
-    try {
-        // console.log(productos[0].image2.length)
+    }
 
-        if (req.body.image2 === undefined) {
-            await Producto.updateMany(
-                { Codigo: req.body.Codigo },
-                { $set: { image2: [] } }
-            );
-        }
+    if (req.body.image2 !== undefined) {
+        await Producto.updateMany(
+            { Codigo: req.body.Codigo },
+            { $set: { image2: [] } }
+        );
+        const images = Array.isArray(req.body.image2)
+            ? req.body.image2
+            : [req.body.image2];
 
-        if (req.body.image2 !== undefined) {
-            await Producto.updateMany(
-                { Codigo: req.body.Codigo },
-                { $set: { image2: [] } }
-            );
-            // console.log(req.body.image2);
+        await Producto.updateOne(
+            { Codigo: req.body.Codigo },
+            { $push: { image2: { $each: images } } }
+        );
+    }
 
-            const images = Array.isArray(req.body.image2)
-                ? req.body.image2
-                : [req.body.image2];
-
-            await Producto.updateOne(
-                { Codigo: req.body.Codigo },
-                { $push: { image2: { $each: images } } }
-            );
-        }
-
-        if (req.files !== undefined) {
-            const updatedFiles = req.files;
-            // console.log(req.files);
-
-            const images = [];
-            if (Array.isArray(updatedFiles.image2)) {
-                // Caso de múltiples imágenes
-                for (let i = 0; i < updatedFiles.image2.length; i++) {
-                    const image = updatedFiles.image2[i];
-                    if (image.data !== null) {
-                        await image.mv(
-                            path.resolve(
-                                __dirname,
-                                '..',
-                                'public/images/productos',
-                                req.body.Codigo + image.name
-                            )
-                        );
-                        images.push('/images/productos/' +  req.body.Codigo + image.name);
-                    }
-                }
-            } else {
-                // Caso de una sola imagen
-                const image = updatedFiles.image2;
+    if (req.files !== undefined) {
+        const updatedFiles = req.files;
+        const images = [];
+        
+        if (Array.isArray(updatedFiles.image2)) {
+            // Multiple images
+            for (let i = 0; i < updatedFiles.image2.length; i++) {
+                const image = updatedFiles.image2[i];
                 if (image.data !== null) {
-                    await image.mv(
-                        path.resolve(
-                            __dirname,
-                            '..',
-                            'public/images/productos',
-                            req.body.Codigo +image.name
-                        )
+                    const imageKey = req.body.Codigo + image.name;
+                    const uploadParams = {
+                        Bucket: 'welderstonebucket',
+                        Key: 'Imagenes/' + imageKey,
+                        Body: image.data,
+                    };
+                    await s3.upload(uploadParams).promise();
+                    images.push(
+                        'https://welderstonebucket.s3.us-west-1.amazonaws.com/Imagenes/' + imageKey
                     );
-                    images.push('/images/productos/' +  req.body.Codigo + image.name);
                 }
             }
-
-            await Producto.updateOne(
-                { Codigo: req.body.Codigo },
-                { $push: { image2: { $each: images } } }
-            );
-            await Cart.update(
-                { Codigo: req.body.Codigo },
-                { $push: { image2: { $each: images } } }
-            );
+        } else {
+            // Single image
+            const image = updatedFiles.image2;
+            if (image.data !== null) {
+                const imageKey = req.body.Codigo + image.name;
+                const uploadParams = {
+                    Bucket: 'welderstonebucket',
+                    Key: 'Imagenes/' + imageKey,
+                    Body: image.data,
+                };
+                await s3.upload(uploadParams).promise();
+                images.push(
+                    'https://welderstonebucket.s3.us-west-1.amazonaws.com/Imagenes/' + imageKey
+                );
+            }
         }
-    } catch (error) {
+
+        await Producto.updateOne(
+            { Codigo: req.body.Codigo },
+            { $push: { image2: { $each: images } } }
+        );
+        await Cart.update(
+            { Codigo: req.body.Codigo },
+            { $push: { image2: { $each: images } } }
+        );
+    }
+
+}catch (error) {
     } finally {
         if (req.body.nombre !== '') {
             await Producto.updateOne(
@@ -425,6 +293,11 @@ const Suma3Por = suma;
         res.redirect('/productos');
     }
 };
+
+
+
+
+
 
 /*
 
