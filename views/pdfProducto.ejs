@@ -51,16 +51,12 @@
                   </p>
 
 
-                  <p class="card-text">SubTotal: $<%=SubTotalR.toLocaleString()%>
+                  <p class="card-text">SubTotal: $<%=Total1RFormateado%>
                   </p>
 
-                  <p class="card-text">Iva: $<%
-                    var valorMultiplicado = (SubTotalR * 0.16);
-                    var resultadoFinal = valorMultiplicado.toFixed(2);
-                    resultadoFinal = parseFloat(resultadoFinal).toLocaleString();
-                    %>
+                  <p class="card-text">Iva: $<%=IvaCalculo%>
+
                     
-                    <%= resultadoFinal %></p>
                   <p class="card-text">Total: $<%=TotalFinal.toLocaleString()%>
                   </p>
 
@@ -131,36 +127,70 @@
                           <th></th>
                           <th></th>
                           <th></th>
+                          <th></th>
+
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
 
                           <td>
-                            Material:
+                            Material:  
                             <br>
-                            Mano de obra material:
+                            Mano de obra:     
                             <br>
-                            Indirectos y Honorarios:
-
+                            Herramienta menor:
+                            <br>
+                            Indirectos y Honorarios:  
+                            <br>
                           </td>
-                          <td>Suma:
+                          <td>
+
                             <br>
-                            <%=ProductoParaCotizar.ManoObMaterial%>
-                              <br>
-                              <%=ProductoParaCotizar.PorcentajeMaterial%>
-                                <br>
-                                Total:
+                             <%=productodatos[0].ManoObGeneral%>%
+                            <br>
+                           <%=productodatos[0].HerramientaMenor%>%
+                            <br>
+                             <%=productodatos[0].PorcentajeGeneral%>%
+                            <br>
+                          </td>
+
+                          <td>
+                            Suma
+                            <br>
+                            $<%=MaterialSuma.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
+<br>
+$<%=HerrMenor%>
+<br>
+$<%=indirectosPrecio%>
+<br>
+SubTotal
+<br>
+Iva
+<br>
+Total
+<br>
+
                           </td>
 
                           <td>
                             $<%=MaterialSuma.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
-                              <br>
-                              $<%=ManoObMaterial1R.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
-                                <br>
-                                $<%=ManoObMaterial2R.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
+<br>
+                                  $<%=HerrMenor%>
                                   <br>
-                                  $<%=Total1R.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
+                                  $<%=y%>
+                                  <br>
+                                  $<%=indirectosPrecio2%>
+                                  <br>
+                                  $<%=Total1RFormateado%>
+                                  <br>
+
+                                  $<%=IvaCalculo%>
+
+                                  <br>
+                                  $<%=TotalFinal.toLocaleString()%>
+
+<br>
                           </td>
                         </tr>
                       </tbody>
@@ -172,216 +202,6 @@
 
 
 
-              <div class="row mt-4">
-                <div class="col-md-12">
-                  <h5>Pintura:</h5>
-                  <table class="table table-striped">
-                    <thead>
-                      <tr>
-                        <th>Código</th>
-                        <th>Descripción</th>
-
-                        <th>Familia</th>
-                        <th>Cantidad</th>
-                        <th>Precio Unitario</th>
-                        <th>Importe</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <% for (var b=0; b < ProductoParaCotizar.PinturaProductos.length; b++) { %>
-                        <tr>
-                          <td>
-                            <%=ProductoParaCotizar.PinturaProductos[b].Codigo%>
-
-                          </td>
-                          <td>
-                            <%=ProductoParaCotizar.PinturaProductos[b].Descripcion%>
-
-                          </td>
-                          <td>
-                            <%=ProductoParaCotizar.PinturaProductos[b].Familia%>
-                          </td>
-                          <td>
-                            <%=ProductoParaCotizar.PinturaProductos[b].cantidad%>
-                          </td>
-                          <td>
-                            $<%=PinturaMostrar[b].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
-                          </td>
-                          <td>
-                            <% let num1=ProductoParaCotizar.PinturaProductos[b].cantidad; %>
-                              <% let num2=PinturaMostrar[b]; %>
-                              $<%= (num1 * num2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>
-                          </td>
-                        </tr>
-                        <% } %>
-                    </tbody>
-                  </table>
-                  <table class="table table-striped">
-                    <thead>
-                      <tr>
-
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-
-                        <td>
-                          Pintura:
-                          <br>
-                          Mano de obra material:
-                          <br>
-                          Indirectos y Honorarios:
-
-                        </td>
-                        <td>Suma:
-                          <br>
-                          <%=ProductoParaCotizar.ManoObPintura%>
-                            <br>
-                            <%=ProductoParaCotizar.PorcentajePintura%>
-                              <br>
-                              Total:
-                        </td>
-
-                        <td>
-                          $<%=PinturaSumaRedondeada.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
-                            <br>
-                            $<%=ManoObPintura1R.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
-                              <br>
-                              $<%=ManoObPintura2R.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
-                                <br>
-                                $<%=Total2R.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
-
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-
-              <div class="row mt-4">
-                <div class="col-md-12">
-                  <h5>Instalación:</h5>
-                  <table class="table table-striped">
-                    <thead>
-                      <tr>
-                        <th>Código</th>
-
-                        <th>Descripción</th>
-                        <th>Familia</th>
-                        <th>Cantidad</th>
-                        <th>Precio Unitario</th>
-                        <th>Importe</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <% for (var b=0; b < ProductoParaCotizar.InstalacionProductos.length; b++) { %>
-                        <tr>
-                          <td>
-                            <%=ProductoParaCotizar.InstalacionProductos[b].Codigo%>
-
-                          </td>
-                          <td>
-                            <%=ProductoParaCotizar.InstalacionProductos[b].Descripcion%>
-
-                          </td>
-                          <td>
-                            <%=ProductoParaCotizar.InstalacionProductos[b].Familia%>
-                          </td>
-                          <td>
-                            <%=ProductoParaCotizar.InstalacionProductos[b].cantidad%>
-                          </td>
-                          <td>
-                            $<%=InstalacionesMostrar[b].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
-                          </td>
-                          <td>
-                            <% let num1=ProductoParaCotizar.InstalacionProductos[b].cantidad; %>
-                              <% let num2=InstalacionesMostrar[b]; %>
-                              $<%= (num1 * num2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
-                          </td>
-                        </tr>
-                        <% } %>
-                    </tbody>
-                  </table>
-                  <table class="table table-striped">
-                    <thead>
-                      <tr>
-
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-
-                        <td>
-                          Instalación:
-                          <br>
-                          Mano de obra material:
-                          <br>
-                          Indirectos y Honorarios:
-
-                        </td>
-                        <td>Suma:
-                          <br>
-                          <%=ProductoParaCotizar.ManoObInstalacion%>
-                            <br>
-                            <%=ProductoParaCotizar.PorcentajeInstalacion%>
-                              <br>
-                              Total:
-                              <br>
-                              <br>
-
-                              Total suma:
-                              <% var TotalSuma=Number(Total3R) + Number(Total2R) + Number(Total1R); %>
-                                <br>
-                                Iva:
-                                <br>
-                                Total Final:
-                                <% var porcentaje=0.16; var TotalFinal=TotalSuma + (TotalSuma * porcentaje); %>
-
-                        </td>
-
-                        <td>
-                          $<%= InstalacionSuma ? InstalacionSuma.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") : '' %>
-                          <br>
-                          $<%=ManoObInstalacion1R.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
-                              <br>
-                              $<%=ManoObInstalacion2R.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
-                                <br>
-                                $<%=Total3R.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
-                                  <br>
-                                  <br>
-   
-                                  $<%= TotalSuma.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",") %> %>
-                                    <br>
-                                    
-                                    <%
-                                    var valorMultiplicado = (TotalSuma * 0.16).toFixed(2);
-                                    var resultadoFinal = parseFloat(valorMultiplicado).toLocaleString();
-                                    %>
-                                    $<%= valorMultiplicado.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%> %>
-
-                                   <br>
-
-                                    $<%= parseFloat(TotalFinal).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>
-
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-
-
-
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </div>
    
     </section>
     <!-- Bootstrap core JS-->
