@@ -32,23 +32,21 @@
                     <div class="col-12 col-lg-5">
 
 
-                        <div class="w3-content w3-display-container">
-                            <img class="mySlides" src="<%= productoDoc.image %>" style="width:350px; height:350px">
 
-
-
-                            <% for (var a = 0; a < productoDoc.image2.length; a++) { %> 
-
-                            <img class="mySlides" src="<%= productoDoc.image2[a] %>" style="width:350px; height:350px">
+                          <div class="w3-content w3-display-container">
+                            <img class="mySlides" src="<%= productoDoc.image %>"  style="width:350px; height:350px">
+                            
+                            <% for (var a = 0; a < productoDoc.image2.length; a++) { %>
+                                <img class="mySlides" src="<%= productoDoc.image2[a] %>"  style="width:350px; height:350px">
                             <% } %>
-
+                        
                             <% if(productoDoc.image2.length > 0){ %>
-
-                            <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
-                            <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+                                <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+                                <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
                             <% } %>
+                        </div>
 
-                          </div>
+
 
 
                     </div>
@@ -173,8 +171,9 @@
                                     <a href="/productos/<%=relacionados[i].IdProducto%>">
                                         <div class="card line">
                                             <!-- Imagen -->
-                                            <img class="card-img-top mx-auto d-block" src="<%=relacionados[i].image%>" alt="Product 1">
-                                            <!-- Cuerpo de la card -->
+                                            <div style="height: 150px; display: flex; justify-content: center; align-items: center;">
+                                                <img class="card-img-top mx-auto d-block" src="<%=relacionados[i].image%>" style="max-height: 100%; max-width: 100%; object-fit: contain;">
+                                            </div>                                            <!-- Cuerpo de la card -->
                                             <div class="card-body">
                                                 <!-- Nombre del producto -->
                                                 <h4 class="card-title"><%=relacionados[i].nombre%> </h4>
