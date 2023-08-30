@@ -51,14 +51,14 @@
                     <a href="/productos/<%=productos[a]._id%>">
                         <div class="card" style="overflow: hidden">
                             <!-- Imagen -->
-                            <div style="height: 25vh">
+                            <div style="height: 25vh; display: flex; justify-content: center; align-items: center;">
                                 <img
                                     src="<%=productos[a].image%>"
                                     style="
-                                        height: 100%;
-                                        width: 100%;
-                                        object-fit: cover;
-                                        border-radius: 0 0 0 0;
+                                        max-height: 100%;
+                                        max-width: 100%;
+                                        object-fit: contain;
+                                        border-radius: 0;
                                     "
                                     alt="Product 1"
                                 />
