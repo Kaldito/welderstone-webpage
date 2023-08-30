@@ -112,77 +112,7 @@ module.exports = async (req, res) => {
             }
         }
 
-        const { PinturaProductos } = cantidadrespetada[i];
 
-        for (let a = 0; a < mateprod.length; a++) {
-            for (let j = 0; j < PinturaProductos.length; j++) {
-                if (
-                    cantidadrespetada[i].PinturaProductos[j].Descripcion ===
-                    mateprod[a].Descripcion
-                ) {
-                    await Producto.updateOne(
-                        { _id: cantidadrespetada[i]._id },
-                        {
-                            $set: {
-                                'PinturaProductos.$[item]': {
-                                    Descripcion: mateprod[a].Descripcion,
-                                    cantidad:
-                                        cantidadrespetada[i].PinturaProductos[j]
-                                            .cantidad,
-                                    Codigo: mateprod[a].Codigo,
-                                    familia: mateprod[a].Familia,
-                                },
-                            },
-                        },
-                        {
-                            arrayFilters: [
-                                {
-                                    'item._id':
-                                        cantidadrespetada[i].PinturaProductos[j]
-                                            ._id,
-                                },
-                            ],
-                        }
-                    );
-                }
-            }
-        }
-
-        const { InstalacionProductos } = cantidadrespetada[i];
-
-        for (let a = 0; a < mateprod.length; a++) {
-            for (let j = 0; j < InstalacionProductos.length; j++) {
-                if (
-                    cantidadrespetada[i].InstalacionProductos[j].Descripcion ===
-                    mateprod[a].Descripcion
-                ) {
-                    await Producto.updateOne(
-                        { _id: cantidadrespetada[i]._id },
-                        {
-                            $set: {
-                                'InstalacionProductos.$[item]': {
-                                    Descripcion: mateprod[a].Descripcion,
-                                    cantidad:
-                                        cantidadrespetada[i]
-                                            .InstalacionProductos[j].cantidad,
-                                    Codigo: mateprod[a].Codigo,
-                                    familia: mateprod[a].Familia,
-                                },
-                            },
-                        },
-                        {
-                            arrayFilters: [
-                                {
-                                    'item._id':
-                                        cantidadrespetada[i]
-                                            .InstalacionProductos[j]._id,
-                                },
-                            ],
-                        }
-                    );
-                }
-            }
-        }
     }
 
     //
@@ -192,8 +122,7 @@ module.exports = async (req, res) => {
     
     for (let a = 0; a < productos.length; a++) {
         const { MaterialesProductos } = productos[a];
-        const { PinturaProductos } = productos[a];
-        const { InstalacionProductos } = productos[a];
+
     
         let suma = 0;
         for (let j = 0; j < materiales.length; j++) {
@@ -209,53 +138,23 @@ module.exports = async (req, res) => {
                 }
             }
         }
-        const Suma2Mano = (suma * productos[a].ManoObMaterial) / 100 + suma;
-        const Suma3Por =
-            (Suma2Mano * productos[a].PorcentajeMaterial) / 100 + Suma2Mano;
+        //const Suma2Mano = (suma * productos[a].ManoObMaterial) / 100 + suma;
+        const Suma3Por = suma;
     
-        let sumaSolventes = 0;
-        for (let j = 0; j < materiales.length; j++) {
-            for (let i = 0; i < PinturaProductos.length; i++) {
-                if (
-                    PinturaProductos[i].Descripcion ===
-                        materiales[j].Descripcion &&
-                    materiales[j].PrecioUnitario >= 0
-                ) {
-                    sumaSolventes +=
-                        PinturaProductos[i].cantidad * materiales[j].PrecioUnitario;
-                }
-            }
-        }
-        const sumaSolventes2Mano =
-            (sumaSolventes * productos[a].ManoObPintura) / 100 + sumaSolventes;
-        const sumaSolventes3Por =
-            (sumaSolventes2Mano * productos[a].PorcentajePintura) / 100 +
-            sumaSolventes2Mano;
-    
-        let sumaInsumos = 0;
-        for (let j = 0; j < materiales.length; j++) {
-            for (let i = 0; i < InstalacionProductos.length; i++) {
-                if (
-                    InstalacionProductos[i].Descripcion ===
-                        materiales[j].Descripcion &&
-                    materiales[j].PrecioUnitario >= 0
-                ) {
-                    sumaInsumos +=
-                        InstalacionProductos[i].cantidad * materiales[j].PrecioUnitario;
-                }
-            }
-        }
-        const sumaInsumos2Mano =
-            (sumaInsumos * productos[a].ManoObInstalacion) / 100 + sumaInsumos;
-        const sumaInsumos3Por =
-            (sumaInsumos * productos[a].PorcentajeInstalacion) / 100 +
-            sumaInsumos2Mano;
-    
-        const x = Suma3Por + sumaSolventes3Por + sumaInsumos3Por;
+
+        var x = Suma3Por;
+        var HerrMenor = (productos[a].ManoObGeneral * x)/100
+        x = (productos[a].ManoObGeneral * x)/100+ x  
+        y = (HerrMenor*  productos[a].HerramientaMenor)/100
+        x= x+y
+        x = (productos[a].PorcentajeGeneral * x)/100 + x
+
+
         let SubTotal = Number(x.toFixed(2));
         SubTotal += SubTotal * (productos[a].iva / 100);
         SubTotal = SubTotal.toFixed(2);
     
+
         bulkUpdateOperations.push({
             updateOne: {
                 filter: { _id: productos[a]._id },
