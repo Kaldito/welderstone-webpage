@@ -4,16 +4,30 @@ const Cart = require('../models/Cart');
 module.exports = async (req, res) => {
     let role = 'viewer';
     let logged = false;
+
     if (req.session?.passport?.user != undefined) {
         role = req.session.passport.user.role;
         logged = true;
         var IdUsuario = req.session.passport.user.id;
     }
+
     const productoDoc = await Producto.findOne({ _id: req.params.id });
+
+    const familias = [];
+
+    for (let i = 0; i < productoDoc.familia.length; i++) {
+        const element = productoDoc.familia[i];
+        if (element != 'undefined') {
+            familias.push({ familia: element });
+        }
+    }
+
     const relacionados = await Producto.find({
-        familia: productoDoc.familia,
+        $or: familias,
         _id: { $ne: productoDoc._id },
-    }).limit(6);
+    })
+        .sort({ createdAt: -1 })
+        .limit(6);
 
     const cart = await Cart.find({});
 

@@ -31,9 +31,29 @@
                 <div class="row">
                     <div class="col-12 col-lg-5">
 
+                        <div id="carouselExample" class="carousel slide">
+                            <div class="carousel-inner">
+                              <div class="carousel-item active">
+                                <img src="<%= productoDoc.image %>" class="d-block w-100" alt="...">
+                              </div>
 
+                                <% for (var a = 0; a < productoDoc.image2.length; a++) { %>
+                                    <div class="carousel-item">
+                                        <img src="<%= productoDoc.image2[a] %>" class="d-block w-100" alt="...">
+                                    </div>
+                                <% } %>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                              <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                              <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
 
-                          <div class="w3-content w3-display-container">
+                        <!-- <div class="w3-content w3-display-container">
                             <img class="mySlides" src="<%= productoDoc.image %>"  style="width:350px; height:350px">
                             
                             <% for (var a = 0; a < productoDoc.image2.length; a++) { %>
@@ -44,11 +64,7 @@
                                 <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
                                 <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
                             <% } %>
-                        </div>
-
-
-
-
+                        </div> -->
                     </div>
 
                     <div class="col-12 col-lg-7 ps-5">
@@ -168,7 +184,7 @@
                         <div class="row related-div">
                             <% for (let i = 0; i < relacionados.length; i++) { %> 
                                 <div class="col-sm-2">
-                                    <a href="/productos/<%=relacionados[i].IdProducto%>">
+                                    <a href="/productos/<%=relacionados[i]['_id']%>">
                                         <div class="card line">
                                             <!-- Imagen -->
                                             <div style="height: 150px; display: flex; justify-content: center; align-items: center;">
