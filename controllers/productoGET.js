@@ -25,6 +25,7 @@ module.exports = async (req, res) => {
     const relacionados = await Producto.find({
         $or: familias,
         _id: { $ne: productoDoc._id },
+        Activo: true,
     })
         .sort({ createdAt: -1 })
         .limit(6);
