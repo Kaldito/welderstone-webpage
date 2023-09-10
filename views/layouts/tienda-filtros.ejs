@@ -90,6 +90,41 @@
                                                                                     href="/tienda/busqueda/especiales">Especiales</a>
                                                                             </div>
                                                                             <% } %>
+                                                                   <!-- Link de Gym -->
+                                                                   <% if(filtro=="Gym" ){ %>
+                                                                    <div style="position: relative;"
+                                                                        class="col-2 col-xl-1 text-truncate center-all final-filter filter-selected">
+                                                                        <a class="filter-format-selected stretched-link"
+                                                                            id="Gym-tab"
+                                                                            href="/tienda/busqueda/Gym">Gym</a>
+                                                                    </div>
+                                                                    <% } else { %>
+                                                                        <div style="position: relative;"
+                                                                            class="col-2 col-xl-1 text-truncate center-all final-filter    ">
+                                                                            <a class="filter-format stretched-link"
+                                                                                id="Gym-tab"
+                                                                                href="/tienda/busqueda/Gym">Gym</a>
+                                                                        </div>
+                                                                        <% } %>
+
+                                                                   <!-- Link de Equipamento -->
+                                                                   <% if(filtro=="Equipamento" ){ %>
+                                                                    <div style="position: relative;"
+                                                                        class="col-2 col-xl-1 text-truncate center-all final-filter filter-selected">
+                                                                        <a class="filter-format-selected stretched-link"
+                                                                            id="Equipamento-tab"
+                                                                            href="/tienda/busqueda/Equipamento">Equipamento o eventos</a>
+                                                                    </div>
+                                                                    <% } else { %>
+                                                                        <div style="position: relative;"
+                                                                            class="col-2 col-xl-1 text-truncate center-all final-filter    ">
+                                                                            <a class="filter-format stretched-link"
+                                                                                id="Equipamento-tab"
+                                                                                href="/tienda/busqueda/Equipamento">Equipamento</a>
+                                                                        </div>
+                                                                        <% } %>
+
+
 
                                                                                 <div class="col-12 col-xl-6 mt-xl-1rem">
                                                                                     <form action="/tienda/busqueda"
