@@ -342,12 +342,12 @@ img {
 }
 @media (max-width: 991px) {
   #filter-buttons {
-    padding: 0 20%;
+    padding: 0 10%;
   }
 }
 @media (max-width: 768px) {
   #filter-buttons {
-    padding: 0 15%;
+    padding: 0 10%;
   }
 }
 #filter-buttons div {
@@ -388,8 +388,8 @@ img {
 }
 #filter-buttons .filter-button {
   background-color: #c1c1c1;
-  width: 18vh;
-  height: 18vh;
+  width: 20vh;
+  height: 20vh;
   border-radius: 100%;
   margin: auto;
   display: flex;
@@ -400,14 +400,14 @@ img {
 }
 @media (max-width: 1400px) {
   #filter-buttons .filter-button {
-    width: 15vh;
-    height: 15vh;
+    width: 18vh;
+    height: 18vh;
   }
 }
 @media (max-width: 768px) {
   #filter-buttons .filter-button {
-    width: 13vh;
-    height: 13vh;
+    width: 18vh;
+    height: 18vh;
   }
 }
 #filter-buttons .filter-button:hover {

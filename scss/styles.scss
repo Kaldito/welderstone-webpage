@@ -255,11 +255,11 @@ img {
     }
 
     @include mediaMixins.lg() {
-        padding: 0 20%;
+        padding: 0 10%;
     }
 
     @include mediaMixins.md() {
-        padding: 0 15%;
+        padding: 0 10%;
     }
 
     div {
@@ -302,8 +302,8 @@ img {
 
     .filter-button {
         background-color: #c1c1c1;
-        width: 18vh;
-        height: 18vh;
+        width: 20vh;
+        height: 20vh;
         border-radius: 100%;
         margin: auto;
         display: flex;
@@ -313,13 +313,13 @@ img {
         transition: all 0.3s ease-in-out;
 
         @include mediaMixins.xxl() {
-            width: 15vh;
-            height: 15vh;
+            width: 18vh;
+            height: 18vh;
         }
 
         @include mediaMixins.md() {
-            width: 13vh;
-            height: 13vh;
+            width: 18vh;
+            height: 18vh;
         }
     }
 

@@ -5,6 +5,8 @@ function ajustarTabs() {
     const ganaderoTab = document.getElementById('ganadero-tab');
     const CYRTab = document.getElementById('c-y-r-tab');
     const especialesTab = document.getElementById('especiales-tab');
+    const gymTab = document.getElementById('Gym-tab');
+    const eventosTab = document.getElementById('Equipamento-tab');
 
     // Hacer que si el ancho de la pantalla es menor o igual a 576px, el innerHTML de los tabs sea solo el icono
     if (window.innerWidth <= 576) {
@@ -14,6 +16,8 @@ function ajustarTabs() {
         ganaderoTab.innerHTML = '<i class="fa-solid fa-cow"></i>';
         CYRTab.innerHTML = '<i class="fa-solid fa-recycle"></i>';
         especialesTab.innerHTML = '<i class="fa-solid fa-clipboard"></i>';
+        gymTab.innerHTML = '<i class="fa-solid fa-dumbbell"></i>';
+        eventosTab.innerHTML = '<i class="fa-solid fa-calendar-days"></i>';
     } else {
         hogarTab.innerHTML = 'Hogar';
         industriaTab.innerHTML = 'Industria';
@@ -21,6 +25,8 @@ function ajustarTabs() {
         ganaderoTab.innerHTML = 'Ganadero';
         CYRTab.innerHTML = 'Construccion y Reciclados';
         especialesTab.innerHTML = 'Especiales';
+        gymTab.innerHTML = 'Gimnasio';
+        eventosTab.innerHTML = 'Eventos';
     }
 }
 
