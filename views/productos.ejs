@@ -489,13 +489,30 @@
 
             </section>
 
+
+
+
+
+
             <section id="editar-producto">
+                <div class="card-body px-5 py-4">
+                    <div class="mb-4">
+                        <input type="text" id="nombreProductoInput" aria-label="Buscar el nombre del artículo" class="form-control espec1" placeholder="Busca el nombre del articulo" class="form-control">
+                        <br>
+                        <div class="text-center"> <!-- Agregamos una clase text-center para centrar el botón -->
+                            <button onclick="buscarProducto()" class="btn btn-danger">Buscar</button>
+                        </div>                    
+                    </div>
+
+
+
                 <div class="card border-danger">
                     <div class="card-header">Inventario de Artículos</div>
 
                     <div class="card-body px-5 py-4">
                         <div class="row">
                             <% for (var a = 0; a < productos.length; a++) { %> 
+
                                 <div class="col-6" style="height: auto;">
                                     <form action="/productos/edicion" method="POST" enctype="multipart/form-data">                                    
                                         <div class="card mb-3">
@@ -519,7 +536,6 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-1">
-                                                    <% if(roles === "admin" || roles === "Proyectos"){ %>
                                                     <!-- Editar producto -->
                                                     <a href="/productos/editar/<%=productos[a]._id%>">
                                                         <button type="button" class="btn btn-primary w-100 edit-button"><i class="fa-solid fa-pen-to-square"></i></button>
@@ -565,8 +581,6 @@
 
                                                     <a href="/DesplieguePdf?codigo=<%=productos[a].Codigo%>&amp;IdTrans=<%=productos[a]._id%>"><img src="./images/productos/PdfLogo.png" alt="Logo PDF" width="40px" height="50px" class="pdf"></a>
 
-                                                    <% } %>
-            
                                                 </div>
                                             </div>
                                         </div>
@@ -577,6 +591,13 @@
                     </div>
                 </div>
             </section>
+
+
+
+
+
+
+
         </main>
 
                         
@@ -664,6 +685,24 @@ mobiscroll.setOptions({
       }
     }
   </script>
+
+<script>
+    function buscarProducto() {
+        var nombreProducto = document.getElementById('nombreProductoInput').value.toLowerCase();
+        var productos = document.querySelectorAll('.card-title'); // Selector de los elementos de producto
+
+        productos.forEach(function(producto) {
+            var nombre = producto.textContent.toLowerCase();
+            var card = producto.closest('.col-6'); // Encuentra el elemento "col-6" más cercano
+
+            if (nombre.includes(nombreProducto)) {
+                card.style.display = 'block'; // Muestra el producto si coincide con la búsqueda
+            } else {
+                card.style.display = 'none'; // Oculta el producto si no coincide
+            }
+        });
+    }
+</script>
 
 
         <style>

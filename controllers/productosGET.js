@@ -20,7 +20,12 @@ module.exports = async (req, res) => {
             const materiales = await Material.find({
                 PrecioUnitario: { $gt: 0 },
             });
-            const productos = await Producto.find({});
+            if (role == 'admin'){
+                var productos = await Producto.find({Activo:true});
+
+            }else if (role == 'Proyectos') {
+                var productos = await Producto.find({ $or: [{ Activo: false }, { Activo: { $exists: false } }, { Activo: { $ne: true } }] });
+              }
 
             res.render('productos', {
                 productos,
