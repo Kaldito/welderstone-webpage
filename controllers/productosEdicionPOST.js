@@ -207,6 +207,7 @@ try {
 //Segundo try
 try {
 
+    console.log(req.body.image2)
     if (req.body.image2 === undefined) {
         await Producto.updateMany(
             { Codigo: req.body.Codigo },
