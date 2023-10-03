@@ -5,49 +5,51 @@ const Cart = require('../models/Cart');
 const AWS = require('aws-sdk');
 
 module.exports = async (req, res) => {
-    console.log(req.body.Codigo)
+
+    //console.log(req.body.Codigo)
+
     if (req.body.Familia !== '') {
         await Producto.updateOne(
-            { nombre: req.body.NombreBusqueda },
+            { _id: req.body.id },
             { $set: { Familia: req.body.Familia } }
         );
     }
 
     if (req.body.descripcion !== '') {
         await Producto.updateOne(
-            { nombre: req.body.NombreBusqueda },
+            { _id: req.body.id },
             { $set: { descripcion: req.body.descripcion } }
         );
     }
     if (req.body.Codigo !== '') {
         await Producto.updateOne(
-            { nombre: req.body.NombreBusqueda },
+            { _id: req.body.id },
             { $set: { Codigo: req.body.Codigo } }
         );
     }
     if (req.body.unidad !== '') {
         await Producto.updateOne(
-            { nombre: req.body.NombreBusqueda },
+            { _id: req.body.id },
             { $set: { unidad: req.body.unidad } }
         );
     }
 
     if (req.body.ManoObGeneral !== '') {
         await Producto.updateOne(
-            { nombre: req.body.NombreBusqueda },
+            { _id: req.body.id },
             { $set: { ManoObGeneral: req.body.ManoObGeneral } }
         );
     }
     if (req.body.HerramientaMenor !== '') {
         await Producto.updateOne(
-            { nombre: req.body.NombreBusqueda },
+            { _id: req.body.id },
             { $set: { HerramientaMenor: req.body.HerramientaMenor } }
         );
     }
 
     if (req.body.PorcentajeGeneral !== '') {
         await Producto.updateOne(
-            { nombre: req.body.NombreBusqueda },
+            { _id: req.body.id },
             { $set: { PorcentajeGeneral: req.body.PorcentajeGeneral } }
         );
     }
@@ -55,12 +57,12 @@ module.exports = async (req, res) => {
     // console.log(req.body.Activo)
     if (req.body.Activo === 'true') {
         await Producto.updateOne(
-            { nombre: req.body.NombreBusqueda },
+            { _id: req.body.id },
             { $set: { Activo: true } }
         );
     } else if (req.body.Activo !== 'true') {
         await Producto.updateOne(
-            { nombre: req.body.NombreBusqueda },
+            { _id: req.body.id },
             { $set: { Activo: false } }
         );
     }
@@ -68,35 +70,35 @@ module.exports = async (req, res) => {
         const IvaEditar = Number(req.body.Iva);
 
         await Producto.updateOne(
-            { nombre: req.body.NombreBusqueda },
+            { _id: req.body.id },
             { $set: { iva: IvaEditar } }
         );
     }
 
     await Producto.updateOne(
-        { nombre: req.body.NombreBusqueda },
+        { _id: req.body.id },
         { $unset: { especificacionesNombre: 1 } },
         { multi: true }
     );
 
     await Producto.updateOne(
-        { nombre: req.body.NombreBusqueda },
+        { _id: req.body.id },
         { $set: { especificacionesNombre: req.body.especificacionesNombre } }
     );
 
     await Producto.updateOne(
-        { nombre: req.body.NombreBusqueda },
+        { _id: req.body.id },
         { $unset: { especificacionesDesc: 1 } },
         { multi: true }
     );
 
     await Producto.updateOne(
-        { nombre: req.body.NombreBusqueda },
+        { _id: req.body.id },
         { $set: { especificacionesDesc: req.body.especificacionesDesc } }
     );
 
     await Producto.updateOne(
-        { nombre: req.body.NombreBusqueda },
+        { _id: req.body._id },
         { $unset: { MaterialesProductos: 1 } },
         { multi: true }
     );
@@ -105,7 +107,7 @@ module.exports = async (req, res) => {
         if (req.body['MaterialesProductos[cantidad]'][a] > 0) {
             // console.log(req.body['MaterialesProductos[nombre]'][a])
             await Producto.updateOne(
-                { nombre: req.body.NombreBusqueda },
+                { _id: req.body._id },
                 {
                     $push: {
                         MaterialesProductos: {
@@ -125,7 +127,7 @@ module.exports = async (req, res) => {
 
     // AReglar desmadre
 
-    const productos = await Producto.find({ nombre: req.body.NombreBusqueda });
+    const productos = await Producto.find({ _id: req.body.id });
 
     // console.log(productos)
 
@@ -191,33 +193,33 @@ try {
     };
 
     const image = req.files.image;
-    const imageKey = req.body.Codigo + image.name;
+    const imageKey = req.body.id + image.name;
 
     await uploadImage(image, imageKey);
 
     await Producto.updateOne(
-        { Codigo: req.body.Codigo },
+        { _id: req.body.id },
         { $set: { image: 'https://welderstonebucket.s3.us-west-1.amazonaws.com/Imagenes/' + imageKey } }
     );
     await Cart.update(
-        { Codigo: req.body.Codigo },
+        { _id: req.body.id },
         { $set: { image: 'https://welderstonebucket.s3.us-west-1.amazonaws.com/Imagenes/' + imageKey } }
     );
 }catch (error) {}
 //Segundo try
 try {
 
-    console.log(req.body.image2)
+    //console.log(req.body.image2)
     if (req.body.image2 === undefined) {
         await Producto.updateMany(
-            { Codigo: req.body.Codigo },
+            { _id: req.body.id },
             { $set: { image2: [] } }
         );
     }
 
     if (req.body.image2 !== undefined) {
         await Producto.updateMany(
-            { Codigo: req.body.Codigo },
+            { _id: req.body.id },
             { $set: { image2: [] } }
         );
         const images = Array.isArray(req.body.image2)
@@ -225,7 +227,7 @@ try {
             : [req.body.image2];
 
         await Producto.updateOne(
-            { Codigo: req.body.Codigo },
+            { _id: req.body.id },
             { $push: { image2: { $each: images } } }
         );
     }
@@ -239,7 +241,7 @@ try {
             for (let i = 0; i < updatedFiles.image2.length; i++) {
                 const image = updatedFiles.image2[i];
                 if (image.data !== null) {
-                    const imageKey = req.body.Codigo + image.name;
+                    const imageKey = req.body.id + image.name;
                     const uploadParams = {
                         Bucket: 'welderstonebucket',
                         Key: 'Imagenes/' + imageKey,
@@ -255,7 +257,7 @@ try {
             // Single image
             const image = updatedFiles.image2;
             if (image.data !== null) {
-                const imageKey = req.body.Codigo + image.name;
+                const imageKey = req.body.id + image.name;
                 const uploadParams = {
                     Bucket: 'welderstonebucket',
                     Key: 'Imagenes/' + imageKey,
@@ -269,11 +271,11 @@ try {
         }
 
         await Producto.updateOne(
-            { Codigo: req.body.Codigo },
+            { _id: req.body.id },
             { $push: { image2: { $each: images } } }
         );
         await Cart.update(
-            { Codigo: req.body.Codigo },
+            { _id: req.body.id },
             { $push: { image2: { $each: images } } }
         );
     }
@@ -282,11 +284,11 @@ try {
     } finally {
         if (req.body.nombre !== '') {
             await Producto.updateOne(
-                { nombre: req.body.NombreBusqueda },
+                { _id: req.body.id },
                 { $set: { nombre: req.body.nombre } }
             );
             await Cart.update(
-                { nombre: req.body.NombreBusqueda },
+                { _id: req.body.id },
                 { $set: { nombre: req.body.nombre } }
             );
         }
