@@ -139,18 +139,16 @@
                                      
                              
         <% } %>
+                                                                
+        <% if(!loggedIn) { %>
 
+            <a href="/login/welderstone" class="btn btn-danger w-25 edit" class="fa-solid fa-cart-shopping me-2">
+                
 
-
-
-                                
-
-
-
-
-
-
-
+                <i class="fa-solid fa-cart-shopping me-2 edit white-icon"></i>
+              </a>
+            
+              <% } %>
 
                             </div>
                             <div>
@@ -213,7 +211,8 @@
                                                             <% if(cart[b].nombre === relacionados[i].nombre && cart[b].UsuarioId === IdUsuario){ %> 
                                                                 <p>Agregado al carrito</p> 
                                                             <% } %>
-                                                        <% } %>                                 
+                                                        <% } %>     
+
                                                     <% } %>
                                                 </form>
                                             </div>
