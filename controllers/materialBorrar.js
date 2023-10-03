@@ -4,23 +4,16 @@ const Producto = require('../models/Productos.js');
 const Cart = require('../models/Cart');
 
 module.exports = async (req, res) => {
-    await material.deleteOne({ Codigo: req.params.id });
+    await material.deleteOne({ _id: req.params.id });
 
     const ProductosBorrar = await Producto.find({});
 
     for (i = 0; i < ProductosBorrar.length; i++) {
         await Producto.updateOne(
             { _id: ProductosBorrar[i]._id },
-            { $pull: { MaterialesProductos: { Codigo: req.params.id } } }
+            { $pull: { MaterialesProductos: { _id: req.params.id } } }
         );
-        await Producto.updateOne(
-            { _id: ProductosBorrar[i]._id },
-            { $pull: { PinturaProductos: { Codigo: req.params.id } } }
-        );
-        await Producto.updateOne(
-            { _id: ProductosBorrar[i]._id },
-            { $pull: { InstalacionProductos: { Codigo: req.params.id } } }
-        );
+
     }
 
     const productos = await Producto.find({});
