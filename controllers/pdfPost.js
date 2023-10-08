@@ -559,7 +559,7 @@ for (b=0; b<PreciosMateriales.length; b++){
 
 }
 
-
+MaterialSuma = MaterialSuma.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
 
 
     res.render('pdfProducto',{IdUsuario, roles: role,loggedIn: true,IdTransaccion,productodatos,ProductoParaCotizar,MaterialesMostrar,MaterialSuma,Total1R,SubTotalR,TotalFinal,TotalFinalR,Total1RFormateado,MaterialSumaRFormateado,HerrMenor,HerramientaMenor,y,indirectosPrecio,indirectosPrecio2,IvaCalculo

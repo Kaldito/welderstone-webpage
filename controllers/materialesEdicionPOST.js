@@ -12,11 +12,13 @@ module.exports = async (req, res) => {
         if (typeof obj_ids !== 'string') {
             for (let i = 0; i < obj_ids.length; i++) {
                 const params = {};
-
+                if (req.body.Descripcion[i] != '') {
+                    params.Descripcion = req.body.Descripcion[i];
+                }
                 if (req.body.Codigo[i] != '') {
                     params.Codigo = req.body.Codigo[i];
                 }
-
+                
                 if (req.body.Unidad[i] != '') {
                     params.Unidad = req.body.Unidad[i];
                 }
@@ -39,7 +41,9 @@ module.exports = async (req, res) => {
             }
         } else {
             const params = {};
-
+            if (req.body.Descripcion != '') {
+                params.Descripcion = req.body.Descripcion;
+            }
             if (req.body.Codigo != '') {
                 params.Codigo = req.body.Codigo;
             }

@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 const bodyParser = require('body-parser');
 
 const CartSchema = new Schema({
+    _id:{type:String, required: true},
     nombre: { type: String },
     image: { type: String },
     amount: { type: Number },

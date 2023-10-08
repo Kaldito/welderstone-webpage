@@ -262,11 +262,12 @@
                                 <% for (let a = 0; a < materiales.length; a++) { %>
                                     <tr>
                                         <td>
-                                            <%=materiales[a].Codigo%>
+                                            <%=materiales[a].Descripcion%>
+
 
                                         </td>
                                         <td>
-                                            <%=materiales[a].Descripcion%>
+                                            <%=materiales[a].Codigo%>
 
                                         </td>
 
@@ -301,6 +302,10 @@
                                     <tr  hidden class="<%=materiales[a].Codigo%>">
                                         <td>
                                             <!-- Columna de Descripcion  -->
+                                            <div class="form-floating">
+                                                <input type="text" class="form-control" placeholder="Descripcion" id="Descripcion" name="Descripcion" autocomplete="off" disabled>
+                                                <label for="Descripcion">Descripcion</label>
+                                            </div>
                                         </td>
                                         <td>
                                             <div class="form-floating">

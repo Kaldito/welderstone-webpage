@@ -230,6 +230,8 @@ const FiltrosCotizaciones2 = require('./controllers/FiltrosCotizaciones2.js');
 const infoCotizaciones = require('./controllers/infoCotizaciones');
 const AuthArticulos = require('./controllers/AuthArticulos');
 const AuthArticulosPost = require('./controllers/AuthPost');
+const FacturaApi = require('./controllers/FacturaApi');
+const FacturApiPost = require('./controllers/FacturApiPost');
 
 // MercadoPago
 
@@ -458,7 +460,8 @@ app.get('/materiales/:status', nocache, materialesGET);
 app.get('/tienda/busqueda/:filtro', tiendaFiltros);
 app.get('/productos/editar/:Id', nocache, productoEditarGet);
 app.get('/data-form', dataFormGET);
-
+app.get('/FacturaApi',FacturaApi)
+app.post('/FacturApiPost',FacturApiPost)
 // - Google Auth
 app.get(
     '/auth/google',
