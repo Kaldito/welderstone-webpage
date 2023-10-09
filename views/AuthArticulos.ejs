@@ -95,40 +95,21 @@
                                             <br><br>
 
 
-    <!-- Editar producto -->
+
+
+
+                                        </form>
+                                            <!-- Editar producto -->
     <a href="/productos/editar/<%=productos[a]._id%>">
         <button type="button" class="btn btn-primary edit-button custom-button2"><i class="fa-solid fa-pen-to-square"></i></button>
     </a>
 
-    <!-- Borrar Producto -->
-    <a href="#" class="trash-button-link" data-bs-toggle="modal" data-target="#confirmDeleteModal<%= a %>" data-product-name="<%= productos[a].nombre %>">
+    <a href="/productos/borrar/<%= productos[a]._id %>" >
         <button type="button" class="btn btn-dark trash-button custom-button3"><i class="fa-solid fa-trash"></i></button>
     </a>
 
-                                        <!-- Modal de Confirmación -->
-<div class="modal fade" id="confirmDeleteModal<%= a %>" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel<%= a %>" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="confirmDeleteModalLabel<%=a%>">Confirmar eliminación</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ¿Estás seguro de que quieres eliminar el producto "<%= productos[a].nombre %>"?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <a href="/productos/borrar/<%= productos[a]._id %>" class="btn btn-danger">Eliminar</a>
-            </div>
-        </div>
-    </div>
-</div>
 
-                                        </form>
-
-                                        <a
+                                <a
                                             href="/DesplieguePdf?codigo=<%=productos[a].Codigo%>&amp;IdTrans=<%=productos[a]._id%>"><img
                                                 src="./images/productos/PdfLogo.png" alt="Logo PDF" width="60px"
                                                 height="80px" class="pdf"></a>
@@ -223,15 +204,3 @@
   
     }
 </style>
-<script>
-            
-    $(document).on('click', '.trash-button-link', function (event) {
-event.preventDefault();
-const modalId = $(this).data('target');
-const productName = $(this).data('product-name');
-const modalBody = $(modalId).find('.modal-body');
-modalBody.text(`¿Estás seguro de que quieres eliminar el producto "${productName}"?`);
-$(modalId).modal('show');
-});
-
-</script>
