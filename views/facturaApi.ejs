@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+    <%- include('layouts/navbar'); -%>
 
 <head>
     <meta charset="utf-8" />
@@ -23,128 +24,58 @@
         <!-- Fontawesome CDN Link -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="css/FacturApi.css" />
+        <script src="js/facturApi.js"></script>
 
 
 
 </head>
 
 <body>
-    <header>
-        <%- include('layouts/navbar'); -%>
-    </header>
-    <main id="productos-page">
 
+        
+    <h1 class="titulo">Sistema de Facturación Weelderstone</h1>
 
-        <br>
-        <br>
-        <br>
+        <br>        
+        
 
-
-
-
-        <section id="editar-producto">
-           
-<form action="/FacturApiPost" method="POST" enctype="multipart/form-data">
-
-  <!-- Datos del cliente -->
-  <div class="form-floating mb-3">
-    <label for="legal_name">Nombre Legal del Cliente:</label>
-    <input type="text" class="form-control" name="legal_name" id="legal_name" required>
-  </div>
-
-  <div class="form-floating mb-3">
-    <label for="email">Email del Cliente:</label>
-    <input type="email"class="form-control" name="email" id="email" required>
-  </div>
-
-  <div class="form-floating mb-3">
-    <label for="tax_id">RFC o Tax ID del Cliente:</label>
-    <input type="text" class="form-control" name="tax_id" id="tax_id" required>
-  </div>
-
-  <div class="form-floating mb-3">
-    <label for="tax_system">Sistema de Impuestos del Cliente:</label>
-    <input type="text" class="form-control" name="tax_system" id="tax_system" required>
-  </div>
-
-  <!-- Dirección del cliente -->
-  <div class="form-floating mb-3">
-    <label for="country">País:</label>
-    <input type="text" class="form-control" name="addresscountry" id="country" required>
-  </div>
-
-  <div class="form-floating mb-3">
-    <label for="zip">Código Postal:</label>
-    <input type="text" class="form-control" name="addresszip" id="zip" required>
-  </div>
-
-  <div class="form-floating mb-3">
-    <label for="city">Ciudad:</label>
-    <input type="text" class="form-control" name="addresscity" id="city" required>
-  </div>
-
-  <!-- Detalles del producto -->
-  <div class="form-floating mb-3">
-    <label for="quantity">Cantidad:</label>
-    <input type="number" class="form-control" name="quantity" id="quantity" required>
-  </div>
-
-  <div class="form-floating mb-3">
-    <label for="description">Descripción del Producto:</label>
-    <input type="text" class="form-control" name="description" id="description" required>
-  </div>
-  
-  <div class="form-floating mb-3">
-    <label for="description">Product key</label>
-    <input type="text" class="form-control" name="productkey" id="productkey" required>
-  </div>
-  
-  <div class="form-floating mb-3">
-    <label for="description">Precio:</label>
-    <input type="number" class="form-control" name="precio" id="precio" required>
-  </div>
-    
-  <div class="form-floating mb-3">
-    <label for="description">Iva</label>
-    <input type="text" class="form-control" name="iva" id="iva" required>
-  </div>
-
-    
-  <div class="form-floating mb-3">
-    <label for="description">Rate</label>
-    <input type="number" class="form-control" name="rate" id="rate" step="0.01" required>
-  </div>
-
-
-  <!-- Uso, forma de pago, método de pago y condiciones -->
-  <div class="form-floating mb-3">
-    <label for="use">Uso:</label>
-    <input type="text" class="form-control" name="use" id="use" required>
-  </div>
-
-  <div class="form-floating mb-3">
-    <label for="payment_form">Forma de Pago:</label>
-    <input type="text" class="form-control" name="payment_form" id="payment_form" required>
-  </div>
-
-  <div class="form-floating mb-3">
-    <label for="payment_method">Método de Pago:</label>
-    <input type="text" class="form-control" name="payment_method" id="payment_method" required>
-  </div>
-
-  <div class="form-floating mb-3">
-    <label for="conditions">Condiciones:</label>
-    <input type="text" class="form-control" name="conditions" id="conditions" required>
-  </div>
-
-  <!-- Botón de envío -->
-  <div class="col-6" style="text-align: end;">
-    <button type="submit" class="btn btn-danger" id="sendMessageButton">Agregar Artículo</button>
-</div>
-
-</form>
-
+     <section id="editar-producto">
+        <main id="productos-page">
+            <br>
+            <div class="top-buttons">
+                <a href="/FacturApiClientes" class="button">
+                    <i class="bi bi-person"></i>
+                    <span>Clientes</span>
+                </a>
+                <a href="/FacturApiProductos" class="button">
+                    <i class="bi bi-box"></i>
+                    <span>Productos</span>
+                </a>
+                <a href="/FacturApiFactura" class="button">
+                    <i class="bi bi-file-earmark-text"></i>
+                    <span>Facturas</span>
+                </a>
+            </div>
+            
+            <div class="bottom-buttons">
+                <a href="clientes.html" class="button">
+                    <i class="bi bi-receipt"></i>
+                    <span>Recibos</span>
+                </a>
+                <a href="clientes.html" class="button">
+                    <i class="bi bi-file-earmark-text"></i>
+                    <span>Retenciones</span>
+                </a>
+                <a href="clientes.html" class="button">
+                    <i class="bi bi-building"></i>
+                    <span>Organizaciones</span>
+                </a>
+            </div>
+        </main>
     </section>
+
+
+
 
 
 
@@ -169,4 +100,53 @@
 </body>
 
 </html>
+ <style>
+        /* Estilos para los botones */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
 
+        .top-buttons,
+        .bottom-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+        }
+        .button {
+    background-color: #dc3545;
+    color: white;
+    width: 400px; /* Ancho fijo del botón */
+    height: 200px; /* Altura fija del botón */
+    margin: 10px;
+    font-size: 36px; /* Tamaño del texto */
+    border: none;
+    cursor: pointer;
+    border-radius: 10px; /* Redondear los bordes */
+    transition: background-color 0.3s, color 0.3s; /* Animación de transición de colores */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+        .button:hover {
+            background-color: white;
+            color: #dc3545;
+        }
+
+
+
+        .titulo {
+    font-size: 36px;
+    font-weight: bold;
+    color: #000000; /* Color de texto azul, puedes personalizarlo */
+    margin-bottom: 20px;
+    text-align: center;
+}
+    </style>

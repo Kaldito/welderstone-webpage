@@ -17,7 +17,9 @@
         <link rel="stylesheet" href="/css/styles.css"> 
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        
         <!-- FontAwesome-->
         <script src="https://kit.fontawesome.com/360b0549be.js" crossorigin="anonymous"></script>  
     </head>
@@ -31,29 +33,42 @@
                 <div class="row">
                     <div class="col-12 col-lg-5">
 
-                        <div id="carouselExample" class="carousel slide">
+                        <div id="thumbnailCarousel" class="carousel slide">
                             <div class="carousel-inner">
                               <div class="carousel-item active">
                                 <img src="<%= productoDoc.image %>" class="d-block w-100" alt="...">
                               </div>
-
-                                <% for (var a = 0; a < productoDoc.image2.length; a++) { %>
-                                    <div class="carousel-item">
-                                        <img src="<%= productoDoc.image2[a] %>" class="d-block w-100" alt="...">
-                                    </div>
-                                <% } %>
+                              <% for (var a = 0; a < productoDoc.image2.length; a++) { %>
+                                <div class="carousel-item">
+                                  <img src="<%= productoDoc.image2[a] %>" class="d-block w-100" alt="...">
+                                </div>
+                              <% } %>
                             </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                            <button class="carousel-control-prev" type="button" data-bs-target="#thumbnailCarousel" data-bs-slide="prev">
                               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                               <span class="visually-hidden">Previous</span>
                             </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                            <button class="carousel-control-next" type="button" data-bs-target="#thumbnailCarousel" data-bs-slide="next">
                               <span class="carousel-control-next-icon" aria-hidden="true"></span>
                               <span class="visually-hidden">Next</span>
                             </button>
-                        </div>
+                          </div>
+                          
+                          <!-- Carousel of Thumbnails -->
+                          <ul class="image-list">
+                            <li class="image-item">
+                              <img src="<%= productoDoc.image %>" class="d-block w-100" alt="..." data-index="0" onclick="slideToMainCarousel(0)">
+                            </li>
+                            <% for (var a = 0; a < productoDoc.image2.length; a++) { %>
+                              <li class="image-item">
+                                <img src="<%= productoDoc.image2[a] %>" class="d-block w-100" alt="..." data-index="<%= a %>" onclick="slideToMainCarousel(`<%= a +1 %>`)">
+                              </li>
+                            <% } %>
+                          </ul>
+                        
 
-                        <!-- <div class="w3-content w3-display-container">
+                        <!-- <div c
+                            lass="w3-content w3-display-container">
                             <img class="mySlides" src="<%= productoDoc.image %>"  style="width:350px; height:350px">
                             
                             <% for (var a = 0; a < productoDoc.image2.length; a++) { %>
@@ -242,11 +257,33 @@
 
 <style>
 
-.mySlides {display:none;}
+.mySlides {
+  display: none;
+}
+
+.image-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  margin-left: 80px; /* Add margin to the left to move the list to the right */
+}
+
+.image-item {
+  margin-right: 20px;
+}
+
+.image-item:last-child {
+  margin-right: 0;
+}
+
+.image-item img {
+  max-width: 100px;
+  height: auto;
+}
 
 </style>
 <script>
-    var slideIndex = 1;
+var slideIndex = 1;
 showDivs(slideIndex);
 
 function plusDivs(n) {
@@ -256,12 +293,25 @@ function plusDivs(n) {
 function showDivs(n) {
   var i;
   var x = document.getElementsByClassName("mySlides");
-  if (n > x.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = x.length}
+  if (n > x.length) { slideIndex = 1; }
+  if (n < 1) { slideIndex = x.length; }
   for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";  
+    x[i].style.display = "none";
   }
-  x[slideIndex-1].style.display = "block";  
+  x[slideIndex - 1].style.display = "block";
 }
 
+function slideToMainCarousel(index) {
+  // Convert the index to a number (it may be received as a string)
+  index = parseInt(index, 10);
+
+  // Get the number of slides in the main carousel
+  var totalSlides = $('#thumbnailCarousel .carousel-item').length;
+
+  // Check if the index is within the valid range
+  if (!isNaN(index) && index >= 0 && index < totalSlides) {
+    // Slide to the selected image in the main carousel
+    $('#thumbnailCarousel').carousel(index);
+  }
+}
 </script>

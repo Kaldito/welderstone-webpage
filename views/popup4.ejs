@@ -1,0 +1,75 @@
+
+    <div class="popup4">
+        <div class="popup4-content">
+            <span class="close-btn">
+              
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                  <path fill="#000" fill-rule="evenodd" d="M15.15 1.525a.5.5 0 01.708.708L9.707 8l6.15 6.15a.5.5 0 01-.708.708L8 8.707l-6.15 6.15a.5.5 0 01-.708-.708L7.293 8 .143 1.85a.5.5 0 01.708-.708L8 7.293l6.15-6.15z"/>
+                </svg>
+              </span>
+
+
+            <ul>
+                <% if (searchResult.address.zip) { %>
+                    <li>Código Postal: <%= searchResult.address.zip %></li>
+                <% } %>
+                <% if (searchResult.address.street) { %>
+                    <li>Calle: <%= searchResult.address.street %></li>
+                <% } %>
+                <% if (searchResult.address.exterior) { %>
+                    <li>Número Exterior: <%= searchResult.address.exterior %></li>
+                <% } %>
+                <% if (searchResult.address.interior) { %>
+                    <li>Número Interior: <%= searchResult.address.interior %></li>
+                <% } %>
+                <% if (searchResult.address.neighborhood) { %>
+                    <li>Colonia: <%= searchResult.address.neighborhood %></li>
+                <% } %>
+                <% if (searchResult.address.city) { %>
+                    <li>Ciudad: <%= searchResult.address.city %></li>
+                <% } %>
+                <% if (searchResult.address.municipality) { %>
+                    <li>Municipio: <%= searchResult.address.municipality %></li>
+                <% } %>
+                <% if (searchResult.address.state) { %>
+                    <li>Estado: <%= searchResult.address.state %></li>
+                <% } %>
+                <% if (searchResult.address.country) { %>
+                    <li>País: <%= searchResult.address.country %></li>
+                <% } %>
+            </ul>
+      
+    
+
+    
+        </div>
+      </div>
+
+      <style>
+        .form-label{
+          width:300px;
+        }
+    .custom-select {
+      appearance: none;
+      background-color: #ffffff;
+      border: 1px solid #cccccc;
+      border-radius: 5px;
+      color: #555555;
+      font-size: 16px;
+      padding: 10px;
+      width: 100%;
+    }
+    
+    .custom-select:focus {
+      outline: none;
+      border-color: #2196F3;
+      box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2);
+    }
+    
+    .custom-select option {
+      background-color: #ffffff;
+      color: #555555;
+    }
+    
+      </style>
+    

@@ -232,7 +232,22 @@ const AuthArticulos = require('./controllers/AuthArticulos');
 const AuthArticulosPost = require('./controllers/AuthPost');
 const FacturaApi = require('./controllers/FacturaApi');
 const FacturApiPost = require('./controllers/FacturApiPost');
-
+const FacturApiClientes = require('./controllers/FacturApiClientes');
+const CrearCliente = require('./controllers/CrearCliente');
+const BorrarCliente = require('./controllers/BorrarCliente');
+const EditarCliente = require('./controllers/EditarCliente');
+const EditarClientePOST = require('./controllers/EditarClientePOST');
+const BuscarCliente = require('./controllers/BuscarCliente')
+const FacturApiProductos = require('./controllers/FacturApiProductos')
+const FacturApiBuscarProducto= require('./controllers/FacturApiBuscarProducto')
+const FacturApiCrearProductos = require('./controllers/FacturApiCrearProductos')
+const FacturApiEditarProductos = require('./controllers/FacturApiEditarProductos')
+const FacturApiEditarProductosPOST = require('./controllers/FacturApiEditarProductosPOST')
+const FacturApiBorrarProductos = require('./controllers/FacturApiBorrarProductos')
+const FacturApiFactura = require('./controllers/FacturApiFactura')
+const FacturApiCrearFactura= require('./controllers/FacturApiCrearFactura')
+const FacturApiDescargar = require('./controllers/FacturApiDescargar')
+const FacturApiCorreo = require('./controllers/FacturApiCorreo')
 // MercadoPago
 
 // global.CantidadCarro = await cart.find({}).count()
@@ -462,6 +477,19 @@ app.get('/productos/editar/:Id', nocache, productoEditarGet);
 app.get('/data-form', dataFormGET);
 app.get('/FacturaApi',FacturaApi)
 app.post('/FacturApiPost',FacturApiPost)
+app.get('/FacturApiClientes',FacturApiClientes)
+app.get('/FacturApiProductos',FacturApiProductos)
+app.post('/FacturApiBuscarProducto',FacturApiBuscarProducto)
+app.post('/FacturApiCrearProductos',FacturApiCrearProductos)
+app.get('/FacturApiEditarProductos/:id',FacturApiEditarProductos)
+app.post('/FacturApiEditarProductosPOST',FacturApiEditarProductosPOST)
+app.use('/FacturApiBorrarProductos/:id',FacturApiBorrarProductos)
+
+app.get('/FacturApiFactura',FacturApiFactura)
+app.post('/FacturApiCrearFactura',FacturApiCrearFactura)
+app.use('/FacturApiDescargar/:id',FacturApiDescargar)
+app.post('/FacturApiCorreo',FacturApiCorreo)
+
 // - Google Auth
 app.get(
     '/auth/google',
@@ -604,7 +632,12 @@ app.post('/infoEnvios', infoEnvios);
 app.post('/infoCotizaciones', infoCotizaciones);
 
 app.post('/FiltroEnviosPost', FiltroEnviosPost);
-
+//FacturAPI
+app.post('/CrearCliente',CrearCliente)
+app.use('/BorrarCliente/:id', BorrarCliente);
+app.get('/EditarCliente/FacturApi/:id',EditarCliente)
+app.post('/EditarClientePOST',EditarClientePOST)
+app.post('/BuscarCliente',BuscarCliente)
 app.get('/popup/:id', async (req, res) => {
     const compra = require('./models/compra');
     let role = 'viewer';
@@ -648,6 +681,49 @@ app.get('/popup3/:id', async (req, res) => {
         roles: role,
         loggedIn: logged,
         cotizaciones,
+    });
+});
+app.get('/popup4/:id', async (req, res) => {
+    const Facturapi = require('facturapi');
+    const facturapi = new Facturapi('sk_test_zlaq7E1LdVog4PWbyJ4q3Aer9GNY8xDQ635JGprAw2');
+    const id = req.params.id;
+    const searchResult = await facturapi.customers.retrieve(id);
+
+    let role = 'viewer';
+    let logged = false;
+    if (req.session?.passport?.user != undefined) {
+        role = req.session.passport.user.role;
+        logged = true;
+    }
+
+    const content = `This is popup ${id}`;
+    res.render('popup4', {
+  
+        roles: role,
+        loggedIn: logged,
+        searchResult
+        
+    });
+});
+app.get('/popup5/:id', async (req, res) => {
+    const Facturapi = require('facturapi');
+    const facturapi = new Facturapi('sk_test_zlaq7E1LdVog4PWbyJ4q3Aer9GNY8xDQ635JGprAw2');
+    const id = req.params.id;
+
+    let role = 'viewer';
+    let logged = false;
+    if (req.session?.passport?.user != undefined) {
+        role = req.session.passport.user.role;
+        logged = true;
+    }
+
+    const content = `This is popup ${id}`;
+    res.render('popup5', {
+  
+        roles: role,
+        loggedIn: logged,
+        id
+        
     });
 });
 

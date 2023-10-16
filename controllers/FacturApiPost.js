@@ -8,8 +8,8 @@ module.exports = async(req,res)=>{
         try {
             const { legal_name, email, tax_id,tax_system,addresszip,quantity, description,use,payment_form,productkey,precio,rate,iva } = req.body;
     
-            // Crea una instancia del cliente Facturapi con tu clave secreta
-            const facturapi = new Facturapi('sk_test_zlaq7E1LdVog4PWbyJ4q3Aer9GNY8xDQ635JGprAw2');
+            // Crea una instancia del cliente Facturapi con tu clave secreta 
+            const facturapi = new Facturapi('sk_test_EmR5KOQwAW391DLgBqLg0Rrle6VnG742MzdPlpZvaj');
     
             // Crea una factura usando los datos del formulario
             const invoice = await facturapi.invoices.create({
