@@ -4,7 +4,8 @@ module.exports = async (req,res)=>{
         role = req.session.passport.user.role;
     }
     if (
-        role == "admin"
+        role == "admin" || 
+        role == "contador"
 
     ) {
 
