@@ -10,7 +10,7 @@ module.exports = async (req,res)=>{
 
         
             //console.log(productos)
-            res.render("FacturaApi", {
+            res.render("facturaApi", {
                 roles: role,
                 loggedIn: true,
             });
