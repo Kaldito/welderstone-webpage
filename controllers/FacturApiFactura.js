@@ -23,7 +23,7 @@ module.exports = async (req,res)=>{
             limit: 100
           });
 
-console.log(productos)
+console.log(invoiceSearch)
                 res.render('FacturApiFactura',{roles: role, loggedIn: logged,invoiceSearch,clientes,productos})
          
             } catch (error) {

@@ -93,10 +93,14 @@
                             <li>
                                 <a class="dropdown-item" href="/AuthArticulos">Autorizar Articulos </a>
                             </li>
+
+                        <% } %> 
+                        <% if(roles  === "admin" || roles === "contador") { %> 
                             <li>
                                 <a class="dropdown-item" href="/FacturaApi">FacturApi </a>
                             </li>
-                        <% } %> 
+                            <% } %> 
+
                         <!--
                         <li>
                             <a class="dropdown-item" href="/HistorialCompras">Historial</a>

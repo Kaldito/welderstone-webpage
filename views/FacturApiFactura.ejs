@@ -49,7 +49,7 @@
                     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
                             <form action="/FacturApiCrearFactura" method="post">
-                                <button id="openPopupButton">ID del objeto a obtener</button>
+                                <button id="openPopupButton">Producto</button>
                                 <!-- Pop-up 1 -->
                                 <div id="popup">
 
@@ -63,7 +63,7 @@
 
 
 
-                                    <!-- Botón en el pop-up 1 -->
+                                   <!-- Botón en el pop-up 1 -->
                                     <button type="button" class="closePopupButton" id="closePopupButton">Cerrar</button>
                                 </div>
 
@@ -79,9 +79,10 @@
                                 <input type="text" id="product_id" name="product_id">
                             -->
                                 <br>
+                                <br>
 
                                 <!-- Botón para abrir el segundo pop-up -->
-                                <button id="openPopupButton2">ID del cliente</button>
+                                <button id="openPopupButton2">Cliente</button>
                                 <!-- Pop-up 2 -->
                                 <div id="popup2">
 
@@ -112,23 +113,28 @@
 
 
                                 <hr>
-                            
+                                <div class="form-floating">
+
                                 <label for="payment_code">Código de Pago (2 caracteres):</label>
-                                <input type="text" id="payment_code" name="payment_code" required minlength="2" maxlength="2">
-                                
+                                <input class="form-control" type="text" id="payment_code" name="payment_code" required minlength="2" maxlength="2">
+                            </div>
+
                                 <br>
-                                
+                                <div class="form-floating">
+
                                 <label for="folio_number">Número de Folio:</label>
-                                <input type="number" id="folio_number" name="folio_number" value="autoincremental">
-                                
+                                <input class="form-control" type="number" id="folio_number" name="folio_number" value="autoincremental">
+                            </div>
+
                                 <br>
-                                
+                                <div class="form-floating">
+
                                 <label for="series">Serie (máximo 25 caracteres):</label>
-                                <input type="text" id="series" name="series" maxlength="25">
-                                
+                                <input class="form-control" type="text" id="series" name="series" maxlength="25">
+                                </div>
                                 <br>
                                 
-                                <input type="submit" value="Enviar">
+                                <input class="btn btn-danger" type="submit" value="Enviar">
                               </form>
                               
                         </div>
@@ -144,8 +150,8 @@
             <div class="card-body ">
                 <div class="mb-4">
 
-                     <form action="/" method="POST">
-                    <input type="text" id="nombreProductoInput" name="NombreABuscar" aria-label="Buscar el nombre del artículo" class="form-control espec1" placeholder="Ingresar el nombre del cliente" class="form-control">
+                     <form action="/FacturApiBuscarF" method="POST">
+                    <input type="text" id="nombreProductoInput" name="Nombre" aria-label="Buscar el nombre del artículo" class="form-control espec1" placeholder="Ingresar el nombre del cliente" class="form-control">
                     <br>
                     <div class="text-center"> <!-- Agregamos una clase text-center para centrar el botón -->
                         <button class="btn btn-danger">Buscar</button>
@@ -168,8 +174,11 @@
         <li>
             <p>Customer: <%= invoice.customer.legal_name %></p>
             <p>Folio: <%= invoice.folio_number %></p>
-            <a><%= invoice.verification_url %></a>
         </li>
+        <a href="<%= invoice.verification_url %>">
+            <button type="button" class="btn btn-primary w-80 edit-button"><i class="fa fa-external-link"></i></button>
+
+        </a>
         <a href="/EditarFactura/<%= invoice.id%>">
             <button type="button" class="btn btn-primary w-80 edit-button"><i class="fa-solid fa-pen-to-square"></i></button>
         </a>

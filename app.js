@@ -73,7 +73,7 @@ passport.use(
         {
             clientID: process.env.GOOGLE_CLIENT_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-            callbackURL: 'ttp://welderstone.com/auth/google/welderstone',
+            callbackURL: 'http://localhost:3000/auth/google/welderstone',
         },
         // http://welderstone.com/auth/google/welderstone
         // http://localhost:3000/auth/google/welderstone
@@ -248,6 +248,7 @@ const FacturApiFactura = require('./controllers/FacturApiFactura')
 const FacturApiCrearFactura= require('./controllers/FacturApiCrearFactura')
 const FacturApiDescargar = require('./controllers/FacturApiDescargar')
 const FacturApiCorreo = require('./controllers/FacturApiCorreo')
+const FacturApiBuscarF = require('./controllers/FacturApiBuscarF')
 // MercadoPago
 
 // global.CantidadCarro = await cart.find({}).count()
@@ -489,7 +490,7 @@ app.get('/FacturApiFactura',FacturApiFactura)
 app.post('/FacturApiCrearFactura',FacturApiCrearFactura)
 app.use('/FacturApiDescargar/:id',FacturApiDescargar)
 app.post('/FacturApiCorreo',FacturApiCorreo)
-
+app.post('/FacturApiBuscarF',FacturApiBuscarF)
 // - Google Auth
 app.get(
     '/auth/google',

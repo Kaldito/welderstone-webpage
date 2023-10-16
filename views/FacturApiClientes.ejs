@@ -264,7 +264,7 @@
                             <td><%= customer.tax_id || 'N/A' %></td>
                             <td><%= customer.tax_system || 'N/A' %></td>
                             <td>
-                               <button class="edit-btn" onclick="openPopup4(`<%= customer.id%>`)">Info</button>
+                                <button class="edit-btn green-button" onclick="openPopup4('<%= customer.id %>')">Info</button>
                                 
                             </td>
                             <td><%= customer.email || 'N/A' %></td>
@@ -341,6 +341,15 @@
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
+.green-button {
+  background-color: green;
+  color: white; /* Text color, can be adjusted as needed */
+  border: none;
+  padding: 10px 20px; /* Adjust padding as needed */
+  cursor: pointer;
+  /* Add any other styles you want for the button */
+}
+
 </style>
 <script>
     const showFormButton = document.getElementById("showFormButton");

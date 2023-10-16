@@ -86,6 +86,23 @@ module.exports = async (req, res) => {
                     FiltroPaginado,
                     Filtro,
                 });
+                
+            }
+            if (Filtro === 'contador') {
+                const usuarios = await User.paginate(
+                    { role: 'contador' },
+                    { page: 1, limit: 50 }
+                );
+                const FiltroPaginado = true;
+
+                res.render('PanelUsuarios', {
+                    usuarios,
+                    roles: role,
+                    loggedIn: true,
+                    FiltroPaginado,
+                    Filtro,
+                });
+                
             }
         } else if (page != undefined) {
             var Filtro = req.query.Filtro;
@@ -168,10 +185,25 @@ module.exports = async (req, res) => {
                     Filtro,
                 });
             }
+            if (Filtro === 'contador') {
+                const usuarios = await User.paginate(
+                    { role: 'contador' },
+                    { page, limit: 50 }
+                );
+                const FiltroPaginado = true;
+
+                res.render('PanelUsuarios', {
+                    usuarios,
+                    roles: role,
+                    loggedIn: true,
+                    FiltroPaginado,
+                    Filtro,
+                });
+            }
         }
     } else {
         res.redirect('/');
     }
 };
-
+//contador
 // db.test.find().sort({ firstName: 1 }).collation({ locale: "en", caseLevel: true })

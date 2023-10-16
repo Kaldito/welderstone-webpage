@@ -39,6 +39,7 @@
                 <option value="Proyectos" >Proyectos </option>
                 <option value="Cotizacion" >Cotización </option>
                 <option value="costumer" >Comprador </option>
+                <option value="contador">Contador </option>
 
               </select>
               <button type="submit" class="btn btn-info btn-sm">Filtrar</button>
@@ -95,6 +96,8 @@
                 <option value="Proyectos" >Proyectos </option>
                 <option value="Cotizacion" >Cotización </option>
                 <option value="costumer" >Comprador </option>
+                <option value="contador">Contador </option>
+
 
                 
                 <% } %> 
@@ -106,6 +109,8 @@
                     <option value="Proyectos" >Proyectos </option>
                     <option value="Cotizacion" >Cotización </option>
                     <option value="costumer" >Comprador </option>
+                    <option value="contador">Contador </option>
+
     
                     <% } %> 
                     <% if( usuarios.docs[a].role === 'Proyectos' ){ %>
@@ -116,6 +121,8 @@
                         <option value="Proyectos" Selected>Proyectos </option>
                         <option value="Cotizacion" >Cotización </option>
                         <option value="costumer" >Comprador </option>
+                        <option value="contador">Contador </option>
+
     
                         
                         <% } %> 
@@ -128,6 +135,8 @@
                             <option value="Proyectos" >Proyectos </option>
                             <option value="Cotizacion" Selected>Cotización </option>
                             <option value="costumer" >Comprador </option>
+                            <option value="contador">Contador </option>
+
     
                             
                             <% } %> 
@@ -141,9 +150,23 @@
                                 <option value="Proyectos" >Proyectos </option>
                                 <option value="Cotizacion" >Cotización </option>
                                 <option value="costumer"Selected>Comprador </option>
+                                <option value="contador">Contador </option>
+
     
                                 
                                 <% } %> 
+                                <% if( usuarios.docs[a].role === 'contador' ){ %>
+    
+    
+                                  <option value="admin" >Admin</option>
+                                  <option value="Ventas" >Ventas</option>
+                                  <option value="Proyectos" >Proyectos </option>
+                                  <option value="Cotizacion" >Cotización </option>
+                                  <option value="costumer">Comprador </option>
+                                  <option value="contador" Selected>Contador </option>
+
+                                  
+                                  <% } %> 
 
                             </select>
                             <input type="hidden" value="<%= usuarios.docs[a].googleId%>" name="UsuarioId">
