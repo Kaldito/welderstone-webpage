@@ -1,5 +1,5 @@
 const Facturapi = require('facturapi');
-const facturapi = new Facturapi('sk_test_zlaq7E1LdVog4PWbyJ4q3Aer9GNY8xDQ635JGprAw2');
+const facturapi = new Facturapi('sk_test_EmR5KOQwAW391DLgBqLg0Rrle6VnG742MzdPlpZvaj');
 module.exports = async (req,res)=>{
 
     let role = "viewer";

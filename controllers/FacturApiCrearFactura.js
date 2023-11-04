@@ -1,6 +1,6 @@
 
 const Facturapi = require('facturapi');
-const facturapi = new Facturapi('sk_test_zlaq7E1LdVog4PWbyJ4q3Aer9GNY8xDQ635JGprAw2');
+const facturapi = new Facturapi('sk_test_EmR5KOQwAW391DLgBqLg0Rrle6VnG742MzdPlpZvaj');
 module.exports = async (req,res)=>{
   console.log(req.body)
     try {
@@ -9,10 +9,12 @@ module.exports = async (req,res)=>{
                 product_id,
                 folio_number,
                 series,
-                payment_code 
+                payment_code,
+                use 
           } = req.body;
-
+console.log(Number(folio_number))
           const invoice = await facturapi.invoices.create({
+            use: use,
             customer: 
                 idCustomer,
             items: [{
@@ -20,7 +22,7 @@ module.exports = async (req,res)=>{
               product: product_id
             }],
             payment_form: payment_code,
-            folio_number: folio_number,
+            folio_number: Number(folio_number),
             series: series
           });
 

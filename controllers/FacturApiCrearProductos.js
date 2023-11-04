@@ -1,7 +1,12 @@
 const Facturapi = require('facturapi');
-const facturapi = new Facturapi('sk_test_zlaq7E1LdVog4PWbyJ4q3Aer9GNY8xDQ635JGprAw2');
+const facturapi = new Facturapi('sk_test_EmR5KOQwAW391DLgBqLg0Rrle6VnG742MzdPlpZvaj');
 module.exports = async (req,res)=>{
-
+  let role = "viewer";
+  let logged = false; 
+  if(req.session?.passport?.user != undefined){
+      role = req.session.passport.user.role;
+      logged = true;
+  }
     try {
         const { descriptionProducto, 
             keyProducto, 
@@ -58,7 +63,9 @@ module.exports = async (req,res)=>{
           });
         // Envía una respuesta al cliente
 
-        res.render('FacturApiProductos', { product });
+        //res.render('FacturApiProductos', { product,roles: role, loggedIn: logged, });
+        res.send(`<script>alert("¡Producto creado con éxito!"); window.location.href="/FacturApiProductos";</script>`);
+
     } catch (error) {
         console.error('Error:', error);
         res.status(500).send('Error interno del servidor');

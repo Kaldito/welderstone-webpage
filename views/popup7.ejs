@@ -1,6 +1,6 @@
 
-<div class="popup5">
-    <div class="popup5-content">
+<div class="popup7">
+    <div class="popup7-content">
         <span class="close-btn">
           
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
@@ -8,35 +8,47 @@
             </svg>
           </span>
 
-          <form action="/FacturApiCorreo" method="POST">
+          <form action="/Recibos/CorreoRecibos" method="POST">
+            <input type="hidden" id="reciboID" name="reciboID" value="<%=id%>" required><br>
+    
             <div class="form-floating">
+              <div class="form-floating">
 
-            <input class="form-control" type="hidden" id="facturaID" name="facturaID" value="<%=id%>" required><br>
-          </div>
-          <div class="form-floating">
+                <input class="form-control" type="email" id="email" name="email" placeholder=" " required>
+                <label for="Correo">Correo:</label>
+    
+              </div>
+    
 
-            <input class="form-control" type="email" id="email" name="email" placeholder=" " required>
-            <label for="Correo">Correo:</label>
-
-          </div>
-
-            <br>
-            <div class="centrar">
-
-            <input class="btn btn-danger" type="submit" value="Enviar factura">
             </div>
+            <br>
+
+<div class="centrar">
+
+    <input type="submit" class="btn btn-danger" value="Enviar">
+
+</div>
+
 
         </form>
+<!--
+<form action="/FacturApiCanDown" method="POST">
+    <input type="hidden" id="facturaID" name="facturaID" value="<%=id%>" required><br>
 
 
+    
+    <input type="submit" class="btn btn-danger" value="PDF">
+
+</form>
+-->
 
     </div>
   </div>
 
   <style>
-                .centrar {
+            .centrar {
 text-align: center;
-} 
+}
     .form-label{
       width:300px;
     }

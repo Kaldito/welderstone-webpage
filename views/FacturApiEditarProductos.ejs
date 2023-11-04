@@ -22,7 +22,7 @@
     <!-- NAVBAR -->
     <%- include('layouts/navbar'); -%>
 
-    <section id="presentation">
+    <section id="agregar-producto">
         <div class="accordion-body">
         
             <div class="card border-danger">
@@ -35,7 +35,7 @@
 
                             <div class="form-floating">
                             <input  class="form-control" type="text" id="description" name="description" value="<%=product.description%>"><br>
-                            <label class="form-control" for="description">Descripción del bien o servicio como aparecerá en la factura:</label>
+                            <label for="description">Descripción del bien o servicio como aparecerá en la factura:</label>
 
                         </div>
 
@@ -54,24 +54,30 @@
 
                         </div>
 
-                            <div class="form-floating">
 
+                            <div class="form-floating">
+ 
+                            <select class="form-control" id="tax_included" name="tax_included">
+
+                                <option value="true" <% if (product.tax_included === true) { %>selected<% } %>>Sí</option>
+                                <option value="false" <% if (product.tax_included === false) { %>selected<% } %>>No</option>
+                            </select>
                             <label for="tax_included">¿Impuestos incluidos en el precio?</label>
-                            <select id="tax_included" name="tax_included">
-                                <option value="true">Sí</option>
-                                <option value="false">No</option>
-                            </select><br>
+
+                            <br>
                         </div>
-
+<br>
                             <div class="form-floating">
-                                <label for="taxability">Código que representa si el bien o servicio es objeto de impuesto:</label>
 
-                            <select id="taxability" name="taxability">
-                                <option value="01">No objeto de impuesto</option>
-                                <option value="02">Sí objeto de impuesto</option>
-                                <option value="03">Sí objeto de impuesto, pero no obligado a desglose</option>
-                                <option value="04">Sí objeto de impuesto, y no causa impuesto</option>
-                            </select><br>
+                            <select class="form-control" id="taxability" name="taxability">
+                                <option value="01" <% if (product.taxability === "01") { %>selected<% } %>>No objeto de impuesto</option>
+                                <option value="02" <% if (product.taxability === "02") { %>selected<% } %>>Sí objeto de impuesto</option>
+                                <option value="03" <% if (product.taxability === "03") { %>selected<% } %>>Sí objeto de impuesto, pero no obligado a desglose</option>
+                                <option value="04" <% if (product.taxability === "04") { %>selected<% } %>>Sí objeto de impuesto, y no causa impuesto</option>
+                            </select>
+                            <label for="taxability">Código que representa si el bien o servicio es objeto de impuesto:</label>
+
+                            <br>
 
                         </div>
 
@@ -85,66 +91,71 @@
 
                             <div class="form-floating">
 
-                            <input class="form-control" type="number" id="tax_base" name="tax_base" value="<%=product%>"><br>
+                            <input class="form-control" type="number" id="tax_base" name="tax_base" value="<%=product.taxes[0].base%>"><br>
                             <label for="tax_base">Base del impuesto:</label>
 
                         </div>
 
                             <div class="form-floating">
 
-                            <input class="form-control" type="text" id="tax_type" name="tax_type" value="<%=product.taxes[0].type%>"><br><
+                            <input class="form-control" type="text" id="tax_type" name="tax_type" value="<%=product.taxes[0].type%>"><br>
                             <label for="tax_type">Tipo de impuesto:</label>
 
                         </div>
 
                             <div class="form-floating">
 
+                            <select class="form-control" id="tax_factor" name="tax_factor">
+                                <option value="Tasa" <% if (product.taxes[0].factor === "Tasa") { %>selected<% } %>>Tasa</option>
+                                <option value="Cuota" <% if (product.taxes[0].factor === "Cuota") { %>selected<% } %>>Cuota</option>
+                                <option value="Exento" <% if (product.taxes[0].factor === "Exento") { %>selected<% } %>>Exento</option>
+                            </select>
                             <label for="tax_factor">Tipo factor:</label>
-                            <select id="tax_factor" name="tax_factor">
-                                <option value="Tasa">Tasa</option>
-                                <option value="Cuota">Cuota</option>
-                                <option value="Exento">Exento</option>
-                            </select><br>
+
+                            <br>
                         </div>
 
                             <div class="form-floating">
 
+                            <select class="form-control" id="tax_withholding" name="tax_withholding">
+                                <option value="true" <% if (product.taxes[0].withholding === true) { %>selected<% } %>>Sí</option>
+                                <option value="false" <% if (product.taxes[0].withholding === false) { %>selected<% } %>>No</option>
+                            </select>
                             <label for="tax_withholding">¿Impuesto retenido?</label>
-                            <select id="tax_withholding" name="tax_withholding">
-                                <option value="true">Sí</option>
-                                <option value="false">No</option>
-                            </select><br>
+                            <br>
                         </div>
 
                             <div class="form-floating">
 
                             <!-- Local Taxes (impuestos locales) -->
-                            <input class="form-control" type="number" id="local_tax_rate" name="local_tax_rate" value="<%=product%>"><br>
+                            <input class="form-control" type="number" id="local_tax_rate" name="local_tax_rate" value="<%=product.local_taxes[0].rate%>"><br>
                             <label for="local_tax_rate">Tasa de impuesto local (fracción decimal):</label>
 
                         </div>
 
                             <div class="form-floating">
 
-                            <input class="form-control" type="text" id="local_tax_type" name="local_tax_type" value="<%=product%>"><br>
+                            <input class="form-control" type="text" id="local_tax_type" name="local_tax_type" value="<%=product.local_taxes[0].type%>"><br>
                             <label for="local_tax_type">Nombre del impuesto local:</label>
 
                         </div>
 
                             <div class="form-floating">
 
-                            <input class="form-control" ype="number" id="local_tax_base" value="<%=product%>"><br>
+                            <input class="form-control" ype="number" id="local_tax_base" value="<%=product.local_taxes[0].base%>"><br>
                             <label for="local_tax_base">Base del impuesto local:</label>
 
                         </div>
 
                             <div class="form-floating">
 
+                            <select class="form-control" id="local_tax_withholding" name="local_tax_withholding">
+                                <option value="true" <% if (product.local_taxes[0].withholding === true) { %>selected<% } %>>Sí</option>
+                                <option value="false" <% if (product.local_taxes[0].withholding === false) { %>selected<% } %>>No</option>
+                            </select>
                             <label for="local_tax_withholding">¿Impuesto local retenido?</label>
-                            <select id="local_tax_withholding" name="local_tax_withholding">
-                                <option value="true">Sí</option>
-                                <option value="false">No</option>
-                            </select><br>
+
+                            <br>
                         </div>
 
                             <div class="form-floating">
@@ -167,8 +178,10 @@
                             <label for="sku">Identificador de uso interno:</label>
 
                     </div>
-                            <input class="form-control" type="submit" value="Editar Objeto">
+                    <div class="centrar">
 
+                            <input class="btn btn-danger" type="submit" value="Editar Producto">
+</div>
 
 
 
@@ -184,3 +197,8 @@
 
 </body>
 </html>
+<style>
+    .centrar {
+text-align: center;
+}
+</style>

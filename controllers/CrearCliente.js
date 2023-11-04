@@ -1,6 +1,6 @@
 const express = require('express');
 const Facturapi = require('facturapi');
-const facturapi = new Facturapi('sk_test_zlaq7E1LdVog4PWbyJ4q3Aer9GNY8xDQ635JGprAw2');
+const facturapi = new Facturapi('sk_test_EmR5KOQwAW391DLgBqLg0Rrle6VnG742MzdPlpZvaj');
 
 module.exports =async (req,res)=>{
     console.log(req.body)
@@ -44,14 +44,14 @@ module.exports =async (req,res)=>{
         // Envía una respuesta al cliente
         //`<script>alert("Se ha registrado al paciente. Número de fólio: ${nuevoId}"); window.location.href="/form";</script>`
         //res.send('Cliente creada y enviada correctamente.');
-        res.send(`<script>alert("Cliente creado y enviado correctamente. window.location.href="/FacturApiClientes";</script>`);
+        res.send(`<script>alert("Cliente creado y enviado correctamente."); window.location.href='/FacturApiClientes';</script>`);
 
         console.log(customer);
     } catch (error) {
         console.error('Error:', error);
         //res.status(500).send('Error interno del servidor');
         //res.status(500).send('Error interno del servidor');
-        res.send(`<script>alert("Error interno del servidor. window.location.href="/FacturApiClientes";</script>`);
+        res.send(`<script>alert("Error interno del servidor."); window.location.href='/FacturApiClientes';</script>`);
 
     }
 }

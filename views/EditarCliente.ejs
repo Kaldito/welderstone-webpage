@@ -37,35 +37,35 @@
             <br>
             <div class="form-floating">
 
-            <input class="form-control" type="text" id="nombreCliente" name="nombreCliente" placeholder="Nombre del Cliente">
+            <input class="form-control" type="text" id="nombreCliente" name="nombreCliente" placeholder="Nombre del Cliente" value="<%=customer.legal_name%>">
             <label for="nombreCliente">Nombre del Cliente:</label>
 
             </div>
             <br> 
             <div class="form-floating">
 
-            <input class="form-control" type="text" id="taxIdCliente" name="taxIdCliente" placeholder="RFC">
+            <input class="form-control" type="text" id="taxIdCliente" name="taxIdCliente" placeholder="RFC" value="<%=customer.tax_id%>">
             <label for="taxIdCliente">RFC:</label>
         </div>
 
             <br>
             <div class="form-floating">
 
-          <input class="form-control" type="number" id="taxSystemCliente" name="taxSystemCliente" maxlength="3" placeholder="Clave del régimen fiscal">
+          <input class="form-control" type="number" id="taxSystemCliente" name="taxSystemCliente" maxlength="3" placeholder="Clave del régimen fiscal" value="<%=customer.tax_system%>">
           <label for="taxSystemCliente">Clave del régimen fiscal:</label>
         </div>
 
           <br>
           <div class="form-floating">
 
-          <input class="form-control" type="number" id="phoneCliente" name="phoneCliente" placeholder="Teléfono del Cliente">
+          <input class="form-control" type="number" id="phoneCliente" name="phoneCliente" placeholder="Teléfono del Cliente" value="<%=customer.phone%>">
           <label for="phoneCliente">Teléfono del Cliente:</label>
         </div>
 
           <br>
           <div class="form-floating">
 
-            <input class="form-control" type="email" id="emailCliente" name="emailCliente" placeholder=">Email del Cliente">
+            <input class="form-control" type="email" id="emailCliente" name="emailCliente" placeholder=">Email del Cliente" value="<%=customer.email%>">
             <label for="emailCliente">Email del Cliente:</label>
 
             <br>
@@ -74,63 +74,63 @@
             <h3>Domicilio</h3>
             <div class="form-floating">
 
-          <input class="form-control" type="number" id="zipCliente" name="zipCliente" placeholder="ódigo Postal">
+          <input class="form-control" type="number" id="zipCliente" name="zipCliente" placeholder="Código Postal" value="<%=customer.address.zip%>">
           <label for="zipCliente">Código Postal:</label>
         </div>
 
           <br>
           <div class="form-floating">
 
-          <input class="form-control" type="text" id="streetCliente" name="streetCliente" placeholder="Calle">
+          <input class="form-control" type="text" id="streetCliente" name="streetCliente" placeholder="Calle" value="<%=customer.address.street%>">
           <label for="streetCliente">Calle:</label>
         </div>
 
           <br>
           <div class="form-floating">
 
-          <input class="form-control" type="number" id="exteriorCliente" name="exteriorCliente" placeholder="Número Exterior">
+          <input class="form-control" type="number" id="exteriorCliente" name="exteriorCliente" placeholder="Número Exterior" value="<%=customer.address.exterior%>">
           <label for="exteriorCliente">Número Exterior:</label>
         </div>
 
           <br>
           <div class="form-floating">
 
-          <input class="form-control" type="number" id="interiorCliente" name="interiorCliente" placeholder="Número Interior">
+          <input class="form-control" type="number" id="interiorCliente" name="interiorCliente" placeholder="Número Interior" value="<%=customer.address.interior%>">
           <label for="interiorCliente">Número Interior:</label>
         </div>
 
           <br>
           <div class="form-floating">
 
-          <input class="form-control" type="text" id="neighborhoodCliente" name="neighborhoodCliente" placeholder="Colonia">
+          <input class="form-control" type="text" id="neighborhoodCliente" name="neighborhoodCliente" placeholder="Colonia" value="<%=customer.address.neighborhood%>">
           <label for="neighborhoodCliente">Colonia:</label>
         </div>
 
           <br>
           <div class="form-floating">
 
-          <input class="form-control" type="text" id="cityCliente" name="cityCliente" placeholder="Ciudad">
+          <input class="form-control" type="text" id="cityCliente" name="cityCliente" placeholder="Ciudad" value="<%=customer.address.city%>">
           <label for="cityCliente">Ciudad:</label>
         </div>
 
           <br>
           <div class="form-floating">
 
-          <input class="form-control" type="text" id="municipalityCliente" name="municipalityCliente" placeholder="Municipio">
+          <input class="form-control" type="text" id="municipalityCliente" name="municipalityCliente" placeholder="Municipio" value="<%=customer.address.municipality%>">
           <label for="municipalityCliente">Municipio:</label>
         </div>
 
           <br>
           <div class="form-floating">
 
-          <input class="form-control" type="text" id="stateCliente" name="stateCliente" placeholder="Estado" maxlength="3">
+          <input class="form-control" type="text" id="stateCliente" name="stateCliente" placeholder="Estado" maxlength="3" value="<%=customer.address.state%>">
           <label for="stateCliente">Estado:</label>
         </div>
 
           <br>
           <div class="form-floating">
 
-          <input class="form-control" type="text" id="countryCliente" name="countryCliente" placeholder="País" maxlength="3">
+          <input class="form-control" type="text" id="countryCliente" name="countryCliente" placeholder="País" maxlength="3" value="<%=customer.address.country%>">
           <label for="countryCliente">País:</label>
 </div>
           <br><br>

@@ -247,8 +247,11 @@ const FacturApiBorrarProductos = require('./controllers/FacturApiBorrarProductos
 const FacturApiFactura = require('./controllers/FacturApiFactura')
 const FacturApiCrearFactura= require('./controllers/FacturApiCrearFactura')
 const FacturApiDescargar = require('./controllers/FacturApiDescargar')
+const FacturApiCancelar = require('./controllers/FacturApiCancelar')
+const FacturApiCanDown = require('./controllers/FacturApiCanDown')
 const FacturApiCorreo = require('./controllers/FacturApiCorreo')
 const FacturApiBuscarF = require('./controllers/FacturApiBuscarF')
+const RecibosRouter = require('./controllers/RecibosRouter')
 // MercadoPago
 
 // global.CantidadCarro = await cart.find({}).count()
@@ -485,10 +488,13 @@ app.post('/FacturApiCrearProductos',FacturApiCrearProductos)
 app.get('/FacturApiEditarProductos/:id',FacturApiEditarProductos)
 app.post('/FacturApiEditarProductosPOST',FacturApiEditarProductosPOST)
 app.use('/FacturApiBorrarProductos/:id',FacturApiBorrarProductos)
+app.use('/Recibos',RecibosRouter)
 
 app.get('/FacturApiFactura',FacturApiFactura)
 app.post('/FacturApiCrearFactura',FacturApiCrearFactura)
 app.use('/FacturApiDescargar/:id',FacturApiDescargar)
+app.use('/FacturApiCancelar',FacturApiCancelar)
+app.use('/FacturApiCanDown',FacturApiCanDown)
 app.post('/FacturApiCorreo',FacturApiCorreo)
 app.post('/FacturApiBuscarF',FacturApiBuscarF)
 // - Google Auth
@@ -686,7 +692,7 @@ app.get('/popup3/:id', async (req, res) => {
 });
 app.get('/popup4/:id', async (req, res) => {
     const Facturapi = require('facturapi');
-    const facturapi = new Facturapi('sk_test_zlaq7E1LdVog4PWbyJ4q3Aer9GNY8xDQ635JGprAw2');
+    const facturapi = new Facturapi('sk_test_EmR5KOQwAW391DLgBqLg0Rrle6VnG742MzdPlpZvaj');
     const id = req.params.id;
     const searchResult = await facturapi.customers.retrieve(id);
 
@@ -708,7 +714,7 @@ app.get('/popup4/:id', async (req, res) => {
 });
 app.get('/popup5/:id', async (req, res) => {
     const Facturapi = require('facturapi');
-    const facturapi = new Facturapi('sk_test_zlaq7E1LdVog4PWbyJ4q3Aer9GNY8xDQ635JGprAw2');
+    const facturapi = new Facturapi('sk_test_EmR5KOQwAW391DLgBqLg0Rrle6VnG742MzdPlpZvaj');
     const id = req.params.id;
 
     let role = 'viewer';
@@ -720,6 +726,27 @@ app.get('/popup5/:id', async (req, res) => {
 
     const content = `This is popup ${id}`;
     res.render('popup5', {
+  
+        roles: role,
+        loggedIn: logged,
+        id
+        
+    });
+});
+app.get('/popup6/:id', async (req, res) => {
+    const Facturapi = require('facturapi');
+    const facturapi = new Facturapi('sk_test_EmR5KOQwAW391DLgBqLg0Rrle6VnG742MzdPlpZvaj');
+    const id = req.params.id;
+
+    let role = 'viewer';
+    let logged = false;
+    if (req.session?.passport?.user != undefined) {
+        role = req.session.passport.user.role;
+        logged = true;
+    }
+
+    const content = `This is popup ${id}`;
+    res.render('popup6', {
   
         roles: role,
         loggedIn: logged,
