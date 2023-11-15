@@ -252,6 +252,9 @@ const FacturApiCanDown = require('./controllers/FacturApiCanDown')
 const FacturApiCorreo = require('./controllers/FacturApiCorreo')
 const FacturApiBuscarF = require('./controllers/FacturApiBuscarF')
 const RecibosRouter = require('./controllers/RecibosRouter')
+const RetencionesRouter = require('./controllers/RetencionesRouter')
+const OrganizacionesRouter = require('./controllers/OrganizacionesRouter')
+
 // MercadoPago
 
 // global.CantidadCarro = await cart.find({}).count()
@@ -489,6 +492,8 @@ app.get('/FacturApiEditarProductos/:id',FacturApiEditarProductos)
 app.post('/FacturApiEditarProductosPOST',FacturApiEditarProductosPOST)
 app.use('/FacturApiBorrarProductos/:id',FacturApiBorrarProductos)
 app.use('/Recibos',RecibosRouter)
+app.use('/Retenciones',RetencionesRouter)
+app.use('/Organizaciones',OrganizacionesRouter)
 
 app.get('/FacturApiFactura',FacturApiFactura)
 app.post('/FacturApiCrearFactura',FacturApiCrearFactura)

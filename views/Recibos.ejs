@@ -22,6 +22,7 @@
     <!-- Fontawesome CDN Link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="ruta/a/font-awesome/css/font-awesome.min.css">
 
     <!--Imagenes-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -136,17 +137,24 @@
             <div class="card-body ">
                 <div class="mb-4">
 
-                     <form action="/" method="POST">
+                     <form action="/Recibos/BuscarRecibo" method="POST">
                     <input type="text" id="nombreProductoInput" name="Nombre" aria-label="Buscar el nombre del artículo" class="form-control espec1" placeholder="Ingresa el nombre del producto del recibo" class="form-control">
                     <br>
+
+                    
                     <div class="text-center"> <!-- Agregamos una clase text-center para centrar el botón -->
                         <button class="btn btn-danger">Buscar</button>
-                    </div>                    
+                        <a href="/Recibos/Recibos">
+                            <button type="button" class="btn btn-danger">Limpiar</button>
+            
+                        </a>      
+                    </div>      
+                    
+         
                 </div>
         
             </form>
 
-        
             <div class="card border-danger">
                 <div class="card-header">Lista de recibos</div>
         
@@ -190,6 +198,14 @@
                 <i class="bi bi-envelope"></i> 
 
             </button>
+
+                                        
+            <button class="edit-btn btn btn-dark w-80 factura-icon" onclick="openPopup8(`<%= invoice.id%>`)">
+
+            </button>
+
+
+
                         </td>
 
 </tr>
@@ -236,6 +252,16 @@
 #customerForm {
     display: none;
     /* Estilos para el formulario cuando está oculto */
+}
+.popup8 {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 .popup7 {
   position: fixed;
@@ -327,6 +353,14 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+.factura-icon {
+  font-family: 'FontAwesome'; /* Establece la fuente de Font Awesome */
+}
+
+/* Utiliza la clase fa-file-invoice para mostrar un icono de factura */
+.factura-icon::before {
+  content: '\f570'; /* Código de carácter para el icono de factura en Font Awesome */
 }
 
 </style>
@@ -441,6 +475,19 @@ document.getElementById("openPopupButton2").addEventListener("click", function(e
 
 
 <script>
+        function openPopup8(id) {
+fetch(`/Recibos/popup8/${id}`)
+  .then(response => response.text())
+  .then(html => {
+    const popup8 = document.createElement('div');
+    popup8.innerHTML = html;
+    document.body.appendChild(popup8);
+    const closeBtn = popup8.querySelector('.close-btn');
+    closeBtn.addEventListener('click', () => {
+        popup8.remove();
+    });
+  });
+}
     function openPopup7(id) {
 fetch(`/Recibos/popup7/${id}`)
   .then(response => response.text())

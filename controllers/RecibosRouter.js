@@ -156,6 +156,93 @@ try{
 
 })
 
+router.post('/FacturarRecibo',async(req,res)=>{
 
+    console.log(req.body)
+    const id = req.body.id;
+    const cliente = req.body.cliente
+    const folio = req.body.folio
+    const series= req.body.series
+    const uso = req.body.uso
+    const conditions = req.body.conditions
+    try{
+        const invoice = await facturapi.receipts.invoice(id, {
+            customer: cliente,
+            folio_number: folio,
+            series: series,
+            uso: uso,
+            conditions:conditions
+          });
+
+        res.send(`<script>alert("Factura creada con éxito"); window.location.href="/Recibos/Recibos";</script>`);
+
+    }catch(e){
+        res.send(`<script>alert("Factura creada con éxito"); window.location.href="/Recibos/Recibos";</script>`);
+
+    }
+
+
+    })
+
+    router.get('/popup8/:id', async (req, res) => {
+
+        const id = req.params.id;
+    
+        let role = 'viewer';
+        let logged = false;
+        if (req.session?.passport?.user != undefined) {
+            role = req.session.passport.user.role;
+            logged = true;
+        }
+        const clientes = await facturapi.customers.list({
+            q: '',
+    
+            limit: 100,
+            //page: pageCliente
+          });
+          console.log(clientes)
+        const content = `This is popup ${id}`;
+        res.render('popup8', {
+      
+            roles: role,
+            loggedIn: logged,
+            id,
+            clientes
+            
+        });
+    });
+
+    router.post('/BuscarRecibo', async (req, res) => {
+
+        
+const NombreRecibo = req.body.Nombre
+let role = "viewer";
+let logged = false; 
+if(req.session?.passport?.user != undefined){
+    role = req.session.passport.user.role;
+    logged = true;
+}
+      
+
+        try {
+            const invoiceSearch = await facturapi.receipts.list({
+                q: NombreRecibo,
+      
+              });
+              const clientes = await facturapi.customers.list({
+                q: '',
+        
+                limit: 100,
+                //page: pageCliente
+              });
+              const productos = await facturapi.products.list({
+                q: ' ',
+                limit: 100
+              });
+              res.render('Recibos',{roles: role, loggedIn: logged,invoiceSearch,clientes,productos})
+            } catch (error) {
+            console.error('Error:', error);
+            res.status(500).send('Error interno del servidor');
+        }     });
 
 module.exports = router;

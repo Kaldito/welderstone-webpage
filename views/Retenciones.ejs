@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('layouts/navbar'); -%>
+
+<head>
+    <meta charset="utf-8" />
+    <%- include('layouts/metaData'); -%>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Welderstone</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <!-- CSS Stylesheet-->
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Fontawesome CDN Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="ruta/a/font-awesome/css/font-awesome.min.css">
+
+    <!--Imagenes-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+</head>
+
+<body>
+
+        
+    <h1 class="titulo"></h1>
+
+        <br>        
+        <section id="agregar-producto">
+
+            <div class="accordion" id="accordion-ap">
+                <div class="accordion-item">
+
+                    <h2 class="accordion-header" id="headingOne">
+
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Crear Retención</button>
+
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <form action="/Retenciones/CrearRetencion" method="post">
+                                
+   <!-- Botón para abrir el segundo pop-up -->
+   <button type="button" id="openPopupButton2">Cliente</button>
+   <!-- Pop-up 2 -->
+   <div id="popup2">
+
+       <% for (let a = 0; a < clientes.data.length; a++) { %>
+
+           
+           <p><%=clientes.data[a].legal_name%><input type="hidden" value="<%=clientes.data[a].id%>" id="id2">
+               <button type="button"
+                 class="btn btn-dark" style="float:right;" onclick="displayUsername2(this)" value="<%=clientes.data[a].id%>">Agregar</button></p>  
+           <br>
+
+           <% } %>
+
+       <!-- Botón en el pop-up 2 -->
+       <button type="button" class="closePopupButton2" id="closePopupButton2">Cerrar</button>
+   </div>
+   <p id="usernameDisplay2" style="display:none;" name="NombrePaciente2"></p>
+   <input type="hidden" id="usernameValueDisplay2" style="display:none;" name="idCustomer">
+
+   <button type="button" id="hideUsernameButton2" style="display:none;"
+     onclick="hideUsernameDisplay2()">Cancelar</button>
+       <!--
+   <label for="idCustomer">ID del cliente:</label>
+
+   <input type="text" id="idCustomer" name="idCustomer">
+   <br>
+-->
+<br>
+<br>
+
+<div class="form-floating">
+
+    <input class="form-control" type="text" id="cve_retenc" name="cve_retenc" placeholder=" ">
+    <label for="cve_retenc">Cláve de retención:</label>
+
+</div>
+<div class="text-center">
+
+<h1>Periodo</h1>
+</div>
+<div class="form-group">
+    <input class="form-control" type="number" id="mes_ini" name="mes_ini" placeholder="Mes inicial">
+    <input class="form-control" type="number" id="mes_fin" name="mes_fin" placeholder="Mes final">
+    <input class="form-control" type="number" id="ejerc" name="ejerc" placeholder="Año">
+</div>
+<h1>Totales</h1>
+<div class="form-floating">
+
+<input class="form-control" type="number" id="monto_tot_operacion" name="monto_tot_operacion" placeholder=" ">
+<label for="monto_tot_operacion">Monto total de la operación:</label>
+
+</div>
+<br>
+
+<div class="form-floating">
+
+<input class="form-control" type="number" id="monto_tot_exent" name="monto_tot_exent" placeholder=" ">
+<label for="monto_tot_exent">Monto total exento.:</label>
+
+</div>
+<h3>Impuestos Retenidos</h3>
+
+<div class="form-floating">
+    <input class="form-control" type="" id="monto_ret" name="monto_ret" placeholder=" ">     
+    <label for="monto_ret">Monto retenido:</label>
+
+</div>
+<br>
+
+<div class="form-floating">
+    <input class="form-control" type="" id="tipo_pago_ret" name="tipo_pago_ret" placeholder=" ">     
+    <label for="tipo_pago_ret">Tipo de pago retenido:</label>
+
+</div>
+<br>
+
+<div class="form-floating">
+    <input class="form-control" type="" id="base_ret" name="base_ret" placeholder=" ">     
+    <label for="base_ret">Base del impuesto retenido:</label>
+
+</div>
+<br>
+
+<div class="form-floating">
+    <input class="form-control" type="" id="impuesto" name="impuesto" placeholder=" ">     
+    <label for="impuesto">Clave del tipo de impuesto retenido:</label>
+
+</div>
+
+<br>
+
+<div class="form-floating">
+
+    <input class="form-control" type="number" id="monto_tot_grav" name="monto_tot_grav" placeholder=" ">     
+    <label for="monto_tot_grav">Monto total gravado:</label>
+    
+    </div>
+    <br>
+
+    <div class="form-floating">
+
+        <input class="form-control" type="number" id="monto_tot_ret" name="monto_tot_ret" placeholder=" ">     
+        <label for="monto_tot_ret">Suma de los montos de impuestos retenidos:</label>
+        
+        </div>
+        <br>
+
+
+        <div class="form-floating">
+
+            <input class="form-control" type="date" id="fecha_exp" name="fecha_exp" placeholder=" ">     
+            <label for="fecha_exp">Fecha de expiración:</label>
+            
+            </div>
+
+            <br>
+
+            <div class="form-floating">
+
+                <input class="form-control" type="text" id="desc_retenc" name="desc_retenc" placeholder=" ">     
+                <label for="desc_retenc">Descripción de la retención:</label>
+                
+                </div>
+                <br>
+
+                <div class="form-floating">
+
+                    <input class="form-control" type="text" id="folio_int" name="folio_int" placeholder=" ">     
+                    <label for="folio_int">Folio interno:</label>
+                    
+                    </div>
+                    <br>
+
+                    <div class="form-floating">
+
+                        <input class="form-control" type="text" id="external_id" name="external_id" placeholder=" ">     
+                        <label for="external_id">Id externo:</label>
+                        
+                        </div>
+                        <br>
+
+                        <div class="form-floating">
+
+                            <input class="form-control" type="text" id="idempotency_key" name="idempotency_key" placeholder=" ">     
+                            <label for="idempotency_key">Identificador:</label>
+                            
+                            </div>
+                            <br>
+                            <input class="btn btn-danger" type="submit" value="Enviar">
+
+</form>       
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+<br>
+
+        <section id="editar-producto">
+            <div class="card-body ">
+                <div class="mb-4">
+
+                     <form action="/" method="POST">
+                    <input type="text" id="nombreProductoInput" name="Nombre" aria-label="Buscar el nombre del artículo" class="form-control espec1" placeholder="Ingresa el nombre del producto del recibo" class="form-control">
+                    <br>
+
+                    
+                    <div class="text-center"> <!-- Agregamos una clase text-center para centrar el botón -->
+                        <button class="btn btn-danger">Buscar</button>
+                        <a href="/">
+                            <button type="button" class="btn btn-danger">Limpiar</button>
+            
+                        </a>      
+                    </div>      
+                    
+         
+                </div>
+        
+            </form>
+
+            <div class="card border-danger">
+                <div class="card-header">Lista de Retenciones</div>
+        
+                <div class="card-body px-10 py-8">
+                    <div class="row">
+                        <table>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+             
+
+                            </tr>
+                            <tr>
+
+                                    <% for (let a = 0; a < retentionSearch.data.length; a++) { %>
+
+
+                                        <td><%=retentionSearch.data[a].desc_retenc%></td>
+                                        <td><%=retentionSearch.data[a].legal_name%></td>
+                                        <td><%=new Date(retentionSearch.data[a].created_at).toLocaleDateString()%></td>
+                                        <td><%=new Date(retentionSearch.data[a].fecha_exp).toLocaleDateString()%></td>
+<td>  
+    <a href="/">
+    <button type="button" class="btn btn-dark w-80 trash-button">
+        <i class="fa-solid fa-trash"></i> 
+    </button>
+</a>
+
+<a href="/">
+<button type="button" class="btn btn-dark w-80 trash-button">
+    <i class="bi bi-download"></i> 
+</button>
+</a>
+
+<button class="edit-btn btn btn-dark w-80 mail-button" onclick="openPopup9(`<%= retentionSearch.data[a].legal_name%>`)">
+<i class="bi bi-envelope"></i> 
+
+</button>
+</td>
+
+            
+            </tr>
+            <% } %>
+
+                                </table>
+
+
+
+ 
+                    </div>                        
+                </div>
+            </div>
+        </section>
+
+     <section id="editar-producto">
+
+
+
+
+    </section>
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <!--Multi Select-->
+    <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
+
+    <script src="https://kit.fontawesome.com/360b0549be.js" crossorigin="anonymous"></script>
+
+    <script src="js/productos.js"></script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- FontAwesome-->
+    <link rel="stylesheet" href="css/mobiscroll.javascript.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="js/multiple.js"></script>
+</body>
+
+</html>
+
+<style>
+    /* Styles for the button to open the second popup */
+#openPopupButton2 {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Styles for the second popup */
+#popup2 {
+    display: none;
+    position: fixed;
+    z-index: 1001; /* Set a higher z-index value for the second popup to be in front of the first popup */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Styles for the button to close the second popup */
+#closePopupButton2 {
+    padding: 10px 20px;
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.form-group {
+    display: flex;
+    align-items: center;
+}
+
+.form-group label {
+    margin-right: 10px;
+}
+.popup9 {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+</style>
+
+<script>
+ 
+        // Función para abrir el pop-up
+        function openPopup(popupId) {
+            const popup = document.getElementById(popupId);
+            popup.style.display = "block";
+        }
+
+        // Función para cerrar el pop-up
+        function closePopup(popupId) {
+            const popup = document.getElementById(popupId);
+            popup.style.display = "none";
+        }
+
+
+
+        document.getElementById("openPopupButton2").addEventListener("click", function() {
+            openPopup("popup2");
+        });
+
+        document.getElementById("closePopupButton2").addEventListener("click", function() {
+            closePopup("popup2");
+        });
+
+
+        document.getElementById("openPopupButton").addEventListener("click", function(event) {
+    event.preventDefault();
+    // Lógica para abrir el pop-up
+});
+
+document.getElementById("openPopupButton2").addEventListener("click", function(event) {
+    event.preventDefault();
+    // Lógica para abrir el segundo pop-up
+});
+  function displayUsername2(button) {
+
+// Get the value of the hidden input related to the clicked button
+let usernameValue2 = button.value;
+   // Get the values of the Nombre, ApellidoPaterno, and ApellidoMaterno elements
+   let nombreValue2 = button.parentNode.childNodes[0].textContent
+   let apellidoPaternoValue2= button.parentNode.childNodes[0].textContent.split(" ")[1];
+   let apellidoMaternoValue2 = button.parentNode.childNodes[0].textContent.split(" ")[2];
+   // Display the values inside the popup div
+   let usernameDisplayElement2 = document.getElementById("usernameDisplay2");
+   let usernameValueDisplayElement2 = document.getElementById("usernameValueDisplay2");
+   usernameDisplayElement2.value = `${nombreValue2}`;
+   usernameDisplayElement2.textContent = `${nombreValue2}`
+   usernameValueDisplayElement2.value = usernameValue2;
+   usernameDisplayElement2.style.display = "block";
+   usernameValueDisplayElement2.style.display = "block";
+   // Show the hide button
+   let hideUsernameButtonElement2 = document.getElementById("hideUsernameButton2");
+   hideUsernameButtonElement2.style.display = "block";
+   closePopup2()
+ }
+
+ function hideUsernameDisplay2() {
+   // Hide the username display
+   let usernameDisplayElement2 = document.getElementById("usernameDisplay2");
+   let usernameValueDisplayElement2 = document.getElementById("usernameValueDisplay2");
+   usernameDisplayElement2.style.display = "none";
+   usernameValueDisplayElement2.style.display = "none";
+   // Hide the hide button
+   let hideUsernameButtonElement2 = document.getElementById("hideUsernameButton2");
+   hideUsernameButtonElement2.style.display = "none";
+ }
+
+ function openPopup9(id) {
+fetch(`/Retenciones/popup9/${id}`)
+  .then(response => response.text())
+  .then(html => {
+    const popup9 = document.createElement('div');
+    popup9.innerHTML = html;
+    document.body.appendChild(popup9);
+    const closeBtn = popup9.querySelector('.close-btn');
+    closeBtn.addEventListener('click', () => {
+        popup9.remove();
+    });
+  });
+}
+</script>

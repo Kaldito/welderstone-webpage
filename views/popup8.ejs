@@ -1,0 +1,102 @@
+
+<div class="popup8">
+    <div class="popup8-content">
+        <span class="close-btn">
+          
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+              <path fill="#000" fill-rule="evenodd" d="M15.15 1.525a.5.5 0 01.708.708L9.707 8l6.15 6.15a.5.5 0 01-.708.708L8 8.707l-6.15 6.15a.5.5 0 01-.708-.708L7.293 8 .143 1.85a.5.5 0 01.708-.708L8 7.293l6.15-6.15z"/>
+            </svg>
+          </span>
+
+          <form action="/Recibos/FacturarRecibo" method="POST">
+            <input type="hidden" name="id" value="<%=id%>">
+            <div class="form-floating">
+
+                 <select id="cliente"class="form-control" name="cliente">
+                    <% for (let a = 0; a < clientes.data.length; a++) { %>
+
+                    <option value="<%=clientes.data[a].id%>"> <%=clientes.data[a].legal_name%></option>
+                    <% } %>
+
+                </select>
+                <label for="cliente">Cliente:</label>
+
+            </div>
+            <br>
+            <div class="form-floating">
+
+                <input class="form-control" type="text" name="uso" placeholder=" ">
+                <label for="Correo">uso:</label>
+
+            </div>
+            <br>
+            <div class="form-floating">
+
+                <input class="form-control" type="text" name="conditions" placeholder=" ">
+                <label for="Correo">Condiciones:</label>
+            </div>
+        
+            <br>
+            <div class="form-floating">
+
+                <input class="form-control" type="text" name="folio" placeholder=" ">
+                <label for="Correo">folio:</label>
+            </div>
+   
+            <br>
+                <div class="form-floating">
+
+                <input class="form-control" type="text" name="series" placeholder=" ">
+                <label for="Correo">series:</label>
+            </div>
+            <br>
+
+            <br>
+
+       
+
+
+        
+
+<div class="centrar">
+
+    <input type="submit" class="btn btn-danger" value="Enviar">
+
+</div>
+
+
+        </form>
+
+    </div>
+  </div>
+
+  <style>
+            .centrar {
+text-align: center;
+}
+    .form-label{
+      width:300px;
+    }
+.custom-select {
+  appearance: none;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  color: #555555;
+  font-size: 16px;
+  padding: 10px;
+  width: 100%;
+}
+
+.custom-select:focus {
+  outline: none;
+  border-color: #2196F3;
+  box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2);
+}
+
+.custom-select option {
+  background-color: #ffffff;
+  color: #555555;
+}
+
+  </style>
