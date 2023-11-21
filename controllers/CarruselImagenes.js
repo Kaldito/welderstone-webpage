@@ -219,7 +219,7 @@ router.post('/CarruselAgregar',async(req,res,nex)=>{
         await CarruselImagenes.updateOne({carrusel:"aaron"},{ $set: { image12: 'https://welderstonebucket.s3.us-west-1.amazonaws.com/Imagenes/' + "carrusel12" + mainImage12.name } })
 
         }catch(error){
-        res.redirect('/CarruselImagenes')
+        res.redirect('/CarruselImagenes/CarruselImagenes')
     }
 
 

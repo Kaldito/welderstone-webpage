@@ -86,10 +86,10 @@
                         <div class="mb-5">
                             <div class="row">
                                 <div class="col-6">
-                                    <h1><%= productoDoc.nombre %></h1>
+                                    <h1 class="card-title"><%= productoDoc.nombre %></h1>
                                 </div>
                                 <div class="col-6" style="text-align: end;">
-                                    <h1 style="color: #DC3545;">$<%= productoDoc.precio.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') %> mxn</h1>
+                                    <h1 class="card-title" style="color: #DC3545;">$<%= productoDoc.precio.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') %> mxn</h1>
                                 </div>
                             </div>
                             <p style="font-size: .7rem;">Codigo: <%= productoDoc.IdProducto %></p>
@@ -280,6 +280,31 @@
   max-width: 100px;
   height: auto;
 }
+@media (max-width: 768px) {
+        .col-12,
+        .col-lg-5,
+        .col-lg-7 {
+            width: 100%;
+        }
+
+        .ps-5 {
+            padding-left: 0;
+        }
+
+        .image-list {
+            margin-left: 0;
+            justify-content: center;
+        }
+
+        .image-item {
+            margin-right: 10px;
+        }
+
+        /* Estilos para pantallas con un ancho máximo de 768px (tamaño de tabletas y móviles) */
+        h1.card-title {
+            font-size: 20px; /* Tamaño de fuente más pequeño para dispositivos móviles */
+        }
+    }
 
 </style>
 <script>
