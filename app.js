@@ -254,6 +254,7 @@ const FacturApiBuscarF = require('./controllers/FacturApiBuscarF')
 const RecibosRouter = require('./controllers/RecibosRouter')
 const RetencionesRouter = require('./controllers/RetencionesRouter')
 const OrganizacionesRouter = require('./controllers/OrganizacionesRouter')
+const CarruselImagenes = require('./controllers/CarruselImagenes')
 
 // MercadoPago
 
@@ -489,6 +490,7 @@ app.get('/FacturApiProductos',FacturApiProductos)
 app.post('/FacturApiBuscarProducto',FacturApiBuscarProducto)
 app.post('/FacturApiCrearProductos',FacturApiCrearProductos)
 app.get('/FacturApiEditarProductos/:id',FacturApiEditarProductos)
+app.use('/CarruselImagenes',CarruselImagenes)
 app.post('/FacturApiEditarProductosPOST',FacturApiEditarProductosPOST)
 app.use('/FacturApiBorrarProductos/:id',FacturApiBorrarProductos)
 app.use('/Recibos',RecibosRouter)

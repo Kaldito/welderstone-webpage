@@ -1,3 +1,4 @@
+const CarruselImagenes = require('../models/CarruselImagenes');
 const User = require('../models/User');
 
 module.exports = async (req, res) => {
@@ -12,11 +13,13 @@ module.exports = async (req, res) => {
         logged = true;
 
         if (user && user.fullName && user.fullName.length > 0) {
-            res.render('inicio', { roles: role, loggedIn: logged });
+            const Carrusel = await CarruselImagenes.find({carrusel:"aaron"})
+            res.render('inicio', { roles: role, loggedIn: logged,Carrusel });
         } else {
             res.redirect('/data-form');
         }
     } else {
-        res.render('inicio', { roles: role, loggedIn: logged });
+        const Carrusel = await CarruselImagenes.find({carrusel:"aaron"})
+        res.render('inicio', { roles: role, loggedIn: logged,Carrusel });
     }
 };

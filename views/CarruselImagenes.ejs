@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('layouts/navbar'); -%>
+
+<head>
+    <meta charset="utf-8" />
+    <%- include('layouts/metaData'); -%>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Welderstone</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Bootstrap-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <!-- CSS Stylesheet-->
+        <link rel="stylesheet" href="/css/styles.css">
+        <link rel="stylesheet"
+            href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
+        <link rel="stylesheet" href="/css/style.css">
+        <!-- Fontawesome CDN Link -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="/css/FacturApi.css" />
+
+
+
+</head>
+
+<body>
+
+    <h1 class="titulo">Carrusel de imagenes</h1>
+
+
+        <br>        
+        
+
+     <section id="editar-producto">
+<form action="/CarruselImagenes/CarruselAgregar" method="POST" enctype="multipart/form-data">
+
+
+        <div class="container">
+            <div class="row">
+                <!-- Imagen 1 -->
+                <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+                    <img src="<%=Carrusel[0].image%>" class="img-fluid" alt="Imagen 1" style="width: 250px; height: 350px;">
+
+
+                    <input class="form-control" type="file" id="image" name="image" accept="image/*" value="<%=Carrusel[0].image%>">
+
+                </div>
+
+                <!-- Imagen 2 -->
+                <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+                    <img src="<%=Carrusel[0].image2%>" class="img-fluid" alt="Imagen 2" style="width: 250px; height: 350px;">
+
+
+                    <input class="form-control" type="file" id="image2" name="image2" accept="image2/*" value="<%=Carrusel[0].image2%>">
+
+                </div>
+
+                <!-- Imagen 3 -->
+                <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+                    <img src="<%=Carrusel[0].image3%>" class="img-fluid" alt="Imagen 3" style="width: 250px; height: 350px;">
+
+                    <input class="form-control" type="file" id="image3" name="image3" accept="image3/*" value="<%=Carrusel[0].image3%>">
+
+                </div>
+
+                <!-- Imagen 4 -->
+                <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+                    <img src="<%=Carrusel[0].image4%>" class="img-fluid" alt="Imagen 4"  style="width: 250px; height: 350px;">
+
+                    <input class="form-control" type="file" id="image4" name="image4" accept="image4/*" value="<%=Carrusel[0].image4%>">
+
+                </div>
+                                <!-- Imagen 5 -->
+                                <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+                                    <img src="<%=Carrusel[0].image5%>" class="img-fluid" alt="Imagen 5" style="width: 250px; height: 350px;">
+     
+                
+                                    <input class="form-control" type="file" id="image5" name="image5" accept="image5/*" value="<%=Carrusel[0].image5%>">
+                
+                                </div>
+                                                <!-- Imagen 6 -->
+                <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+                    <img src="<%=Carrusel[0].image6%>" class="img-fluid" alt="Imagen 6" style="width: 250px; height: 350px;">
+
+
+                    <input class="form-control" type="file" id="image6" name="image6" accept="image6/*" value="<%=Carrusel[0].image6%>">
+
+                </div>
+                                <!-- Imagen 7 -->
+                                <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+                                    <img src="<%=Carrusel[0].image7%>" class="img-fluid" alt="Imagen 7" style="width: 250px; height: 350px;">
+
+                                    <input class="form-control" type="file" id="image7" name="image7" accept="image7/*" value="<%=Carrusel[0].image7%>">
+                
+                                </div>
+                                                <!-- Imagen 8 -->
+                <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+                    <img src="<%=Carrusel[0].image8%>" class="img-fluid" alt="Imagen 8" style="width: 250px; height: 350px;">
+
+
+                    <input class="form-control" type="file" id="image8" name="image8" accept="image8/*" value="<%=Carrusel[0].image8%>">
+
+                </div>
+                                <!-- Imagen 9 -->
+                                <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+                                    <img src="<%=Carrusel[0].image9%>" class="img-fluid" alt="Imagen 9" style="width: 250px; height: 350px;">
+ 
+                
+                                    <input class="form-control" type="file" id="image9" name="image9" accept="image9/*" value="<%=Carrusel[0].image9%>">
+                
+                                </div>
+                                                <!-- Imagen 10 -->
+                <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+                    <img src="<%=Carrusel[0].image10%>" class="img-fluid" alt="Imagen 10" style="width: 250px; height: 350px;">
+
+                    <input class="form-control" type="file" id="image10" name="image10" accept="image10/*" value="<%=Carrusel[0].image10%>">
+
+                </div>
+                                <!-- Imagen 11 -->
+                                <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+                                    <img src="<%=Carrusel[0].image11%>" class="img-fluid" alt="Imagen 11" style="width: 250px; height: 350px;">
+                
+                                    <input class="form-control" type="file" id="image11" name="image11" accept="image11/*" value="<%=Carrusel[0].image11%>">
+                
+                                </div>
+                                                <!-- Imagen 12 -->
+                <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+                    <img src="<%=Carrusel[0].image12%>" class="img-fluid" alt="Imagen 12" style="width: 250px; height: 350px;">
+              
+
+                    <input class="form-control" type="file" id="image12" name="image12" accept="image12/*" value="<%=Carrusel[0].image12%>">
+                </div>
+          
+               
+                <button class="btn btn-danger mb-3" type="submit">Actualizar</button>
+            </form>
+                <!-- Repite este bloque para las demás imágenes -->
+            </div>
+        </div>
+    
+        
+    </section>
+
+
+
+
+
+
+
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <!--Multi Select-->
+    <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
+
+    <script src="https://kit.fontawesome.com/360b0549be.js" crossorigin="anonymous"></script>
+
+    <script src="js/productos.js"></script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- FontAwesome-->
+    <script src="https://kit.fontawesome.com/360b0549be.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/mobiscroll.javascript.min.css">
+
+    <script src="js/multiple.js"></script>
+</body>
+
+</html>
+ <style>
+        /* Estilos para los botones */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .top-buttons,
+        .bottom-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+        }
+        .button {
+    background-color: #dc3545;
+    color: white;
+    width: 400px; /* Ancho fijo del botón */
+    height: 200px; /* Altura fija del botón */
+    margin: 10px;
+    font-size: 36px; /* Tamaño del texto */
+    border: none;
+    cursor: pointer;
+    border-radius: 10px; /* Redondear los bordes */
+    transition: background-color 0.3s, color 0.3s; /* Animación de transición de colores */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+        .button:hover {
+            background-color: white;
+            color: #dc3545;
+        }
+
+
+
+        .titulo {
+    font-size: 36px;
+    font-weight: bold;
+    color: #000000; /* Color de texto azul, puedes personalizarlo */
+    margin-bottom: 20px;
+    text-align: center;
+}
+    </style>
