@@ -19,8 +19,14 @@ router.get('/CarruselImagenes',async (req,res,next)=>{
 
 
 });
+/*
 router.post('/CarruselAgregar',async(req,res,nex)=>{
+
+
+
     console.log("hola")
+
+
     AWS.config.update({
         accessKeyId: process.env.accessKeyId,
         secretAccessKey: process.env.secretAccessKey,
@@ -28,8 +34,8 @@ router.post('/CarruselAgregar',async(req,res,nex)=>{
 
     const s3 = new AWS.S3();
     try {
-        console.log(req.files)
         const uploadImage = async (image, key) => {
+
             const uploadParams = {
                 Bucket: 'welderstonebucket', // Reemplaza con el nombre de tu bucket en AWS S3
                 Key: 'Imagenes/' + key,
@@ -226,5 +232,65 @@ router.post('/CarruselAgregar',async(req,res,nex)=>{
 
 })
 
+*/
+router.post('/CarruselAgregar', async (req, res, next) => {
+    console.log("hola");
 
+    AWS.config.update({
+        accessKeyId: process.env.accessKeyId,
+        secretAccessKey: process.env.secretAccessKey,
+    });
+
+    const s3 = new AWS.S3();
+
+    try {
+        const uploadImage = async (image, key) => {
+            const uploadParams = {
+                Bucket: 'welderstonebucket',
+                Key: 'Imagenes/' + key,
+                Body: image.data,
+            };
+            await s3.upload(uploadParams).promise();
+        };
+
+        const updateImage = async (imageKey, imageFileName) => {
+            const mainImage = req.files[imageKey];
+
+            if (mainImage) {
+                await uploadImage(mainImage, imageFileName);
+                await CarruselImagenes.updateOne(
+                    { carrusel: "aaron" },
+                    {
+                        $set: {
+                            [imageKey]: `https://welderstonebucket.s3.us-west-1.amazonaws.com/Imagenes/${imageFileName}`,
+                        },
+                    }
+                );
+            }
+        };
+
+        const imageKeys = [
+            "image",
+            "image2",
+            "image3",
+            "image4",
+            "image5",
+            "image6",
+            "image7",
+            "image8",
+            "image9",
+            "image10",
+            "image11",
+            "image12",
+        ];
+
+        for (const key of imageKeys) {
+            await updateImage(key, `carrusel${imageKeys.indexOf(key) + 1}`);
+        }
+        res.redirect('/CarruselImagenes/CarruselImagenes');
+
+    } catch (error) {
+        res.redirect('/CarruselImagenes/CarruselImagenes');
+    }
+});
 module.exports = router;
