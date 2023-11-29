@@ -66,11 +66,12 @@
                                    <!-- Botón en el pop-up 1 -->
                                     <button type="button" class="closePopupButton" id="closePopupButton">Cerrar</button>
                                 </div>
-
+                       
                                 <p id="usernameDisplay" style="display:none;" name="NombrePaciente"></p>
+
                                 <input type="hidden" id="usernameValueDisplay" style="display:none;" name="product_id">
             
-                                <button type="button" id="hideUsernameButton" style="display:none;"
+                                <button type="button" id="hideUsernameButton" class="btn btn-danger" style="display:none;"
                                   onclick="hideUsernameDisplay()">Cancelar</button>
 
 <!--
@@ -81,17 +82,17 @@
                                 <br>
                                 <br>
 
-                                <!-- Botón para abrir el segundo pop-up -->
+                               <!-- Botón para abrir el segundo pop-up -->
                                 <button id="openPopupButton2">Cliente</button>
                                 <!-- Pop-up 2 -->
                                 <div id="popup2">
 
                                     <% for (let a = 0; a < clientes.data.length; a++) { %>
 
-                                        
+                                        <br>
+
                                         <p><%=clientes.data[a].legal_name%><input type="hidden" value="<%=clientes.data[a].id%>" id="id2">
-                                            <button type="button"
-                                              class="btn btn-dark" style="float:right;" onclick="displayUsername2(this)" value="<%=clientes.data[a].id%>">Agregar</button></p>  
+                                            <button type="button" class="btn btn-dark" style="float:right;" onclick="displayUsername2(this)" value="<%=clientes.data[a].id%>">Agregar</button></p>  
                                         <br>
 
                                         <% } %>
@@ -99,10 +100,13 @@
                                     <!-- Botón en el pop-up 2 -->
                                     <button type="button" class="closePopupButton2" id="closePopupButton2">Cerrar</button>
                                 </div>
+
                                 <p id="usernameDisplay2" style="display:none;" name="NombrePaciente2"></p>
+
                                 <input type="hidden" id="usernameValueDisplay2" style="display:none;" name="idCustomer">
             
-                                <button type="button" id="hideUsernameButton2" style="display:none;"
+                                <button type="button" id="hideUsernameButton2" class="btn btn-danger" style="display:none;"
+                                
                                   onclick="hideUsernameDisplay2()">Cancelar</button>
                                     <!--
                                 <label for="idCustomer">ID del cliente:</label>
@@ -177,11 +181,11 @@
     <ul>
         <% invoiceSearch.data.forEach(function(invoice) { %>
         <li>
-            <p>Customer: <%= invoice.customer.legal_name %></p>
+            <p>Cliente: <%= invoice.customer.legal_name %></p>
             <p>Folio: <%= invoice.folio_number %></p>
         </li>
         <a href="<%= invoice.verification_url %>">
-            <button type="button" class="btn btn-primary w-80 edit-button"><i class="fa fa-external-link"></i></button>
+            <button type="button" class="edit-btn btn btn-dark w-80 mail-button"><i class="fa fa-external-link"></i></button>
 
         </a>
 
@@ -194,7 +198,7 @@
         </button>
 
         <a href="/FacturApiDescargar/<%= invoice.id%>">
-            <button type="button" class="btn btn-dark w-80 trash-button">
+            <button type="button" class="edit-btn btn btn-dark w-80 mail-button">
                 <i class="bi bi-download"></i> 
             </button>
         </a>
@@ -291,7 +295,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 300px;
+    width: 600px;
     padding: 20px;
     background-color: #fff;
     border: 1px solid #ccc;
@@ -327,7 +331,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 300px;
+    width: 600px;
     padding: 20px;
     background-color: #fff;
     border: 1px solid #ccc;

@@ -98,8 +98,17 @@
 
                                  <br>
 
-                                    <label for="taxIncludedProducto">Impuestos incluidos:</label>
-                                <input type="checkbox" id="taxIncludedProducto" name="taxIncludedProducto">
+
+
+
+                                <div class="form-check">
+                                    <label class="form-check-label" for="taxIncludedProducto">Impuestos incluidos:</label>
+                                    <input type="checkbox" class="form-check-input" id="taxIncludedProducto" name="taxIncludedProducto">
+
+                                </div>
+                                
+                    
+
 <!--All this must dissapear If I press that checkbox-->
 <div class="Hide-it">
 
@@ -160,12 +169,15 @@
                         <br>
                     </div>
 
-                            <label for="taxesWithholding">Retención de Impuesto:</label>
-                            <input  type="checkbox" id="taxesWithholding" name="taxesWithholding">
+  
 
 
 
-
+                            <div class="form-check">
+                                <label class="form-check-label" for="taxesWithholding">Retención de Impuesto:</label>
+                                <input type="checkbox" class="form-check-input" id="taxesWithholding" name="taxesWithholding">
+                            </div>
+                            
                 
         
 
@@ -198,11 +210,18 @@
 
                         <br>
 
+                        <div class="form-check">
 
 
-                        <label for="taxesWithholding">Retención de Impuesto: <input  type="checkbox" id="taxesLocalWithholding" name="taxesLocalWithholding"></label>
+                        <label class="form-check-label" for="taxesWithholding">Retención de Impuesto:</label>
+                        <input class="form-check-input" type="checkbox" id="taxesLocalWithholding" name="taxesLocalWithholding">
+                    </div>
 
 
+
+
+
+                        
                         <br>
                         
                                 <hr>
@@ -235,7 +254,7 @@
                             </div>
                         </div>
                                 <br><br>
-                                <button class="btn btn-danger" type="submit">Ingresar Producto</button>
+                                <button class="btn btn-danger" type="submit">Registrar Producto</button>
                             </form>
 
                         </div>
@@ -268,7 +287,7 @@
                             <div class="row">
                                 <% searchResult.data.forEach(function(product, index) { %>
                                 <div class="col-md-6">
-                                    <div class="product-box">
+                                    <div class="product-box d-flex flex-column">
                                         <p>Descripción: <%= product.description %></p>
                                         <p>Clave del Producto: <%= product.product_key %></p>
                                         <p>Precio: <%= product.price %></p>
@@ -296,16 +315,17 @@
                                         <p>Clave de Unidad: <%= product.unit_key %></p>
                                         <p>Nombre de Unidad: <%= product.unit_name %></p>
                                         <p>SKU: <%= product.sku %></p>
-                                        <div class="botones">
-                                        <a href="/FacturApiEditarProductos/<%=product.id%>">
-                                            <button type="button" class="btn btn-primary w-80 edit-button"><i class="fa-solid fa-pen-to-square"></i></button>
-                                        </a>
-                                        <a href="/FacturApiBorrarProductos/<%=product.id%>" class="trash-button-link">
-                                            <button type="button" class="btn btn-dark w-80 trash-button">
-                                                <i class="fa-solid fa-trash"></i> 
-                                            </button>
-                                        </a> 
-                                    </div>
+                                        <div class="botones mt-auto d-flex justify-content-end">
+                                            <a href="/FacturApiEditarProductos/<%=product.id%>">
+                                                <button type="button" class="btn btn-primary w-80 edit-button"><i class="fa-solid fa-pen-to-square"></i></button>
+                                            </a>
+
+                                            <a href="/FacturApiBorrarProductos/<%=product.id%>" class="trash-button-link">
+                                                <button type="button" class="btn btn-dark w-80 trash-button">
+                                                    <i class="fa-solid fa-trash"></i> 
+                                                </button>
+                                            </a> 
+                                        </div>
                                     </div>
                                 </div>
            
@@ -383,7 +403,6 @@
     }
     .botones{
         position: relative;
-        top:-500px;
-        right:-390px;
+        top:-600px;
     }
 </style>
