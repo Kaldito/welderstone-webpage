@@ -51,7 +51,7 @@ module.exports = async (req,res)=>{
              local_taxes: [
                 {
                   type: taxesLocalType,
-                  rate: taxesLocalRate,
+                  rate: Number(taxesLocalRate),
                   base: taxesLocalBase,
                     withholding: true
     
