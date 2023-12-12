@@ -31,6 +31,12 @@
                         <li class="nav-item ms-3 ms-lg-2">
                             <a class="nav-link" href="/about">Welderstone</a>
                         </li>
+                        <% if(roles  === "admin" || roles === "contador") { %> 
+                            <li>
+                                <a class="nav-link" href="/FacturaApi">FacturApi</a>
+
+                            </li>
+                            <% } %> 
                     </ul>
                 </div>
             </div>

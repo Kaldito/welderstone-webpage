@@ -19,7 +19,10 @@ module.exports = async (req,res)=>{
 }
 */
 const Facturapi = require('facturapi');
-const facturapi = new Facturapi('sk_test_EmR5KOQwAW391DLgBqLg0Rrle6VnG742MzdPlpZvaj');
+//const facturapi = new Facturapi('sk_test_EmR5KOQwAW391DLgBqLg0Rrle6VnG742MzdPlpZvaj');
+const facturapi = new Facturapi('sk_live_6DmBl09j7dMbkxayWDbBla8lDDnoRrOL2qw5X4epKZ');
+
+
 const fs = require('fs');
 
 module.exports = async (req, res) => {
@@ -29,6 +32,7 @@ module.exports = async (req, res) => {
 
         // Download the PDF stream
         const pdfStream = await facturapi.invoices.downloadPdf(facturaID);
+        console.log(pdfStream)
 
         // Set the content type and attachment headers for the response
         res.setHeader('Content-Type', 'application/pdf');

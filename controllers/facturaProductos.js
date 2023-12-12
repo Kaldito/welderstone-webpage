@@ -17,13 +17,13 @@ if (BuscarPrimero === 0)
 
 }
        const IdTransaccion = req.query.IdTrans
-       console.log( req.query.IdTrans)
+       //console.log( req.query.IdTrans)
        const materiales= await Material.find({})
        const PdfDescargar = await Compra.find({Id_transaccion: req.query.IdTrans})
        const {ProductosComprados} =PdfDescargar[0];
        var ProductosAgregar = [];
        var Almacen;
-console.log(req.query.codigo)
+//console.log(req.query.codigo)
     Almacen = await Product.find({codigo:req.query.codigo})
 
     ProductosAgregar.push(Almacen)

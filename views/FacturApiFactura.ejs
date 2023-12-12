@@ -119,30 +119,38 @@
                                 <hr>
                                 <div class="form-floating">
 
-                                <label for="payment_code">Código de Pago (2 caracteres):</label>
+                                <label for="payment_code">Forma de Pago (2 caracteres):</label>
                                 <input class="form-control" type="text" id="payment_code" name="payment_code" required minlength="2" maxlength="2">
+                                <a href="https://docs.facturapi.io/api/#forma-de-pago" target="_blank">?</a>
+
                             </div>
 
                                 <br>
+                                <!--
                                 <div class="form-floating">
 
                                 <label for="folio_number">Número de Folio:</label>
                                 <input class="form-control" type="number" id="folio_number" name="folio_number">
                             </div>
                             <br>
+                            -->
                             <div class="form-floating">
 
                             <label for="use">Uso:</label>
                             <input class="form-control" type="text" id="use" name="use">
+                            <a href="https://docs.facturapi.io/api/#uso-cfdi" target="_blank">?</a>
+
+                            
                         </div>
                                 <br>
+                                <!--
                                 <div class="form-floating">
 
                                 <label for="series">Serie (máximo 25 caracteres):</label>
                                 <input class="form-control" type="text" id="series" name="series" maxlength="25">
                                 </div>
                                 <br>
-                                
+                                -->
                                 <input class="btn btn-danger" type="submit" value="Enviar">
                               </form>
                               
@@ -202,6 +210,12 @@
                 <i class="bi bi-download"></i> 
             </button>
         </a>
+        <a href="/FacturaVistaPrevia/<%= invoice.id%>">
+            <button type="button" class="edit-btn btn btn-dark w-80 mail-button">
+                <i class="fa-solid fa-eye"></i>
+            </button>
+        </a>
+
 
             <button class="edit-btn btn btn-dark w-80 mail-button" onclick="openPopup5(`<%= invoice.id%>`)">
                 <i class="bi bi-envelope"></i> 

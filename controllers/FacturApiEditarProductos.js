@@ -1,5 +1,7 @@
 const Facturapi = require('facturapi');
-const facturapi = new Facturapi('sk_test_EmR5KOQwAW391DLgBqLg0Rrle6VnG742MzdPlpZvaj');
+//const facturapi = new Facturapi('sk_test_EmR5KOQwAW391DLgBqLg0Rrle6VnG742MzdPlpZvaj');
+const facturapi = new Facturapi('sk_live_6DmBl09j7dMbkxayWDbBla8lDDnoRrOL2qw5X4epKZ');
+
 module.exports = async (req,res)=>{
     let role = "viewer";
     let logged = false; 
@@ -9,7 +11,7 @@ module.exports = async (req,res)=>{
     }
     const product_id = req.params.id
     const product = await facturapi.products.retrieve(product_id);
-    console.log(product)
+    //console.log(product)
 
     res.render('FacturApiEditarProductos',{roles: role, loggedIn: logged,product_id,product})
 }

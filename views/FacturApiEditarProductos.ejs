@@ -98,10 +98,16 @@
 
                             <div class="form-floating">
 
-                            <input class="form-control" type="text" id="tax_type" name="tax_type" value="<%=product.taxes[0].type%>"><br>
-                            <label for="tax_type">Tipo de impuesto:</label>
+
+                            <select  class="form-control" id="tax_type" name="tax_type">
+                                <option value="IVA" <% if (product.taxes[0].type === "IVA") { %>selected<% } %>>IVA</option>
+                                <option value="ISR" <% if (product.taxes[0].type === "ISR") { %>selected<% } %>>ISR</option>
+                                <option value="IEPS" <% if (product.taxes[0].type === "IEPS") { %>selected<% } %>>IEPS</option>
+                            </select>
+                            <label for="taxabilityProducto">Tipo de Impuesto:</label>
 
                         </div>
+                        <br>
 
                             <div class="form-floating">
 

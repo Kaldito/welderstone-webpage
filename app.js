@@ -255,6 +255,8 @@ const RecibosRouter = require('./controllers/RecibosRouter')
 const RetencionesRouter = require('./controllers/RetencionesRouter')
 const OrganizacionesRouter = require('./controllers/OrganizacionesRouter')
 const CarruselImagenes = require('./controllers/CarruselImagenes')
+const FacturaVistaPrevia = require('./controllers/FacturaVistaPrevia')
+
 
 // MercadoPago
 
@@ -500,6 +502,7 @@ app.use('/Organizaciones',OrganizacionesRouter)
 app.get('/FacturApiFactura',FacturApiFactura)
 app.post('/FacturApiCrearFactura',FacturApiCrearFactura)
 app.use('/FacturApiDescargar/:id',FacturApiDescargar)
+app.use('/FacturaVistaPrevia/:id',FacturaVistaPrevia)
 app.use('/FacturApiCancelar',FacturApiCancelar)
 app.use('/FacturApiCanDown',FacturApiCanDown)
 app.post('/FacturApiCorreo',FacturApiCorreo)

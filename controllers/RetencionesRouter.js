@@ -2,7 +2,8 @@ var express = require ('express');
 var router =express.Router();
 
 const Facturapi = require('facturapi');
-const facturapi = new Facturapi('sk_test_EmR5KOQwAW391DLgBqLg0Rrle6VnG742MzdPlpZvaj');
+//const facturapi = new Facturapi('sk_test_EmR5KOQwAW391DLgBqLg0Rrle6VnG742MzdPlpZvaj');
+const facturapi = new Facturapi('sk_live_6DmBl09j7dMbkxayWDbBla8lDDnoRrOL2qw5X4epKZ');
 
 router.get('/Retenciones',async (req,res,next)=>{
     let role = "viewer";
