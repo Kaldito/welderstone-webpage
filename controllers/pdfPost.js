@@ -112,7 +112,7 @@ const productosMaterialesDescripcion =[];
        for(j=0; j<materiales.length; j++){
 
        for(i=0; i<ProductosAgregar[0][0].MaterialesProductos.length; i++){
-        if(ProductosAgregar[0][0].MaterialesProductos[i].Descripcion === materiales[j].Descripcion ){
+        if(ProductosAgregar[0][0].MaterialesProductos[i].Codigo === materiales[j].Codigo ){
 
             ProductosMaterialesPrecio.push(materiales[j].PrecioUnitario)
 
@@ -147,7 +147,7 @@ for (b=0; b<ProductosMaterialesPrecio.length; b++){
     for(j=0; j<materiales.length; j++){
 
     for(i=0; i<ProductosAgregar[0][0].MaterialesProductos.length; i++){
-     if(ProductosAgregar[0][0].MaterialesProductos[i].Descripcion === materiales[j].Descripcion ){
+     if(ProductosAgregar[0][0].MaterialesProductos[i].Codigo === materiales[j].Codigo ){
 
         ProductosMaterialesUnidad.push(materiales[j].Unidad)
 
