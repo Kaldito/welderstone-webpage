@@ -84,35 +84,34 @@
                                                         /\B(?=(\d{3})+(?!\d))/g, ',' )%> mxn
                                                 </strong></p>
                                         </div>
-                                    </div>
                                     <div class="col-md-1">
-
-                                        <form action="/AuthArticulosPost" method="post">
-                                            <input type="hidden" name="Activo" value="true">
-                                            <input type="hidden" name="NombreBusqueda" value="<%=productos[a].nombre%>">
-
-                                            <button class="custom-button" type="submit">Autorizar</button>
-                                            <br><br>
-
-
-
-
-
-                                        </form>
-                                            <!-- Editar producto -->
-    <a href="/productos/editar/<%=productos[a]._id%>">
-        <button type="button" class="btn btn-primary edit-button custom-button2"><i class="fa-solid fa-pen-to-square"></i></button>
-    </a>
-
-    <a href="/productos/borrar/<%= productos[a]._id %>" >
-        <button type="button" class="btn btn-dark trash-button custom-button3"><i class="fa-solid fa-trash"></i></button>
-    </a>
-
-
-                                <a
-                                            href="/DesplieguePdf?codigo=<%=productos[a].Codigo%>&amp;IdTrans=<%=productos[a]._id%>"><img
-                                                src="./images/productos/PdfLogo.png" alt="Logo PDF" width="60px"
-                                                height="80px" class="pdf"></a>
+                                        <div class="custom-button-container">
+                                            <!-- Authorize Button -->
+                                            <form action="/AuthArticulosPost" method="post">
+                                                <input type="hidden" name="Activo" value="true">
+                                                <input type="hidden" name="NombreBusqueda" value="<%=productos[a].nombre%>">
+                                                <button class="custom-button" type="submit">Autorizar</button>
+                                            </form>
+                                            <!-- Edit and Delete Buttons -->
+                                            <div class="edit-delete-container">
+                                                <a href="/productos/editar/<%=productos[a]._id%>">
+                                                    <button type="button" class="btn btn-primary edit-button custom-button2">
+                                                        <i class="fa-solid fa-pen-to-square"></i>
+                                                    </button>
+                                                </a>
+                                                <a href="/productos/borrar/<%= productos[a]._id %>" >
+                                                    <button type="button" class="btn btn-dark trash-button custom-button3">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </button>
+                                                </a>
+                                            </div>
+                                        
+                                            <!-- PDF Link -->
+                                            <a href="/DesplieguePdf?codigo=<%=productos[a].Codigo%>&amp;IdTrans=<%=productos[a]._id%>">
+                                                <img src="./images/productos/PdfLogo.png" alt="Logo PDF" class="pdf">
+                                            </a>
+                                        </div>
+                                    </div>
 
                                     </div>
                                 </div>
@@ -155,52 +154,48 @@
 
 </html>
 <style>
-    .custom-button {
-        background-color: blue;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 16px;
-        top: -100px;
-        position: relative;
-        top: 10px;
-        /* Puedes ajustar este valor según sea necesario */
-        left: -80px;
+
+.card.mb-3 {
+    position: relative; /* This makes sure that absolute positioning of children is relative to this card */
+}
+
+.custom-button-container {
+    position: relative; /* Position the button container absolutely within the card */
+    top: -70px; /* Adjust this value as needed */
+    right: -650px; /* Adjust this value as needed */
+}
+
+.edit-delete-container {
+    display: flex;
+    gap: 10px;
+}
+
+.custom-button, .custom-button2, .custom-button3 {
+    background-color: blue;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.pdf {
+    width: 60px;
+    height: 80px;
+    display: block;
+    margin: 0 auto; /* Centers the PDF image */
+}
+
+@media (max-width: 768px) {
+    .custom-button, .custom-button2, .custom-button3, .pdf {
+        width: 100%;
     }
 
-    .pdf {
-        position: relative;
+    .custom-button-container {
+        position: static; /* Reset position on smaller screens */
+    }
+}
 
-        top:-30px;
-        /* Puedes ajustar este valor según sea necesario */
-        left: -50px;
-    }
-    .custom-button2{
-        padding: 10px 20px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 16px;
-        top: -100px;
-        position: relative;
-        top: 10px;
-        /* Puedes ajustar este valor según sea necesario */
-        left: -80px;
-  
-    }
-    .custom-button3{
-        padding: 10px 20px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 16px;
-        top: -100px;
-        position: relative;
-        top: -40px;
-        /* Puedes ajustar este valor según sea necesario */
-        left: -25px;
-  
-    }
+
 </style>
