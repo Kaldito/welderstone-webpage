@@ -9,6 +9,9 @@ module.exports = async (req, res) => {
         role = req.session.passport.user.role;
         logged = true;
     }
+    if (
+        role == 'admin'
+    ) {
     if (page === undefined) {
         const usuarios = await User.paginate({}, { page: 1, limit: 30 });
         const FiltroPaginado = false;
@@ -32,4 +35,9 @@ module.exports = async (req, res) => {
             Filtro,
         });
     }
+
+    }else{
+        res.redirect('/')
+    }
+    
 };

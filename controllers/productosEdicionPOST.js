@@ -6,7 +6,7 @@ const AWS = require('aws-sdk');
 
 module.exports = async (req, res) => {
 
-    //console.log(req.body.Codigo)
+    //console.log(req.body)
 
     if (req.body.Familia !== '') {
         await Producto.updateOne(
@@ -98,7 +98,7 @@ module.exports = async (req, res) => {
     );
 
     await Producto.updateOne(
-        { _id: req.body._id },
+        { _id: req.body.id },
         { $unset: { MaterialesProductos: 1 } },
         { multi: true }
     );
@@ -107,7 +107,7 @@ module.exports = async (req, res) => {
         if (req.body['MaterialesProductos[cantidad]'][a] > 0) {
             // console.log(req.body['MaterialesProductos[nombre]'][a])
             await Producto.updateOne(
-                { _id: req.body._id },
+                { _id: req.body.id },
                 {
                     $push: {
                         MaterialesProductos: {

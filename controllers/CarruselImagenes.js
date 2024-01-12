@@ -13,11 +13,15 @@ router.get('/CarruselImagenes',async (req,res,next)=>{
         logged = true;
         var IdUsuario = req.session.passport.user.id;
     }
-
+    if (
+        role == 'admin'
+    ) {
 
     res.render('CarruselImagenes',{roles: role,loggedIn: true,Carrusel})
 
-
+    }else{
+        res.redirect('/')
+    }
 });
 /*
 router.post('/CarruselAgregar',async(req,res,nex)=>{
