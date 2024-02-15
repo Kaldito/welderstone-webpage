@@ -2,13 +2,13 @@ const Producto = require("../models/Productos.js");
 const Material = require("../models/materiales.js");
 
 module.exports = async (req, res) => {
-    let role = "viewer";
+    let role = 'viewer';
 
     if (req.session?.passport?.user != undefined) {
         role = req.session.passport.user.role;
     }
 
-    if (role == "admin" || role == "Proyectos" || role == "Ventas") {
+    if (role == 'admin' || role == "Proyectos" || role == "Ventas") {
         const materiales = await Material.find({PrecioUnitario: { $gt: 0 }});
 
         const materiales1 = await Material.find({PrecioUnitario: { $gt: 0 }});

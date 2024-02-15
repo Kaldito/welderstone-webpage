@@ -2,39 +2,33 @@
 const buttons = document.getElementsByClassName('edit');
 const divs = document.querySelectorAll('.editDiv');
 const materialesInputs = document.querySelectorAll('.material-input');
-//const pinturaInputs = document.querySelectorAll('.pintura-input');
-//const instalacionInputs = document.querySelectorAll('.instalacion-input');
+
 const precioMaterialesSpan = document.querySelector('#precio-materiales');
-//const precioPinturaSpan = document.querySelector('#precio-pintura');
-//const precioInstalacionSpan = document.querySelector('#precio-instalacion');
+
 const subtotalHTML = document.querySelector('#subtotal');
 const calculateSub = document.querySelector('#calculate-subtotal');
 const materialPorcentajes = document.querySelectorAll('.material-porcentaje');
-//const pinturaPorcentajes = document.querySelectorAll('.pintura-porcentaje');
-/*
-const instalacionPorcentajes = document.querySelectorAll(
-    '.instalacion-porcentaje'
-);
-*/
+
 const plusOneBtn = document.querySelector('#plus-one');
-const minusOneBtn = document.querySelector('#minus-one');
-const especsDiv = document.querySelector('#especificaciones');
+    const minusOneBtn = document.querySelector('#minus-one');
+    const especsDiv = document.querySelector('#especificaciones');
+
 const cap = parseFloat(document.querySelector('#cap').innerHTML);
+let especs = document.querySelectorAll('#especificaciones .input-group').length || 0;
+const hiddenInputsContainer = document.querySelector('#hiddenInputsPlaceholder');
 
 // - Modals
 const materialBusqueda = document.querySelector('#mm-busqueda');
-//const pinturaBusqueda = document.querySelector('#mp-busqueda');
-//const instalacionBusqueda = document.querySelector('#mi-busqueda');
+
 
 const modalMateriales = document.querySelectorAll('.modal-materiales');
-//const modalPinturas = document.querySelectorAll('.modal-pintura');
-//const modalInstalacion = document.querySelectorAll('.modal-instalacion');
 
 // ---------- GLOBAL CONST AND VARIABLES ---------- //
 const materialesUsados = {};
-//const pinturaUsada = {};
-//const instalacionUsada = {};
-let especs = cap;
+
+
+
+
 
 // ---------- FUNCTIONS ---------- //
 function setUp(inputs, objetoMateriales, objective) {
@@ -153,35 +147,7 @@ for (let i = 0; i < divs.length; i++) {
                 calculatePrice(materialesUsados, precioMaterialesSpan, false);
 
                 break;
-/*
-            case 'P':
-                const pint = ediv.querySelector('.pintura-input');
 
-                Object.defineProperty(pinturaUsada, btn_id, {
-                    value: [parseFloat(btn.value), 0, pint],
-                    configurable: true,
-                    enumerable: true,
-                    writable: true,
-                });
-
-                calculatePrice(pinturaUsada, precioPinturaSpan, false);
-
-                break;
-
-            case 'I':
-                const inst = ediv.querySelector('.instalacion-input');
-
-                Object.defineProperty(instalacionUsada, btn_id, {
-                    value: [parseFloat(btn.value), 0, inst],
-                    configurable: true,
-                    enumerable: true,
-                    writable: true,
-                });
-
-                calculatePrice(instalacionUsada, precioInstalacionSpan, false);
-
-                break;
-                */
         }
     }
 }
@@ -227,35 +193,7 @@ for (let i = 0; i < buttons.length; i++) {
                     calculatePrice(materialesUsados, precioMaterialesSpan);
 
                     break;
-/*
-                case 'P':
-                    const pint = h_div.querySelector('.pintura-input');
 
-                    Object.defineProperty(pinturaUsada, btn_id, {
-                        value: [parseFloat(btn.value), 0, pint],
-                        configurable: true,
-                        enumerable: true,
-                        writable: true,
-                    });
-
-                    calculatePrice(pinturaUsada, precioPinturaSpan);
-
-                    break;
-
-                case 'I':
-                    const inst = h_div.querySelector('.instalacion-input');
-
-                    Object.defineProperty(instalacionUsada, btn_id, {
-                        value: [parseFloat(btn.value), 0, inst],
-                        configurable: true,
-                        enumerable: true,
-                        writable: true,
-                    });
-
-                    calculatePrice(instalacionUsada, precioInstalacionSpan);
-
-                    break;
-                    */
             }
         } else {
             for (let i = 0; i < relatedBtns.length; i++) {
@@ -271,20 +209,8 @@ for (let i = 0; i < buttons.length; i++) {
                         priceArray(materialesUsados, precioMaterialesSpan);
 
                         break;
-                        /*
+                   
 
-                    case 'P':
-                        delete pinturaUsada[btn_id];
-                        priceArray(pinturaUsada, precioPinturaSpan);
-
-                        break;
-
-                    case 'I':
-                        delete instalacionUsada[btn_id];
-                        priceArray(instalacionUsada, precioInstalacionSpan);
-
-                        break;
-                        */
                 }
             }
 
@@ -301,38 +227,19 @@ for (let i = 0; i < buttons.length; i++) {
 }
 
 setUp(materialesInputs, materialesUsados, precioMaterialesSpan);
-//setUp(pinturaInputs, pinturaUsada, precioPinturaSpan);
-//setUp(instalacionInputs, instalacionUsada, precioInstalacionSpan);
+
 
 calculateSub.addEventListener('click', function () {
     const materiales_price = parseFloat(
         precioMaterialesSpan.innerHTML.replaceAll(',', '')
     );
-    /*
-    const pintura_price = parseFloat(
-        precioPinturaSpan.innerHTML.replaceAll(',', '')
-    );
-    */
-   /*
-    const instalacion_price = parseFloat(
-        precioInstalacionSpan.innerHTML.replaceAll(',', '')
-    );
-*/
+
     //let subtotal = materiales_price + pintura_price + instalacion_price;
 
     materialPorcentajes.forEach((porcentaje) => {
         subtotal += materiales_price * (parseFloat(porcentaje.value) / 100);
     });
-/*
-    pinturaPorcentajes.forEach((porcentaje) => {
-        subtotal += pintura_price * (parseFloat(porcentaje.value) / 100);
-    });
-*/
-/*
-    instalacionPorcentajes.forEach((porcentaje) => {
-        subtotal += instalacion_price * (parseFloat(porcentaje.value) / 100);
-    });
-¨*/
+
     subtotalHTML.innerHTML = `<h5 class="mb-3 resaltar-rojo">SubTotal: $${subtotal
         .toFixed(2)
         .toString()
@@ -343,33 +250,68 @@ calculateSub.addEventListener('click', function () {
 materialBusqueda.addEventListener('input', function () {
     filtrar(materialBusqueda, modalMateriales);
 });
-/*
-pinturaBusqueda.addEventListener('input', function () {
-    filtrar(pinturaBusqueda, modalPinturas);
-});
-*/
-/*
-instalacionBusqueda.addEventListener('input', function () {
-    filtrar(instalacionBusqueda, modalInstalacion);
-});
-*/
+
 // -------------- Especificaciones -------------- //
-plusOneBtn.addEventListener('click', function () {
+plusOneBtn.addEventListener('click', function() {
     especs++;
 
     const div = document.createElement('div');
-    div.classList.add('input-group');
-    div.classList.add('mb-2');
+    div.classList.add('input-group', 'mb-2');
     div.id = `especificaciones-${especs}`;
-    div.innerHTML = `<span class="input-group-text">${especs}</span> <input type="text" name="especificacionesNombre" autocomplete="off" autocapitalize="on" aria-label="nombre-espec" class="form-control espec${especs}" placeholder="Nombre" required> <input type="text" name="especificacionesDesc" autocomplete="off" autocapitalize="on" aria-label="descripcion-espec" class="form-control espec${especs}" placeholder="Descripcion" required></input>`;
+    div.innerHTML = `
+        <span class="input-group-text">${especs}</span>
+        <input type="text" name="especificacionesNombre" class="form-control dynamic-input" placeholder="Nombre" required>
+        <input type="text" name="especificacionesDesc" class="form-control dynamic-input" placeholder="Descripcion" required>
+    `;
 
     especsDiv.appendChild(div);
+
+    // Create and append the corresponding hidden inputs
+    createHiddenInputs(especs, hiddenInputsContainer);
 });
 
-minusOneBtn.addEventListener('click', function () {
-    const lastEspec = document.querySelector(`#especificaciones-${especs}`);
-    if (especs != 1) {
+minusOneBtn.addEventListener('click', function() {
+    if (especs > 0) {
+        const lastEspec = document.querySelector(`#especificaciones-${especs}`);
+        const lastHiddenEspecNombre = document.querySelector(`input[name='hiddenEspecificacionesNombre[${especs}]']`);
+        const lastHiddenEspecDesc = document.querySelector(`input[name='hiddenEspecificacionesDesc[${especs}]']`);
+
+        if (lastEspec) {
+            lastEspec.remove();
+        }
+
+        if (lastHiddenEspecNombre) {
+            lastHiddenEspecNombre.remove();
+        }
+
+        if (lastHiddenEspecDesc) {
+            lastHiddenEspecDesc.remove();
+        }
+
         especs--;
-        lastEspec.remove();
     }
 });
+
+function createHiddenInputs(index, container) {
+    const hiddenInputNombre = document.createElement('input');
+    hiddenInputNombre.type = 'hidden';
+    hiddenInputNombre.name = `hiddenEspecificacionesNombre[${index}]`;
+
+    const hiddenInputDesc = document.createElement('input');
+    hiddenInputDesc.type = 'hidden';
+    hiddenInputDesc.name = `hiddenEspecificacionesDesc[${index}]`;
+
+    container.appendChild(hiddenInputNombre);
+    container.appendChild(hiddenInputDesc);
+
+    // Synchronize values between dynamic inputs and hidden inputs
+    document.querySelectorAll(`#especificaciones-${index} .dynamic-input`).forEach((input, idx) => {
+        input.addEventListener('input', function() {
+            if (idx === 0) { // First input is for Nombre
+                hiddenInputNombre.value = input.value;
+            } else { // Second input is for Desc
+                hiddenInputDesc.value = input.value;
+            }
+        });
+    });
+}

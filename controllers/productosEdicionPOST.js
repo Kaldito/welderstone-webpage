@@ -5,8 +5,50 @@ const Cart = require('../models/Cart');
 const AWS = require('aws-sdk');
 
 module.exports = async (req, res) => {
-
     //console.log(req.body)
+
+
+    const body = {...req.body}
+      
+      
+      // Function to merge and order specifications
+      function mergeAndOrderSpecifications(body) {
+        // Extract dynamic specifications
+        const dynamicNames = {};
+        const dynamicDescs = {};
+      
+        Object.keys(body).forEach(key => {
+          if (key.startsWith('hiddenEspecificacionesNombre[')) {
+            const index = key.match(/\[(.*?)\]/)[1];
+            dynamicNames[index] = body[key];
+          } else if (key.startsWith('hiddenEspecificacionesDesc[')) {
+            const index = key.match(/\[(.*?)\]/)[1];
+            dynamicDescs[index] = body[key];
+          }
+        });
+      
+        // Sort and merge dynamic specifications with existing ones
+        const indices = Object.keys(dynamicNames).sort((a, b) => a - b);
+      
+        indices.forEach(index => {
+          if (dynamicNames[index] && dynamicDescs[index]) {
+            body.especificacionesNombre.push(dynamicNames[index]);
+            body.especificacionesDesc.push(dynamicDescs[index]);
+          }
+        });
+      
+        return body;
+    }
+
+      
+      // Apply function to req.body
+      const mergedBody = mergeAndOrderSpecifications(body);
+      
+      console.log(mergedBody.especificacionesNombre);
+
+
+
+
 
     if (req.body.Familia !== '') {
         await Producto.updateOne(

@@ -43,7 +43,6 @@
                             <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
                             <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
                             <% } %>
-
                           </div>
 
                 <form action="/productos/edicion" method="post" enctype="multipart/form-data">
@@ -54,29 +53,6 @@
                     <input type="hidden" value="0" name="MaterialesProductos[Familia]">
                     <input type="hidden" value="0" name="MaterialesProductos[cantidad]">
 
-                    <input type="hidden" value="0" name="PinturaProductos[nombre]">
-                    <input type="hidden" value="0" name="PinturaProductos[Codigo]">
-                    <input type="hidden" value="0" name="PinturaProductos[PrecioUnitario]">
-                    <input type="hidden" value="0" name="PinturaProductos[Familia]">
-                    <input type="hidden" value="0" name="PinturaProductos[cantidad]">
-
-                    <input type="hidden" value="0" name="InstalacionProductos[nombre]">
-                    <input type="hidden" value="0" name="InstalacionProductos[Codigo]">
-                    <input type="hidden" value="0" name="InstalacionProductos[PrecioUnitario]">
-                    <input type="hidden" value="0" name="InstalacionProductos[Familia]">
-                    <input type="hidden" value="0" name="InstalacionProductos[cantidad]">
-
-
-
-
-
-
-<!--<img class="img-fluid" src="<%= productoEditar.image %>" alt="">-->
-                            <!--<img class="img-fluid" src="<%= productoEditar.image %>" alt="">-->
-
-
-
-                            
                                             <!-- Imagen -->
                                             <div class="mb-3">
                                                 <label for="formFile" class="form-label">Selecciona una o más imagenes para el producto</label>
@@ -102,8 +78,6 @@
 
                                             </div>
 
-                            
-                            
                             <div class="mb-2">
                                 <h5>Unidad: <%= productoEditar.unidad %></h5>
                                 <input type="text" class="form-control" placeholder="Unidad" name="unidad">
@@ -124,8 +98,14 @@
                                 <label for="mi-checkbox">Activo</label>
                               </div>
                               <% } %>
+<!--este div este div-->
 
-                        </div>
+<!--Here must be the input hidden!-->
+<!-- Placeholder for hidden inputs related to dynamic especificaciones -->
+<div id="hiddenInputsPlaceholder" style="display: none;"></div>
+
+                            </div> 
+<!--este div este div-->
 
 
                           
@@ -150,7 +130,9 @@
                                     </p>
                                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Descripcion..." name="descripcion"></textarea>
                                 </div>
-    
+
+                        <!--Aquí es donde quiero que funcione!-->
+
                                 <div class="mb-3">
                                     <div class="row mb-2">
                                         <div class="col-6 cv-flex">
@@ -173,6 +155,9 @@
                                         <% } %>
                                     </div>
                                 </div>
+
+
+                        <!--Aquí es donde quiero que funcione!-->
 
                                 <h5 style="font-weight: bold;">Materiales</h5>
                                 <div>
@@ -453,7 +438,7 @@ function showDivs(n) {
   x[slideIndex-1].style.display = "block";  
 }
 
+
         </script>
     </body>
 </html>
-
