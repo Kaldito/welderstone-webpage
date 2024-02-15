@@ -5,11 +5,11 @@ const Cart = require('../models/Cart');
 const AWS = require('aws-sdk');
 
 module.exports = async (req, res) => {
-    //console.log(req.body)
+    console.log(req.body)
 
 
-    const body = {...req.body}
-      
+    const body = {...req.body,}
+      console.log(body.especificacionesNombre)
       
       // Function to merge and order specifications
       function mergeAndOrderSpecifications(body) {

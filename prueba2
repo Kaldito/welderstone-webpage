@@ -1,0 +1,103 @@
+document.addEventListener('DOMContentLoaded', function() {
+    updateEspecsCountAndIndices();
+
+    plusOneBtn.addEventListener('click', function() {
+        addDynamicInput();
+        updateEspecsCountAndIndices(); // Update count and indices after adding
+    });
+
+    minusOneBtn.addEventListener('click', function() {
+        removeDynamicInput();
+        updateEspecsCountAndIndices(); // Update count and indices after removing
+    });
+
+    function addDynamicInput() {
+        const index = especs + 1; // Use the next index for the new input
+        const div = createInputGroup(index);
+        especsDiv.appendChild(div);
+        createHiddenInputs(index);
+        especs++; // Increment the total count of especs
+    }
+
+    function removeDynamicInput() {
+        // Only allow removal if more than 2 input groups exist
+        if (especs > 2) {
+            const inputGroups = document.querySelectorAll('#especificaciones .input-group');
+            if (inputGroups.length > 0) {
+                const lastInputGroup = inputGroups[inputGroups.length - 1];
+                removeInputGroupAndHiddenInputs(lastInputGroup);
+                especs--; // Decrement the total count of especs
+            }
+        } else {
+            console.log("A minimum of 2 specifications must be maintained.");
+        }
+    }
+    
+
+    function createInputGroup(index) {
+        const div = document.createElement('div');
+        div.classList.add('input-group', 'mb-2');
+        div.id = `especificaciones-${index}`;
+        div.innerHTML = `
+            <span class="input-group-text">${index}</span>
+            <input type="text" name="especificacionesNombre[${index}]" class="form-control dynamic-input" placeholder="Nombre" required>
+            <input type="text" name="especificacionesDesc[${index}]" class="form-control dynamic-input" placeholder="Descripcion" required>
+        `;
+        return div;
+    }
+
+    function createHiddenInputs(index) {
+        const hiddenInputNombre = document.createElement('input');
+        hiddenInputNombre.type = 'hidden';
+        hiddenInputNombre.name = `hiddenEspecificacionesNombre[${index}]`;
+        hiddenInputsContainer.appendChild(hiddenInputNombre);
+
+        const hiddenInputDesc = document.createElement('input');
+        hiddenInputDesc.type = 'hidden';
+        hiddenInputDesc.name = `hiddenEspecificacionesDesc[${index}]`;
+        hiddenInputsContainer.appendChild(hiddenInputDesc);
+
+        syncInputsWithHidden(index);
+    }
+
+    function syncInputsWithHidden(index) {
+        const dynamicInputs = document.querySelectorAll(`#especificaciones-${index} .dynamic-input`);
+        dynamicInputs.forEach((input, idx) => {
+            input.addEventListener('input', function() {
+                const hiddenInput = document.querySelector(`input[name='hiddenEspecificaciones${idx === 0 ? 'Nombre' : 'Desc'}[${index}]']`);
+                if (hiddenInput) {
+                    hiddenInput.value = input.value;
+                }
+            });
+        });
+    }
+
+    function removeInputGroupAndHiddenInputs(inputGroup) {
+        const index = inputGroup.id.split('-')[1];
+        const hiddenInputNombre = document.querySelector(`input[name='hiddenEspecificacionesNombre[${index}]']`);
+        const hiddenInputDesc = document.querySelector(`input[name='hiddenEspecificacionesDesc[${index}]']`);
+        if (hiddenInputNombre) hiddenInputNombre.remove();
+        if (hiddenInputDesc) hiddenInputDesc.remove();
+        inputGroup.remove();
+    }
+
+    function updateEspecsCountAndIndices() {
+        // Dynamically update the indices and names of all inputs and their corresponding hidden inputs
+        const allEspecs = document.querySelectorAll('#especificaciones .input-group');
+        allEspecs.forEach((group, index) => {
+            const newIndex = index + 1;
+            group.id = `especificaciones-${newIndex}`;
+            const inputs = group.querySelectorAll('.dynamic-input');
+            if (inputs.length >= 2) {
+                inputs[0].name = `especificacionesNombre[${newIndex}]`;
+                inputs[1].name = `especificacionesDesc[${newIndex}]`;
+            }
+            // Update hidden inputs to match
+            const hiddenInputNombre = document.querySelector(`input[name^='hiddenEspecificacionesNombre'][name$='[${index + 2}]']`); // +2 due to starting count from 1 and array from 0
+            if (hiddenInputNombre) hiddenInputNombre.name = `hiddenEspecificacionesNombre[${newIndex}]`;
+            const hiddenInputDesc = document.querySelector(`input[name^='hiddenEspecificacionesDesc'][name$='[${index + 2}]']`);
+            if (hiddenInputDesc) hiddenInputDesc.name = `hiddenEspecificacionesDesc[${newIndex}]`;
+        });
+        especs = allEspecs.length; // Update the especs count to match the current number of input groups
+    }
+});
