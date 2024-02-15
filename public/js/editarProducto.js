@@ -9,25 +9,22 @@ const subtotalHTML = document.querySelector('#subtotal');
 const calculateSub = document.querySelector('#calculate-subtotal');
 const materialPorcentajes = document.querySelectorAll('.material-porcentaje');
 
-const plusOneBtn = document.querySelector('#plus-one');
-    const minusOneBtn = document.querySelector('#minus-one');
-    const especsDiv = document.querySelector('#especificaciones');
 
 const cap = parseFloat(document.querySelector('#cap').innerHTML);
 let especs = document.querySelectorAll('#especificaciones .input-group').length || 0;
 const hiddenInputsContainer = document.querySelector('#hiddenInputsPlaceholder');
 
+const plusOneBtn = document.querySelector('#plus-one');
+const minusOneBtn = document.querySelector('#minus-one');
+const especsDiv = document.querySelector('#especificaciones');
 // - Modals
 const materialBusqueda = document.querySelector('#mm-busqueda');
 
-
 const modalMateriales = document.querySelectorAll('.modal-materiales');
+
 
 // ---------- GLOBAL CONST AND VARIABLES ---------- //
 const materialesUsados = {};
-
-
-
 
 
 // ---------- FUNCTIONS ---------- //
@@ -209,8 +206,7 @@ for (let i = 0; i < buttons.length; i++) {
                         priceArray(materialesUsados, precioMaterialesSpan);
 
                         break;
-                   
-
+      
                 }
             }
 
@@ -233,8 +229,6 @@ calculateSub.addEventListener('click', function () {
     const materiales_price = parseFloat(
         precioMaterialesSpan.innerHTML.replaceAll(',', '')
     );
-
-    //let subtotal = materiales_price + pintura_price + instalacion_price;
 
     materialPorcentajes.forEach((porcentaje) => {
         subtotal += materiales_price * (parseFloat(porcentaje.value) / 100);
@@ -291,7 +285,6 @@ minusOneBtn.addEventListener('click', function() {
         especs--;
     }
 });
-
 function createHiddenInputs(index, container) {
     const hiddenInputNombre = document.createElement('input');
     hiddenInputNombre.type = 'hidden';
