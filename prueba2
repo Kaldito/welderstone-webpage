@@ -1,103 +1,230 @@
-document.addEventListener('DOMContentLoaded', function() {
-    updateEspecsCountAndIndices();
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <%- include('layouts/metaData'); -%>
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Welderstone - Tienda</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+            rel="stylesheet"
+        />
+        <!-- Bootstrap-->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+            crossorigin="anonymous"
+        />
+        <!-- CSS Stylesheet-->
+        <link rel="stylesheet" href="/css/styles.css" />
+        <!-- FontAwesome-->
+        <script
+            src="https://kit.fontawesome.com/360b0549be.js"
+            crossorigin="anonymous"
+        ></script>
+        <link rel="stylesheet" href="/css/styles.css" />
+    </head>
+    <body>
+        <%- include('layouts/navbar'); -%> <%- include("layouts/tienda-filtros")
+        %>
 
-    plusOneBtn.addEventListener('click', function() {
-        addDynamicInput();
-        updateEspecsCountAndIndices(); // Update count and indices after adding
-    });
+        <hr
+            class="border border-danger w-75"
+            style="margin: 0.8rem auto 1.6rem auto"
+        />
 
-    minusOneBtn.addEventListener('click', function() {
-        removeDynamicInput();
-        updateEspecsCountAndIndices(); // Update count and indices after removing
-    });
+        <section id="tienda-productos">
+            <div class="row">
+                <% for (var a = 0; a < productos.length; a++) { %> <%
+                if(productos[a].Activo === true ) { %>
 
-    function addDynamicInput() {
-        const index = especs + 1; // Use the next index for the new input
-        const div = createInputGroup(index);
-        especsDiv.appendChild(div);
-        createHiddenInputs(index);
-        especs++; // Increment the total count of especs
-    }
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                    <a href="/productos/<%=productos[a]._id%>">
+                        <div class="card" style="overflow: hidden">
+                            <!-- Imagen -->
+                            <div style="height: 25vh; display: flex; justify-content: center; align-items: center;">
+                                <img
+                                    src="<%=productos[a].image%>"
+                                    style="
+                                        max-height: 100%;
+                                        max-width: 100%;
+                                        object-fit: contain;
+                                        border-radius: 0;
+                                    "
+                                    alt="Product 1"
+                                />
+                            </div>
 
-    function removeDynamicInput() {
-        // Only allow removal if more than 2 input groups exist
-        if (especs > 2) {
-            const inputGroups = document.querySelectorAll('#especificaciones .input-group');
-            if (inputGroups.length > 0) {
-                const lastInputGroup = inputGroups[inputGroups.length - 1];
-                removeInputGroupAndHiddenInputs(lastInputGroup);
-                especs--; // Decrement the total count of especs
-            }
-        } else {
-            console.log("A minimum of 2 specifications must be maintained.");
-        }
-    }
+                            <!-- Cuerpo de la card -->
+                            <div class="card-body">
+                                <!-- Nombre del producto -->
+                                <h4 class="card-title">
+                                    <%=productos[a].nombre%>
+                                </h4>
+
+                                <form action="/products-cart" method="POST">
+                                    <!-- Precio -->
+                                    <input
+                                        type="hidden"
+                                        name="nombre"
+                                        value="<%=productos[a].nombre%>"
+                                    />
+                                    <input
+                                        type="hidden"
+                                        name="image"
+                                        value="<%=productos[a].image%>"
+                                    />
+                                    <input
+                                        type="hidden"
+                                        name="precio"
+                                        value="<%=productos[a].precio%>"
+                                    />
+
+                                    <input
+                                        type="hidden"
+                                        name="_id"
+                                        value="<%=productos[a]._id%>"
+                                    />
+
+                                    <% if(loggedIn) { %>
+                                    <input
+                                        type="hidden"
+                                        name="UsuarioId"
+                                        value="<%=IdUsuario%>"
+                                    />
+                                    <% } %>
+
+                                    <p class="card-text">
+                                        Precio:
+                                        <span class="price"
+                                            >$<%=
+                                            productos[a].precio.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g,
+                                            ',') %></span
+                                        >
+                                    </p>
+                                    <% if(loggedIn) { %>
+
+                                    <button
+                                        type="submit"
+                                        class="btn btn-danger w-100 edit"
+                                        id="<%=productos[a].nombre%>"
+                                    >
+                                        <i
+                                            class="fa-solid fa-cart-shopping me-2 edit"
+                                        ></i>
+
+                                        <% for (let b = 0; b < cart.length; b++)
+                                        { %> <% if( cart[b].nombre ===
+                                        productos[a].nombre && cart[b].UsuarioId
+                                        === IdUsuario){ %> Agregado <% } else {
+                                        %> <% } %> <% } %>
+                                    </button>
+
+                                    <% } %> 
+                                    
+                                    <% if(!loggedIn) { %>
+
+                                        <a href="/login/welderstone" class="btn btn-danger w-100 edit">
+                                            <i class="fa-solid fa-cart-shopping me-2 edit white-icon"></i>
+                                          </a>
+                                        
+                                          <% } %>
     
+                                    <% } %>
+                                </form>
 
-    function createInputGroup(index) {
-        const div = document.createElement('div');
-        div.classList.add('input-group', 'mb-2');
-        div.id = `especificaciones-${index}`;
-        div.innerHTML = `
-            <span class="input-group-text">${index}</span>
-            <input type="text" name="especificacionesNombre[${index}]" class="form-control dynamic-input" placeholder="Nombre" required>
-            <input type="text" name="especificacionesDesc[${index}]" class="form-control dynamic-input" placeholder="Descripcion" required>
-        `;
-        return div;
-    }
 
-    function createHiddenInputs(index) {
-        const hiddenInputNombre = document.createElement('input');
-        hiddenInputNombre.type = 'hidden';
-        hiddenInputNombre.name = `hiddenEspecificacionesNombre[${index}]`;
-        hiddenInputsContainer.appendChild(hiddenInputNombre);
 
-        const hiddenInputDesc = document.createElement('input');
-        hiddenInputDesc.type = 'hidden';
-        hiddenInputDesc.name = `hiddenEspecificacionesDesc[${index}]`;
-        hiddenInputsContainer.appendChild(hiddenInputDesc);
 
-        syncInputsWithHidden(index);
-    }
 
-    function syncInputsWithHidden(index) {
-        const dynamicInputs = document.querySelectorAll(`#especificaciones-${index} .dynamic-input`);
-        dynamicInputs.forEach((input, idx) => {
-            input.addEventListener('input', function() {
-                const hiddenInput = document.querySelector(`input[name='hiddenEspecificaciones${idx === 0 ? 'Nombre' : 'Desc'}[${index}]']`);
-                if (hiddenInput) {
-                    hiddenInput.value = input.value;
-                }
-            });
-        });
-    }
 
-    function removeInputGroupAndHiddenInputs(inputGroup) {
-        const index = inputGroup.id.split('-')[1];
-        const hiddenInputNombre = document.querySelector(`input[name='hiddenEspecificacionesNombre[${index}]']`);
-        const hiddenInputDesc = document.querySelector(`input[name='hiddenEspecificacionesDesc[${index}]']`);
-        if (hiddenInputNombre) hiddenInputNombre.remove();
-        if (hiddenInputDesc) hiddenInputDesc.remove();
-        inputGroup.remove();
-    }
+                            </div>
+                        </div>
+                    </a>
+                </div>
 
-    function updateEspecsCountAndIndices() {
-        // Dynamically update the indices and names of all inputs and their corresponding hidden inputs
-        const allEspecs = document.querySelectorAll('#especificaciones .input-group');
-        allEspecs.forEach((group, index) => {
-            const newIndex = index + 1;
-            group.id = `especificaciones-${newIndex}`;
-            const inputs = group.querySelectorAll('.dynamic-input');
-            if (inputs.length >= 2) {
-                inputs[0].name = `especificacionesNombre[${newIndex}]`;
-                inputs[1].name = `especificacionesDesc[${newIndex}]`;
-            }
-            // Update hidden inputs to match
-            const hiddenInputNombre = document.querySelector(`input[name^='hiddenEspecificacionesNombre'][name$='[${index + 2}]']`); // +2 due to starting count from 1 and array from 0
-            if (hiddenInputNombre) hiddenInputNombre.name = `hiddenEspecificacionesNombre[${newIndex}]`;
-            const hiddenInputDesc = document.querySelector(`input[name^='hiddenEspecificacionesDesc'][name$='[${index + 2}]']`);
-            if (hiddenInputDesc) hiddenInputDesc.name = `hiddenEspecificacionesDesc[${newIndex}]`;
-        });
-        especs = allEspecs.length; // Update the especs count to match the current number of input groups
-    }
-});
+                <% } %>
+            </div>
+        </section>
+
+        <div
+            id="toastContainer"
+            class="toast-container position-fixed bottom-0 start-0 p-3"
+        >
+            <!-- Tu código de toast aquí -->
+            <div
+                class="toast"
+                role="alert"
+                aria-live="assertive"
+                aria-atomic="true"
+                data-bs-delay="7000"
+            >
+                <div class="toast-header">
+                    <i
+                        class="fa-solid fa-circle-exclamation me-2"
+                        style="color: red"
+                    ></i>
+                    <strong class="me-auto">Welderstone</strong>
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="toast"
+                        aria-label="Close"
+                    ></button>
+                </div>
+                <div class="toast-body">
+                    La paginde de Tienda se encuentra actualmente en
+                    mantenimiento. Pronto tendremos más productos disponibles.
+                    ¡Gracias por su preferencia!
+                </div>
+            </div>
+        </div>
+
+        <%- include('layouts/whatsapp-btn') -%>
+
+        <script>
+            const tooltipTriggerList = document.querySelectorAll(
+                '[data-bs-toggle="tooltip"]'
+            );
+            const tooltipList = [...tooltipTriggerList].map(
+                (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
+            );
+        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+            crossorigin="anonymous"
+        ></script>
+        <script src="/js/tiendaHide.js"></script>
+        <!-- FontAwesome-->
+        <script
+            src="https://kit.fontawesome.com/360b0549be.js"
+            crossorigin="anonymous"
+        ></script>
+        <!-- Custom scripts -->
+        <script src="/js/whatsapp-btn.js"></script>
+        <script src="/js/tiendaTabs.js"></script>
+        <script>
+            // Inicializa los toasts
+            var toastEl = document.getElementById('toastContainer');
+            var toast = new bootstrap.Toast(toastEl.querySelector('.toast'));
+            toast.show();
+        </script>
+    </body>
+</html>
+
+<style>
+    .white-icon {
+  color: white;
+}
+</style>
