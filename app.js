@@ -13,10 +13,14 @@ const cors = require('cors');
 const mercadopago = require('mercadopago');
 const fs = require('fs');
 const nodemailer = require('nodemailer');
-
+const axios = require('axios');
 // ---------------- MODELS ---------------- //
 const User = require('./models/User.js');
 const Cart = require('./models/Cart.js');
+const path = require('path');
+
+
+
 
 // -------------- MIDDLEWARE -------------- //
 function nocache(req, res, next) {
@@ -73,7 +77,7 @@ passport.use(
         {
             clientID: process.env.GOOGLE_CLIENT_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-            callbackURL: 'http://welderstone.com/auth/google/welderstone',
+            callbackURL: 'https://welderstoneprueba.onrender.com/auth/google/welderstone',
         },
         // http://welderstone.com/auth/google/welderstone
         // http://localhost:3000/auth/google/welderstone
@@ -764,6 +768,10 @@ app.get('/popup6/:id', async (req, res) => {
         
     });
 });
+
+
+
+
 
 app.use((req, res) => res.render('notfound'));
 

@@ -1,1 +1,159 @@
-<button id="whatsapp-btn" class="center-text-xy"><i class="fab fa-whatsapp"></i><span>¡Contáctanos!</span></button>
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        #whatsapp-btn {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #25D366;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+        #chatbot-btn {
+            position: fixed;
+            bottom: 80px; /* Adjust this value to position it properly above the WhatsApp button */
+            right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #007bff; /* Change this to your desired color */
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+    </style>
+</head>
+<body>
+    <button id="whatsapp-btn" class="center-text-xy">
+        <i class="fab fa-whatsapp"></i>
+        <span>¡Contáctanos!</span>
+    </button>
+    <button id="chatbot-btn" class="center-text-xy">
+        <i class="fas fa-robot"></i>
+    </button>
+</body>
+</html>
+-->
+<!--
+
+-->
+<!---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website with Chatbot</title>
+    <script
+    chatbot_id="667aef4bb7cbd6d01222f530"
+    src="https://app.thinkstack.ai/bot/thinkstackai-loader.min.js">
+</script>
+</head>
+<body>
+    <h1>Welcome to My Website</h1>
+    <p>Click the button below to chat with us.</p>
+    <button id="openChatButton" style="position:fixed;bottom:20px;right:20px;padding:10px 20px;background-color:#007bff;color:white;border:none;border-radius:5px;cursor:pointer;">
+        Chat with us
+    </button>
+    <button id="whatsapp-btn" class="center-text-xy">
+        <i class="fab fa-whatsapp"></i>
+        <span>¡Contáctanos!</span>
+    </button>
+    <script>
+    document.getElementById('openChatButton').addEventListener('click', function() {
+        // Check if the chatbot script is loaded
+        if (window.thinkstackai) {
+            window.thinkstackai.openChat();
+        } else {
+            alert('Chatbot is not loaded yet.');
+        }
+    });
+    </script>
+</body>
+</html>
+-->
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website with Chatbot</title>
+    <script
+        chatbot_id="667aef4bb7cbd6d01222f530"
+        src="https://app.thinkstack.ai/bot/thinkstackai-loader.min.js"
+        async
+        onload="initializeChatbot()">
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        #openChatButton, #whatsapp-btn {
+            position: fixed;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        #openChatButton {
+            background-color: #007bff; /* Azul para el botón de chatbot */
+            bottom: 100px; /* Ajustado para dejar espacio entre los botones */
+        }
+        #whatsapp-btn {
+            background-color: #25d366; /* Verde para el botón de WhatsApp */
+            bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to My Website</h1>
+    <p>Click the button below to chat with us.</p>
+    <button class="fas fa-robot" id="openChatButton">
+    </button>
+    <button id="whatsapp-btn">
+        <i class="fab fa-whatsapp"></i>
+    </button>
+    <script>
+        function initializeChatbot() {
+            document.getElementById('openChatButton').addEventListener('click', function() {
+                // Check if the chatbot script is loaded
+                if (window.thinkstackai && typeof window.thinkstackai.openChat === 'function') {
+                    window.thinkstackai.openChat();
+                } else {
+                    alert('Chatbot is not loaded yet.');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

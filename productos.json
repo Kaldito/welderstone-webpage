@@ -1,0 +1,2259 @@
+[
+  {
+    "familia": [
+      "industria",
+      "ganadero"
+    ],
+    "nombre": "Techumbre para Bomba de Noria",
+    "descripcion": "Techumbre metálica para bombas de noria, giratoria 180° a base de Polín monten y Tubo metálico",
+    "unidad": "Pza",
+    "Codigo": "T1122-1326",
+    "filter": "Descripcion",
+    "busqueda": "bro",
+    "__v": 0,
+    "precio": 15377.44,
+    "especificacionesNombre": [
+      "Prueba",
+      "Prueba"
+    ],
+    "especificacionesDesc": [
+      "Prueba",
+      "Prueba"
+    ],
+    "_id": "651c54b0d9edf37bd08a87b6",
+    "enlace": "welderstone.com/productos/651c54b0d9edf37bd08a87b6"
+  },
+  {
+    "familia": [
+      "industria",
+      "ganadero",
+      "construccion y reciclados"
+    ],
+    "nombre": "Puerta de Malla Ciclonica de 6.00 mts ",
+    "descripcion": "Puerta Abatible a 2 hojas con Tubo de 2 1/2\" ced_40 de 6.00 mts y Malla Ciclonica.",
+    "unidad": "Pieza",
+    "Codigo": "P1122-1243",
+    "filter": "Descripcion",
+    "busqueda": "brocha",
+    "__v": 0,
+    "precio": 17345.57,
+    "especificacionesNombre": [
+      "Colores",
+      "Peso de Producto ",
+      "Dimensiones"
+    ],
+    "especificacionesDesc": [
+      "Color a elegir por el cliente ",
+      "208.70 Kg.",
+      "6.18 mts x 3.00 mts"
+    ],
+    "_id": "6522f16fcefaba61a4c5a189",
+    "enlace": "welderstone.com/productos/6522f16fcefaba61a4c5a189"
+  },
+  {
+    "familia": [
+      "hogar",
+      "industria"
+    ],
+    "nombre": "Base para Tinaco ( capacidad 1,100 lts )",
+    "descripcion": "Base para Tinaco Metalica a base de PTR , con capacidad para los tinacos de 600, 750 y 1,100 lts",
+    "unidad": "Pieza",
+    "Codigo": "B0723-1021",
+    "filter": "Descripcion",
+    "busqueda": "bro",
+    "__v": 0,
+    "precio": 3956.86,
+    "especificacionesNombre": [
+      "Colores",
+      "Dimensiones",
+      "Peso Aproximado"
+    ],
+    "especificacionesDesc": [
+      "A elección del cliente",
+      "1.25 x 1.25 x 1.00 mts",
+      "44.75 kg"
+    ],
+    "_id": "65236749c5706b2d748f4c7e",
+    "enlace": "welderstone.com/productos/65236749c5706b2d748f4c7e"
+  },
+  {
+    "familia": [
+      "hogar",
+      "industria",
+      "construccion y reciclados"
+    ],
+    "nombre": "Escalera Marina para alturas de 6.00 mts",
+    "descripcion": "Escalera metálica tubular de 6.00 mts de altura para azoteas",
+    "unidad": "Pza",
+    "especificacionesNombre": [
+      "Color",
+      "Materiales",
+      "Peso del producto",
+      "Dimensiones"
+    ],
+    "especificacionesDesc": [
+      "A elegir",
+      "Tubo de acero, solera",
+      "49.82",
+      "4.60 x 0.70 x 0.50 mts"
+    ],
+    "Codigo": "E0823-0953",
+    "filter": "Descripcion",
+    "busqueda": "disco",
+    "__v": 0,
+    "precio": 3644.95,
+    "_id": "6525abb5c5706b2d748f5eef",
+    "enlace": "welderstone.com/productos/6525abb5c5706b2d748f5eef"
+  },
+  {
+    "familia": [
+      "hogar",
+      "industria"
+    ],
+    "nombre": "Base para Equipos de Aire Lavado",
+    "descripcion": "Base metálica con protección para equipos de aire lavado (capacidades de 2800, 3800, 4800, 6800 PCM).",
+    "unidad": "Pza",
+    "Codigo": "B1222-9000",
+    "filter": "Descripcion",
+    "busqueda": "ES",
+    "__v": 0,
+    "precio": 2677.73,
+    "especificacionesNombre": [
+      "Color",
+      "Material",
+      "Peso de producto",
+      "Dimensiones"
+    ],
+    "especificacionesDesc": [
+      "A elegir",
+      "Solera de acero, Ángulo de acero",
+      "52.77 kg",
+      "1.10 x 0.88 x 0.88 mts"
+    ],
+    "_id": "6526f348c5706b2d748f6775",
+    "enlace": "welderstone.com/productos/6526f348c5706b2d748f6775"
+  },
+  {
+    "familia": [
+      "industria",
+      "ganadero"
+    ],
+    "nombre": "Valvula Tipo Back Flush de 8\"",
+    "descripcion": "Válvula para lavado de pisos manual en 8\" de diámetro ",
+    "unidad": "Pieza",
+    "Codigo": "V1123-0112",
+    "filter": "Descripcion",
+    "busqueda": "eq",
+    "__v": 0,
+    "precio": 15149.91,
+    "especificacionesNombre": [
+      "Colores",
+      "Peso Aproximado ",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "A elección del cliente",
+      "201.00 kg",
+      "1.10 x 1.00 x 0.50 mts"
+    ],
+    "_id": "657090c977a8802df4514461",
+    "enlace": "welderstone.com/productos/657090c977a8802df4514461"
+  },
+  {
+    "familia": [
+      "industria",
+      "ganadero"
+    ],
+    "nombre": "Puerta para Espacios de 3.00 mts en Corrales ",
+    "descripcion": "Puerta para manejo de ganado. Fabricado a base de Tubería metálica ced_40 y ced_30",
+    "unidad": "Pza",
+    "Codigo": "PS-1223-0105",
+    "filter": "Descripcion",
+    "busqueda": "tubo",
+    "__v": 0,
+    "precio": 4615.71,
+    "Familia": "Ganadero",
+    "especificacionesNombre": [
+      "Peso Total",
+      "Dimensiones",
+      "Color"
+    ],
+    "especificacionesDesc": [
+      "85.05 kg",
+      "1.00 x 2.95 mts",
+      "A elegir"
+    ],
+    "_id": "65a0170643ebe6099a1c6723",
+    "enlace": "welderstone.com/productos/65a0170643ebe6099a1c6723"
+  },
+  {
+    "familia": [
+      "industria",
+      "ganadero"
+    ],
+    "nombre": "Puerta Doble para Espacios de 6.00 mts en corrales",
+    "descripcion": "Puerta doble para corral fabricado a base de Tubo",
+    "unidad": "Pza",
+    "Codigo": "PD-1223-0105",
+    "filter": "Descripcion",
+    "busqueda": "disco",
+    "__v": 0,
+    "precio": 7942.52,
+    "especificacionesNombre": [
+      "Peso del producto",
+      "Dimensiones",
+      "Color "
+    ],
+    "especificacionesDesc": [
+      "143.9",
+      "6.00 x 1.00 mts",
+      "A elegir"
+    ],
+    "_id": "65a0260343ebe6099a1c6ad7",
+    "enlace": "welderstone.com/productos/65a0260343ebe6099a1c6ad7"
+  },
+  {
+    "familia": [
+      "industria",
+      "ganadero"
+    ],
+    "nombre": "Puerta para Espacios de 6.00 mts en corrales",
+    "descripcion": "Puerta para manejo de ganado. Fabricado a base de Tubería metálica ced_40 y ced_30",
+    "unidad": "Pza",
+    "Codigo": "PC-1223-0105",
+    "filter": "Descripcion",
+    "busqueda": "cade",
+    "__v": 0,
+    "precio": 8504.77,
+    "especificacionesNombre": [
+      "Peso del producto",
+      "Dimensiones",
+      "Color"
+    ],
+    "especificacionesDesc": [
+      "146.39",
+      "1.65 x 6.00 mts",
+      "A elegir"
+    ],
+    "_id": "65a033d943ebe6099a1c6b99",
+    "enlace": "welderstone.com/productos/65a033d943ebe6099a1c6b99"
+  },
+  {
+    "familia": [
+      "industria",
+      "ganadero"
+    ],
+    "nombre": "Puerta para Espacios de 6.00 mts en corrales",
+    "descripcion": "Puerta para manejo de ganado. Fabricado a base de Tubería metálica ced_40 y ced_30",
+    "unidad": "Pza",
+    "Codigo": "PR-1223-0105",
+    "filter": "Descripcion",
+    "busqueda": "cadena",
+    "__v": 0,
+    "precio": 7754.02,
+    "especificacionesNombre": [
+      "Peso del producto",
+      "Dimensiones",
+      "Color"
+    ],
+    "especificacionesDesc": [
+      "153.23 kg",
+      "3.45 x 6.00 mts",
+      "A elegir"
+    ],
+    "_id": "65a577ac47046fe52bc6a4a7",
+    "enlace": "welderstone.com/productos/65a577ac47046fe52bc6a4a7"
+  },
+  {
+    "familia": [
+      "industria",
+      "ganadero"
+    ],
+    "nombre": "Puerta Doble para Espacios de 6.00 mts en corrales",
+    "descripcion": "Puerta para manejo de ganado. Fabricado a base de Tubería metálica ced_40 y ced_30",
+    "unidad": "Pza",
+    "Codigo": "PD-1223-1107",
+    "filter": "Descripcion",
+    "busqueda": "cade",
+    "__v": 0,
+    "precio": 8105.73,
+    "especificacionesNombre": [
+      "Peso del producto",
+      "Dimensiones",
+      "Color"
+    ],
+    "especificacionesDesc": [
+      "123.13 kg",
+      "6.00 x 1.00 mts",
+      "A elegir"
+    ],
+    "_id": "65a821d947046fe52bc6eaa7",
+    "enlace": "welderstone.com/productos/65a821d947046fe52bc6eaa7"
+  },
+  {
+    "familia": [
+      "industria",
+      "ganadero"
+    ],
+    "nombre": "Puerta para Espacios de 6.00 mts en corrales",
+    "descripcion": "Puerta para manejo de ganado. Fabricado a base de Tubería metálica ced_40 y ced_30",
+    "unidad": "Pza",
+    "Codigo": "PC-1223-1107",
+    "filter": "Descripcion",
+    "busqueda": "th",
+    "__v": 0,
+    "precio": 8536.67,
+    "especificacionesNombre": [
+      "Peso del producto",
+      "Dimensiones",
+      "Color "
+    ],
+    "especificacionesDesc": [
+      "147.40 kg",
+      "1.65 x 6.00 mts",
+      "A elegir"
+    ],
+    "_id": "65a8241447046fe52bc6ed57",
+    "enlace": "welderstone.com/productos/65a8241447046fe52bc6ed57"
+  },
+  {
+    "familia": [
+      "industria",
+      "ganadero"
+    ],
+    "nombre": "Puerta para Espacios de 6.00 mts en corrales",
+    "descripcion": "Puerta para manejo de ganado. Fabricado a base de Tubería metálica ced_40 y ced_30",
+    "unidad": "Pza",
+    "Codigo": "PG-1223-1107",
+    "filter": "Descripcion",
+    "busqueda": "cade",
+    "__v": 0,
+    "precio": 6763.23,
+    "especificacionesNombre": [
+      "Peso del producto",
+      "Dimensiones",
+      "Color"
+    ],
+    "especificacionesDesc": [
+      "136.07 kg",
+      "3.65 x 0.60 mts",
+      "A elegir"
+    ],
+    "_id": "65a825db47046fe52bc6f15c",
+    "enlace": "welderstone.com/productos/65a825db47046fe52bc6f15c"
+  },
+  {
+    "familia": [
+      "industria",
+      "ganadero"
+    ],
+    "nombre": "Puerta para Espacios de 6.00 mts en corrales",
+    "descripcion": "Puerta para manejo de ganado. Fabricado a base de Tubería metálica ced_40 y ced_30",
+    "unidad": "Pza",
+    "Codigo": "PR-1223-1107",
+    "filter": "Descripcion",
+    "busqueda": "Cade",
+    "__v": 0,
+    "precio": 8340.1,
+    "especificacionesNombre": [
+      "Peso del producto",
+      "Dimensiones",
+      "Color"
+    ],
+    "especificacionesDesc": [
+      "174.44 kg",
+      "3.45 x 6.00 mts",
+      "A elegir"
+    ],
+    "_id": "65a93e1e47046fe52bc70aad",
+    "enlace": "welderstone.com/productos/65a93e1e47046fe52bc70aad"
+  },
+  {
+    "familia": [
+      "industria",
+      "ganadero"
+    ],
+    "nombre": "Puerta para Espacios de 3.00 mts en Corrales ",
+    "descripcion": "Puerta para manejo de ganado. Fabricado a base de Tubería metálica ced_40 y ced_30",
+    "unidad": "Pza",
+    "Codigo": "PS-1223-1107",
+    "filter": "Descripcion",
+    "busqueda": "soler",
+    "__v": 0,
+    "precio": 4727.3,
+    "especificacionesNombre": [
+      "Peso del producto",
+      "Dimensiones",
+      "Color"
+    ],
+    "especificacionesDesc": [
+      "62.36 kg",
+      "1.00 x 2.95 mts",
+      "A elegir"
+    ],
+    "_id": "65a9410247046fe52bc70d80",
+    "enlace": "welderstone.com/productos/65a9410247046fe52bc70d80"
+  },
+  {
+    "familia": [
+      "industria",
+      "ganadero"
+    ],
+    "nombre": "Puerta para Espacios de 6.00 mts en corrales",
+    "descripcion": "Puerta para manejo de ganado. Fabricado a base de Tubería metálica ced_40 y ced_30",
+    "unidad": "Pza",
+    "Codigo": "PC-1223-0155",
+    "filter": "Descripcion",
+    "busqueda": "caden",
+    "__v": 0,
+    "precio": 8358.11,
+    "especificacionesNombre": [
+      "Peso del producto",
+      "Dimensiones",
+      "Color"
+    ],
+    "especificacionesDesc": [
+      "142.88 kg",
+      "1.65 x 6.00 mts",
+      "A elegir"
+    ],
+    "_id": "65a950df47046fe52bc71593",
+    "enlace": "welderstone.com/productos/65a950df47046fe52bc71593"
+  },
+  {
+    "familia": [
+      "industria",
+      "ganadero"
+    ],
+    "nombre": "Puerta Doble para Espacios de 6.00 mts en corrales",
+    "descripcion": "Puerta para manejo de ganado. Fabricado a base de Tubería metálica ced_40 y ced_30",
+    "unidad": "Pza",
+    "Codigo": "PD-1223-0155",
+    "filter": "Descripcion",
+    "busqueda": "tub",
+    "__v": 0,
+    "precio": 6928.38,
+    "especificacionesNombre": [
+      "Peso del producto",
+      "Dimensiones",
+      "Color"
+    ],
+    "especificacionesDesc": [
+      "127.42 kg",
+      "6.00 x 1.00 mts",
+      "A elegir"
+    ],
+    "_id": "65a9558647046fe52bc72244",
+    "enlace": "welderstone.com/productos/65a9558647046fe52bc72244"
+  },
+  {
+    "familia": [
+      "industria",
+      "ganadero"
+    ],
+    "nombre": "Puerta para Espacios de 6.00 mts en corrales",
+    "descripcion": "Puerta para manejo de ganado. Fabricado a base de Tubería metálica ced_40 y ced_30",
+    "unidad": "Pza",
+    "Codigo": "PG-1223-0155",
+    "filter": "Descripcion",
+    "busqueda": "cadena",
+    "__v": 0,
+    "precio": 6121.89,
+    "especificacionesNombre": [
+      "Peso del producto",
+      "Dimensiones",
+      "Color"
+    ],
+    "especificacionesDesc": [
+      "111.31 kg",
+      "6.00 x 1.00 mts",
+      "A elegir"
+    ],
+    "_id": "65a95a3547046fe52bc724c6",
+    "enlace": "welderstone.com/productos/65a95a3547046fe52bc724c6"
+  },
+  {
+    "familia": [
+      "industria",
+      "ganadero"
+    ],
+    "nombre": "Puerta para Espacios de 6.00 mts en corrales",
+    "descripcion": "Puerta para manejo de ganado. Fabricado a base de Tubería metálica ced_40 y ced_30",
+    "unidad": "Pza",
+    "Codigo": "PR-1223-0155",
+    "filter": "Descripcion",
+    "busqueda": "caden",
+    "__v": 0,
+    "precio": 7327.04,
+    "especificacionesNombre": [
+      "Peso del producto",
+      "Dimensiones",
+      "Color"
+    ],
+    "especificacionesDesc": [
+      "148.72 kg",
+      "3.45 x 6.00 mts",
+      "A elegir"
+    ],
+    "_id": "65a95e3b47046fe52bc7282f",
+    "enlace": "welderstone.com/productos/65a95e3b47046fe52bc7282f"
+  },
+  {
+    "familia": [
+      "industria",
+      "ganadero"
+    ],
+    "nombre": "Puerta para Espacios de 3.00 mts en Corrales ",
+    "descripcion": "Puerta para manejo de ganado. Fabricado a base de Tubería metálica ced_40 y ced_30",
+    "unidad": "Pza",
+    "Codigo": "PS-1223-0155",
+    "filter": "Descripcion",
+    "busqueda": "soler",
+    "__v": 0,
+    "precio": 4776.88,
+    "especificacionesNombre": [
+      "Peso del producto",
+      "Dimensiones",
+      "Color"
+    ],
+    "especificacionesDesc": [
+      "76.81 kg",
+      "1.00 x 2.95 mts",
+      "A elegir"
+    ],
+    "_id": "65a9620347046fe52bc72d16",
+    "enlace": "welderstone.com/productos/65a9620347046fe52bc72d16"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Escalera marina cuadrada",
+    "descripcion": "Escalera para acceso seguro de azoteas. Fabricación en acero de perfiles cuadrados. para alturas no mayores de 6.00 mts",
+    "unidad": "Pza",
+    "Codigo": "C1023-1142",
+    "filter": "Descripcion",
+    "busqueda": "bro",
+    "__v": 0,
+    "precio": 3826.38,
+    "especificacionesNombre": [
+      "Peso del producto",
+      "Dimensiones",
+      "Color",
+      "Material"
+    ],
+    "especificacionesDesc": [
+      "49.82 kg",
+      "4.60 x 052 x 0.42 mts",
+      "A elegir",
+      "PTR"
+    ],
+    "_id": "65a968ee47046fe52bc73516",
+    "enlace": "welderstone.com/productos/65a968ee47046fe52bc73516"
+  },
+  {
+    "familia": [
+      "ganadero"
+    ],
+    "nombre": "Guardaganado de 0.70 x 3.00 mts",
+    "descripcion": "Guardaganado fabricado en tubos de acero de 2 1/2\" pulgadas para protección de ganado y cruce peatonal o vehicular.\r\n\r\n",
+    "unidad": "Pza",
+    "Codigo": "G-1233-0836",
+    "filter": "Descripcion",
+    "busqueda": "",
+    "__v": 0,
+    "precio": 17181.5,
+    "especificacionesNombre": [
+      "Peso del producto",
+      "Dimensiones",
+      "Color"
+    ],
+    "especificacionesDesc": [
+      "264.64 kg",
+      "3.00 x 0.70 mts",
+      "Color natural de fabrica del acero"
+    ],
+    "_id": "65aa8c96a987922dcf448c11",
+    "enlace": "welderstone.com/productos/65aa8c96a987922dcf448c11"
+  },
+  {
+    "familia": [
+      "ganadero"
+    ],
+    "nombre": "Guardaganado de 0.80 x 3.00 mts",
+    "descripcion": "Guardaganado fabricado en tubos de acero de 2 1/2\" pulgadas, Ideal para recolección de agua ",
+    "unidad": "Pza",
+    "Codigo": "G1223-1040",
+    "filter": "Descripcion",
+    "busqueda": "tub",
+    "__v": 0,
+    "precio": 19036.35,
+    "especificacionesNombre": [
+      "Peso del producto",
+      "Dimensiones",
+      "Color"
+    ],
+    "especificacionesDesc": [
+      "264.64 kg",
+      "3.00 x 0.80 mts",
+      "Color natural de fabrica del acero"
+    ],
+    "_id": "65aaa432a987922dcf44aa89",
+    "enlace": "welderstone.com/productos/65aaa432a987922dcf44aa89"
+  },
+  {
+    "familia": [
+      "industria",
+      "ganadero"
+    ],
+    "nombre": "Guardaganado de 1.75 x 6.00 mts",
+    "descripcion": "Guardaganado para paso de vehículos de alta carga. Formato con una estructura de tubo , viga y canal CPS.",
+    "unidad": "Pza",
+    "Codigo": "GP-1223-15.8",
+    "filter": "Descripcion",
+    "busqueda": "disc",
+    "__v": 0,
+    "precio": 49448.71,
+    "especificacionesNombre": [
+      "Peso del producto",
+      "Dimensiones",
+      "Color"
+    ],
+    "especificacionesDesc": [
+      "494.20 kg",
+      "6.00 x 1.76 mts",
+      "Color nataural de del acero de fabrica."
+    ],
+    "_id": "65aab3aea987922dcf44b902",
+    "enlace": "welderstone.com/productos/65aab3aea987922dcf44b902"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Portón para cochera",
+    "descripcion": "Portón con una estructura a base de varilla duadrada de acero y diseño de nudo de hierro con 2 puertas abatibles a 90°",
+    "unidad": "Pza",
+    "Codigo": "C1123-1101",
+    "filter": "Descripcion",
+    "busqueda": "",
+    "__v": 0,
+    "precio": 13472.24,
+    "especificacionesNombre": [
+      "Peso del producto",
+      "Dimensiones",
+      "Color"
+    ],
+    "especificacionesDesc": [
+      "202.54 kg",
+      "3.00 x 2.20 mts",
+      "A elegir"
+    ],
+    "_id": "65aabdd6a987922dcf44c492",
+    "enlace": "welderstone.com/productos/65aabdd6a987922dcf44c492"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Estantería estilo industrial larga",
+    "descripcion": "Estanteria estilo industrial fabricada en acero. Solo incluye bastidor de acero, no incluye soportes de madera.",
+    "unidad": "Pza",
+    "Codigo": "EI-0123-1101",
+    "filter": "Descripcion",
+    "busqueda": "nive",
+    "__v": 0,
+    "precio": 3838.12,
+    "especificacionesNombre": [
+      "Peso del producto",
+      "Color",
+      "Dimensiones"
+    ],
+    "especificacionesDesc": [
+      "40.1 kg",
+      "A elegir",
+      "1.70 x 0.80 x 0.40 mts"
+    ],
+    "_id": "65b94a1ba987922dcf45d4c1",
+    "enlace": "welderstone.com/productos/65b94a1ba987922dcf45d4c1"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Mesa estantería estilo industrial de acero",
+    "descripcion": "Mesa estanteria estilo industrial fabricada en acero. Solo incluye bastidor de acero, no incluye soporte de madera",
+    "unidad": "Pza",
+    "Codigo": "MB-0123-1110",
+    "filter": "Descripcion",
+    "busqueda": "nivelad",
+    "__v": 0,
+    "precio": 2719.9,
+    "especificacionesNombre": [
+      "Peso del producto",
+      "Color",
+      "Dimensiones"
+    ],
+    "especificacionesDesc": [
+      "16.04 kg",
+      "A elegir",
+      "0.53 x 0.33 x 0.50 mts"
+    ],
+    "_id": "65b94b4da987922dcf45d9c8",
+    "enlace": "welderstone.com/productos/65b94b4da987922dcf45d9c8"
+  },
+  {
+    "familia": [
+      "industria",
+      "ganadero"
+    ],
+    "nombre": "Carro para ordeño metálico",
+    "descripcion": "carro para manebras de ordeño de 2.08 x 0.95 x 2.84 mts ",
+    "unidad": "Pza",
+    "Codigo": "SD-1122-0827",
+    "filter": "Descripcion",
+    "busqueda": "l",
+    "__v": 0,
+    "precio": 12218.73,
+    "especificacionesNombre": [
+      "Peso del producto",
+      "Color ",
+      "Dimensiones"
+    ],
+    "especificacionesDesc": [
+      "134.44 kg",
+      "A elegir",
+      "0.95 x 2.84"
+    ],
+    "_id": "65bbe66ca987922dcf461ac1",
+    "enlace": "welderstone.com/productos/65bbe66ca987922dcf461ac1"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Puerta sencilla de acero",
+    "descripcion": "Puerta de acceso metálica, formada a base de estructura de acero, varilla cuadrado y diseño con nudos de hierro. Resistente y duradera ideal para la seguridad del hogar.",
+    "unidad": "Pza",
+    "Codigo": "P1123-1101",
+    "filter": "Descripcion",
+    "busqueda": "",
+    "__v": 0,
+    "precio": 6881.5,
+    "especificacionesNombre": [
+      "Peso del producto",
+      "Dimensiones",
+      "Color"
+    ],
+    "especificacionesDesc": [
+      "64.16 kg",
+      "1.00 x 2.20 mts",
+      "A elegir"
+    ],
+    "_id": "65bd38d1a987922dcf4657e4",
+    "enlace": "welderstone.com/productos/65bd38d1a987922dcf4657e4"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Protección de acero para ventana",
+    "descripcion": "Protección para ventana fabricada en acero en un diseño de barrotes simples cuadrados con adornos en nudos.",
+    "unidad": "Pza",
+    "especificacionesNombre": [
+      "Peso del producto",
+      "Color",
+      "Dimensiones"
+    ],
+    "especificacionesDesc": [
+      "41.38 kg",
+      "A elegir",
+      "1.20 x 1.20 mts"
+    ],
+    "Codigo": "V1123-1101",
+    "filter": "Descripcion",
+    "busqueda": "fon",
+    "__v": 0,
+    "precio": 4807.57,
+    "_id": "65be6048a987922dcf4699da",
+    "enlace": "welderstone.com/productos/65be6048a987922dcf4699da"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Protección para ventana de baño",
+    "descripcion": "Protección pequeña para ventanas de baño fabricada en acero con diseño de barrotes cuadrados en nudos de hierro",
+    "unidad": "Pza",
+    "especificacionesNombre": [
+      "Peso del producto",
+      "Color ",
+      "Dimensiones"
+    ],
+    "especificacionesDesc": [
+      "14.90 kg",
+      "A elegir",
+      "0.60 x 0.40 mts"
+    ],
+    "Codigo": "VB-1123-1101",
+    "filter": "Descripcion",
+    "busqueda": "fon",
+    "__v": 0,
+    "precio": 2469.27,
+    "_id": "65be627ea987922dcf46a45f",
+    "enlace": "welderstone.com/productos/65be627ea987922dcf46a45f"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Barandal para Balcón",
+    "descripcion": "Barandal para balcón a base de una estructura de PTR 2\" x 2\" y perfiles metálicos para mayor resistencia.",
+    "unidad": "Pza",
+    "Codigo": "B1123-1348",
+    "filter": "Descripcion",
+    "busqueda": "fo",
+    "__v": 0,
+    "precio": 6411.42,
+    "especificacionesNombre": [
+      "Peso del producto",
+      "Color",
+      "Dimensiones"
+    ],
+    "especificacionesDesc": [
+      "55 kg",
+      "A elegir",
+      "0.76 x 0.90 x 1.96 mts"
+    ],
+    "_id": "65c24126a987922dcf4728d3",
+    "enlace": "welderstone.com/productos/65c24126a987922dcf4728d3"
+  },
+  {
+    "familia": [
+      "urbanismo",
+      "Equipamento"
+    ],
+    "nombre": "Mampara para Baños",
+    "descripcion": "Mampara con división para dos baños, fabricado con cuadrado 1 1/2\" y Tablero tipo 147",
+    "unidad": "Pieza",
+    "Codigo": "M1122-0226",
+    "filter": "Descripcion",
+    "busqueda": "lij",
+    "__v": 0,
+    "precio": 10872.15,
+    "Familia": "Construccion y reciclados",
+    "especificacionesNombre": [
+      "Color",
+      "Peso Producto",
+      "Dimensiones ",
+      "Materiales "
+    ],
+    "especificacionesDesc": [
+      "a elegir",
+      "120.70 Kg.",
+      "2.60 x 2.00 mts ",
+      "PTR, Perfiles de acero y tablero "
+    ],
+    "_id": "66350cd8e29ac13ac6033267",
+    "enlace": "welderstone.com/productos/66350cd8e29ac13ac6033267"
+  },
+  {
+    "familia": [
+      "hogar",
+      "industria"
+    ],
+    "nombre": "Mesa Metálica",
+    "descripcion": "Mesa Metálica de gran capacidad de carga fabricado a base de cuadrado de 2\", lamina de acero y ruedas giratorias para su fácil movilidad ",
+    "unidad": "Pieza",
+    "Codigo": "M1122-1830",
+    "filter": "Descripcion",
+    "busqueda": "lij",
+    "__v": 0,
+    "precio": 16625.79,
+    "especificacionesNombre": [
+      "Color",
+      "Materiales",
+      "Peso Producto",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "a elegir",
+      "Estructura de PTR de diferente espesor y  Lamina Lisa ",
+      "271.76 Kg.",
+      "0.90 x 1.50 x 2.60 mts "
+    ],
+    "_id": "6635102de29ac13ac6035928",
+    "enlace": "welderstone.com/productos/6635102de29ac13ac6035928"
+  },
+  {
+    "familia": [
+      "hogar",
+      "industria"
+    ],
+    "nombre": "Escalera Metalica",
+    "descripcion": "Escalera Metálica soldable a base de PTR, marcos de descanso y diagonal de refuerzo",
+    "unidad": "Pieza",
+    "Codigo": "E1122-1009",
+    "filter": "Descripcion",
+    "busqueda": "br",
+    "__v": 0,
+    "precio": 29005.52,
+    "especificacionesNombre": [
+      "Color ",
+      "Peso Aproximado ",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "a elegir",
+      "337.12 Kg.",
+      "3.43 x 2.00 x 3.40 mts "
+    ],
+    "_id": "66351517e29ac13ac6036eff",
+    "enlace": "welderstone.com/productos/66351517e29ac13ac6036eff"
+  },
+  {
+    "familia": [
+      "hogar",
+      "industria",
+      "construccion y reciclados"
+    ],
+    "nombre": "Escalera Metálica Retráctil",
+    "descripcion": "Escalera Metálica retráctil para azoteas, con seguro de perno de retención con cadena de eslabón doble y soportes para fijación en muros. ",
+    "unidad": "Pieza",
+    "especificacionesNombre": [
+      "Color",
+      "Materiales",
+      "Peso Aproximado ",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "a elegir",
+      "Tubo 1 1/2\", Solera 1/8\" x 2\" y cadena de eslabón doble ",
+      "97.02 Kg.",
+      "7.00 x 6.00 x 0.63"
+    ],
+    "Codigo": "E1222-1303",
+    "filter": "Descripcion",
+    "busqueda": "br",
+    "__v": 0,
+    "precio": 6980.37,
+    "_id": "66351c7be29ac13ac603974e",
+    "enlace": "welderstone.com/productos/66351c7be29ac13ac603974e"
+  },
+  {
+    "familia": [
+      "industria",
+      "construccion y reciclados"
+    ],
+    "nombre": "Barandal Metálico",
+    "descripcion": "Barandal de seguridad metálico para la protección de las personas",
+    "unidad": "Pza",
+    "especificacionesNombre": [
+      "Color",
+      "Materiales",
+      "Peso Aproximado",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "a elegir ",
+      "Tubos Metálicos 1 1/2\" y 2\", solera de 1/8\" y redondo 1/2\" ",
+      "54.98 Kg.",
+      "3.10 x 1.00 "
+    ],
+    "Codigo": "B1122-1639",
+    "filter": "Descripcion",
+    "busqueda": "br",
+    "__v": 0,
+    "precio": 5852.08,
+    "_id": "66351ea6e29ac13ac6039e24",
+    "enlace": "welderstone.com/productos/66351ea6e29ac13ac6039e24"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Asador con Repisas",
+    "descripcion": "Asador portatil tipo Tambo, resistente a altas temperaturas con repisas de madera para cortar ",
+    "unidad": "Pza",
+    "especificacionesNombre": [
+      "Color",
+      "Materiales",
+      "Peso Aproximado",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "a elegir",
+      "PTR 1\", malla desplegada, redondo liso, madera y tanque de 2da ",
+      "43.88 Kg.",
+      "0.87 x 0.61 x 1.53 mts "
+    ],
+    "Codigo": "A1122-0942",
+    "filter": "Descripcion",
+    "busqueda": "es",
+    "__v": 0,
+    "precio": 5611.91,
+    "_id": "6635226ae29ac13ac603a772",
+    "enlace": "welderstone.com/productos/6635226ae29ac13ac603a772"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Asador para Exteriores",
+    "descripcion": "Asador de Tambo estilo rustico, resistente a altas temperaturas y gran espacio para cocina.",
+    "unidad": "Pza",
+    "especificacionesNombre": [
+      "Color",
+      "Materiales",
+      "Peso Aproximado",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "a elegir",
+      "PTR, malla desplegada y redondo liso ",
+      "43.88 Kg.",
+      "0.87 x 0.60 x 0.90 mts "
+    ],
+    "Codigo": "A1122-0544",
+    "filter": "Descripcion",
+    "busqueda": "es",
+    "__v": 0,
+    "precio": 3839.31,
+    "_id": "663524a4e29ac13ac603b60b",
+    "enlace": "welderstone.com/productos/663524a4e29ac13ac603b60b"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Repisa Metálica",
+    "descripcion": "Repisa metálica para almacenamiento",
+    "unidad": "Pza",
+    "Codigo": "R1122-0847",
+    "filter": "Descripcion",
+    "busqueda": "es",
+    "__v": 0,
+    "precio": 826.89,
+    "especificacionesNombre": [
+      "Color",
+      "Materiales",
+      "Peso aproximado",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "a elegir",
+      "Angulo 1/8\" y malla desplegada ",
+      "5.80 Kg.",
+      "1.00 x 0.30 mts "
+    ],
+    "_id": "66352c46e29ac13ac603c5b1",
+    "enlace": "welderstone.com/productos/66352c46e29ac13ac603c5b1"
+  },
+  {
+    "familia": [
+      "urbanismo"
+    ],
+    "nombre": "Bote para Basura",
+    "descripcion": "Bote de basura para uso exterior, a base de una estructura de PTR, perfiles rectangulares y lamina lisa ",
+    "unidad": "Pza",
+    "Codigo": "B1222-1650",
+    "filter": "Descripcion",
+    "busqueda": "esm",
+    "__v": 0,
+    "precio": 2725.08,
+    "especificacionesNombre": [
+      "Color",
+      "Peso Aproximado",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "a elegir ",
+      "36.05 Kg.",
+      "0.40 x 0.85 mts "
+    ],
+    "_id": "663532b1e29ac13ac603d2bb",
+    "enlace": "welderstone.com/productos/663532b1e29ac13ac603d2bb"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Protección para 1 Medidor ",
+    "descripcion": "Protección para medidor de luz con argollas para candado, capacidad para un medidor ",
+    "unidad": "Pza",
+    "Codigo": "H1123-1145",
+    "filter": "Descripcion",
+    "busqueda": "bisa",
+    "__v": 0,
+    "precio": 967.83,
+    "especificacionesNombre": [
+      "Color ",
+      "Materiales",
+      "Peso Aproximado",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "a elegir ",
+      "Estructura de Solera y Malla desplegada",
+      "1.35 Kg. ",
+      "0.30 x 0.20 x 0.30 mts "
+    ],
+    "_id": "66364ecee29ac13ac6041cb1",
+    "enlace": "welderstone.com/productos/66364ecee29ac13ac6041cb1"
+  },
+  {
+    "familia": [
+      "hogar",
+      "construccion y reciclados"
+    ],
+    "nombre": "Protección para 3 Medidores ",
+    "descripcion": "Protección para medidor, con argollas para candado y capacidad para 3 medidores ",
+    "unidad": "Pza",
+    "Codigo": "C1123-1145",
+    "filter": "Descripcion",
+    "busqueda": "malla",
+    "__v": 0,
+    "precio": 2052.98,
+    "especificacionesNombre": [
+      "Color",
+      "Materiales",
+      "Peso Aproximado",
+      "Dimensiones"
+    ],
+    "especificacionesDesc": [
+      "a elegir",
+      "Estructura a base de Perfil angulo  y malla desplegada ",
+      "17.81 Kg",
+      "0.30 x 0.20 x 0.65 mts"
+    ],
+    "_id": "6636559ce29ac13ac60459b2",
+    "enlace": "welderstone.com/productos/6636559ce29ac13ac60459b2"
+  },
+  {
+    "familia": [
+      "industria",
+      "construccion y reciclados"
+    ],
+    "nombre": "Protección para 10 Medidores ",
+    "descripcion": "Protección para medidor con argollas para candado, y una capacidad para hasta 10 medidores ",
+    "unidad": "Pza",
+    "Codigo": "I1123-1145",
+    "filter": "Descripcion",
+    "busqueda": "fond",
+    "__v": 0,
+    "precio": 6068.95,
+    "especificacionesNombre": [
+      "Color",
+      "Materiales",
+      "Peso Aproximado",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "a elegir",
+      "Perfil angulo 1/4\" y malla desplegada ",
+      "28.76 Kg",
+      "1.00 x 0.30 x 1.00 mts "
+    ],
+    "_id": "66365a1ce29ac13ac6046bba",
+    "enlace": "welderstone.com/productos/66365a1ce29ac13ac6046bba"
+  },
+  {
+    "familia": [
+      "urbanismo"
+    ],
+    "nombre": "Banca para Exteriores",
+    "descripcion": "Banca metálica para 3 personas a base de materiales de acero, ideal para espacios verdes y áreas recreativas ",
+    "unidad": "Pza",
+    "especificacionesNombre": [
+      "Color",
+      "Materiales ",
+      "Peso Aproximado",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "a elegir",
+      "Estructura de PTR y perfil rectangular ",
+      "24.74 Kg",
+      "0.80 x 0.83 x 1.82"
+    ],
+    "Codigo": "B1222-1139",
+    "filter": "Descripcion",
+    "busqueda": "esm",
+    "__v": 0,
+    "precio": 5802.27,
+    "_id": "663662fae29ac13ac6048649",
+    "enlace": "welderstone.com/productos/663662fae29ac13ac6048649"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Barandal para balcón ",
+    "descripcion": "Barandal para balcón de estructura metálica para brindar mayor resistencia ",
+    "unidad": "Pza",
+    "Codigo": "B1122-1024",
+    "filter": "Descripcion",
+    "busqueda": "eq",
+    "__v": 0,
+    "precio": 6334.41,
+    "especificacionesNombre": [
+      "Color",
+      "Materiales",
+      "Peso Aproximado",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "a elegir ",
+      "Estructura de PTR, Tubo metálico de 1\" y perfiles de acero ",
+      "70.92 Kg",
+      "1.00 x 2.00 x 0.70 mts"
+    ],
+    "_id": "6636679fe29ac13ac6049a9f",
+    "enlace": "welderstone.com/productos/6636679fe29ac13ac6049a9f"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Portón para Cochera ",
+    "descripcion": "Portón para cochera con 2 puertas abatibles a 90°, con una estructura de PTR y perfiles rectangulares",
+    "unidad": "Pza",
+    "Codigo": "C1122-1024",
+    "filter": "Descripcion",
+    "busqueda": "fon",
+    "__v": 0,
+    "precio": 10592.71,
+    "especificacionesNombre": [
+      "Color",
+      "Peso Aproximado",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "a elegir",
+      "133.91 Kg ",
+      "3.00 x 2.20 mts "
+    ],
+    "_id": "66366d2ce29ac13ac604a94d",
+    "enlace": "welderstone.com/productos/66366d2ce29ac13ac604a94d"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Puerta de Acceso ",
+    "descripcion": "Puerta de acceso principal, formada a base de perfiles rectangulares y tubo metálico de 1\". Con un diseño de calidad y seguridad a tu hogar",
+    "unidad": "Pza",
+    "Codigo": "P1122-1024",
+    "filter": "Descripcion",
+    "busqueda": "fond",
+    "__v": 0,
+    "precio": 7593.16,
+    "especificacionesNombre": [
+      "Color",
+      "Peso Aproximado",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "a elegir",
+      "74.80 Kg",
+      "2.20 x 1.00 mts "
+    ],
+    "_id": "66367150e29ac13ac604b8d2",
+    "enlace": "welderstone.com/productos/66367150e29ac13ac604b8d2"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Protección para Ventana ",
+    "descripcion": "Protección de acero para ventana principal, formada a base de PTR, tubo metálico de 1\" y perfiles de acero ",
+    "unidad": "Pza",
+    "Codigo": "V1122-1024",
+    "filter": "Descripcion",
+    "busqueda": "fo",
+    "__v": 0,
+    "precio": 3817.7,
+    "especificacionesNombre": [
+      "Color",
+      "Peso Aproximado",
+      "Dimensiones"
+    ],
+    "especificacionesDesc": [
+      "a elegir",
+      "47.83",
+      "1.20 x 1.20 mts "
+    ],
+    "_id": "6636786ce29ac13ac604cea9",
+    "enlace": "welderstone.com/productos/6636786ce29ac13ac604cea9"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Ventana para Baño",
+    "descripcion": "Protección de acero para ventana de baño, formada a base de PTR, tubo metálico de 1\" y perfiles de acero",
+    "unidad": "Pza",
+    "Codigo": "VB1122-1024",
+    "filter": "Descripcion",
+    "busqueda": "fond",
+    "__v": 0,
+    "precio": 2408.74,
+    "especificacionesNombre": [
+      "Color",
+      "Peso Aproximado",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "a elegir",
+      "9.57 Kg\t\t\t",
+      "0.60 x 0.40 mts"
+    ],
+    "_id": "66367a1fe29ac13ac604d82a",
+    "enlace": "welderstone.com/productos/66367a1fe29ac13ac604d82a"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Barandal para Balcón ",
+    "descripcion": "Barandal para balcón de gran resistencia y diseño moderno, de gran resistencia y seguridad ",
+    "unidad": "Pza",
+    "Codigo": "B1122-1053",
+    "filter": "Descripcion",
+    "busqueda": "fon",
+    "__v": 0,
+    "precio": 6990.5,
+    "especificacionesNombre": [
+      "Color ",
+      "Materiales",
+      "Peso Aproximado",
+      "Dimensiones"
+    ],
+    "especificacionesDesc": [
+      "A elegir",
+      "A base de PTR, tubo metálico y perfiles de acero ",
+      "71.14 Kg",
+      "2.00 x 1.00 x 0.70 mts "
+    ],
+    "_id": "66368c9fe29ac13ac6051e18",
+    "enlace": "welderstone.com/productos/66368c9fe29ac13ac6051e18"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Portón para Cochera",
+    "descripcion": "Portón abatible para cochera a base de materiales de acero para una mayor durabilidad y resistencia. Con un diseño que brinda privacidad y seguridad. Incluye bisagras, cerrojo y picaporte",
+    "unidad": "Pza",
+    "Codigo": "C1122-1053",
+    "filter": "Descripcion",
+    "busqueda": "ptr",
+    "__v": 0,
+    "precio": 11545.13,
+    "especificacionesNombre": [
+      "Color ",
+      "Peso Aproximado",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "A elegir ",
+      "171.44 Kg",
+      "3.00 x 2.20 mts "
+    ],
+    "_id": "6644c7b0e29ac13ac606af75",
+    "enlace": "welderstone.com/productos/6644c7b0e29ac13ac606af75"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Puerta Acceso Principal",
+    "descripcion": "Puerta metálica para acceso principal, fabricado a base de materiales de acero. Con un diseño discreto que brinda privacidad y seguridad; de materiales resistentes y de calidad ",
+    "unidad": "Pza",
+    "Codigo": "P1122-1053",
+    "filter": "Descripcion",
+    "busqueda": "disco",
+    "__v": 0,
+    "precio": 7173.6,
+    "especificacionesNombre": [
+      "Color",
+      "Peso del producto",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "a elegir \t\t\t\t",
+      "80.81 Kg.\t\t\t\t",
+      "2.20 x 1.00 mts \t\t\t\t"
+    ],
+    "_id": "6644cc31e29ac13ac606bd7f",
+    "enlace": "welderstone.com/productos/6644cc31e29ac13ac606bd7f"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Ventana ",
+    "descripcion": "Ventana metálica principal a base de perfiles cuadrados. Fabricado con materiales resistentes de acero ",
+    "unidad": "Pza",
+    "Codigo": "V1122-1053",
+    "filter": "Descripcion",
+    "busqueda": "antico",
+    "__v": 0,
+    "precio": 3192.53,
+    "especificacionesNombre": [
+      "Color",
+      "Peso del producto",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "a elegir \t\t\t\t",
+      "32.56 Kg.\t\t\t\t",
+      "1.20 x 1.20 mts \t\t\t\t"
+    ],
+    "_id": "6644ce42e29ac13ac606c0ef",
+    "enlace": "welderstone.com/productos/6644ce42e29ac13ac606c0ef"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Ventana para Baño ",
+    "descripcion": "Ventana metálica para baño fabricada a base de materiales de acero",
+    "unidad": "Pza",
+    "Codigo": "VB1122-1053",
+    "filter": "Descripcion",
+    "busqueda": "anti",
+    "__v": 0,
+    "precio": 2506.26,
+    "especificacionesNombre": [
+      "Color",
+      "Peso del producto",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "a elegir \t\t\t\t",
+      "9.18 Kg.\t\t\t\t",
+      "0.60 x 0.40 mts. \t\t\t\t"
+    ],
+    "_id": "6644cf5ae29ac13ac606d2da",
+    "enlace": "welderstone.com/productos/6644cf5ae29ac13ac606d2da"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Barandal Para Balcón ",
+    "descripcion": "Barandal de estructura metálica a base de perfil rectangular, con un diseño moderno y fabricado con materiales de acero resistente y de calidad",
+    "unidad": "Pza",
+    "especificacionesNombre": [
+      "Color",
+      "Peso del producto",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "a elegir \t\t\t\t",
+      "32.18 Kg.\t\t\t\t",
+      "1.00 x 2.00 x 0.70\t\t\t\t"
+    ],
+    "Codigo": "B1122-1117",
+    "filter": "Descripcion",
+    "busqueda": "ant",
+    "__v": 0,
+    "precio": 6611.33,
+    "_id": "6644e476e29ac13ac60704d8",
+    "enlace": "welderstone.com/productos/6644e476e29ac13ac60704d8"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Puerta Principal ",
+    "descripcion": "Puerta metálica para acceso principal, a base de estructura de perfiles de acero y lamina. Incluye bisagras y chapa",
+    "unidad": "Pza",
+    "especificacionesNombre": [
+      "Color",
+      "Peso del producto",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "a elegir \t\t\t\t",
+      "78.45 Kg",
+      "2.20 x 1.00 mts \t\t\t\t"
+    ],
+    "Codigo": "P1122-1117",
+    "filter": "Descripcion",
+    "busqueda": "antico",
+    "__v": 0,
+    "precio": 7406.84,
+    "_id": "6644f17fe29ac13ac6071807",
+    "enlace": "welderstone.com/productos/6644f17fe29ac13ac6071807"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Ventana",
+    "descripcion": "Ventana principal de estructura metálica. Ideal para la seguridad, de gran resistencia y calidad garantizada",
+    "unidad": "Pza",
+    "Codigo": "V1122-1117",
+    "filter": "Descripcion",
+    "busqueda": "",
+    "__v": 0,
+    "precio": 3675.83,
+    "especificacionesNombre": [
+      "Color",
+      "Peso del producto",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "a elegir \t\t\t\t",
+      "27.58 Kg",
+      "1.20 x 1.20 mts \t\t\t\t"
+    ],
+    "_id": "6644f2bce29ac13ac6071b36",
+    "enlace": "welderstone.com/productos/6644f2bce29ac13ac6071b36"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Repicero para Televisión ",
+    "descripcion": "Repisa para Televisión con armadura de acero, con gran capacidad de carga y placa de madera impermeable resistente a rayaduras superficiales. Con diseño estilo industrial y funcional ",
+    "unidad": "Pza",
+    "especificacionesNombre": [
+      "Color",
+      "Peso del producto",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "a elegir\t\t\t\t",
+      "33.39 kg\t\t\t\t",
+      "2.07 X 0.83 X 0.51 mts.\t\t\t\t"
+    ],
+    "Codigo": "TV0823-1406",
+    "filter": "Descripcion",
+    "busqueda": "pija",
+    "__v": 0,
+    "precio": 4438.71,
+    "_id": "6644fd16e29ac13ac60783be",
+    "enlace": "welderstone.com/productos/6644fd16e29ac13ac60783be"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Repicero para TV",
+    "descripcion": "Mueble para TV con estilo moderno, industrial. Con materiales de calidad y gran capacidad de peso. Cuenta con espacios para tttc y organizadores a los lados para almacenamiento",
+    "unidad": "Pza",
+    "especificacionesNombre": [
+      "Color",
+      "Peso del producto",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "a elegir\t\t\t\t",
+      "82.16 kg\t\t\t\t",
+      "2.50 x 1.60 x 0.50 mts.\t\t\t\t"
+    ],
+    "Codigo": "R0823-1413",
+    "filter": "Descripcion",
+    "busqueda": "placa ",
+    "__v": 0,
+    "precio": 3998.69,
+    "_id": "6644ffa6e29ac13ac607a4e3",
+    "enlace": "welderstone.com/productos/6644ffa6e29ac13ac607a4e3"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Repicero Multifuncional",
+    "descripcion": "Repisa multifuncional fabricado con armadura de acero que brinda rigidez y madera color roble impermeable. Con un diseño minimalista-contemporaneo ideal para cualquier espacio",
+    "unidad": "Pza",
+    "especificacionesNombre": [
+      "Color",
+      "Peso del producto",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "a elegir\t\t\t\t",
+      "16.17 kg\t\t\t\t",
+      "0.80 x 1.00 x 0.50  mts.\t\t\t\t"
+    ],
+    "Codigo": "M0823-1103",
+    "filter": "Descripcion",
+    "busqueda": "placa ",
+    "__v": 0,
+    "precio": 2926.13,
+    "_id": "66450186e29ac13ac607ad77",
+    "enlace": "welderstone.com/productos/66450186e29ac13ac607ad77"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Banco para Comedor",
+    "descripcion": "Banco de madera para barra desayunador, a base de estructura de acero y triplay. Con un estilo Industrial- minimalista para cualquier espacio, con un diseño y calidad garantizada",
+    "unidad": "Pza",
+    "especificacionesNombre": [
+      "Color",
+      "Peso del producto",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "a elegir\t\t\t\t",
+      "14.58 kg\t\t\t\t",
+      "1.09 x 0.50 x 0.50 mts.\t\t\t\t"
+    ],
+    "Codigo": "B0823-1145",
+    "filter": "Descripcion",
+    "busqueda": "tripl",
+    "__v": 0,
+    "precio": 2577.67,
+    "_id": "66450417e29ac13ac607b971",
+    "enlace": "welderstone.com/productos/66450417e29ac13ac607b971"
+  },
+  {
+    "familia": [
+      "industria",
+      "construccion y reciclados"
+    ],
+    "nombre": "Pluma de Acceso Vehicular\t\t\t\t",
+    "descripcion": "Pluma de acceso para control vehicular y peatonal, mantiene un flujo controlado y de acceso seguro",
+    "unidad": "Pza",
+    "Codigo": "P0524-0112\t\t\t\t",
+    "filter": "Descripcion",
+    "busqueda": "ptr",
+    "__v": 0,
+    "precio": 11684.94,
+    "especificacionesNombre": [
+      "Color",
+      "Peso del producto",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "a elegir\t\t\t\t",
+      "125.07 kg\t\t\t\t",
+      "3.50 x 0.80  mts.\t\t\t\t"
+    ],
+    "_id": "664e0f83e29ac13ac608a7c9",
+    "enlace": "welderstone.com/productos/664e0f83e29ac13ac608a7c9"
+  },
+  {
+    "familia": [
+      "ganadero"
+    ],
+    "nombre": "Puerta Grande de Corral 1.00 x 6.00 mts ",
+    "descripcion": "Puerta para manejo de ganado. Fabricado a base de Tubería metálica ced_40 y ced_30",
+    "unidad": "Pza",
+    "Codigo": "PG 1223-0105",
+    "filter": "Descripcion",
+    "busqueda": "",
+    "__v": 0,
+    "precio": 3257.22,
+    "especificacionesNombre": [
+      "Color"
+    ],
+    "especificacionesDesc": [
+      "A elegir"
+    ],
+    "_id": "6659f11fe29ac13ac60a8824",
+    "enlace": "welderstone.com/productos/6659f11fe29ac13ac60a8824"
+  },
+  {
+    "familia": [
+      "ganadero"
+    ],
+    "nombre": "Puerta para corral 1.65 x 6.00 mts ",
+    "descripcion": "Puerta para manejo de ganado. Fabricado a base de Tubería metálica ced_40 y ced_30",
+    "unidad": "Pza",
+    "Codigo": "PC 1223-1227",
+    "filter": "Descripcion",
+    "busqueda": "cadena",
+    "__v": 0,
+    "precio": 8705.51,
+    "especificacionesNombre": [
+      "Color",
+      "Peso del producto",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "a elegir \t\t\t\t",
+      "154.76  kg\t\t\t\t",
+      "1.65 x 6.00   mts \t\t\t\t"
+    ],
+    "_id": "6659fe37e29ac13ac60abe84",
+    "enlace": "welderstone.com/productos/6659fe37e29ac13ac60abe84"
+  },
+  {
+    "familia": [
+      "ganadero"
+    ],
+    "nombre": "Puerta Doble para Corral 1.00 x 6.00 mts ",
+    "descripcion": "Puerta para manejo de ganado. Fabricado a base de Tubería metálica ced_40 y ced_30",
+    "unidad": "Pza",
+    "Codigo": "PD 1223-1227",
+    "filter": "Descripcion",
+    "busqueda": "cade",
+    "__v": 0,
+    "precio": 5061.52,
+    "especificacionesNombre": [
+      "Color",
+      "Peso del producto",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "a elegir \t\t\t\t",
+      "139.30 kg\t\t\t\t",
+      "6.00 X 1.00 mts \t\t\t\t"
+    ],
+    "_id": "6659ff9ae29ac13ac60ac7c9",
+    "enlace": "welderstone.com/productos/6659ff9ae29ac13ac60ac7c9"
+  },
+  {
+    "familia": [
+      "ganadero"
+    ],
+    "nombre": "Puerta grande para corral 1.00 x 6.00  mts ",
+    "descripcion": "Puerta para manejo de ganado. Fabricado a base de Tubería metálica ced_40 y ced_30",
+    "unidad": "Pza",
+    "Codigo": "PG 1223-1227",
+    "filter": "Descripcion",
+    "busqueda": "cadena",
+    "__v": 0,
+    "precio": 7074.45,
+    "especificacionesNombre": [
+      "Color",
+      "Peso del producto",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "a elegir \t\t\t\t",
+      "123.19  kg\t\t\t\t",
+      "6.00 x 1.00   mts \t\t\t\t"
+    ],
+    "_id": "665a01aae29ac13ac60ad165",
+    "enlace": "welderstone.com/productos/665a01aae29ac13ac60ad165"
+  },
+  {
+    "familia": [
+      "ganadero"
+    ],
+    "nombre": "Puerta Reforzada para corral 3.45 x 6.00 mts ",
+    "descripcion": "Puerta para manejo de ganado. Fabricado a base de Tubería metálica ced_40 y ced_30",
+    "unidad": "Pza",
+    "Codigo": "PR 1223-1227",
+    "filter": "Descripcion",
+    "busqueda": "cadena",
+    "__v": 0,
+    "precio": 8990.48,
+    "especificacionesNombre": [
+      "Color",
+      "Peso del producto",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "a elegir \t\t\t\t",
+      "161.60  kg\t\t\t\t",
+      "3.45 x 6.00 mts \t\t"
+    ],
+    "_id": "665a02e7e29ac13ac60ad495",
+    "enlace": "welderstone.com/productos/665a02e7e29ac13ac60ad495"
+  },
+  {
+    "familia": [
+      "ganadero"
+    ],
+    "nombre": "Puerta Sencilla para corral 1.00 x 2.95 mts.",
+    "descripcion": "Puerta para manejo de ganado. Fabricado a base de Tubería metálica ced_40 y ced_30",
+    "unidad": "Pza",
+    "Codigo": "PS 1223-1227",
+    "filter": "Descripcion",
+    "busqueda": "cade",
+    "__v": 0,
+    "precio": 5154.77,
+    "especificacionesNombre": [
+      "Color",
+      "Peso del producto",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "a elegir \t\t\t\t",
+      "82.75  kg\t\t\t\t",
+      "1.00 x 2.95  mts \t\t\t"
+    ],
+    "_id": "665a04f6e29ac13ac60ade06",
+    "enlace": "welderstone.com/productos/665a04f6e29ac13ac60ade06"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Portón para Cochera",
+    "descripcion": "Portón abatible para cochera a base de estructura de PTR y lamina lisa, diseño moderno, de gran resistencia y durabilidad. Incluye bisagras y cerrojo ",
+    "unidad": "Pza",
+    "Codigo": "C1122-1117\t\t\t\t",
+    "filter": "Descripcion",
+    "busqueda": "",
+    "__v": 0,
+    "precio": 11520.27,
+    "especificacionesNombre": [
+      "Color",
+      "Peso del producto",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "a elegir \t\t\t\t",
+      "115.33 Kg.\t\t\t\t",
+      "3.00 x 2.20 mts \t\t\t\t"
+    ],
+    "_id": "665b3491e29ac13ac60bb6d9",
+    "enlace": "welderstone.com/productos/665b3491e29ac13ac60bb6d9"
+  },
+  {
+    "familia": [],
+    "nombre": "Portón para Cochera",
+    "descripcion": "Portón para cochera de dos hojas abatibles a 90°, de armadura de acero y varilla cuadrada ",
+    "unidad": "Pza",
+    "Codigo": "C2311-1621\t\t\t",
+    "filter": "Descripcion",
+    "busqueda": "",
+    "__v": 0,
+    "precio": 10649.07,
+    "Familia": "Hogar",
+    "especificacionesNombre": [
+      "Color",
+      "Peso del producto",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "a elegir \t\t\t\t",
+      "179.36  Kg. \t\t\t\t",
+      "3.00 x 2.20 mts\t\t\t\t"
+    ],
+    "_id": "6669ddfde29ac13ac60eb817",
+    "enlace": "welderstone.com/productos/6669ddfde29ac13ac60eb817"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Puerta de Acceso",
+    "descripcion": "Puerta de acceso fabricada con materiales de acero y varilla. Medidas de 1.00 x 2.20 mts ",
+    "unidad": "Pza",
+    "Codigo": "P2311-1621\t\t\t\t",
+    "filter": "Descripcion",
+    "busqueda": "",
+    "__v": 0,
+    "precio": 6586.41,
+    "especificacionesNombre": [
+      "Color",
+      "Peso del producto",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "a elegir \t\t\t\t",
+      "59.15  Kg. \t\t\t\t",
+      "1.00 x 2.20 mts\t\t\t\t"
+    ],
+    "_id": "6669e39ee29ac13ac60eeeff",
+    "enlace": "welderstone.com/productos/6669e39ee29ac13ac60eeeff"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Ventana de Acero ",
+    "descripcion": "Ventana de seguridad de 1.20 x 1.20 mts, excelente para el hogar",
+    "unidad": "Pza",
+    "especificacionesNombre": [
+      "Color",
+      "Peso del producto",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "a elegir \t\t\t\t",
+      "39.08  Kg. \t\t\t\t",
+      "1.20 x 1.20 mts\t\t\t\t"
+    ],
+    "Codigo": "V2311-1621",
+    "filter": "Descripcion",
+    "busqueda": "fond",
+    "__v": 0,
+    "precio": 4319.1,
+    "_id": "6669f17ce29ac13ac60f1453",
+    "enlace": "welderstone.com/productos/6669f17ce29ac13ac60f1453"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Portón para Cochera",
+    "descripcion": "Portón para Cochera ideal para la seguridad en el hogar, fabricado a base de materiales de acero para una gran resistencia y durabilidad.",
+    "unidad": "Pza",
+    "Codigo": "C1123-1530\t\t\t\t",
+    "filter": "Descripcion",
+    "busqueda": "",
+    "__v": 0,
+    "precio": 11323.03,
+    "Familia": "Hogar",
+    "especificacionesNombre": [
+      "Color",
+      "Peso del producto",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "a elegir \t\t\t\t",
+      "144.04  Kg. \t\t\t\t",
+      "2.20 x 3.00 mts \t\t\t\t"
+    ],
+    "_id": "666c7dd2e29ac13ac60f65bd",
+    "enlace": "welderstone.com/productos/666c7dd2e29ac13ac60f65bd"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Barandal para Balcón ",
+    "descripcion": "Barandal para balcón a base de una estructura de acero de perfiles metálicos para mayor resistencia.",
+    "unidad": "Pza",
+    "Codigo": "B1123-1530",
+    "filter": "Descripcion",
+    "busqueda": "",
+    "__v": 0,
+    "precio": 5893.55,
+    "especificacionesNombre": [
+      "Color"
+    ],
+    "especificacionesDesc": [
+      "A elegir"
+    ],
+    "_id": "666c8056e29ac13ac60f935d",
+    "enlace": "welderstone.com/productos/666c8056e29ac13ac60f935d"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Ventana",
+    "descripcion": "Rejilla para ventana fabricada a base de perfiles de acero para una mayor resistencia y durabilidad",
+    "unidad": "Pza",
+    "Codigo": "V1123-1530",
+    "filter": "Descripcion",
+    "busqueda": "",
+    "__v": 0,
+    "precio": 3238.36,
+    "especificacionesNombre": [
+      "d"
+    ],
+    "especificacionesDesc": [
+      "fd"
+    ],
+    "_id": "666c850fe29ac13ac60fe208",
+    "enlace": "welderstone.com/productos/666c850fe29ac13ac60fe208"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Puerta de Acceso",
+    "descripcion": "Puerta de Acceso principal fabricada a base de perfiles metálicos para su mayor resistencia y durabilidad",
+    "unidad": "Pza",
+    "Codigo": "P1123-1530",
+    "filter": "Descripcion",
+    "busqueda": "",
+    "__v": 0,
+    "precio": 5554.39,
+    "Familia": "Hogar",
+    "especificacionesNombre": [
+      "Color"
+    ],
+    "especificacionesDesc": [
+      "A elegir"
+    ],
+    "_id": "666c8e1ce29ac13ac6103484",
+    "enlace": "welderstone.com/productos/666c8e1ce29ac13ac6103484"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Ventana Para Baño",
+    "descripcion": "Rejilla de seguridad para baño fabricado con perfiles de acero para una gran resistencia  ",
+    "unidad": "Pza",
+    "Codigo": "VB1123-1530",
+    "filter": "Descripcion",
+    "busqueda": "",
+    "__v": 0,
+    "precio": 2243.76,
+    "especificacionesNombre": [
+      "Color"
+    ],
+    "especificacionesDesc": [
+      "a elegir \t\t\t\t"
+    ],
+    "_id": "666c91a1e29ac13ac6105c4f",
+    "enlace": "welderstone.com/productos/666c91a1e29ac13ac6105c4f"
+  },
+  {
+    "familia": [],
+    "nombre": "Barandal para Balcón ",
+    "descripcion": "Barandal fabricado a base de perfiles de acero y solera ",
+    "unidad": "Pza",
+    "Codigo": "B1123-1138",
+    "filter": "Descripcion",
+    "busqueda": "",
+    "__v": 0,
+    "precio": 5065.28,
+    "Familia": "Hogar",
+    "especificacionesNombre": [
+      "2"
+    ],
+    "especificacionesDesc": [
+      "2"
+    ],
+    "_id": "666db524e29ac13ac610b268",
+    "enlace": "welderstone.com/productos/666db524e29ac13ac610b268"
+  },
+  {
+    "familia": [],
+    "nombre": "Portón para Cochera",
+    "descripcion": "Portón para cochera  a base de  perfiles de acero y solera\t\t\t\t\r\n",
+    "unidad": "Pza",
+    "Codigo": "C1123-1138\t\t\t\t",
+    "filter": "Descripcion",
+    "busqueda": "",
+    "__v": 0,
+    "precio": 8975.21,
+    "Familia": "Hogar",
+    "especificacionesNombre": [
+      "3"
+    ],
+    "especificacionesDesc": [
+      "3"
+    ],
+    "_id": "666db52be29ac13ac610b5b5",
+    "enlace": "welderstone.com/productos/666db52be29ac13ac610b5b5"
+  },
+  {
+    "familia": [],
+    "nombre": "Puerta de Acceso",
+    "descripcion": "Puerta de acceso principal  a base de  perfiles de acero y solera\t\t\t\t\r\n",
+    "unidad": "Pza",
+    "Codigo": "P1123-1138\t\t\t\t",
+    "filter": "Descripcion",
+    "busqueda": "",
+    "__v": 0,
+    "precio": 4836.69,
+    "Familia": "Hogar",
+    "especificacionesNombre": [
+      "4"
+    ],
+    "especificacionesDesc": [
+      "4"
+    ],
+    "_id": "666db530e29ac13ac610b902",
+    "enlace": "welderstone.com/productos/666db530e29ac13ac610b902"
+  },
+  {
+    "familia": [],
+    "nombre": "Ventana",
+    "descripcion": "Ventana  a base de  perfiles de acero y solera\t\t\t\t\r\n",
+    "unidad": "Pza",
+    "Codigo": "V1123-1138\t\t\t\t",
+    "filter": "Descripcion",
+    "busqueda": "",
+    "__v": 0,
+    "precio": 2829.48,
+    "Familia": "Hogar",
+    "especificacionesNombre": [
+      "5"
+    ],
+    "especificacionesDesc": [
+      "5"
+    ],
+    "_id": "666db539e29ac13ac610bc4f",
+    "enlace": "welderstone.com/productos/666db539e29ac13ac610bc4f"
+  },
+  {
+    "familia": [],
+    "nombre": "Ventana para Baño\t\t\t\t",
+    "descripcion": "Ventana  a base de  perfiles de acero y solera\t\t\t\t\r\n",
+    "unidad": "Pza",
+    "Codigo": "VB1123-1138\t",
+    "filter": "Descripcion",
+    "busqueda": "",
+    "__v": 0,
+    "precio": 2779.79,
+    "Familia": "Hogar",
+    "especificacionesNombre": [
+      "1"
+    ],
+    "especificacionesDesc": [
+      "1"
+    ],
+    "_id": "666dc814e29ac13ac611d246",
+    "enlace": "welderstone.com/productos/666dc814e29ac13ac611d246"
+  },
+  {
+    "familia": [],
+    "nombre": "Barandal para Balcón ",
+    "descripcion": "Barandal fabricado a base de perfiles de acero para una mayor resistencia. ",
+    "unidad": "Pza",
+    "Codigo": "B2311-1348",
+    "filter": "Descripcion",
+    "busqueda": "",
+    "__v": 0,
+    "precio": 8103.68,
+    "Familia": "Hogar",
+    "especificacionesNombre": [
+      "2"
+    ],
+    "especificacionesDesc": [
+      "2"
+    ],
+    "_id": "666dc81de29ac13ac611dc96",
+    "enlace": "welderstone.com/productos/666dc81de29ac13ac611dc96"
+  },
+  {
+    "familia": [],
+    "nombre": "Ventana",
+    "descripcion": "Estructura   a base de perfiles de acero\t\t\t\t\r\n",
+    "unidad": "Pza",
+    "Codigo": "V-1123-1359\t\t\t\t",
+    "filter": "Descripcion",
+    "busqueda": "",
+    "__v": 0,
+    "precio": 3902.04,
+    "Familia": "Hogar",
+    "especificacionesNombre": [
+      "Color"
+    ],
+    "especificacionesDesc": [
+      "A elegir"
+    ],
+    "_id": "666dc821e29ac13ac611e00a",
+    "enlace": "welderstone.com/productos/666dc821e29ac13ac611e00a"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Repicero interior \t\t",
+    "descripcion": "Repicero para interiores de estilo industrial, ideal para oficina en casa, sala de estar y cualquier otro lugar. Fabricado con materiales de de acero y aglomerado de alta calidad para una mayor durabilidad. De gran capacidad de carga y de almacenamiento",
+    "unidad": "Pza",
+    "Codigo": "R1123-1355",
+    "filter": "Descripcion",
+    "busqueda": "",
+    "__v": 0,
+    "precio": 5273.71,
+    "especificacionesNombre": [
+      "Color"
+    ],
+    "especificacionesDesc": [
+      "a elegir \t\t"
+    ],
+    "_id": "66730f2be29ac13ac6132df5",
+    "enlace": "welderstone.com/productos/66730f2be29ac13ac6132df5"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Armario ",
+    "descripcion": "Armario estilo industrial funcional y de diseño moderno. Fabricado con materiales de acero y aglomerado de alta calidad. Maximiza el espacio de almacenamiento en el hogar, oficinas, negocios, etc.",
+    "unidad": "",
+    "Codigo": "A1123-1310",
+    "filter": "Descripcion",
+    "busqueda": "aglo",
+    "__v": 0,
+    "precio": 5688.99,
+    "especificacionesNombre": [
+      "Color",
+      "Peso del producto",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "a elegir\t\t\t\t",
+      "78.80 kg\t\t\t\t",
+      "1.86 x 0.40 x 2.25  mts.\t\t\t\t"
+    ],
+    "_id": "66731692e29ac13ac6135d87",
+    "enlace": "welderstone.com/productos/66731692e29ac13ac6135d87"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Buro Estilo Industrial ",
+    "descripcion": "",
+    "unidad": "Pza",
+    "Codigo": "B1123-1618\t\t\t\t",
+    "filter": "Descripcion",
+    "busqueda": "aglo",
+    "__v": 0,
+    "precio": 6115.14,
+    "especificacionesNombre": [
+      "Color",
+      "Peso del producto",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "a elegir\t\t\t\t",
+      "37.39 kg\t\t\t\t",
+      "0.90 x 0.40 x 1.83 mts.\t\t\t\t"
+    ],
+    "_id": "66731be7e29ac13ac6137f71",
+    "enlace": "welderstone.com/productos/66731be7e29ac13ac6137f71"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Portón para Cochera",
+    "descripcion": "Puertas de Cochera fabricado a base de perfiles de acero para una mayor resistencia. Abatibles a 90° ",
+    "unidad": "Pza",
+    "Codigo": "C1123-1348\t\t\t\t",
+    "filter": "Descripcion",
+    "busqueda": "fondo",
+    "__v": 0,
+    "precio": 11006.66,
+    "especificacionesNombre": [
+      "Color",
+      "Peso del producto",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "a elegir \t\t\t\t",
+      "113.26  kg\t\t\t\t",
+      "3.00 x 2.20 mts \t\t\t\t"
+    ],
+    "_id": "66731efbe29ac13ac613a117",
+    "enlace": "welderstone.com/productos/66731efbe29ac13ac613a117"
+  },
+  {
+    "familia": [
+      "hogar"
+    ],
+    "nombre": "Puerta de Acceso \t\t\t\t",
+    "descripcion": "Puerta de acceso principal a base de estructura de acero y perfiles metálicos. Incluye chapa y bisagras ",
+    "unidad": "Pza",
+    "Codigo": "P1123-1348\t\t\t\t",
+    "filter": "Descripcion",
+    "busqueda": "fondo",
+    "__v": 0,
+    "precio": 5233.91,
+    "especificacionesNombre": [
+      "Color",
+      "Peso del producto",
+      "Dimensiones "
+    ],
+    "especificacionesDesc": [
+      "a elegir \t\t\t\t",
+      "30.81  kg\t\t\t\t",
+      "2.20 x 1.00  mts \t\t\t\t"
+    ],
+    "_id": "66732042e29ac13ac613b9a3",
+    "enlace": "welderstone.com/productos/66732042e29ac13ac613b9a3"
+  }
+]
