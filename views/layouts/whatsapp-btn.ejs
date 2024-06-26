@@ -102,13 +102,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website with Chatbot</title>
     <script
-        chatbot_id="667aef4bb7cbd6d01222f530"
-        src="https://app.thinkstack.ai/bot/thinkstackai-loader.min.js"
-        async
-        onload="initializeChatbot()">
-    </script>
+    chatbot_id="667c447017ff54924377b8f9"
+    src="https://app.thinkstack.ai/bot/thinkstackai-loader.min.js">
+</script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         #openChatButton, #whatsapp-btn {
@@ -127,20 +124,21 @@
         }
         #openChatButton {
             background-color: #007bff; /* Azul para el botón de chatbot */
-            bottom: 100px; /* Ajustado para dejar espacio entre los botones */
+            bottom: 80px; /* Ajustado para dejar espacio entre los botones */
         }
         #whatsapp-btn {
             background-color: #25d366; /* Verde para el botón de WhatsApp */
-            bottom: 20px;
+            bottom: 160px;
         }
     </style>
 </head>
 <body>
-    <button class="fas fa-robot" id="openChatButton">
-    </button>
     <button id="whatsapp-btn">
         <i class="fab fa-whatsapp"></i>
     </button>
+    <button class="fas fa-robot" id="openChatButton">
+    </button>
+
     <script>
         function initializeChatbot() {
             document.getElementById('openChatButton').addEventListener('click', function() {
