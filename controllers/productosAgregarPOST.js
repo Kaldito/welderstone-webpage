@@ -7,7 +7,10 @@ module.exports = async (req, res) => {
     const BusquedaNombre = await Producto.find({
         nombre: req.body.nombre,
     }).count();
-    if (BusquedaNombre === 0) {
+    const BusquedaCodigo = await Producto.find({
+        Codigo: req.body.Codigo,
+    }).count();
+    if (BusquedaNombre === 0 && BusquedaCodigo === 0) {
         await Producto.create({ ...req.body });
 
 
@@ -129,7 +132,7 @@ module.exports = async (req, res) => {
         } finally {
             res.redirect('/productos');
         }
-    } else if (BusquedaNombre > 0) {
+    } else if (BusquedaNombre > 0 || BusquedaCodigo > 0) {
         console.log('ya creado');
         res.redirect('/productos');
     }
