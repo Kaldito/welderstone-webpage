@@ -133,8 +133,9 @@ module.exports = async (req, res) => {
             res.redirect('/productos');
         }
     } else if (BusquedaNombre > 0 || BusquedaCodigo > 0) {
-        console.log('ya creado');
-        res.redirect('/productos');
+        res.send(`<script>alert('¡Este código o nombre ya está en uso!');window.location.href='/productos';</script>`);
+
+
     }
 };
 
