@@ -44,7 +44,7 @@
                             <div class="card h-100" style="overflow: hidden">
                                 <!-- Imagen -->
                                 <div style="height: 25vh; display: flex; justify-content: center; align-items: center;">
-                                    <img src="<%=productos[a].image%>" style="max-height: 100%; max-width: 100%; object-fit: contain; border-radius: 0;" alt="Product 1" />
+                                    <img src="<%=productos[a].image%>" style="max-height: 100%; max-width: 100%; object-fit: contain; border-radius: 0;" alt="Product" />
                                 </div>
                                 <!-- Cuerpo de la card -->
                                 <div class="card-body">
@@ -91,17 +91,36 @@
             <% } %>
         </div>
     </section>
-<!--
-    <div id="toastContainer" class="toast-container position-fixed bottom-0 start-0 p-3">
-        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="7000">
-            <div class="toast-header">
-                <i class="fa-solid fa-circle-exclamation me-2" style="color: red"></i>
-                <strong class="me-auto">Welderstone</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-        </div>
-    </div>
--->
+
+    <!-- Paginación -->
+    <nav aria-label="Paginación">
+        <ul class="pagination justify-content-center">
+            <% if (currentPage > 1) { %>
+                <li class="page-item">
+                    <a class="page-link" href="?page=1"><<</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page=<%= currentPage - 1 %>">Anterior</a>
+                </li>
+            <% } %>
+
+            <% for (let i = Math.max(1, currentPage - 2); i <= Math.min(currentPage + 2, totalPages); i++) { %>
+                <li class="page-item <%= i === currentPage ? 'active' : '' %>">
+                    <a class="page-link" href="?page=<%= i %>"><%= i %></a>
+                </li>
+            <% } %>
+
+            <% if (currentPage < totalPages) { %>
+                <li class="page-item">
+                    <a class="page-link" href="?page=<%= currentPage + 1 %>">Siguiente</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page=<%= totalPages %>">>></a>
+                </li>
+            <% } %>
+        </ul>
+    </nav>
+
     <%- include('layouts/whatsapp-btn') -%>
 
     <script>
@@ -122,6 +141,7 @@
     </script>
 </body>
 </html>
+
 
 <style>
     .white-icon {

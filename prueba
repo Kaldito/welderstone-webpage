@@ -1,732 +1,242 @@
-// -------------- Especificaciones -------------- //
-plusOneBtn.addEventListener('click', function() {
-    especs++;
+const Producto = require('../models/Productos.js');
+const Cart = require('../models/Cart');
+const User = require('../models/User');
 
-    const div = document.createElement('div');
-    div.classList.add('input-group', 'mb-2');
-    div.id = `especificaciones-${especs}`;
-    div.innerHTML = `
-        <span class="input-group-text">${especs}</span>
-        <input type="text" name="especificacionesNombre" class="form-control dynamic-input" placeholder="Nombre" required>
-        <input type="text" name="especificacionesDesc" class="form-control dynamic-input" placeholder="Descripcion" required>
-    `;
-
-    especsDiv.appendChild(div);
-
-    // Create and append the corresponding hidden inputs
-    createHiddenInputs(especs, hiddenInputsContainer);
-});
-
-minusOneBtn.addEventListener('click', function() {
-    if (especs > 0) {
-        const lastEspec = document.querySelector(`#especificaciones-${especs}`);
-        const lastHiddenEspecNombre = document.querySelector(`input[name='hiddenEspecificacionesNombre[${especs}]']`);
-        const lastHiddenEspecDesc = document.querySelector(`input[name='hiddenEspecificacionesDesc[${especs}]']`);
-
-        if (lastEspec) {
-            lastEspec.remove();
-        }
-
-        if (lastHiddenEspecNombre) {
-            lastHiddenEspecNombre.remove();
-        }
-
-        if (lastHiddenEspecDesc) {
-            lastHiddenEspecDesc.remove();
-        }
-
-        especs--;
+module.exports = async (req, res) => {
+    let role = 'viewer';
+    let logged = false;
+    if (req.session?.passport?.user != undefined) {
+        role = req.session.passport.user.role;
+        logged = true;
+        var IdUsuario = req.session.passport.user.id;
     }
-});
-function createHiddenInputs(index, container) {
-    const hiddenInputNombre = document.createElement('input');
-    hiddenInputNombre.type = 'hidden';
-    hiddenInputNombre.name = `hiddenEspecificacionesNombre[${index}]`;
 
-    const hiddenInputDesc = document.createElement('input');
-    hiddenInputDesc.type = 'hidden';
-    hiddenInputDesc.name = `hiddenEspecificacionesDesc[${index}]`;
+    const productos = await Producto.find({});
+    const cart = await Cart.find({});
+    const HayProductoUsuario = await Cart.find({
+        UsuarioId: IdUsuario,
+    }).count();
 
-    container.appendChild(hiddenInputNombre);
-    container.appendChild(hiddenInputDesc);
-
-    // Synchronize values between dynamic inputs and hidden inputs
-    document.querySelectorAll(`#especificaciones-${index} .dynamic-input`).forEach((input, idx) => {
-        input.addEventListener('input', function() {
-            if (idx === 0) { // First input is for Nombre
-                hiddenInputNombre.value = input.value;
-            } else { // Second input is for Desc
-                hiddenInputDesc.value = input.value;
-            }
+    if (IdUsuario != undefined) {
+        res.render('tienda', {
+            productos,
+            roles: role,
+            IdUsuario,
+            loggedIn: logged,
+            cart,
+            HayProductoUsuario,
+            filtro: 'all',
         });
-    });
-}
-
-
-<main id="productoGet">
-    <section id="producto">
-
-        <div class="row">
-            <div class="col-5">
-
-                <div class="w3-content w3-display-container">
-                    <img class="mySlides" src="<%= productoEditar.image %>" style="width:350px; height:350px">
-                    <% for (var a = 0; a < productoEditar.image2.length; a++) { %> 
-
-                        <img class="mySlides" src="<%= productoEditar.image2[a] %>" style="width:350px; height:380px">
-                        <% } %>
-                        <% if(productoEditar.image2.length > 0){ %>
-
-                    <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
-                    <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
-                    <% } %>
-                  </div>
-
-        <form action="/productos/edicion" method="post" enctype="multipart/form-data">
-
-            <input type="hidden" value="0" name="MaterialesProductos[nombre]">
-            <input type="hidden" value="0" name="MaterialesProductos[Codigo]">
-            <input type="hidden" value="0" name="MaterialesProductos[PrecioUnitario]">
-            <input type="hidden" value="0" name="MaterialesProductos[Familia]">
-            <input type="hidden" value="0" name="MaterialesProductos[cantidad]">
-
-                                    <!-- Imagen -->
-                                    <div class="mb-3">
-                                        <label for="formFile" class="form-label">Selecciona una o más imagenes para el producto</label>
-                                        <div id="fileInputsContainer">
-                                            <div class="file-input-group">
-
-                                            <input class="form-control" type="file" accept="image/*" id="image" name="image" value="<%=productoEditar.image%>">
-                                        </div>
-
-                                        <% for (var a = 0; a < productoEditar.image2.length; a++) { %> 
-                                            <div class="file-input-group">
-                                                <div class="input-wrapper">
-
-                                                <input class="form-control" type="file" accept="image/*" name="image2">
-                                                <input class="form-control" type="hidden" name="image2" value="<%=productoEditar.image2[a]%>">
-                                            </div>
-
-                                                <button type="button" class="remove-file-input btn btn-secondary" onclick="removeFileInput2(this)"><i class="fa-solid fa-minus"></i></button>
-                                            </div>
-                                        <% } %>
-                                    </div>
-                                        <button type="button" onclick="addFileInput()" class="btn btn-danger" ><i class="fa-solid fa-plus"></i></button> <button type="button" class="remove-file-input btn btn-secondary" onclick="removeFileInput(this)" ><i class="fa-solid fa-minus"></i></button>
-
-                                    </div>
-
-                    <div class="mb-2">
-                        <h5>Unidad: <%= productoEditar.unidad %></h5>
-                        <input type="text" class="form-control" placeholder="Unidad" name="unidad">
-                    </div>
-                    <div>
-                        <h5>Familia: <%= productoEditar.familia %></h5>
-                        <input type="text" class="form-control" placeholder="Familia" name="Familia">
-                    </div>
-                    <div>
-                        <h5>Iva: <%= productoEditar.iva %>%</h5>
-                        <input type="number" class="form-control" placeholder="Iva" name="Iva" min="0">
-                    </div>
-                    <br>
-                    <% if(roles === "admin" ){ %>
-
-                    <div class="checkbox-wrapper">
-                        <input type="checkbox" id="mi-checkbox" name="Activo" value="true">
-                        <label for="mi-checkbox">Activo</label>
-                      </div>
-                      <% } %>
-<!--este div este div-->
-
-<!--Here must be the input hidden!-->
-<!-- Placeholder for hidden inputs related to dynamic especificaciones -->
-<div id="hiddenInputsPlaceholder" style="display: none;"></div>
-
-                    </div> 
-<!--este div este div-->
-
-
-                  
-                <div class="col-7 ps-5">
-                    <div class="mb-3">
-                        <div class="row mb-2">
-                            <div class="col-6">
-                                <h1><%= productoEditar.nombre %></h1>
-                                <input type="text" class="form-control" placeholder="Nombre" name="nombre">
-                            </div>
-                            <div class="col-6" style="text-align: end;">
-                                <h1 style="color: #DC3545;">$<%= productoEditar.precio.toFixed(2)%> mxn</h1>
-                            </div>
-                        </div>
-                        <p class="mb-1" style="font-size: .7rem;">Codigo: <%= productoEditar.Codigo %></p>
-                        <input type="text" class="form-control form-control-sm" placeholder="Codigo" name="Codigo" value="<%= productoEditar.Codigo %>">
-                    </div>
-                    <div class="px-4">
-                        <div class="mb-4">
-                            <p class="mb-2">
-                                <%= productoEditar.descripcion %>
-                            </p>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Descripcion..." name="descripcion"></textarea>
-                        </div>
-
-                <!--Aquí es donde quiero que funcione!-->
-
-                        <div class="mb-3">
-                            <div class="row mb-2">
-                                <div class="col-6 cv-flex">
-                                    <h5>Especificaciones</h5>
-                                </div>
-                                
-                                <div class="col-6" style="text-align: end;">
-                                    <button type="button" class="btn btn-secondary" id="minus-one"><i class="fa-solid fa-minus"></i></button>
-                                    <button type="button" class="btn btn-danger" id="plus-one"><i class="fa-solid fa-plus"></i></button>
-                                </div>
-                                <div hidden id="cap"><%= productoEditar.especificacionesNombre.length %></div>
-                            </div>
-                            <div id="especificaciones">
-                                <% for (let i = 0; i < productoEditar.especificacionesNombre.length; i++) { %>
-                                    <div class="input-group mb-2" id="especificaciones-1">
-                                        <span class="input-group-text"><%= i + 1 %></span>
-                                        <input type="text" aria-label="nombre-espec" class="form-control espec<%= i + 1 %>" value="<%= productoEditar.especificacionesNombre[i]%>" name="especificacionesNombre" autocomplete="off" autocapitalize="on" required>
-                                        <input type="text" aria-label="descripcion-espec" class="form-control espec<%= i + 1 %>" value="<%= productoEditar.especificacionesDesc[i] %>" name="especificacionesDesc" autocomplete="off" autocapitalize="on" required>
-                                    </div>
-                                <% } %>
-                            </div>
-                        </div>
-
-
-
-
-                        Respaldo
-
-
-                        // ---------- DOM MANIPULATION ---------- //
-                        const buttons = document.getElementsByClassName('edit');
-                        const divs = document.querySelectorAll('.editDiv');
-                        const materialesInputs = document.querySelectorAll('.material-input');
-                        
-                        const precioMaterialesSpan = document.querySelector('#precio-materiales');
-                        
-                        const subtotalHTML = document.querySelector('#subtotal');
-                        const calculateSub = document.querySelector('#calculate-subtotal');
-                        const materialPorcentajes = document.querySelectorAll('.material-porcentaje');
-                        
-                        
-                        const cap = parseFloat(document.querySelector('#cap').innerHTML);
-                        let especs = document.querySelectorAll('#especificaciones .input-group').length || 0;
-                        const hiddenInputsContainer = document.querySelector('#hiddenInputsPlaceholder');
-                        
-                        const plusOneBtn = document.querySelector('#plus-one');
-                        const minusOneBtn = document.querySelector('#minus-one');
-                        const especsDiv = document.querySelector('#especificaciones');
-                        // - Modals
-                        const materialBusqueda = document.querySelector('#mm-busqueda');
-                        
-                        const modalMateriales = document.querySelectorAll('.modal-materiales');
-                        
-                        
-                        // ---------- GLOBAL CONST AND VARIABLES ---------- //
-                        const materialesUsados = {};
-                        
-                        
-                        // ---------- FUNCTIONS ---------- //
-                        function setUp(inputs, objetoMateriales, objective) {
-                            inputs.forEach((inp) => {
-                                inp.addEventListener('input', function () {
-                                    if (inp.value != '') {
-                                        const inp_number = parseFloat(inp.value);
-                        
-                                        if (inp_number >= 0) {
-                                            objetoMateriales[inp.id][1] = inp_number;
-                        
-                                            priceArray(objetoMateriales, objective);
-                                        }
-                                    } else {
-                                        objetoMateriales[inp.id][1] = 0;
-                        
-                                        priceArray(objetoMateriales, objective);
-                                    }
-                                });
-                            });
-                        }
-                        
-                        function priceArray(arr, objective) {
-                            let precio = 0;
-                        
-                            const keys = Object.keys(arr);
-                            if (keys.length > 0) {
-                                keys.forEach((key) => {
-                                    precio += arr[key][0] * arr[key][1];
-                        
-                                    const fprecio = precio
-                                        .toFixed(2)
-                                        .toString()
-                                        .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-                        
-                                    objective.innerHTML = fprecio;
-                                });
-                            } else {
-                                const fprecio = precio
-                                    .toFixed(2)
-                                    .toString()
-                                    .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-                        
-                                objective.innerHTML = fprecio;
-                            }
-                        }
-                        
-                        function calculatePrice(objetoMateriales, objective) {
-                            for (const material in objetoMateriales) {
-                                const inp = objetoMateriales[material][2];
-                                if (inp.value != '') {
-                                    const inp_number = parseFloat(inp.value);
-                        
-                                    if (inp_number >= 0) {
-                                        objetoMateriales[inp.id][1] = inp_number;
-                        
-                                        priceArray(objetoMateriales, objective);
-                                    }
-                                } else {
-                                    objetoMateriales[inp.id][1] = 0;
-                        
-                                    priceArray(objetoMateriales, objective);
-                                }
-                            }
-                        }
-                        
-                        function filtrar(barraBusqueda, matArray) {
-                            const texto = barraBusqueda.value.toLowerCase();
-                        
-                            for (const material of matArray) {
-                                const nombre = material.id.toLowerCase();
-                                if (nombre.indexOf(texto) != -1) {
-                                    material.classList.remove('hide');
-                                } else {
-                                    material.classList.add('hide');
-                                }
-                            }
-                        }
-                        
-                        // ---------- MAIN ---------- //
-                        for (let i = 0; i < divs.length; i++) {
-                            const ediv = divs[i];
-                            const hidden = ediv.hidden;
-                            const inputs = ediv.getElementsByTagName('input');
-                            const btn = ediv.querySelector('.edit');
-                            const btn_id = btn.id;
-                            const relatedBtns = document.querySelectorAll('.agregar-' + btn_id);
-                        
-                            if (hidden) {
-                                for (let i = 0; i < relatedBtns.length; i++) {
-                                    const rBtn = relatedBtns[i];
-                        
-                                    rBtn.innerHTML = 'Quitar';
-                                    rBtn.classList.remove('btn-danger');
-                                    rBtn.classList.add('btn-dark');
-                                }
-                        
-                                for (let i = 0; i < inputs.length; i++) {
-                                    const inp = inputs[i];
-                                    inp.removeAttribute('disabled');
-                                }
-                        
-                                ediv.removeAttribute('hidden');
-                        
-                                switch (btn_id[0]) {
-                                    case 'M':
-                                        const mat = ediv.querySelector('.material-input');
-                        
-                                        Object.defineProperty(materialesUsados, btn_id, {
-                                            value: [parseFloat(btn.value), 0, mat],
-                                            configurable: true,
-                                            enumerable: true,
-                                            writable: true,
-                                        });
-                        
-                                        calculatePrice(materialesUsados, precioMaterialesSpan, false);
-                        
-                                        break;
-                        
-                                }
-                            }
-                        }
-                        
-                        for (let i = 0; i < buttons.length; i++) {
-                            const btn = buttons[i];
-                            const btn_id = btn.id;
-                            btn.addEventListener('click', function () {
-                                const relatedBtns = document.querySelectorAll('.agregar-' + btn_id);
-                                const h_div = document.querySelector('.' + btn_id);
-                                const hidden = h_div.hidden;
-                                const inputs = h_div.getElementsByTagName('input');
-                        
-                                if (hidden) {
-                                    for (let i = 0; i < relatedBtns.length; i++) {
-                                        const rBtn = relatedBtns[i];
-                        
-                                        rBtn.innerHTML = 'Quitar';
-                                        rBtn.classList.remove('btn-danger');
-                                        rBtn.classList.add('btn-dark');
-                                    }
-                        
-                                    for (var i = 0; i < inputs.length; i++) {
-                                        const inp = inputs[i];
-                                        inp.removeAttribute('disabled');
-                                    }
-                        
-                                    h_div.removeAttribute('hidden');
-                        
-                                    inputs[0].value = 1;
-                                    // console.log(btn_id[0]);
-                                    switch (btn_id[0]) {
-                                        case 'M':
-                                            const mat = h_div.querySelector('.material-input');
-                        
-                                            Object.defineProperty(materialesUsados, btn_id, {
-                                                value: [parseFloat(btn.value), 0, mat],
-                                                configurable: true,
-                                                enumerable: true,
-                                                writable: true,
-                                            });
-                        
-                                            calculatePrice(materialesUsados, precioMaterialesSpan);
-                        
-                                            break;
-                        
-                                    }
-                                } else {
-                                    for (let i = 0; i < relatedBtns.length; i++) {
-                                        const rBtn = relatedBtns[i];
-                        
-                                        rBtn.innerHTML = 'Agregar';
-                                        rBtn.classList.remove('btn-dark');
-                                        rBtn.classList.add('btn-danger');
-                        
-                                        switch (btn_id[0]) {
-                                            case 'M':
-                                                delete materialesUsados[btn_id];
-                                                priceArray(materialesUsados, precioMaterialesSpan);
-                        
-                                                break;
-                              
-                                        }
-                                    }
-                        
-                                    inputs[0].value = 0;
-                        
-                                    for (var i = 0; i < inputs.length; i++) {
-                                        const inp = inputs[i];
-                                        inp.setAttribute('disabled', 'disabled');
-                                    }
-                        
-                                    h_div.setAttribute('hidden', 'hidden');
-                                }
-                            });
-                        }
-                        
-                        setUp(materialesInputs, materialesUsados, precioMaterialesSpan);
-                        
-                        
-                        calculateSub.addEventListener('click', function () {
-                            const materiales_price = parseFloat(
-                                precioMaterialesSpan.innerHTML.replaceAll(',', '')
-                            );
-                        
-                            materialPorcentajes.forEach((porcentaje) => {
-                                subtotal += materiales_price * (parseFloat(porcentaje.value) / 100);
-                            });
-                        
-                            subtotalHTML.innerHTML = `<h5 class="mb-3 resaltar-rojo">SubTotal: $${subtotal
-                                .toFixed(2)
-                                .toString()
-                                .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}  mxn</h5>`;
-                        });
-                        
-                        // -------------- Busqueda -------------- //
-                        materialBusqueda.addEventListener('input', function () {
-                            filtrar(materialBusqueda, modalMateriales);
-                        });
-                        
-                        // -------------- Especificaciones -------------- //
-                        plusOneBtn.addEventListener('click', function() {
-                            especs++;
-                        
-                            const div = document.createElement('div');
-                            div.classList.add('input-group', 'mb-2');
-                            div.id = `especificaciones-${especs}`;
-                            div.innerHTML = `
-                                <span class="input-group-text">${especs}</span>
-                                <input type="text" name="especificacionesNombre" class="form-control dynamic-input" placeholder="Nombre" required>
-                                <input type="text" name="especificacionesDesc" class="form-control dynamic-input" placeholder="Descripcion" required>
-                            `;
-                        
-                            especsDiv.appendChild(div);
-                        
-                            // Create and append the corresponding hidden inputs
-                            createHiddenInputs(especs, hiddenInputsContainer);
-                        });
-                        
-                        minusOneBtn.addEventListener('click', function() {
-                            if (especs > 0) {
-                                const lastEspec = document.querySelector(`#especificaciones-${especs}`);
-                                const lastHiddenEspecNombre = document.querySelector(`input[name='hiddenEspecificacionesNombre[${especs}]']`);
-                                const lastHiddenEspecDesc = document.querySelector(`input[name='hiddenEspecificacionesDesc[${especs}]']`);
-                        
-                                if (lastEspec) {
-                                    lastEspec.remove();
-                                }
-                        
-                                if (lastHiddenEspecNombre) {
-                                    lastHiddenEspecNombre.remove();
-                                }
-                        
-                                if (lastHiddenEspecDesc) {
-                                    lastHiddenEspecDesc.remove();
-                                }
-                        
-                                especs--;
-                            }
-                        });
-                        
-                        function createHiddenInputs(index, container) {
-                            const hiddenInputNombre = document.createElement('input');
-                            hiddenInputNombre.type = 'hidden';
-                            hiddenInputNombre.name = `hiddenEspecificacionesNombre[${index}]`;
-                        
-                            const hiddenInputDesc = document.createElement('input');
-                            hiddenInputDesc.type = 'hidden';
-                            hiddenInputDesc.name = `hiddenEspecificacionesDesc[${index}]`;
-                        
-                            container.appendChild(hiddenInputNombre);
-                            container.appendChild(hiddenInputDesc);
-                        
-                            // Synchronize values between dynamic inputs and hidden inputs
-                            document.querySelectorAll(`#especificaciones-${index} .dynamic-input`).forEach((input, idx) => {
-                                input.addEventListener('input', function() {
-                                    if (idx === 0) { // First input is for Nombre
-                                        hiddenInputNombre.value = input.value;
-                                    } else { // Second input is for Desc
-                                        hiddenInputDesc.value = input.value;
-                                    }
-                                });
-                            });
-                        
-                        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        function removeDynamicInput() {
-                            // Only allow removal if more than 2 input groups exist
-                            if (especs > 2) {
-                                const inputGroups = document.querySelectorAll('#especificaciones .input-group');
-                                if (inputGroups.length > 0) {
-                                    const lastInputGroup = inputGroups[inputGroups.length - 1];
-                                    removeInputGroupAndHiddenInputs(lastInputGroup);
-                                    especs--; // Decrement the total count of especs
-                                }
-                            } else {
-                                console.log("A minimum of 2 specifications must be maintained.");
-                            }
-                        }
-                        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        <!DOCTYPE html>
+    } else {
+        res.render('tienda', {
+            productos,
+            roles: role,
+            loggedIn: logged,
+            cart,
+            filtro: 'all',
+        });
+    }
+};
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const bodyParser = require('body-parser');
+const mongoosePaginate = require('mongoose-paginate-v2');
+
+const ProductoSchema = new Schema(
+    {
+        IdProducto: { type: String },
+        MaterialesProductos: [
+            {
+                Descripcion: { type: String },
+                cantidad: { type: Number },
+                Codigo: { type: String },
+                PrecioUnitario: { type: Number },
+                Familia: { type: String },
+                Unidad: { type: String },
+            },
+        ],
+        PinturaProductos: [
+            {
+                Descripcion: { type: String },
+                cantidad: { type: Number },
+                Codigo: { type: String },
+                PrecioUnitario: { type: Number },
+                Familia: { type: String },
+                Unidad: { type: String },
+            },
+        ],
+        InstalacionProductos: [
+            {
+                Descripcion: { type: String },
+                cantidad: { type: Number },
+                Codigo: { type: String },
+                PrecioUnitario: { type: Number },
+                Familia: { type: String },
+                Unidad: { type: String },
+            },
+        ],
+        familia: Array,
+        precio: { type: Number },
+        image: { type: String, default: '' },
+        image2: Array,
+        nombre: { type: String },
+        descripcion: { type: String },
+        unidad: { type: String },
+        ManoObMaterial: { type: Number },
+        PorcentajeMaterial: { type: Number },
+        ManoObPintura: { type: Number },
+        PorcentajePintura: { type: Number },
+        ManoObInstalacion: { type: Number },
+        PorcentajeInstalacion: { type: Number },
+        ManoObGeneral: { type: Number },
+        HerramientaMenor: { type: Number },
+        PorcentajeGeneral: { type: Number },
+        especificacionesNombre: Array,
+        especificacionesDesc: Array,
+        Codigo: { type: String },
+        iva: { type: Number, default: 0 },
+        Activo: { type: Boolean },
+    },
+    {
+        timestamps: true,
+        strict: false,
+    }
+);
+
+ProductoSchema.plugin(mongoosePaginate);
+const Producto = mongoose.model('Producto', ProductoSchema);
+module.exports = Producto;
+
+/*
+
+*/
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Support Chatbot</title>
-    <link rel="stylesheet" href="/styles.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <meta charset="utf-8" />
+    <%- include('layouts/metaData'); -%>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Welderstone - Tienda</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
+    <!-- CSS Stylesheet-->
+    <link rel="stylesheet" href="/css/styles.css" />
+    <!-- FontAwesome-->
+    <script src="https://kit.fontawesome.com/360b0549be.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <style>
+        .card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .card-body {
+            flex: 1;
+        }
+    </style>
 </head>
 <body>
-    <button id="chatbot-btn" class="center-text-xy">
-        <i class="fas fa-robot"></i>
-    </button>
+    <%- include('layouts/navbar'); -%>
+    <%- include("layouts/tienda-filtros") %>
 
-    <div id="chat-container" class="chat-container">
-        <div id="chat-box" class="chat-box"></div>
-        <form id="chat-form">
-            <input type="text" id="user-message" placeholder="Escribe tu mensaje aquí..." autocomplete="off" required>
-            <button type="submit">Enviar</button>
-        </form>
+    <hr class="border border-danger w-75" style="margin: 0.8rem auto 1.6rem auto" />
+
+    <section id="tienda-productos">
+        <div class="row">
+            <% for (var a = 0; a < productos.length; a++) { %>
+                <% if(productos[a].Activo === true ) { %>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-4">
+                        <a href="/productos/<%=productos[a]._id%>">
+                            <div class="card h-100" style="overflow: hidden">
+                                <!-- Imagen -->
+                                <div style="height: 25vh; display: flex; justify-content: center; align-items: center;">
+                                    <img src="<%=productos[a].image%>" style="max-height: 100%; max-width: 100%; object-fit: contain; border-radius: 0;" alt="Product 1" />
+                                </div>
+                                <!-- Cuerpo de la card -->
+                                <div class="card-body">
+                                    <!-- Nombre del producto -->
+                                    <h4 class="card-title"><%=productos[a].nombre%></h4>
+                                    <form action="/products-cart" method="POST">
+                                        <!-- Precio -->
+                                        <input type="hidden" name="nombre" value="<%=productos[a].nombre%>" />
+                                        <input type="hidden" name="image" value="<%=productos[a].image%>" />
+                                        <input type="hidden" name="precio" value="<%=productos[a].precio%>" />
+                                        <input type="hidden" name="_id" value="<%=productos[a]._id%>" />
+
+                                        <% if(loggedIn) { %>
+                                            <input type="hidden" name="UsuarioId" value="<%=IdUsuario%>" />
+                                        <% } %>
+
+                                        <p class="card-text">
+                                            Precio: <span class="price">$<%= productos[a].precio.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') %></span>
+                                        </p>
+
+                                        <% if(loggedIn) { %>
+                                            <button type="submit" class="btn btn-danger w-100 edit" id="<%=productos[a].nombre%>">
+                                                <i class="fa-solid fa-cart-shopping me-2 edit"></i>
+                                                <% for (let b = 0; b < cart.length; b++) { %>
+                                                    <% if(cart[b].nombre === productos[a].nombre && cart[b].UsuarioId === IdUsuario){ %>
+                                                        Agregado
+                                                    <% } else { %>
+                                                    <% } %>
+                                                <% } %>
+                                            </button>
+                                        <% } %>
+
+                                        <% if(!loggedIn) { %>
+                                            <a href="/login/welderstone" class="btn btn-danger w-100 edit">
+                                                <i class="fa-solid fa-cart-shopping me-2 edit white-icon"></i>
+                                            </a>
+                                        <% } %>
+                                    </form>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                <% } %>
+            <% } %>
+        </div>
+    </section>
+<!--
+    <div id="toastContainer" class="toast-container position-fixed bottom-0 start-0 p-3">
+        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="7000">
+            <div class="toast-header">
+                <i class="fa-solid fa-circle-exclamation me-2" style="color: red"></i>
+                <strong class="me-auto">Welderstone</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
     </div>
+-->
+    <%- include('layouts/whatsapp-btn') -%>
 
     <script>
-        $(document).ready(function() {
-            $('#chatbot-btn').on('click', function() {
-                $('#chat-container').toggle();
-            });
-
-            $('#chat-form').on('submit', function(e) {
-                e.preventDefault();
-                const userMessage = $('#user-message').val();
-                $('#chat-box').append(`<p class="user-message">${userMessage}</p>`);
-                $('#user-message').val('');
-
-                $.post('/ChatBot', { message: userMessage }, function(data) {
-                    $('#chat-box').append(`<p class="bot-message">${data.message}</p>`);
-                }).fail(function() {
-                    $('#chat-box').append(`<p class="bot-message">Error al enviar el mensaje. Por favor, inténtalo de nuevo.</p>`);
-                });
-            });
-        });
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+        const tooltipList = [...tooltipTriggerList].map((tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl));
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="/js/tiendaHide.js"></script>
+    <script src="https://kit.fontawesome.com/360b0549be.js" crossorigin="anonymous"></script>
+    <script src="/js/whatsapp-btn.js"></script>
+    <script src="/js/tiendaTabs.js"></script>
+    <script>
+        // Inicializa los toasts
+        var toastEl = document.getElementById('toastContainer');
+        var toast = new bootstrap.Toast(toastEl.querySelector('.toast'));
+        toast.show();
     </script>
 </body>
 </html>
 
-
-
 <style>
-    body {
-    font-family: Arial, sans-serif;
-}
-
-.center-text-xy {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    z-index: 1000;
-}
-
-.chat-container {
-    display: none;
-    position: fixed;
-    bottom: 80px;
-    right: 20px;
-    width: 300px;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-}
-
-.chat-box {
-    height: 300px;
-    overflow-y: scroll;
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
-}
-
-.user-message, .bot-message {
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-.user-message {
-    background-color: #e1ffc7;
-    text-align: right;
-}
-
-.bot-message {
-    background-color: #f1f1f1;
-}
-
-form {
-    display: flex;
-}
-
-input[type="text"] {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 0 0 0 10px;
-    outline: none;
-}
-
-button {
-    padding: 10px;
-    border: none;
-    background-color: #28a745;
-    color: white;
-    cursor: pointer;
-    border-radius: 0 0 10px 0;
-    outline: none;
-}
-
+    .white-icon {
+        color: white;
+    }
 </style>
