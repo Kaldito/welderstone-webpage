@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
     }
 
     let productos = await Producto.find({});
-
+    const currentPage = 1;
     const texto = req.body.busqueda;
     const filtrado = [];
 
@@ -37,6 +37,7 @@ module.exports = async (req, res) => {
             loggedIn: logged,
             cart,
             filtro: 'all',
+            currentPage
         });
     } else {
         res.render('tienda', {
@@ -45,6 +46,7 @@ module.exports = async (req, res) => {
             loggedIn: logged,
             cart,
             filtro: 'all',
+            currentPage
         });
     }
 };

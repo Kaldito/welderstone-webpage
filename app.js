@@ -79,6 +79,7 @@ passport.use(
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
             callbackURL: 'https://welderstone.com/auth/google/welderstone',
         },
+        //https://welderstone.com/auth/google/welderstone
         // http://welderstone.com/auth/google/welderstone
         // http://localhost:3000/auth/google/welderstone
         // https://welderstoneprueba.onrender.com/auth/google/welderstone

@@ -9,12 +9,13 @@ module.exports = async (req, res) => {
 
         const user = await User.findOne({ _id: USER_ID });
 
+        const currentPage = 1;
         role = req.session.passport.user.role;
         logged = true;
 
         if (user && user.fullName && user.fullName.length > 0) {
             const Carrusel = await CarruselImagenes.find({carrusel:"aaron"})
-            res.render('inicio', { roles: role, loggedIn: logged,Carrusel });
+            res.render('inicio', { roles: role, loggedIn: logged,Carrusel,currentPage });
         } else {
             res.redirect('/data-form');
         }

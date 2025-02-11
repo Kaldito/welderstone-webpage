@@ -26,7 +26,6 @@ module.exports = async (req, res) => {
     // Paginar los productos
     const productos = await Producto.paginate({Activo:true}, options);
     const cart = await Cart.find({});
-    console.log(productos.docs[0])
 
     if (IdUsuario != undefined) {
         res.render('tienda', {
