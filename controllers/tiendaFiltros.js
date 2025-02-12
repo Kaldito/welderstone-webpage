@@ -38,7 +38,7 @@ module.exports = async (req, res) => {
     let productos = await Producto.paginate(query, options);
     const cart = await Cart.find({});
 
-    const currentPage = page;
+    const currentPage = 1;
 
     let templateData = {
         productos: productos.docs,
