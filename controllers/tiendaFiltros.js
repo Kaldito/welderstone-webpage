@@ -13,7 +13,6 @@ module.exports = async (req, res) => {
 
     // Obtener la página actual de la URL (por defecto 1)
     let page = parseInt(req.query.page) || 1;
-    console.log("paginaaa",page)
     const limit = 18;
 
     // Obtener el filtro de la URL
@@ -39,13 +38,15 @@ module.exports = async (req, res) => {
     let productos = await Producto.paginate(query, options);
     const cart = await Cart.find({});
 
+    const currentPage = page;
+
     let templateData = {
         productos: productos.docs,
         roles: role,
         loggedIn: logged,
         cart,
         filtro: filtro,
-        currentPage: page,
+        currentPage,
         totalPages: productos.totalPages
     };
 
