@@ -55,5 +55,18 @@ module.exports = async (req, res) => {
         templateData.HayProductoUsuario = await Cart.find({ UsuarioId: IdUsuario }).count();
     }
 
-    res.render('tienda', templateData);
+    res.render('tienda', 
+        {
+
+            productos: productos.docs,
+            roles: role,
+            loggedIn: logged,
+            cart,
+            filtro: filtro,
+            currentPage,
+            totalPages: productos.totalPages
+
+        }   
+    );
+ 
 };
