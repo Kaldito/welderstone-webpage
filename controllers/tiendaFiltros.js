@@ -23,22 +23,28 @@ module.exports = async (req, res) => {
         if (filtro !== 'all') {
             query.familia = filtro;
         }
-
         // Opciones de paginación
-        const options = {
-            page,
-            limit,
-            select: `-MaterialesProductos -PinturaProductos -InstalacionProductos -image2`,
-            sort: { createdAt: -1 }
+        const projection = {
+            "MaterialesProductos": 0,
+            "MaterialesProductos[cantidad]": 0,
+            "MaterialesProductos[nombre]": 0,
+            "MaterialesProductos[Codigo]": 0,
+            "MaterialesProductos[PrecioUnitario]": 0,
+            "MaterialesProductos[Familia]": 0,
+            "PinturaProductos": 0,
+            "InstalacionProductos": 0,
+            "image2": 0
         };
 
         // Consultar productos y carrito
-        const productos = await Producto.paginate(query, options);
+
+        const productos = await Producto.find(query, projection);
+        console.log("query",productos)
         const cart = IdUsuario ? await Cart.find({ UsuarioId: IdUsuario }) : [];
 
         // Preparar datos para la plantilla
         let templateData = {
-            productos: productos.docs,
+            productos: productos,
             roles: role,
             loggedIn: logged,
             cart,
@@ -48,6 +54,7 @@ module.exports = async (req, res) => {
             IdUsuario,
             HayProductoUsuario: cart.length
         };
+
 
         res.render('tienda', templateData);
     } catch (error) {

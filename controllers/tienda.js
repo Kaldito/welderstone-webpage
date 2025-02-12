@@ -14,7 +14,7 @@ module.exports = async (req, res) => {
         var IdUsuario = req.session.passport.user.id;
     }
 
-    // Usamos paginación
+    /*
     const options = {
         page: page,
         limit: limit,  // Limitar a 18 productos por página
@@ -22,14 +22,26 @@ module.exports = async (req, res) => {
         -MaterialesProductos[Familia] -PinturaProductos -InstalacionProductos -image2 `,  // Excluir estos campos
         sort: { createdAt: -1 }  // Ordenar por la fecha de creación
     };
-
+*/
     // Paginar los productos
-    const productos = await Producto.paginate({Activo:true}, options);
+    const productos = await Producto.find({Activo:true}, 
+        { 
+            "MaterialesProductos": 0, 
+            "MaterialesProductos[cantidad]": 0, 
+            "MaterialesProductos[nombre]": 0, 
+            "MaterialesProductos[Codigo]": 0, 
+            "MaterialesProductos[PrecioUnitario]": 0, 
+            "MaterialesProductos[Familia]": 0, 
+            "PinturaProductos": 0, 
+            "InstalacionProductos": 0, 
+            "image2": 0 
+        });
+    console.log(productos)
     const cart = await Cart.find({});
 
     if (IdUsuario != undefined) {
         res.render('tienda', {
-            productos: productos.docs, // Solo los productos de la página actual
+            productos: productos, // Solo los productos de la página actual
             roles: role,
             IdUsuario,
             loggedIn: logged,
@@ -43,7 +55,7 @@ module.exports = async (req, res) => {
 
         res.render('tienda', {
             
-            productos: productos.docs,  // Solo los productos de la página actual
+            productos: productos,  // Solo los productos de la página actual
             roles: role,
             loggedIn: logged,
             cart,
