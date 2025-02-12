@@ -13,6 +13,7 @@ module.exports = async (req, res) => {
 
     // Obtener la página actual de la URL (por defecto 1)
     let page = parseInt(req.query.page) || 1;
+    console.log("paginaaa",page)
     const limit = 18;
 
     // Obtener el filtro de la URL
