@@ -95,7 +95,7 @@
 <!-- Paginación -->
 <nav aria-label="Paginación">
     <ul class="pagination justify-content-center">
-        <% if (currentPage > 1) { %>
+        <% if (currentPage && currentPage > 1) { %>
             <li class="page-item">
                 <a class="page-link" href="?page=1<%= filtro !== 'all' ? '&filtro=' + filtro : '' %>"><<</a>
             </li>

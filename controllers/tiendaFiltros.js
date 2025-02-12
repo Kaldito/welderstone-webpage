@@ -38,7 +38,6 @@ module.exports = async (req, res) => {
     let productos = await Producto.paginate(query, options);
     const cart = await Cart.find({});
 
-    const currentPage = 1;
 
     let templateData = {
         productos: productos.docs,
@@ -63,7 +62,7 @@ module.exports = async (req, res) => {
             loggedIn: logged,
             cart,
             filtro: filtro,
-            currentPage,
+            currentPage:page,
             totalPages: productos.totalPages
 
         }   
