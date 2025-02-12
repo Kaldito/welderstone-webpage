@@ -45,7 +45,7 @@ module.exports = async (req, res) => {
         loggedIn: logged,
         cart,
         filtro: filtro,
-        currentPage,
+        currentPage:page,
         totalPages: productos.totalPages
     };
 
@@ -55,17 +55,7 @@ module.exports = async (req, res) => {
     }
 
     res.render('tienda', 
-        {
-
-            productos: productos.docs,
-            roles: role,
-            loggedIn: logged,
-            cart,
-            filtro: filtro,
-            currentPage:page,
-            totalPages: productos.totalPages
-
-        }   
+        templateData
     );
  
 };
