@@ -1,4 +1,44 @@
-<!-- VERSION Movil -->
+<!-- VERSIÓN MÓVIL -->
+<div id="mobile-carousel">
+    <div
+        id="carouselExampleControls"
+        class="carousel slide"
+        data-bs-ride="carousel"
+        data-bs-touch="true"
+    >
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="video-container">
+                    <video autoplay loop muted playsinline class="video-mobile">
+                        <source src="/videos/WSweb_vertical.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 90vh; /* Ajusta según sea necesario */
+    overflow: hidden;
+}
+
+.video-mobile {
+    width: auto; /* Mantiene la proporción */
+    height: 100%; /* Ajusta la altura sin recortar */
+    object-fit: contain; /* Evita que se recorte el video */
+}
+</style>
+
+
+
+
+<!--
 <div id="mobile-carousel">
     <div
         id="carouselExampleControls"
@@ -124,3 +164,5 @@
         </button>
     </div>
 </div>
+
+-->
