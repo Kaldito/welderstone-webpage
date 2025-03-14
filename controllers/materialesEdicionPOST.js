@@ -1,288 +1,101 @@
-const material = require('../models/materiales.js');
+const Material = require('../models/materiales.js');
 const Producto = require('../models/Productos.js');
-const path = require('path');
 const Cart = require('../models/Cart');
 
 module.exports = async (req, res) => {
     const obj_ids = req.body.id;
 
-    // console.log(req.body);
-
-    if (obj_ids != undefined) {
-        if (typeof obj_ids !== 'string') {
-            for (let i = 0; i < obj_ids.length; i++) {
+    // Actualizar los materiales
+    if (obj_ids !== undefined) {
+        if (Array.isArray(obj_ids)) {
+            // Caso de múltiples materiales con bulkWrite
+            const materialBulkOps = obj_ids.map((id, i) => {
                 const params = {};
-                if (req.body.Descripcion[i] != '') {
-                    params.Descripcion = req.body.Descripcion[i];
-                }
-                if (req.body.Codigo[i] != '') {
-                    params.Codigo = req.body.Codigo[i];
-                }
-                
-                if (req.body.Unidad[i] != '') {
-                    params.Unidad = req.body.Unidad[i];
-                }
-
-                if (req.body.PrecioUnitario[i] != '') {
-                    params.PrecioUnitario = parseFloat(
-                        req.body.PrecioUnitario[i]
-                    );
-                }
-
-                if (req.body.Familia[i] != '') {
-                    params.Familia = req.body.Familia[i];
-                }
-
-                if (req.body.SubFam[i] != '') {
-                    params.SubFam = req.body.SubFam[i];
-                }
-
-                await material.findByIdAndUpdate(obj_ids[i], params);
-            }
+                if (req.body.Descripcion && req.body.Descripcion[i] !== '') params.Descripcion = req.body.Descripcion[i];
+                if (req.body.Codigo && req.body.Codigo[i] !== '') params.Codigo = req.body.Codigo[i];
+                if (req.body.Unidad && req.body.Unidad[i] !== '') params.Unidad = req.body.Unidad[i];
+                if (req.body.PrecioUnitario && req.body.PrecioUnitario[i] !== '') params.PrecioUnitario = parseFloat(req.body.PrecioUnitario[i]);
+                if (req.body.Familia && req.body.Familia[i] !== '') params.Familia = req.body.Familia[i];
+                if (req.body.SubFam && req.body.SubFam[i] !== '') params.SubFam = req.body.SubFam[i];
+                return {
+                    updateOne: {
+                        filter: { _id: id },
+                        update: { $set: params }
+                    }
+                };
+            });
+            await Material.bulkWrite(materialBulkOps);
         } else {
+            // Caso de un solo material
             const params = {};
-            if (req.body.Descripcion != '') {
-                params.Descripcion = req.body.Descripcion;
-            }
-            if (req.body.Codigo != '') {
-                params.Codigo = req.body.Codigo;
-            }
-
-            if (req.body.Unidad != '') {
-                params.Unidad = req.body.Unidad;
-            }
-
-            if (req.body.PrecioUnitario != '') {
-                params.PrecioUnitario = parseFloat(req.body.PrecioUnitario);
-            }
-
-            if (req.body.Familia != '') {
-                params.Familia = req.body.Familia;
-            }
-
-            if (req.body.SubFam != '') {
-                params.SubFam = req.body.SubFam;
-            }
-
-            if (params != {}) {
-                await material.findByIdAndUpdate(obj_ids, params);
+            if (req.body.Descripcion !== '') params.Descripcion = req.body.Descripcion;
+            if (req.body.Codigo !== '') params.Codigo = req.body.Codigo;
+            if (req.body.Unidad !== '') params.Unidad = req.body.Unidad;
+            if (req.body.PrecioUnitario !== '') params.PrecioUnitario = parseFloat(req.body.PrecioUnitario);
+            if (req.body.Familia !== '') params.Familia = req.body.Familia;
+            if (req.body.SubFam !== '') params.SubFam = req.body.SubFam;
+            if (Object.keys(params).length > 0) {
+                await Material.findByIdAndUpdate(obj_ids, params);
             }
         }
     }
 
-    const cantidadrespetada = await Producto.find({});
+    // Obtener los IDs de los materiales actualizados
+    const updatedMaterialIds = Array.isArray(obj_ids) ? obj_ids : [obj_ids];
 
-    for (let i = 0; i < cantidadrespetada.length; i++) {
-        const mateprod = await material.find({});
-        const { MaterialesProductos } = cantidadrespetada[i];
-        for (let j = 0; j < MaterialesProductos.length; j++) {
-            for (let a = 0; a < mateprod.length; a++) {
-                if (
-                    cantidadrespetada[i].MaterialesProductos[j].Descripcion ===
-                    mateprod[a].Descripcion
-                ) {
-                    await Producto.updateOne(
-                        { _id: cantidadrespetada[i]._id },
-                        {
-                            $set: {
-                                'MaterialesProductos.$[item]': {
-                                    Descripcion: mateprod[a].Descripcion,
-                                    cantidad:
-                                        cantidadrespetada[i]
-                                            .MaterialesProductos[j].cantidad,
-                                    Codigo: mateprod[a].Codigo,
-                                    Familia: mateprod[a].Familia,
-                                },
-                            },
-                        },
-                        {
-                            arrayFilters: [
-                                {
-                                    'item._id':
-                                        cantidadrespetada[i]
-                                            .MaterialesProductos[j]._id,
-                                },
-                            ],
-                        }
-                    );
-                }
-            }
-        }
+    // Encontrar productos afectados
+    const productosAfectados = await Producto.find({
+        'MaterialesProductos.material': { $in: updatedMaterialIds }
+    }).populate('MaterialesProductos.material');
 
+    // Preparar operaciones de actualización
+    const productBulkOps = [];
+    const cartUpdatePromises = [];
 
-        /*
-        const { PinturaProductos } = cantidadrespetada[i];
-
-        for (let a = 0; a < mateprod.length; a++) {
-            for (let j = 0; j < PinturaProductos.length; j++) {
-                if (
-                    cantidadrespetada[i].PinturaProductos[j].Descripcion ===
-                    mateprod[a].Descripcion
-                ) {
-                    await Producto.updateOne(
-                        { _id: cantidadrespetada[i]._id },
-                        {
-                            $set: {
-                                'PinturaProductos.$[item]': {
-                                    Descripcion: mateprod[a].Descripcion,
-                                    cantidad:
-                                        cantidadrespetada[i].PinturaProductos[j]
-                                            .cantidad,
-                                    Codigo: mateprod[a].Codigo,
-                                    familia: mateprod[a].Familia,
-                                },
-                            },
-                        },
-                        {
-                            arrayFilters: [
-                                {
-                                    'item._id':
-                                        cantidadrespetada[i].PinturaProductos[j]
-                                            ._id,
-                                },
-                            ],
-                        }
-                    );
-                }
-            }
-        }
-*/
-/*
-        const { InstalacionProductos } = cantidadrespetada[i];
-
-        for (let a = 0; a < mateprod.length; a++) {
-            for (let j = 0; j < InstalacionProductos.length; j++) {
-                if (
-                    cantidadrespetada[i].InstalacionProductos[j].Descripcion ===
-                    mateprod[a].Descripcion
-                ) {
-                    await Producto.updateOne(
-                        { _id: cantidadrespetada[i]._id },
-                        {
-                            $set: {
-                                'InstalacionProductos.$[item]': {
-                                    Descripcion: mateprod[a].Descripcion,
-                                    cantidad:
-                                        cantidadrespetada[i]
-                                            .InstalacionProductos[j].cantidad,
-                                    Codigo: mateprod[a].Codigo,
-                                    familia: mateprod[a].Familia,
-                                },
-                            },
-                        },
-                        {
-                            arrayFilters: [
-                                {
-                                    'item._id':
-                                        cantidadrespetada[i]
-                                            .InstalacionProductos[j]._id,
-                                },
-                            ],
-                        }
-                    );
-                }
-            }
-        }
-        */
-    }
-
-    // await Producto.updateOne({nombre:req.body.NombreBusqueda}, { $set: {"MaterialesProductos.$[item]":{Descripcion:req.body['MaterialesProductos[nombre]'][a],cantidad:req.body['MaterialesProductos[cantidad]'][a],Codigo:req.body['MaterialesProductos[Codigo]'][a],Familia:req.body['MaterialesProductos[Familia]'][a]}}}, {arrayFilters: [{"item.Codigo":req.body['MaterialesProductos[Codigo]'][a]}]});
-
-    const productos = await Producto.find({});
-    const materiales = await material.find({});
-
-    for (let a = 0; a < productos.length; a++) {
-        const { MaterialesProductos } = productos[a];
-        /*
-        const { PinturaProductos } = productos[a];
-        const { InstalacionProductos } = productos[a];
-        */
-
+    for (const producto of productosAfectados) {
         let suma = 0;
-        for (let j = 0; j < materiales.length; j++) {
-            for (let i = 0; i < MaterialesProductos.length; i++) {
-                if (
-                    MaterialesProductos[i].Descripcion ===
-                    materiales[j].Descripcion &&
-                    materiales[j].PrecioUnitario >= 0
-                ) {
-                    suma =
-                        suma +
-                        MaterialesProductos[i].cantidad *
-                        materiales[j].PrecioUnitario;
-                }
-            }
+        for (const mp of producto.MaterialesProductos) {
+            const material = mp.material;
+            const cantidad = mp.cantidad;
+            suma += cantidad * material.PrecioUnitario;
         }
-        const Suma3Por = suma
-        /*
-        const Suma2Mano = (suma * productos[a].ManoObMaterial) / 100 + suma;
-        const Suma3Por =
-            (Suma2Mano * productos[a].PorcentajeMaterial) / 100 + Suma2Mano;
-*/
-/*
-        let sumaSolventes = 0;
-        for (let j = 0; j < materiales.length; j++) {
-            for (let i = 0; i < PinturaProductos.length; i++) {
-                if (
-                    PinturaProductos[i].Descripcion ===
-                    materiales[j].Descripcion &&
-                    materiales[j].PrecioUnitario >= 0
-                ) {
-                    sumaSolventes =
-                        sumaSolventes +
-                        PinturaProductos[i].cantidad *
-                        materiales[j].PrecioUnitario;
-                }
-            }
-        }
-        const sumaSolventes2Mano =
-            (sumaSolventes * productos[a].ManoObPintura) / 100 + sumaSolventes;
-        const sumaSolventes3Por =
-            (sumaSolventes2Mano * productos[a].PorcentajePintura) / 100 +
-            sumaSolventes2Mano;
 
-        let sumaInsumos = 0;
-        for (let j = 0; j < materiales.length; j++) {
-            for (let i = 0; i < InstalacionProductos.length; i++) {
-                if (
-                    InstalacionProductos[i].Descripcion ===
-                    materiales[j].Descripcion &&
-                    materiales[j].PrecioUnitario >= 0
-                ) {
-                    sumaInsumos =
-                        sumaInsumos +
-                        InstalacionProductos[i].cantidad *
-                        materiales[j].PrecioUnitario;
-                }
-            }
-        }
-        const sumaInsumos2Mano =
-            (sumaInsumos * productos[a].ManoObInstalacion) / 100 + sumaInsumos;
-        const sumaInsumos3Por =
-            (sumaInsumos * productos[a].PorcentajeInstalacion) / 100 +
-            sumaInsumos2Mano;
-*/
-
-        var x = Suma3Por;
-        var HerrMenor = (productos[a].ManoObGeneral * x)/100
-        x = (productos[a].ManoObGeneral * x)/100+ x  
-        y = (HerrMenor*  productos[a].HerramientaMenor)/100
-        x= x+y
-        x = (productos[a].PorcentajeGeneral * x)/100 + x
+        let x = suma;
+        const HerrMenor = (producto.ManoObGeneral * x) / 100;
+        x = (producto.ManoObGeneral * x) / 100 + x;
+        const y = (HerrMenor * producto.HerramientaMenor) / 100;
+        x = x + y;
+        x = (producto.PorcentajeGeneral * x) / 100 + x;
 
         let SubTotal = Number(x.toFixed(2));
-        SubTotal = SubTotal + SubTotal * (productos[a].iva / 100);
-
+        SubTotal = SubTotal + SubTotal * (producto.iva / 100);
         SubTotal = SubTotal.toFixed(2);
 
-        await Producto.updateOne(
-            { _id: productos[a]._id },
-            { $set: { precio: SubTotal } }
+        // Operación de actualización para el producto
+        productBulkOps.push({
+            updateOne: {
+                filter: { _id: producto._id },
+                update: { $set: { precio: SubTotal } }
+            }
+        });
+
+        // Promesa de actualización para los carritos
+        cartUpdatePromises.push(
+            Cart.updateMany(
+                { nombre: producto.nombre },
+                { $set: { precio: SubTotal } }
+            )
         );
-        await Cart.update(
-            { nombre: productos[a].nombre },
-            { $set: { precio: SubTotal } }
-        );
+    }
+
+    // Ejecutar actualizaciones de productos en masa
+    if (productBulkOps.length > 0) {
+        await Producto.bulkWrite(productBulkOps);
+    }
+
+    // Ejecutar actualizaciones de carritos en paralelo
+    if (cartUpdatePromises.length > 0) {
+        await Promise.all(cartUpdatePromises);
     }
 
     res.redirect('/materiales/true');

@@ -125,11 +125,15 @@
                                                     <td>Unidad: <%= materiales[a].Unidad %></td>
                                                     <td><input type="number" step="any" value="0" id="Material<%=materiales[a].Codigo%>" class="form-control material-input" name='MaterialesProductos[cantidad]' min="0"></td>
                                                     <td style="text-align: center;"><button type="button" class="btn btn-primary edit agregar-Material<%=materiales[a].Codigo%>" id="Material<%=materiales[a].Codigo%>">Quitar</button></td>
+                                                    <input type="hidden" value="<%=materiales[a]._id%>" name="MaterialesProductos[_id]">
 
+<!--
                                                     <input type="hidden" value="<%=materiales[a].Descripcion%>" name="MaterialesProductos[nombre]">
                                                     <input type="hidden" value="<%=materiales[a].Codigo%>" name="MaterialesProductos[Codigo]">
                                                     <input type="hidden" value="<%=materiales[a].PrecioUnitario%>" name="MaterialesProductos[PrecioUnitario]">
                                                     <input type="hidden" value="<%=materiales[a].Familia%>" name="MaterialesProductos[Familia]">
+                                                    -->
+
                                                 </tr>
                                             <% } %>
                                         </table>

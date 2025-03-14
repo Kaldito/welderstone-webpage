@@ -23,187 +23,128 @@
 <body>
   <%- include('layouts/navbar'); -%>
 
-    <section id="presentation">
-    
-      <div class="container">
-        <div class="row mt-5">
-          <div class="col-md-8 offset-md-2">
-            <div class="card">
-              <img width="200px" height="200px" src="<%=productodatos[0].image%>" alt="Product 1">
-
-
-
-
-              <div class="card-body">
-
-                <div class="text-center">
-
-                  <h4 class="card-title">
-                    <%=productodatos[0].nombre%>
-                  </h4>
-                  <p class="card-text">Precio: $<%=productodatos[0].precio.toLocaleString()%>
-                  </p>
-                  <p class="card-text">Cantidad: <%=productodatos[0].cantidad%>
-                  </p>
-                  <p class="card-text">Unidad: <%=productodatos[0].unidad%>
-                  </p>
-                  <p class="card-text">Codigo: <%=productodatos[0].codigo%>
-                  </p>
-
-
-                  <p class="card-text">SubTotal: $<%=Total1RFormateado%>
-                  </p>
-
-                  <p class="card-text">Iva: $<%=IvaCalculo%>
-
-                    
-                  <p class="card-text">Total: $<%=TotalFinal.toLocaleString()%>
-                  </p>
-
+  <section id="presentation">
+    <div class="container">
+      <div class="row mt-5">
+        <div class="col-md-8 offset-md-2">
+          <div class="card">
+            <img width="200px" height="200px" src="<%=productodatos.image%>" alt="Product 1">
+            <div class="card-body">
+              <div class="text-center">
+                <h4 class="card-title"><%=productodatos.nombre%></h4>
+                <p class="card-text">Precio: $<%=productodatos.precio.toLocaleString()%></p>
+                <p class="card-text">Cantidad: <%=productodatos.cantidad%></p>
+                <p class="card-text">Unidad: <%=productodatos.unidad%></p>
+                <p class="card-text">Codigo: <%=productodatos.Codigo%></p>
+                <p class="card-text">SubTotal: $<%=subtotalFormateado%></p>
+                <p class="card-text">Iva: $<%=ivaCalculoFormateado%></p>
+                <p class="card-text">Total: $<%=totalFinalFormateado%></p>
+              </div>
+            </div>
+            <div class="mt-4 text-center">
+              <a href="https://welderstonebucket.s3.amazonaws.com/pdfs/<%=IdTransaccion%><%=productodatos.Codigo%>.pdf" class="btn btn-primary mr-3">Descargar pdf</a>
+            </div>
+            <div class="row mt-4">
+              <div class="col-md-12">
+                <h5>Materiales:</h5>
+                <div class="table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Codigo</th>
+                        <th>Descripcion</th>
+                        <th>Familia</th>
+                        <th>Cantidad</th>
+                        <th>Precio Unitario</th>
+                        <th>Importe</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% materialesFormateados.forEach((m) => { %>
+                        <tr>
+                          <td><%= m.codigo %></td>
+                          <td><%= m.descripcion %></td>
+                          <td><%= m.familia || 'N/A' %></td>
+                          <td><%= m.cantidad %></td>
+                          <td>$<%= m.precioUnitario %></td>
+                          <td>$<%= m.importe %></td>
+                        </tr>
+                      <% }) %>
+                    </tbody>
+                  </table>
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          Material:  
+                          <br>
+                          Mano de obra:     
+                          <br>
+                          Herramienta menor:
+                          <br>
+                          Indirectos y Honorarios:  
+                          <br>
+                        </td>
+                        <td>
+                          <br>
+                          <%=productodatos.ManoObGeneral%>%
+                          <br>
+                          <%=productodatos.HerramientaMenor%>%
+                          <br>
+                          <%=productodatos.PorcentajeGeneral%>%
+                          <br>
+                        </td>
+                        <td>
+                          Suma
+                          <br>
+                          $<%=sumaMaterialesFormateado%>
+                          <br>
+                          $<%=manoObraFormateado%>
+                          <br>
+                          $<%=herramientaMenorFormateado%>
+                          <br>
+                          SubTotal
+                          <br>
+                          Iva
+                          <br>
+                          Total
+                          <br>
+                        </td>
+                        <td>
+                          $<%=sumaMaterialesFormateado%>
+                          <br>
+                          $<%=manoObraFormateado%>
+                          <br>
+                          $<%=herramientaMenorFormateado%>
+                          <br>
+                          $<%=indirectosFormateado%>
+                          <br>
+                          $<%=subtotalFormateado%>
+                          <br>
+                          $<%=ivaCalculoFormateado%>
+                          <br>
+                          $<%=totalFinalFormateado%>
+                          <br>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
-            
-              <div class="mt-4 text-center">
-                <a href="https://welderstonebucket.s3.amazonaws.com/pdfs/<%=IdTransaccion%><%=productodatos[0].Codigo%>.pdf"
-                  class="btn btn-primary mr-3">Descargar pdf</a>
-
-                  <!--     <a href="/pdfDescargar?IdTrans=<%=IdTransaccion%>&amp;Codigo=<%=productodatos[0].Codigo%>"
-                  class="btn btn-primary mr-3">Descargar pdf</a>-->
- <!--<a href="https://welderstonebucket.s3.amazonaws.com/pdfs/6494fd4c58c2cdf149dda736AWS.pdf">aaaa</a>.-->
-                <!--<a href="/whatsapp?IdTrans=<%=IdTransaccion%>&amp;Codigo=<%=productodatos[0].Codigo%>&amp" class="btn btn-success">Recibir por whatsapp</a>-->
-
-              </div>
-
-
-              <div class="row mt-4">
-                <div class="col-md-12">
-                  <h5>Materiales:</h5>
-                  <div class="table-responsive">
-                    <table class="table table-striped">
-                      <thead>
-                        <tr>
-                          <th>Codigo</th>
-                          <th>Descripcion</th>
-                          <th>Familia</th>
-                          <th>Cantidad</th>
-                          <th>Precio Unitario</th>
-                          <th>Importe</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <% for (var b=0; b < ProductoParaCotizar.MaterialesProductos.length; b++) { %>
-                          <tr>
-                            <td>
-                              <%=ProductoParaCotizar.MaterialesProductos[b].Codigo%>
-
-                            </td>
-                            <td>
-                              <%=ProductoParaCotizar.MaterialesProductos[b].Descripcion%>
-
-                            </td>
-                            <td>
-                              <%=ProductoParaCotizar.MaterialesProductos[b].Familia%>
-                            </td>
-                            <td>
-                              <%=ProductoParaCotizar.MaterialesProductos[b].cantidad%>
-                            </td>
-                            <td>
-                              $<%= MaterialesMostrar[b].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") %>
-
-                            </td>
-                            <td>
-                              <% let num1=ProductoParaCotizar.MaterialesProductos[b].cantidad; %>
-                                <% let num2=MaterialesMostrar[b]; %>
-                                $<%= (num1 * num2).toLocaleString() %>
-                            </td>
-                          </tr>
-                          <% } %>
-                      </tbody>
-                    </table>
-                    <table class="table table-striped">
-                      <thead>
-                        <tr>
-
-                          <th></th>
-                          <th></th>
-                          <th></th>
-                          <th></th>
-
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-
-                          <td>
-                            Material:  
-                            <br>
-                            Mano de obra:     
-                            <br>
-                            Herramienta menor:
-                            <br>
-                            Indirectos y Honorarios:  
-                            <br>
-                          </td>
-                          <td>
-
-                            <br>
-                             <%=productodatos[0].ManoObGeneral%>%
-                            <br>
-                           <%=productodatos[0].HerramientaMenor%>%
-                            <br>
-                             <%=productodatos[0].PorcentajeGeneral%>%
-                            <br>
-                          </td>
-
-                          <td>
-                            Suma
-                            <br>
-                            $<%=MaterialSuma.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
-<br>
-$<%=HerrMenor%>
-<br>
-$<%=indirectosPrecio%>
-<br>
-SubTotal
-<br>
-Iva
-<br>
-Total
-<br>
-
-                          </td>
-
-                          <td>
-                            $<%=MaterialSuma.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")%>
-<br>
-                                  $<%=HerrMenor%>
-                                  <br>
-                                  $<%=y%>
-                                  <br>
-                                  $<%=indirectosPrecio2%>
-                                  <br>
-                                  $<%=Total1RFormateado%>
-                                  <br>
-
-                                  $<%=IvaCalculo%>
-
-                                  <br>
-                                  $<%=TotalFinal.toLocaleString()%>
-
-<br>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-
-
-
-
-   
-    </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"

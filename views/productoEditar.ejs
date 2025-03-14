@@ -47,12 +47,7 @@
 
                 <form action="/productos/edicion" method="post" enctype="multipart/form-data">
 
-                    <input type="hidden" value="0" name="MaterialesProductos[nombre]">
-                    <input type="hidden" value="0" name="MaterialesProductos[Codigo]">
-                    <input type="hidden" value="0" name="MaterialesProductos[PrecioUnitario]">
-                    <input type="hidden" value="0" name="MaterialesProductos[Familia]">
-                    <input type="hidden" value="0" name="MaterialesProductos[cantidad]">
-
+        
                                             <!-- Imagen -->
                                             <div class="mb-3">
                                                 <label for="formFile" class="form-label">Selecciona una o más imagenes para el producto</label>
@@ -103,8 +98,8 @@
 <!--Here must be the input hidden!-->
 <!-- Placeholder for hidden inputs related to dynamic especificaciones -->
 <div id="hiddenInputsPlaceholder" style="display: none;"></div>
-
-                            </div> 
+<div id="materialesHiddenInputs" style="display: none;"></div>
+</div> 
 <!--este div este div-->
 
 
@@ -157,39 +152,24 @@
                                 </div>
 
 
-                        <!--Aquí es donde quiero que funcione!-->
 
                                 <h5 style="font-weight: bold;">Materiales</h5>
                                 <div>
                                     <table class="table align-middle table-striped-columns">
                                         <% for (let a = 0; a < productoEditar.MaterialesProductos.length; a++) { %> 
-                                            <% if(productoEditar.MaterialesProductos[a].cantidad > 0){ %>                                                
-                                                <tr hidden class="Material<%=productoEditar.MaterialesProductos[a].Codigo%> editDiv">
-                                                    <th scope="row"><%=productoEditar.MaterialesProductos[a].Codigo%></td>
-                                                    <td><%=productoEditar.MaterialesProductos[a].Descripcion%></td>
-                                                    <td>$<%=productoEditar.MaterialesProductos[a].PrecioUnitario%>/u</td>
-                                                    <td>Unidad: <%= productoEditar.MaterialesProductos[a].Unidad %></td>
-                                                    <td><input type="number" step="any" value="<%= productoEditar.MaterialesProductos[a].cantidad %>" id="Material<%=productoEditar.MaterialesProductos[a].Codigo%>" class="form-control material-input" name='MaterialesProductos[cantidad]' min="0"></td>
-                                                    <td style="text-align: center;"><button type="button" class="btn btn-dark edit agregar-Material<%=productoEditar.MaterialesProductos[a].Codigo%>" id="Material<%=productoEditar.MaterialesProductos[a].Codigo%>" value="<%=productoEditar.MaterialesProductos[a].PrecioUnitario%>">Quitar</button></td>
-
-                                                    <input type="hidden" value="<%=productoEditar.MaterialesProductos[a].Descripcion%>" name="MaterialesProductos[nombre]">
-                                                    <input type="hidden" value="<%=productoEditar.MaterialesProductos[a].Codigo%>" name="MaterialesProductos[Codigo]">
-                                                    <input type="hidden" value="<%=productoEditar.MaterialesProductos[a].PrecioUnitario%>" name="MaterialesProductos[PrecioUnitario]">
-                                                    <input type="hidden" value="<%=productoEditar.MaterialesProductos[a].Familia%>" name="MaterialesProductos[Familia]">
-                                                </tr>
-                                            <% } else { %>                                    
-                                                <tr hidden class="Material<%=productoEditar.MaterialesProductos[a].Codigo%>">
-                                                    <th scope="row"><%=productoEditar.MaterialesProductos[a].Codigo%></td>
-                                                    <td><%=productoEditar.MaterialesProductos[a].Descripcion%></td>
-                                                    <td>$<%=productoEditar.MaterialesProductos[a].PrecioUnitario%>/u</td>
-                                                    <td>Unidad: <%= productoEditar.MaterialesProductos[a].Unidad %></td>
-                                                    <td><input type="number" step="any" value="<%= productoEditar.MaterialesProductos[a].cantidad %>" id="Material<%=productoEditar.MaterialesProductos[a].Codigo%>" class="form-control material-input" name='MaterialesProductos[cantidad]' min="0"></td>
-                                                    <td style="text-align: center;"><button type="button" class="btn btn-dark edit agregar-Material<%=productoEditar.MaterialesProductos[a].Codigo%>" id="Material<%=productoEditar.MaterialesProductos[a].Codigo%>" value="<%=productoEditar.MaterialesProductos[a].PrecioUnitario%>">Quitar</button></td>
-
-                                                    <input type="hidden" value="<%=productoEditar.MaterialesProductos[a].Descripcion%>" name="MaterialesProductos[nombre]">
-                                                    <input type="hidden" value="<%=productoEditar.MaterialesProductos[a].Codigo%>" name="MaterialesProductos[Codigo]">
-                                                    <input type="hidden" value="<%=productoEditar.MaterialesProductos[a].PrecioUnitario%>" name="MaterialesProductos[PrecioUnitario]">
-                                                    <input type="hidden" value="<%=productoEditar.MaterialesProductos[a].Familia%>" name="MaterialesProductos[Familia]">
+                                            <% const material = productoEditar.MaterialesProductos[a].material; %>
+                                            <% if (productoEditar.MaterialesProductos[a].cantidad > 0) { %>                                                
+                                                <tr class="editDiv Material<%= material._id %>" data-material-id="<%= material._id %>">
+                                                    <th scope="row"><%= material.Codigo %></th>
+                                                    <td><%= material.Descripcion %></td>
+                                                    <td>$<%= material.PrecioUnitario %>/u</td>
+                                                    <td>Unidad: <%= material.Unidad %></td>
+                                                    <td>
+                                                        <input type="number" step="any" value="<%= productoEditar.MaterialesProductos[a].cantidad %>" class="form-control material-input" min="0" data-material-id="<%= material._id %>">
+                                                    </td>
+                                                    <td style="text-align: center;">
+                                                        <button type="button" class="btn btn-dark edit agregar-<%= material._id %>" data-material-id="<%= material._id %>" value="<%= material.PrecioUnitario %>">Quitar</button>
+                                                    </td>
                                                 </tr>
                                             <% } %>
                                         <% } %>
@@ -224,20 +204,28 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
-                                                <% for (let a = 0; a < productoEditar.MaterialesProductos.length; a++) { %> 
-                                                    <div class="row mb-2 modal-materiales" style="padding-right: 5%;" id="<%= productoEditar.MaterialesProductos[a].Descripcion %>">
-                                                        <input type="hidden" class="modal-materiales-familias" value="<%=productoEditar.MaterialesProductos[a].Familia%>">
-                                                        <input type="hidden" class="modal-materiales-subfamilias" value="<%=productoEditar.MaterialesProductos[a].SubFam%>">
+                                            
+                                                <% for (let a = 0; a < materiales.length; a++) { %> 
+                                                    <div class="row mb-2 modal-materiales" style="padding-right: 5%;" id="<%= materiales[a].Descripcion %>">
+                                                        <input type="hidden" class="modal-materiales-familias" value="<%= materiales[a].Familia %>">
+                                                        <input type="hidden" class="modal-materiales-subfamilias" value="<%= materiales[a].SubFam %>">
                                                         <div class="col-10 cv-flex">
-                                                            <%=productoEditar.MaterialesProductos[a].Descripcion%> 
+                                                            <%= materiales[a].Descripcion %>
                                                         </div>
                                                         <div class="col-2">
-                                                            <button type="button" class="btn btn-danger edit agregar-Material<%=productoEditar.MaterialesProductos[a].Codigo%>" id="Material<%=productoEditar.MaterialesProductos[a].Codigo%>" value="<%=productoEditar.MaterialesProductos[a].PrecioUnitario%>">Agregar</button>
+                                                            <button type="button" class="btn btn-danger edit agregar-<%= materiales[a]._id %>" 
+                                                                data-material-id="<%= materiales[a]._id %>" 
+                                                                data-codigo="<%= materiales[a].Codigo %>" 
+                                                                data-descripcion="<%= materiales[a].Descripcion %>" 
+                                                                data-precio="<%= materiales[a].PrecioUnitario %>" 
+                                                                data-unidad="<%= materiales[a].Unidad %>" 
+                                                                value="<%= materiales[a].PrecioUnitario %>">Agregar</button>
                                                         </div>
                                                     </div>
                                                 <% } %>
                                             </div>
+
+
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                             </div>
@@ -363,6 +351,18 @@ label {
 .input-wrapper {
     flex: 1; /* Allow the input fields to grow and take up available space */
     margin-right: 10px; /* Add spacing between input and button if needed */
+}
+/* Estilo base para la tabla */
+.table > :not(caption) > * > * {
+    border-bottom: 1px solid #dee2e6;
+    background-color: #fff;
+}
+
+/* Forzar padding y estilo del botón btn-dark dentro de la tabla */
+.table .btn.btn-dark {
+    background-color: #343a40 !important;
+    color: #fff !important;
+    padding: .375rem .75rem !important; /* Igualar el padding del botón correcto */
 }
         </style>
 

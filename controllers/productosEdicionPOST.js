@@ -5,7 +5,7 @@ const Cart = require('../models/Cart');
 const AWS = require('aws-sdk');
 
 module.exports = async (req, res) => {
-    console.log(req.body)
+    console.log("req.body",req.body)
 
 
     const body = {...req.body,}
@@ -139,82 +139,86 @@ module.exports = async (req, res) => {
         { $set: { especificacionesDesc: req.body.especificacionesDesc } }
     );
 
+// Obtener los IDs y cantidades desde el formulario
+const materialIds = req.body['MaterialesProductos[_id][]'] || [];
+const cantidades = req.body['MaterialesProductos[cantidad][]'] || [];
+
+// Limpiar MaterialesProductos existentes
+await Producto.updateOne(
+    { _id: req.body.id },
+    { $unset: { MaterialesProductos: 1 } }
+);
+
+// Preparar el nuevo array de MaterialesProductos
+const nuevosMateriales = [];
+for (let i = 0; i < materialIds.length; i++) {
+    const cantidad = parseFloat(cantidades[i]) || 0;
+    if (cantidad > 0) {
+        nuevosMateriales.push({
+            material: materialIds[i], // Referencia al _id del material
+            cantidad: cantidad
+        });
+    }
+}
+
+// Actualizar MaterialesProductos con los nuevos valores
+if (nuevosMateriales.length > 0) {
     await Producto.updateOne(
         { _id: req.body.id },
-        { $unset: { MaterialesProductos: 1 } },
-        { multi: true }
+        { $set: { MaterialesProductos: nuevosMateriales } }
     );
+}
 
-    for (a = 1; a < req.body['MaterialesProductos[cantidad]'].length; a++) {
-        if (req.body['MaterialesProductos[cantidad]'][a] > 0) {
-            // console.log(req.body['MaterialesProductos[nombre]'][a])
-            await Producto.updateOne(
-                { _id: req.body.id },
-                {
-                    $push: {
-                        MaterialesProductos: {
-                            Descripcion:
-                                req.body['MaterialesProductos[nombre]'][a],
-                            cantidad:
-                                req.body['MaterialesProductos[cantidad]'][a],
-                            Codigo: req.body['MaterialesProductos[Codigo]'][a],
-                            Familia:
-                                req.body['MaterialesProductos[Familia]'][a],
-                        },
-                    },
-                }
-            );
-        }
+
+// Consultar solo los materiales necesarios usando los _id
+const materialesUsados = await material.find({
+    _id: { $in: materialIds }
+});
+
+// Mapear los materiales por _id para acceso rápido
+const materialesMap = new Map(
+    materialesUsados.map(m => [m._id.toString(), m.PrecioUnitario])
+);
+
+// Calcular la suma de precios de materiales
+let suma = 0;
+for (let i = 0; i < materialIds.length; i++) {
+    const materialId = materialIds[i];
+    const cantidad = parseFloat(cantidades[i]) || 0;
+    const precioUnitario = materialesMap.get(materialId) || 0;
+    if (cantidad > 0 && precioUnitario >= 0) {
+        suma += cantidad * precioUnitario;
     }
+}
 
-    // AReglar desmadre
+// Obtener el producto para los porcentajes
+const producto = await Producto.findOne({ _id: req.body.id });
 
-    const productos = await Producto.find({ _id: req.body.id });
+// Calcular subtotal con porcentajes
+let subtotal = suma;
+const manoObra = subtotal * (parseFloat(producto.ManoObGeneral || 0) / 100);
+const herramientaMenor = manoObra * (parseFloat(producto.HerramientaMenor || 0) / 100);
+const indirectos = (subtotal + manoObra + herramientaMenor) * (parseFloat(producto.PorcentajeGeneral || 0) / 100);
 
-    // console.log(productos)
+subtotal = subtotal + manoObra + herramientaMenor + indirectos;
 
-    const materiales = await material.find({});
+// Aplicar IVA
+const iva = parseFloat(producto.iva || 0) / 100;
+const precioTotal = subtotal * (1 + iva);
 
-    const { MaterialesProductos } = productos[0];
+// Guardar el precio final
+const precioFinal = Number(precioTotal.toFixed(2));
+await Producto.updateOne(
+    { _id: req.body.id },
+    { $set: { precio: precioFinal } }
+);
+await Cart.update(
+    { nombre: producto.nombre },
+    { $set: { precio: precioFinal } }
+);
 
-    let suma = 0;
-    for (let j = 0; j < materiales.length; j++) {
-        for (let i = 0; i < MaterialesProductos.length; i++) {
-            if (
-                MaterialesProductos[i].Descripcion ===
-                    materiales[j].Descripcion &&
-                materiales[j].PrecioUnitario >= 0
-            ) {
-                suma =
-                    suma +
-                    MaterialesProductos[i].cantidad *
-                        materiales[j].PrecioUnitario;
-            }
-        }
-    }
 
-const Suma3Por = suma;
 
-    var x = Suma3Por 
-    var HerrMenor = (productos[0].ManoObGeneral * x)/100
-    x = (productos[0].ManoObGeneral * x)/100+ x  
-    y = (HerrMenor*  productos[0].HerramientaMenor)/100
-    x= x+y
-    x = (productos[0].PorcentajeGeneral * x)/100 + x
-
-    
-    let SubTotal = Number(x.toFixed(2));
-    SubTotal = SubTotal + SubTotal * (productos[0].iva / 100);
-
-    SubTotal = SubTotal.toFixed(2);
-    await Producto.updateOne(
-        { _id: productos[0]._id },
-        { $set: { precio: SubTotal } }
-    );
-    await Cart.update(
-        { nombre: productos[0].nombre },
-        { $set: { precio: SubTotal } }
-    );
 
    AWS.config.update({
     accessKeyId: process.env.accessKeyId,

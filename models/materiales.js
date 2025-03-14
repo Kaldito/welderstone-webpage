@@ -11,7 +11,12 @@ const MaterialSchema = new Schema({
     Familia: { type: String },
     SubFam: { type: String },
     cantidad: { type: String },
+    
+},
+{
+    timestamps: true // Agrego timestamps para seguimiento de creación/actualización
 });
+
 
 MaterialSchema.plugin(mongoosePaginate);
 const Material = mongoose.model('Material', MaterialSchema);

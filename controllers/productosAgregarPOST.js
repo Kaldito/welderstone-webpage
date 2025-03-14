@@ -1,4 +1,144 @@
 const Producto = require('../models/Productos.js');
+const Material = require('../models/materiales.js');
+const path = require('path');
+const AWS = require('aws-sdk');
+
+module.exports = async (req, res) => {
+    try {
+        // Validar si el nombre o Código ya existen en una sola consulta
+        const existeProducto = await Producto.findOne({
+            $or: [{ nombre: req.body.nombre }, { Codigo: req.body.Codigo }],
+        });
+
+        if (existeProducto) {
+            return res.send(
+                `<script>alert('¡Este código o nombre ya está en uso!');window.location.href='/productos';</script>`
+            );
+        }
+
+        console.log(req.body)
+
+        // Preparar los materiales del producto usando referencias por _id
+        const MaterialesProductos = [];
+        const idsMateriales = req.body['MaterialesProductos[_id]'] || [];
+        const cantidades = req.body['MaterialesProductos[cantidad]'] || [];
+
+        for (let i = 0; i < idsMateriales.length; i++) {
+            const cantidad = Number(cantidades[i]);
+            if (cantidad > 0) {
+                const material = await Material.findById(idsMateriales[i]);
+                if (material) {
+                    MaterialesProductos.push({
+                        material: material._id, // Referencia al ID del material
+                        cantidad: cantidad,
+                    });
+                } else {
+                    console.log(`Material con _id ${idsMateriales[i]} no encontrado.`);
+                }
+            }
+        }
+
+        // Crear el producto con los datos iniciales
+        const nuevoProducto = new Producto({
+            IdProducto: req.body.IdProducto || req.body.Codigo, // Usa Codigo como fallback
+            nombre: req.body.nombre,
+            Codigo: req.body.Codigo,
+            descripcion: req.body.descripcion,
+            unidad: req.body.unidad,
+            MaterialesProductos: MaterialesProductos, // Asegúrate de que sea 'materialesProductos'
+            familia: req.body.familia || [],
+            ManoObMaterial: Number(req.body.ManoObMaterial) || 0,
+            PorcentajeMaterial: Number(req.body.PorcentajeMaterial) || 0,
+            ManoObPintura: Number(req.body.ManoObPintura) || 0,
+            PorcentajePintura: Number(req.body.PorcentajePintura) || 0,
+            ManoObInstalacion: Number(req.body.ManoObInstalacion) || 0,
+            PorcentajeInstalacion: Number(req.body.PorcentajeInstalacion) || 0,
+            ManoObGeneral: Number(req.body.ManoObGeneral) || 0,
+            HerramientaMenor: Number(req.body.HerramientaMenor) || 0,
+            PorcentajeGeneral: Number(req.body.PorcentajeGeneral) || 0,
+            especificacionesNombre: req.body.especificacionesNombre || [],
+            especificacionesDesc: req.body.especificacionesDesc || [],
+            iva: Number(req.body.iva) || 0,
+            Activo: false, // Cambia a true si deseas que esté activo por defecto
+        });
+
+        // Calcular el precio del producto
+        const productoConMateriales = await nuevoProducto.populate('MaterialesProductos.material');
+        console.log('Materiales poblados:', productoConMateriales.MaterialesProductos);
+
+        let suma = 0;
+        productoConMateriales.MaterialesProductos.forEach(item => {
+            if (item.material && item.material.PrecioUnitario >= 0) {
+                console.log(`Material: ${item.material.Descripcion}, PrecioUnitario: ${item.material.PrecioUnitario}, Cantidad: ${item.cantidad}`);
+                suma += item.cantidad * item.material.PrecioUnitario;
+            } else {
+                console.log(`Material inválido o sin precio:`, item);
+            }
+        });
+        console.log('Suma total de materiales:', suma);
+
+        let x = suma;
+        const HerrMenor = (nuevoProducto.ManoObGeneral * x) / 100;
+        x = (nuevoProducto.ManoObGeneral * x) / 100 + x;
+        const y = (HerrMenor * nuevoProducto.HerramientaMenor) / 100;
+        x = x + y;
+        x = (nuevoProducto.PorcentajeGeneral * x) / 100 + x;
+
+        let SubTotal = Number(x.toFixed(2));
+        SubTotal = SubTotal + SubTotal * (nuevoProducto.iva / 100);
+        nuevoProducto.precio = Number(SubTotal.toFixed(2));
+
+        // Guardar el producto en la base de datos
+        await nuevoProducto.save();
+
+        // Configurar y subir imágenes a AWS S3
+        AWS.config.update({
+            accessKeyId: process.env.accessKeyId,
+            secretAccessKey: process.env.secretAccessKey,
+        });
+        const s3 = new AWS.S3();
+
+        const uploadImage = async (image, key) => {
+            const uploadParams = {
+                Bucket: 'welderstonebucket',
+                Key: 'Imagenes/' + key,
+                Body: image.data,
+            };
+            return s3.upload(uploadParams).promise();
+        };
+
+        if (req.files && req.files.image) {
+            const mainImage = req.files.image;
+            const mainImageKey = `${req.body.Codigo}${mainImage.name}`;
+            await uploadImage(mainImage, mainImageKey);
+            nuevoProducto.image = `https://welderstonebucket.s3.us-west-1.amazonaws.com/Imagenes/${mainImageKey}`;
+        }
+
+        const additionalImages = [];
+        const keys = Object.keys(req.files || {});
+        for (let i = 2; i <= keys.length; i++) {
+            const imageKey = `image${i}`;
+            if (req.files[imageKey]) {
+                const image = req.files[imageKey];
+                const imageName = `${req.body.Codigo}${image.name}`;
+                await uploadImage(image, imageName);
+                additionalImages.push(`https://welderstonebucket.s3.us-west-1.amazonaws.com/Imagenes/${imageName}`);
+            }
+        }
+        nuevoProducto.image2 = additionalImages;
+
+        // Actualizar el producto con las imágenes
+        await nuevoProducto.save();
+
+        res.redirect('/productos');
+    } catch (error) {
+        console.error('Error al agregar producto:', error);
+        res.status(500).send('Error al procesar la solicitud');
+    }
+};
+
+/*
+const Producto = require('../models/Productos.js');
 const path = require('path');
 const material = require('../models/materiales.js');
 const AWS = require('aws-sdk');
@@ -138,6 +278,7 @@ module.exports = async (req, res) => {
 
     }
 };
+*/
 
 /*
 const Producto = require('../models/Productos.js');

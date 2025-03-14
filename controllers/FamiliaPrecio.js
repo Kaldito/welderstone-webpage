@@ -5,6 +5,8 @@ const Cart = require('../models/Cart');
 
 module.exports = async (req, res) => {
     console.log(req.body);
+
+    // 1. Actualizar los precios de los materiales
     if (req.body.FamiliaPrecioEleccion === 'PorcentajeEleccion') {
         const porcentaje = req.body.porcentaje / 100 + 1;
         const porcentajeRed = 1 - req.body.porcentaje / 100;
@@ -20,164 +22,85 @@ module.exports = async (req, res) => {
                 { $mul: { PrecioUnitario: porcentajeRed } }
             );
         }
-
-        const materials = await material.find({
-            Familia: req.body.FamiliaPrecio,
-        });
-
-        const updateOperations = materials.map((material) => ({
-            updateOne: {
-                filter: { _id: material._id },
-                update: {
-                    $set: {
-                        PrecioUnitario:
-                            Math.round(material.PrecioUnitario * 100) / 100,
-                    },
-                },
-            },
-        }));
-
-        await material.bulkWrite(updateOperations);
     } else if (req.body.FamiliaPrecioEleccion === 'FijoEleccion') {
-        const ValorASumar = req.body.porcentaje;
-        const ValorARestar = req.body.porcentaje;
+        const valor = Number(req.body.porcentaje);
 
         if (req.body.porcentaje > 0 && req.body.accion === 'incrementar') {
             await material.updateMany(
                 { Familia: req.body.FamiliaPrecio },
-                { $inc: { PrecioUnitario: ValorASumar } }
+                { $inc: { PrecioUnitario: valor } }
             );
         } else if (req.body.porcentaje > 0 && req.body.accion === 'reducir') {
             await material.updateMany(
                 { Familia: req.body.FamiliaPrecio },
-                { $inc: { PrecioUnitario: -ValorARestar } }
+                { $inc: { PrecioUnitario: -valor } }
             );
         }
-
-        const materials = await material.find({
-            Familia: req.body.FamiliaPrecio,
-        });
-
-        const updateOperations = materials.map((material) => ({
-            updateOne: {
-                filter: { _id: material._id },
-                update: {
-                    $set: {
-                        PrecioUnitario:
-                            Math.round(material.PrecioUnitario * 100) / 100,
-                    },
-                },
-            },
-        }));
-
-        await material.bulkWrite(updateOperations);
     }
 
-    const cantidadrespetada = await Producto.find({});
-
-    for (let i = 0; i < cantidadrespetada.length; i++) {
-        const mateprod = await material.find({});
-        const { MaterialesProductos } = cantidadrespetada[i];
-        for (let j = 0; j < MaterialesProductos.length; j++) {
-            for (let a = 0; a < mateprod.length; a++) {
-                if (
-                    cantidadrespetada[i].MaterialesProductos[j].Descripcion ===
-                    mateprod[a].Descripcion
-                ) {
-                    await Producto.updateOne(
-                        { _id: cantidadrespetada[i]._id },
-                        {
-                            $set: {
-                                'MaterialesProductos.$[item]': {
-                                    Descripcion: mateprod[a].Descripcion,
-                                    cantidad:
-                                        cantidadrespetada[i]
-                                            .MaterialesProductos[j].cantidad,
-                                    Codigo: mateprod[a].Codigo,
-                                    Familia: mateprod[a].Familia,
-                                },
-                            },
-                        },
-                        {
-                            arrayFilters: [
-                                {
-                                    'item._id':
-                                        cantidadrespetada[i]
-                                            .MaterialesProductos[j]._id,
-                                },
-                            ],
-                        }
-                    );
-                }
-            }
+    // Redondear precios de materiales
+    const materials = await material.find({ Familia: req.body.FamiliaPrecio });
+    const materialUpdateOperations = materials.map(mat => ({
+        updateOne: {
+            filter: { _id: mat._id },
+            update: { $set: { PrecioUnitario: Math.round(mat.PrecioUnitario * 100) / 100 } }
         }
+    }));
+    await material.bulkWrite(materialUpdateOperations);
 
+    // 2. Actualizar los productos afectados
+    // Obtener los IDs de los materiales actualizados
+    const updatedMaterialIds = materials.map(mat => mat._id);
 
-    }
+    // Encontrar productos que usan esos materiales y poblar los datos de materiales
+    const affectedProducts = await Producto.find({
+        'MaterialesProductos.material': { $in: updatedMaterialIds }
+    }).populate('MaterialesProductos.material', 'PrecioUnitario');
 
-    //
-    const productos = await Producto.find({});
-    const materiales = await material.find({});
-    const bulkUpdateOperations = [];
-    
-    for (let a = 0; a < productos.length; a++) {
-        const { MaterialesProductos } = productos[a];
-
-    
+    // Preparar operaciones de actualización para los productos
+    const bulkUpdateOperations = affectedProducts.map(product => {
+        // Calcular la suma de los costos de los materiales
         let suma = 0;
-        for (let j = 0; j < materiales.length; j++) {
-            for (let i = 0; i < MaterialesProductos.length; i++) {
-                if (
-                    MaterialesProductos[i].Descripcion ===
-                        materiales[j].Descripcion &&
-                    materiales[j].PrecioUnitario >= 0
-                ) {
-                    suma +=
-                        MaterialesProductos[i].cantidad *
-                        materiales[j].PrecioUnitario;
-                }
-            }
-        }
-        //const Suma2Mano = (suma * productos[a].ManoObMaterial) / 100 + suma;
-        const Suma3Por = suma;
-    
-
-        var x = Suma3Por;
-        var HerrMenor = (productos[a].ManoObGeneral * x)/100
-        x = (productos[a].ManoObGeneral * x)/100+ x  
-        y = (HerrMenor*  productos[a].HerramientaMenor)/100
-        x= x+y
-        x = (productos[a].PorcentajeGeneral * x)/100 + x
-
-
-        let SubTotal = Number(x.toFixed(2));
-        SubTotal += SubTotal * (productos[a].iva / 100);
-        SubTotal = SubTotal.toFixed(2);
-    
-
-        bulkUpdateOperations.push({
-            updateOne: {
-                filter: { _id: productos[a]._id },
-                update: { $set: { precio: SubTotal } }
+        product.MaterialesProductos.forEach(mp => {
+            if (mp.material && mp.material.PrecioUnitario >= 0) {
+                suma += mp.cantidad * mp.material.PrecioUnitario;
             }
         });
-    
-        bulkUpdateOperations.push({
+
+        // Aplicar lógica de negocio para calcular el precio final
+        let precioFinal = suma;
+        let x = precioFinal;
+
+        // Mano de obra general y herramienta menor
+        const herrMenor = (product.ManoObGeneral * x) / 100;
+        x = (product.ManoObGeneral * x) / 100 + x;
+        const y = (herrMenor * (product.HerramientaMenor || 0)) / 100;
+        x = x + y;
+
+        // Porcentaje general
+        x = (product.PorcentajeGeneral * x) / 100 + x;
+
+        // Subtotal con IVA
+        let subTotal = Number(x.toFixed(2));
+        subTotal += subTotal * (product.iva / 100);
+        precioFinal = Number(subTotal.toFixed(2));
+
+        // Operación de actualización
+        return {
             updateOne: {
-                filter: { nombre: productos[a].nombre },
-                update: { $set: { precio: SubTotal } }
+                filter: { _id: product._id },
+                update: { $set: { precio: precioFinal } }
             }
-        });
+        };
+    });
+
+    // Ejecutar actualización en masa
+    if (bulkUpdateOperations.length > 0) {
+        await Producto.bulkWrite(bulkUpdateOperations);
     }
-    
-    // Ejecutar las operaciones de actualización en masa
-    await Producto.bulkWrite(bulkUpdateOperations);
-    
+
     res.redirect('/materiales/true');
 };
-
-
-
 
 /*
 const material = require('../models/materiales.js');

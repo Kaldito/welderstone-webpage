@@ -34,9 +34,12 @@ module.exports = async (req, res) => {
             "MaterialesProductos[Familia]": 0, 
             "PinturaProductos": 0, 
             "InstalacionProductos": 0, 
-            "image2": 0 
+            "image2": 0 ,
+            "especificacionesDesc":0,
+            "especificacionesNombre":0
+
         });
-    console.log(productos)
+    //console.log(productos)
     const cart = await Cart.find({});
 
     if (IdUsuario != undefined) {
