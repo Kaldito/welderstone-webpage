@@ -25,57 +25,82 @@ const ExcelAJSON = () => {
 ExcelAJSON();
 */
 const mongoose = require('mongoose');
-const Producto = require('../models/Productos.js'); // Ajusta la ruta a tu modelo de Producto
-const Material = require('../models/materiales.js'); // Ajusta la ruta a tu modelo de Material
+const Producto = require('../models/Productos.js'); // Ajusta la ruta según tu proyecto
+const Material = require('../models/materiales.js'); // Ajusta la ruta según tu proyecto
 
 // Conexión a la base de datos
-mongoose.connect('mongodb+srv://NoLeDeboANadie:rickygei@noledeboanadie.i6p3wc9.mongodb.net/Woolderstone', {
+mongoose.connect('mongodb+srv://NoLeDeboANadie:rickygei@noledeboanadie.i6p3wc9.mongodb.net/Prueba', {
     useNewUrlParser: true,
     useUnifiedTopology: true
+})
+.then(() => console.log('Conectado a MongoDB'))
+.catch(err => {
+    console.error('Error al conectar a MongoDB:', err);
+    process.exit(1);
 });
 
-async function migrarProductosAntiguos() {
+// Función para procesar cada producto
+async function procesarProducto(producto, materialMap) {
     try {
-        // Buscar productos antiguos que tengan 'Descripcion' en MaterialesProductos
-        const productosAntiguos = await Producto.find({
-            'MaterialesProductos.Descripcion': { $exists: true }
-        });
+        // Obtener códigos y cantidades de la estructura antigua
+        const codigos = producto['MaterialesProductos[Codigo]'] || [];
+        const cantidades = producto['MaterialesProductos[cantidad]'] || [];
 
-        console.log(`Productos antiguos encontrados: ${productosAntiguos.length}`);
-
-        for (const producto of productosAntiguos) {
-            const nuevosMaterialesProductos = [];
-
-            for (const mp of producto.MaterialesProductos) {
-                // Buscar el material en la colección Material usando la Descripcion
-                const material = await Material.findOne({ Descripcion: mp.Descripcion });
-
-                if (material) {
-                    // Crear el nuevo objeto con solo 'material' (_id) y 'cantidad'
+        // Crear el nuevo array de MaterialesProductos
+        const nuevosMaterialesProductos = [];
+        codigos.forEach((codigo, index) => {
+            const cantidad = parseFloat(cantidades[index]); // Convertir a número
+            if (codigo && cantidad > 0) { // Solo incluir si hay código y cantidad válida
+                const materialId = materialMap[codigo];
+                if (materialId) {
                     nuevosMaterialesProductos.push({
-                        material: material._id,
-                        cantidad: mp.cantidad
+                        material: materialId,
+                        cantidad: cantidad
                     });
                 } else {
-                    console.warn(`Material no encontrado para Descripcion: ${mp.Descripcion} en producto: ${producto.nombre}`);
+                    console.warn(`Material con código ${codigo} no encontrado para el producto ${producto._id}`);
                 }
             }
+        });
 
-            // Actualizar el array MaterialesProductos con la nueva estructura
-            producto.MaterialesProductos = nuevosMaterialesProductos;
-            await producto.save();
-            console.log(`Producto actualizado: ${producto.nombre}`);
-        }
+        // Reemplazar el array MaterialesProductos existente con el nuevo
+        producto.MaterialesProductos = nuevosMaterialesProductos;
 
-        console.log('Migración completada con éxito');
-    } catch (error) {
-        console.error('Error durante la migración:', error);
-    } finally {
-        // Cerrar la conexión a la base de datos
-        await mongoose.disconnect();
-        console.log('Conexión a MongoDB cerrada');
+        // Guardar el producto actualizado
+        await producto.save();
+        console.log(`Producto ${producto._id} actualizado correctamente`);
+    } catch (err) {
+        console.error(`Error al actualizar el producto ${producto._id}:`, err);
     }
 }
 
-// Ejecutar la migración
-migrarProductosAntiguos();
+// Función principal para ejecutar la actualización
+async function actualizarProductos() {
+    try {
+        // Paso 1: Cargar todos los materiales en un mapa (código -> ObjectId)
+        const materiales = await Material.find({}).lean();
+        const materialMap = {};
+        materiales.forEach(material => {
+            materialMap[material.Codigo] = material._id;
+        });
+        console.log('Mapa de materiales cargado con éxito');
+
+        // Paso 2: Obtener todos los productos
+        const productos = await Producto.find({});
+
+        // Paso 3: Procesar cada producto
+        for (const producto of productos) {
+            await procesarProducto(producto, materialMap);
+        }
+
+        console.log('Actualización masiva completada');
+    } catch (err) {
+        console.error('Error en la actualización masiva:', err);
+    } finally {
+        // Cerrar la conexión a la base de datos
+        mongoose.connection.close();
+    }
+}
+
+// Ejecutar la actualización
+actualizarProductos();
