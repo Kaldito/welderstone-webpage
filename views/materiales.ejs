@@ -414,9 +414,9 @@ $("input:checkbox").on('click', function() {
 
         form.addEventListener("submit", function (event) {
             const codigoValue = codigoInput.value;
-            if (codigoValue.includes("/") || codigoValue.includes(" ") || codigoValue.includes("#")) {
+            if (codigoValue.includes("/") || codigoValue.includes(" ") || codigoValue.includes("#") || codigoValue.includes(".")) {
                 event.preventDefault();
-                alert("El campo Codigo no debe contener espacios, barras diagonales ni el carácter '#'.");
+                alert("El campo Codigo no debe contener espacios, puntos, barras diagonales ni el carácter '#'.");
             }
         });
     });

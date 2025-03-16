@@ -80,6 +80,7 @@ passport.use(
             callbackURL: 'https://welderstone.com/auth/google/welderstone',
         },
         //https://welderstone.com/auth/google/welderstone
+        //http://localhost:3000/auth/google/welderstone
         // http://welderstone.com/auth/google/welderstone
         // http://localhost:3000/auth/google/welderstone
         // https://welderstoneprueba.onrender.com/auth/google/welderstone
